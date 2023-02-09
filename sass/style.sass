@@ -1,0 +1,54 @@
+@import ./_variables
+@import ./_reboot
+
+/// BLOCKS START ///
+.container
+    max-width: 1220px
+    margin: 0 auto
+    box-sizing: content-box
+    padding: 0 15px
+@media ( max-width: 992px )
+    .container
+        max-width: 900px
+@media ( max-width: 768px )
+    .container
+        max-width: 685px
+@media ( max-width: 576px )
+    .container
+        max-width: 500px
+
+.screen
+    padding: 60px 0
+
+.main
+    display: flex
+    padding: 15px
+    height: 100%
+    min-height: 600px
+    flex-direction: column
+    align-items: center
+    justify-content: space-around
+    border: 2px solid #fff
+    border-radius: 5px
+    &__desc
+        min-height: 320px
+        padding: 10px
+        border: 2px solid #fff
+        border-radius: 5px
+        text-align: center
+    &__choose
+        width: 100%
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: space-between
+        gap: 20px
+    .choose
+        &__option
+            width: 80%
+            height: 60px
+            border: 2px solid #fff
+            border-radius: 20px
+            background: transparent
+
+/// BLOCKS END ///

@@ -1,0 +1,33 @@
+:root
+    --body-max-width: #{$bodyWidth}
+@font-face
+    font-family: 'Immortal'
+    src: url(../fonts/IMMORTAL.woff) format('woff')
+*
+    margin: 0
+    padding: 0
+    border: 0
+    box-sizing: border-box
+body
+    //max-width: 1440px
+    height: 100%
+    position: relative
+    font-family: 'Immortal', sans-serif
+    font-weight: 400
+    font-size: 16px
+    line-height: 1.75
+    color: $text-color
+    background: #000814
+@media( min-width: 1440px )
+    body
+        --body-max-width: #{$bodyWidthLarge}
+.noscroll
+    overflow: hidden
+ul, ol, li
+    list-style: none
+a
+    color: #000
+    text-decoration: none
+button
+    color: $text-color
+    cursor: pointer
