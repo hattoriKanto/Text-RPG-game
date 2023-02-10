@@ -9,14 +9,57 @@
     <title>Document</title>
 </head>
 <body>
+    <div id="popup__race" class="popup race__popup">
+        <div class="overlay"></div>
+        <div class="popup__content content">
+            <div id="close__race__popup" class="close-btn"></div>
+            <h3 class="content__title"></h3>
+            <div class="content__desc">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti minus deserunt hic culpa neque eveniet voluptate ab perferendis sint consequatur recusandae id facere totam in voluptatibus rerum sapiente, magnam expedita.</div>
+            <ul class="content__stats stats">
+                <li class="stas__item">HP: <span id="HP__value" class="stats__item__value"></span></li>
+                <li class="stas__item">AP: <span id="AP__value" class="stats__item__value"></span></li>
+                <li class="stas__item">MP: <span id="MP__value" class="stats__item__value"></span></li>
+            </ul>
+        </div>
+    </div>
     <section class="screen__race screen race">
         <div class="container">
             <div class="race__main main">
                 <div class="main__desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque excepturi iste molestias ea incidunt, sunt beatae corporis autem officia quasi cumque est rem at ex tenetur quas. Inventore, corrupti mollitia! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem numquam nobis dicta explicabo officiis ex voluptatem earum quisquam asperiores beatae odit ducimus quam, eaque nulla amet debitis eligendi voluptas quo.</div>
                 <div class="main__choose choose__race choose">
-                    <button id="race__human" class="choose__option choose__option-1">Human</button>
-                    <button id="race__dwarf" class="choose__option choose__option-2">Dwarf</button>
-                    <button id="race__elf" class="choose__option choose__option-3">Elf</button>
+                    <div class="choose__option choose__option-1 option">
+                        <button id="race__human" class="option__btn">Human</button>
+                        <button id="race__human__info" class="option__info"><img src="./img/info.png" alt="Click for more information about a race"></button>
+                    </div>
+                    <div class="choose__option choose__option-2 option">
+                        <button id="race__dwarf" class="option__btn">Dwarf</button>
+                        <button id="race__dwarf__info" class="option__info"><img src="./img/info.png" alt="Click for more information about a race"></button>
+                    </div>
+                    <div class="choose__option choose__option-3 option">
+                        <button id="race__elf" class="option__btn">Elf</button>
+                        <button id="race__elf__info" class="option__info"><img src="./img/info.png" alt="Click for more information about a race"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="screen__class screen class hide">
+        <div class="container">
+            <div class="class__main main">
+                <div class="main__desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque excepturi iste molestias ea incidunt, sunt beatae corporis autem officia quasi cumque est rem at ex tenetur quas. Inventore, corrupti mollitia! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem numquam nobis dicta explicabo officiis ex voluptatem earum quisquam asperiores beatae odit ducimus quam, eaque nulla amet debitis eligendi voluptas quo.</div>
+                <div class="main__choose choose__class choose">
+                    <div class="choose__option choose__option-1 option">
+                        <button id="class__1" class="option__btn"></button>
+                        <button id="class__1__info" class="option__info"><img src="./img/info.png" alt="Click for more information about a race"></button>
+                    </div>
+                    <div class="choose__option choose__option-2 option">
+                        <button id="class__2" class="option__btn"></button>
+                        <button id="class__2__info" class="option__info"><img src="./img/info.png" alt="Click for more information about a race"></button>
+                    </div>
+                    <div class="choose__option choose__option-3 option">
+                        <button id="class__3" class="option__btn"></button>
+                        <button id="class__3__info" class="option__info"><img src="./img/info.png" alt="Click for more information about a race"></button>
+                    </div>
                 </div>
             </div>
         </div>

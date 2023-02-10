@@ -4,29 +4,38 @@ const race = {
     human: {
         healthPoints: 10,
         armourPoints: 0,
-        manaPoint: 0,
+        manaPoints: 0,
         class: {
-            legionier: {
-                bonusHealthPoints: 5,
-                bonusArmourPoints: 5,
-                bonusManaPoints: 0
+            legionnaire: {
+                className: 'Legionnaire of the First imperial legion',
+                classStats: {
+                    bonusHealthPoints: 5,
+                    bonusArmourPoints: 5,
+                    bonusManaPoints: 0
+                }
             },
             scout: {
-                bonusHealthPoints: 7,
-                bonusArmourPoints: 3,
-                bonusManaPoints: 0
+                className: 'Scout of the Fifth light brigade',
+                classStats: {
+                    bonusHealthPoints: 7,
+                    bonusArmourPoints: 3,
+                    bonusManaPoints: 0
+                }
             },
             agent: {
-                bonusHealthPoints: 5,
-                bonusArmourPoints: 2,
-                bonusManaPoints: 3
+                className: 'Agent of the Imperial Intelligent',
+                classStats: {
+                    bonusHealthPoints: 5,
+                    bonusArmourPoints: 2,
+                    bonusManaPoints: 3
+                }
             }
         }
     },
     dwarf: {
         healthPoints: 7,
         armourPoints: 3,
-        manaPoint: 0,
+        manaPoints: 0,
         class: {
             guardsman: {
                 bonusHealthPoints: 5,
@@ -48,7 +57,7 @@ const race = {
     elf: {
         healthPoints: 7,
         armourPoints: 0,
-        manaPoint: 3,
+        manaPoints: 3,
         class: {
             defender: {
                 bonusHealthPoints: 4,
@@ -68,3 +77,5 @@ const race = {
         }
     }
 }
+
+export default race;
