@@ -1,10 +1,12 @@
 import race from './stats.mjs';
 
-const popupInfoAboutRace = document.querySelector('#popup__race');
-
-const body = document.querySelector('body');
+const popup = document.querySelector('#popup');
 
 const popupOverlay = document.querySelector('.overlay');
+
+const popupTitle = document.querySelector('#popup .content__title');
+
+const closePopupBtn = document.querySelector('#close__popup');
 
 const popupInfoHealthPoints = document.querySelector('#HP__value');
 
@@ -12,9 +14,7 @@ const popupInfoArmourPoints = document.querySelector('#AP__value');
 
 const popupInfoManaPoints = document.querySelector('#MP__value');
 
-const closePopupInfoAboutRace = document.querySelector('#close__race__popup');
-
-const popupInfoContentTitle = document.querySelector('.content__title');
+const body = document.querySelector('body');
 
 const raceHuman = document.querySelector('#race__human');
 
@@ -22,11 +22,11 @@ const raceDwarf = document.querySelector('#race__dwarf');
 
 const raceElf = document.querySelector('#race__elf');
 
-const infoAboutRaces = document.querySelectorAll('.option__info');
+const optionInfo = document.querySelectorAll('.option__info');
 
 const screenClass = document.querySelector('.screen__class');
 
-closePopupInfoAboutRace.addEventListener('click', closePopup);
+closePopupBtn.addEventListener('click', closePopup);
 
 popupOverlay.addEventListener('click', closePopup);
 
@@ -73,36 +73,65 @@ raceElf.addEventListener('click', () =>{
     chooseYourClass()
 })
 
-infoAboutRaces.forEach(elem =>{
+optionInfo.forEach(elem =>{
     elem.addEventListener('click', () =>{
-        popupInfoAboutRace.classList.add('show-popup');
+        const raceStats = document.querySelectorAll('.stats__item span');
+        popup.classList.add('show-popup');
         body.classList.add('noscroll');
-        popupInfoContentTitle.innerHTML = elem.closest('.choose__option').querySelector('.option__btn').innerHTML;
-        if(popupInfoContentTitle.innerHTML === 'Human'){
-            popupInfoHealthPoints.innerHTML = race.human.healthPoints;
-            popupInfoArmourPoints.innerHTML = race.human.armourPoints;
-            popupInfoManaPoints.innerHTML = race.human.manaPoints;
+        popupTitle.innerHTML = elem.closest('.choose__option').querySelector('.option__btn').innerHTML;
+        if(popupTitle.innerHTML === 'Human'){
+            const arrayOfHumanStats = Object.values(race.human.globalStats)
+            for(let i = 0; i < raceStats.length; i++){
+                raceStats[i].innerHTML = arrayOfHumanStats[i];
+            }
         }
 
-        if(popupInfoContentTitle.innerHTML === 'Dwarf'){
-            popupInfoHealthPoints.innerHTML = race.dwarf.healthPoints;
-            popupInfoArmourPoints.innerHTML = race.dwarf.armourPoints;
-            popupInfoManaPoints.innerHTML = race.dwarf.manaPoints;
+        if(popupTitle.innerHTML === 'Dwarf'){
+            const arrayOfDwarfStats = Object.values(race.dwarf.globalStats)
+            for(let i = 0; i < raceStats.length; i++){
+                raceStats[i].innerHTML = arrayOfDwarfStats[i];
+            }
         }
 
-        if(popupInfoContentTitle.innerHTML === 'Elf'){
-            popupInfoHealthPoints.innerHTML = race.elf.healthPoints;
-            popupInfoArmourPoints.innerHTML = race.elf.armourPoints;
-            popupInfoManaPoints.innerHTML = race.elf.manaPoints;
+        if(popupTitle.innerHTML === 'Elf'){
+            const arrayOfElfStats = Object.values(race.elf.globalStats)
+            for(let i = 0; i < raceStats.length; i++){
+                raceStats[i].innerHTML = arrayOfElfStats[i];
+            }
         }
     })
 })
 
 function closePopup(){
-    popupInfoAboutRace.classList.remove('show-popup');
+    popup.classList.remove('show-popup');
     body.classList.remove('noscroll');
 }
 
 function chooseYourClass(){
     const classOption = screenClass.querySelectorAll('.option__btn');
+    const classStats = document.querySelectorAll('.stats__item span');
+    if(player.race === 'Human'){
+        const arrayOfHumanClasses = Object.values(race.human.class)
+        for(let i = 0; i < classOption.length; i++){
+            const closestOPtionInfo = classOption[i].closest('.choose__option').querySelector('.option__info');
+            closestOPtionInfo.addEventListener('click', () =>{
+                popupTitle.innerHTML = arrayOfHumanClasses[i].className;
+            })
+            classOption[i].innerHTML = arrayOfHumanClasses[i].className;
+        }
+    }
+
+    if(player.race === 'Dwarf'){
+        const arrayOfDwarfClasses = Object.values(race.dwarf.class)
+        for(let i = 0; i < classOption.length; i++){
+            classOption[i].innerHTML = arrayOfDwarfClasses[i].className;
+        }
+    }
+
+    if(player.race === 'Elf'){
+        const arrayOfElfClasses = Object.values(race.elf.class)
+        for(let i = 0; i < classOption.length; i++){
+            classOption[i].innerHTML = arrayOfElfClasses[i].className;
+        }
+    }
 }
