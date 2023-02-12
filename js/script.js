@@ -8,23 +8,11 @@ const popupTitle = document.querySelector('#popup .content__title');
 
 const closePopupBtn = document.querySelector('#close__popup');
 
-const popupInfoHealthPoints = document.querySelector('#HP__value');
-
-const popupInfoArmourPoints = document.querySelector('#AP__value');
-
-const popupInfoManaPoints = document.querySelector('#MP__value');
-
 const body = document.querySelector('body');
 
-const raceHuman = document.querySelector('#race__human');
-
-const raceDwarf = document.querySelector('#race__dwarf');
-
-const raceElf = document.querySelector('#race__elf');
-
-const optionInfo = document.querySelectorAll('.option__info');
-
 const screenClass = document.querySelector('.screen__class');
+
+const screenRace = document.querySelector('.screen__race');
 
 closePopupBtn.addEventListener('click', closePopup);
 
@@ -39,99 +27,54 @@ const player = {
         manaPoints: null
     }
 }
-
-raceHuman.addEventListener('click', () =>{
-    player.race = raceHuman.innerHTML;
-    player.stats.healthPoints = race.human.healthPoints;
-    player.stats.armourPoints = race.human.armourPoints;
-    player.stats.manaPoints = race.human.manaPoints;
-    console.log(`Player's race is ${player.race}. HP is ${player.stats.healthPoints}. AP is ${player.stats.armourPoints}. MP is ${player.stats.manaPoints}`);
-    raceHuman.closest('.screen').classList.add('hide');
-    screenClass.classList.remove('hide');
-    chooseYourClass()
-})
-
-raceDwarf.addEventListener('click', () =>{
-    player.race = raceDwarf.innerHTML;
-    player.stats.healthPoints = race.dwarf.healthPoints;
-    player.stats.armourPoints = race.dwarf.armourPoints;
-    player.stats.manaPoints = race.dwarf.manaPoints;
-    console.log(`Player's race is ${player.race}. HP is ${player.stats.healthPoints}. AP is ${player.stats.armourPoints}. MP is ${player.stats.manaPoints}`);
-    raceDwarf.closest('.screen').classList.add('hide');
-    screenClass.classList.remove('hide');
-    chooseYourClass()
-})
-
-raceElf.addEventListener('click', () =>{
-    player.race = raceElf.innerHTML;
-    player.stats.healthPoints = race.elf.healthPoints;
-    player.stats.armourPoints = race.elf.armourPoints;
-    player.stats.manaPoints = race.elf.manaPoints;
-    console.log(`Player's race is ${player.race}. HP is ${player.stats.healthPoints}. AP is ${player.stats.armourPoints}. MP is ${player.stats.manaPoints}`);
-    raceElf.closest('.screen').classList.add('hide');
-    screenClass.classList.remove('hide');
-    chooseYourClass()
-})
-
-optionInfo.forEach(elem =>{
-    elem.addEventListener('click', () =>{
-        const raceStats = document.querySelectorAll('.stats__item span');
-        popup.classList.add('show-popup');
-        body.classList.add('noscroll');
-        popupTitle.innerHTML = elem.closest('.choose__option').querySelector('.option__btn').innerHTML;
-        if(popupTitle.innerHTML === 'Human'){
-            const arrayOfHumanStats = Object.values(race.human.globalStats)
-            for(let i = 0; i < raceStats.length; i++){
-                raceStats[i].innerHTML = arrayOfHumanStats[i];
-            }
-        }
-
-        if(popupTitle.innerHTML === 'Dwarf'){
-            const arrayOfDwarfStats = Object.values(race.dwarf.globalStats)
-            for(let i = 0; i < raceStats.length; i++){
-                raceStats[i].innerHTML = arrayOfDwarfStats[i];
-            }
-        }
-
-        if(popupTitle.innerHTML === 'Elf'){
-            const arrayOfElfStats = Object.values(race.elf.globalStats)
-            for(let i = 0; i < raceStats.length; i++){
-                raceStats[i].innerHTML = arrayOfElfStats[i];
-            }
-        }
-    })
-})
+chooseYourRace()
+function chooseYourRace(){
+    const optionInfo = screenRace.querySelectorAll('.option__info');                                        // all .option__info on screenRace
+    const raceOption = screenRace.querySelectorAll('.option__btn');                                         // all .option__btn on screenRace
+    const arrayRaces = Object.values(race);                                                                 // convert values of race into array
+    const arrayPlayerStats = Object.values(player.stats);                                                   // convert values of player.stats into array for length
+    for(let i = 0; i < raceOption.length; i++){                                                             // start of a cycle
+        const arrayRacesStats = Object.values(arrayRaces[i].globalStats);                                   // convert values of a CHOSEN race into array
+        raceOption[i].innerHTML = arrayRaces[i].raceName;                                                   // fill .option__btn from raceOption with races from arrayRaces 
+        raceOption[i].addEventListener('click', () =>{                                                      // add event to specific .option__btn
+            player.race = arrayRaces[i].raceName;                                                           // add race name to player{}
+            for(let j = 0; j < arrayPlayerStats.length; j++){                                               // start of a cycle
+                player.stats[Object.keys(player.stats)[j]] = arrayRacesStats[j];                            // fill player.stats value from arrayRaceStats
+            }                                                                                               // end of a cycle
+            screenClass.classList.remove('hide');                                                           // remove .hide from the next screen
+            screenRace.classList.add('hide');                                                               // add .hide to the current screen
+        })                                                                                                  // the end of the event
+    }                                                                                                       // the end of a cycle
+    optionInfo.forEach(elem =>{                                                                             // for each .option__info
+        elem.addEventListener('click', () =>{                                                               // add event
+            const raceStats = popup.querySelectorAll('.stats__item span');                                  // all .stats__item span on .popup
+            popup.classList.add('show-popup');                                                              // add .show-popup to .popup
+            body.classList.add('noscroll');                                                                 // add .noscroll to body
+            popupTitle.innerHTML = elem.closest('.choose__option').querySelector('.option__btn').innerHTML; // fill popupTitle with closest .option__btn text to hit .option__info
+            if(popupTitle.innerHTML === 'Human'){                                                           // if popupTitle = Human
+                const arrayOfHumanStats = Object.values(race.human.globalStats);                            // convert values of race.human.globalStats into array
+                for(let i = 0; i < raceStats.length; i++){                                                  // start of a cycle
+                    raceStats[i].innerHTML = arrayOfHumanStats[i];                                          // fill raceStats with proper stats from array
+                }                                                                                           // the end of cycle
+            }                                                                                               // the end of condition
+            if(popupTitle.innerHTML === 'Dwarf'){                                                           // if popupTitle = Dwarf
+                const arrayOfDwarfStats = Object.values(race.dwarf.globalStats)                             // convert values of race.dwarf.globalStats into array
+                for(let i = 0; i < raceStats.length; i++){                                                  // start of a cycle
+                    raceStats[i].innerHTML = arrayOfDwarfStats[i];                                          // fill raceStats with proper stats from array
+                }                                                                                           // the end of cycle
+            }                                                                                               // the end of condition
+            if(popupTitle.innerHTML === 'Elf'){                                                             // if popupTitle = Elf
+                const arrayOfElfStats = Object.values(race.elf.globalStats)                                 // convert values of race.elf.globalStats into array
+                for(let i = 0; i < raceStats.length; i++){                                                  // start of a cycle
+                    raceStats[i].innerHTML = arrayOfElfStats[i];                                            // fill raceStats with proper stats from array
+                }                                                                                           // the end of cycle
+            }                                                                                               // the end of condition
+        })                                                                                                  // the end of event
+    })                                                                                                      // the end of cycle
+    chooseYourClass()                                                                                       // call a function
+}
 
 function closePopup(){
     popup.classList.remove('show-popup');
     body.classList.remove('noscroll');
-}
-
-function chooseYourClass(){
-    const classOption = screenClass.querySelectorAll('.option__btn');
-    const classStats = document.querySelectorAll('.stats__item span');
-    if(player.race === 'Human'){
-        const arrayOfHumanClasses = Object.values(race.human.class)
-        for(let i = 0; i < classOption.length; i++){
-            const closestOPtionInfo = classOption[i].closest('.choose__option').querySelector('.option__info');
-            closestOPtionInfo.addEventListener('click', () =>{
-                popupTitle.innerHTML = arrayOfHumanClasses[i].className;
-            })
-            classOption[i].innerHTML = arrayOfHumanClasses[i].className;
-        }
-    }
-
-    if(player.race === 'Dwarf'){
-        const arrayOfDwarfClasses = Object.values(race.dwarf.class)
-        for(let i = 0; i < classOption.length; i++){
-            classOption[i].innerHTML = arrayOfDwarfClasses[i].className;
-        }
-    }
-
-    if(player.race === 'Elf'){
-        const arrayOfElfClasses = Object.values(race.elf.class)
-        for(let i = 0; i < classOption.length; i++){
-            classOption[i].innerHTML = arrayOfElfClasses[i].className;
-        }
-    }
 }
