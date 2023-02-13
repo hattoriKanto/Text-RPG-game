@@ -1,4 +1,4 @@
-import race from './stats.mjs';
+import race from './race__stats.js';
 
 const popup = document.querySelector('#popup');
 
@@ -37,12 +37,14 @@ function chooseYourRace(){
         const arrayRacesStats = Object.values(arrayRaces[i].globalStats);                                   // convert values of a CHOSEN race into array
         raceOption[i].innerHTML = arrayRaces[i].raceName;                                                   // fill .option__btn from raceOption with races from arrayRaces 
         raceOption[i].addEventListener('click', () =>{                                                      // add event to specific .option__btn
+            const choosedRace = arrayRaces[i].class;                                                        // declare variable choosenRace to reuse it in next function as argument
             player.race = arrayRaces[i].raceName;                                                           // add race name to player{}
             for(let j = 0; j < arrayPlayerStats.length; j++){                                               // start of a cycle
                 player.stats[Object.keys(player.stats)[j]] = arrayRacesStats[j];                            // fill player.stats value from arrayRaceStats
             }                                                                                               // end of a cycle
             screenClass.classList.remove('hide');                                                           // remove .hide from the next screen
             screenRace.classList.add('hide');                                                               // add .hide to the current screen
+            chooseYourClass(choosedRace);                                                                   // call a function
         })                                                                                                  // the end of the event
     }                                                                                                       // the end of a cycle
     optionInfo.forEach(elem =>{                                                                             // for each .option__info
@@ -71,10 +73,29 @@ function chooseYourRace(){
             }                                                                                               // the end of condition
         })                                                                                                  // the end of event
     })                                                                                                      // the end of cycle
-    chooseYourClass()                                                                                       // call a function
 }
 
 function closePopup(){
     popup.classList.remove('show-popup');
     body.classList.remove('noscroll');
+}
+
+function chooseYourClass(choosedRace){
+    const classOption = screenClass.querySelectorAll('.option__btn');                                        
+    const classStats = popup.querySelectorAll('.stats__item span');
+    const arrayOfClasses = Object.values(choosedRace);
+    for(let i = 0; i < arrayOfClasses.length; i++){
+        console.log(arrayOfClasses[i])
+        classOption[i].innerHTML = arrayOfClasses[i].className;
+        const optionInfo = classOption[i].closest('.choose__option').querySelector('.option__info');
+        optionInfo.addEventListener('click', () =>{
+            const arrayOfClassStats = Object.values(arrayOfClasses[i].classStats);
+            popup.classList.add('show-popup');
+            body.classList.add('noscroll');
+            popupTitle.innerHTML = optionInfo.closest('.choose__option').querySelector('.option__btn').innerHTML;
+            for(let j = 0; j < classStats.length; j++){
+                classStats[j].innerHTML = arrayOfClassStats[j];
+            }
+        }) 
+    }                                                                                                            
 }
