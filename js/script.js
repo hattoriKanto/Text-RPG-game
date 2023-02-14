@@ -1,5 +1,7 @@
 import race from './race__stats.js';
 
+import weapon from './weapons__stats.js';
+
 const popup = document.querySelector('#popup');
 
 const popupOverlay = document.querySelector('.overlay');
@@ -14,6 +16,10 @@ const screenClass = document.querySelector('.screen__class');
 
 const screenRace = document.querySelector('.screen__race');
 
+const screenFirstWeapon = document.querySelector('.screen__first__weapon');
+
+const screenSecondWeapon = document.querySelector('.screen__second__weapon');
+
 closePopupBtn.addEventListener('click', closePopup);
 
 popupOverlay.addEventListener('click', closePopup);
@@ -25,9 +31,11 @@ const player = {
         healthPoints: null,
         armourPoints: null,
         manaPoints: null
-    }
+    },
 }
+
 chooseYourRace()
+
 function chooseYourRace(){
     const optionInfo = screenRace.querySelectorAll('.option__info');                                        // all .option__info on screenRace
     const raceOption = screenRace.querySelectorAll('.option__btn');                                         // all .option__btn on screenRace
@@ -85,11 +93,21 @@ function chooseYourClass(choosedRace){
     const classStats = popup.querySelectorAll('.stats__item span');
     const arrayOfClasses = Object.values(choosedRace);
     for(let i = 0; i < arrayOfClasses.length; i++){
-        console.log(arrayOfClasses[i])
-        classOption[i].innerHTML = arrayOfClasses[i].className;
+        const arrayOfClassStats = Object.values(arrayOfClasses[i].classStats);
         const optionInfo = classOption[i].closest('.choose__option').querySelector('.option__info');
+        classOption[i].innerHTML = arrayOfClasses[i].className;
+        classOption[i].addEventListener('click', () =>{
+            const choosedClass = arrayOfClasses[i];
+            const playerStats = Object.values(player.stats);
+            for(let j = 0; j < playerStats.length; j++){
+                player.stats[Object.keys(player.stats)[j]] = playerStats[j] + arrayOfClassStats[j];
+            }
+            player.class = classOption[i].innerHTML;
+            screenFirstWeapon.classList.remove('hide');
+            screenClass.classList.add('hide');
+            chooseYourFirstWeapon(choosedClass);
+        });
         optionInfo.addEventListener('click', () =>{
-            const arrayOfClassStats = Object.values(arrayOfClasses[i].classStats);
             popup.classList.add('show-popup');
             body.classList.add('noscroll');
             popupTitle.innerHTML = optionInfo.closest('.choose__option').querySelector('.option__btn').innerHTML;
@@ -98,4 +116,36 @@ function chooseYourClass(choosedRace){
             }
         }) 
     }                                                                                                            
+}
+
+function chooseYourFirstWeapon(choosedClass){
+    const weaponOption = screenFirstWeapon.querySelectorAll('.option__btn');
+    const weaponStats = popup.querySelectorAll('.stats__item span');
+    const arrayOfWeapons = Object.values(choosedClass.startWeapon.firstWeapon);
+    for(let i = 0; i < weaponOption.length; i++){
+        weaponOption[i].innerHTML = arrayOfWeapons[i].weaponName;
+        weaponOption[i].closest('.choose__option').querySelector('.option__info').addEventListener('click', () =>{
+            popup.classList.add('show-popup');
+            body.classList.add('noscroll');
+            popupTitle.innerHTML = weaponOption[i].innerHTML;
+            const arrayOfWeaponStats = Object.values(arrayOfWeapons[i].weaponStats);
+            for(let j = 0; j < weaponStats.length; j++){
+                weaponStats[j].innerHTML = arrayOfWeaponStats[j];
+            }
+        })
+        weaponOption[i].addEventListener('click', () =>{
+            screenSecondWeapon.classList.remove('hide');
+            screenFirstWeapon.classList.add('hide');
+            chooseYourSecondWeapon(choosedClass);
+        })
+    }
+}
+
+function chooseYourSecondWeapon(choosedClass){
+    const weaponOption = screenSecondWeapon.querySelectorAll('.option__btn');
+    const weaponStats = popup.querySelectorAll('.stats__item span');
+    const arrayOfWeapons = Object.values(choosedClass.startWeapon.secondWeapon);
+    for(let i = 0; i < weaponOption.length; i++){
+        weaponOption[i].innerHTML = arrayOfWeapons[i].weaponName;
+    }
 }
