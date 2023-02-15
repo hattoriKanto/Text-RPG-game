@@ -248,6 +248,72 @@ const race = {
                     bonusHealthPoints: 5,
                     bonusArmourPoints: 5,
                     bonusManaPoints: 0
+                },
+                startWeapon: {
+                    firstWeapon: {
+                        battleAxe:{
+                            weaponName: 'Battle axe',
+                            weaponStats: {
+                                physicalAttack: 8,
+                                physicalDefense: 2,
+                                magicAttack: 0,
+                                magicDefense: 0
+                            },
+                            isRange: false
+                        },
+                        pike:{
+                            weaponName: 'Pike',
+                            weaponStats: {
+                                physicalAttack: 4,
+                                physicalDefense: 6,
+                                magicAttack: 0,
+                                magicDefense: 0
+                            },
+                            isRange: false
+                        },
+                        musket: {
+                            weaponName: 'Dwarf`s musket',
+                            weaponStats: {
+                                physicalAttack: 10,
+                                physicalDefense: 0,
+                                magicAttack: 0,
+                                magicDefense: 0
+                            },
+                            isRange: true
+                        } 
+                    },
+                    secondWeapon: {
+                        ironShield: {
+                            weaponName: 'Iron rounded shield',
+                            weaponStats: {
+                                physicalAttack: 0,
+                                physicalDefense: 4,
+                                magicAttack: 0,
+                                magicDefense: 6
+                            },
+                            isRange: false
+                        },
+                        pavis: {
+                            weaponName: 'Pavis',
+                            weaponStats: {
+                                physicalAttack: 0,
+                                physicalDefense: 7,
+                                magicAttack: 0,
+                                magicDefense: 3
+                            },
+                            isRange: false
+                        },
+                        battleAxe:{
+                            weaponName: 'Battle axe',
+                            weaponStats: {
+                                physicalAttack: 8,
+                                physicalDefense: 2,
+                                magicAttack: 0,
+                                magicDefense: 0
+                            },
+                            isRange: false
+                        },
+                    }
                 }
             },
             warrior: {
@@ -256,6 +322,72 @@ const race = {
                     bonusHealthPoints: 3,
                     bonusArmourPoints: 7,
                     bonusManaPoints: 0
+                },
+                startWeapon: {
+                    firstWeapon: {
+                        battleAxe:{
+                            weaponName: 'Battle axe',
+                            weaponStats: {
+                                physicalAttack: 8,
+                                physicalDefense: 2,
+                                magicAttack: 0,
+                                magicDefense: 0
+                            },
+                            isRange: false
+                        },
+                        bigBattleAxe:{
+                            weaponName: 'Big battle axe',
+                            weaponStats: {
+                                physicalAttack: 9,
+                                physicalDefense: 1,
+                                magicAttack: 0,
+                                magicDefense: 0
+                            },
+                            isRange: false
+                        },
+                        spatha:{
+                            weaponName: 'Spatha',
+                            weaponStats: {
+                                physicalAttack: 7,
+                                physicalDefense: 3,
+                                magicAttack: 0,
+                                magicDefense: 0
+                            },
+                            isRange: false
+                        } 
+                    },
+                    secondWeapon: {
+                        spatha:{
+                            weaponName: 'Spatha',
+                            weaponStats: {
+                                physicalAttack: 7,
+                                physicalDefense: 3,
+                                magicAttack: 0,
+                                magicDefense: 0
+                            },
+                            isRange: false
+                        }, 
+                        pavis: {
+                            weaponName: 'Pavis',
+                            weaponStats: {
+                                physicalAttack: 0,
+                                physicalDefense: 7,
+                                magicAttack: 0,
+                                magicDefense: 3
+                            },
+                            isRange: false
+                        },
+                        crossbow:{
+                            weaponName: 'Crossbow',
+                            weaponStats: {
+                                physicalAttack: 10,
+                                physicalDefense: 0,
+                                magicAttack: 0,
+                                magicDefense: 0
+                            },
+                            isRange: true
+                        },
+                    }
                 }
             },
             berserk: {
@@ -264,6 +396,72 @@ const race = {
                     bonusHealthPoints: 7,
                     bonusArmourPoints: 3,
                     bonusManaPoints: 0
+                },
+                startWeapon: {
+                    firstWeapon: {
+                        championAxe:{
+                            weaponName: 'Champion`s axe',
+                            weaponStats: {
+                                physicalAttack: 10,
+                                physicalDefense: 0,
+                                magicAttack: 0,
+                                magicDefense: 0
+                            },
+                            isRange: false
+                        },
+                        crossbow:{
+                            weaponName: 'Crossbow',
+                            weaponStats: {
+                                physicalAttack: 10,
+                                physicalDefense: 0,
+                                magicAttack: 0,
+                                magicDefense: 0
+                            },
+                            isRange: true
+                        },
+                        spatha:{
+                            weaponName: 'Big battle axe',
+                            bigBattleAxe: {
+                                physicalAttack: 9,
+                                physicalDefense: 1,
+                                magicAttack: 0,
+                                magicDefense: 0
+                            },
+                            isRange: false
+                        } 
+                    },
+                    secondWeapon: {
+                        spatha:{
+                            weaponName: 'Spatha',
+                            weaponStats: {
+                                physicalAttack: 7,
+                                physicalDefense: 3,
+                                magicAttack: 0,
+                                magicDefense: 0
+                            },
+                            isRange: false
+                        }, 
+                        pavis: {
+                            weaponName: 'Pavis',
+                            weaponStats: {
+                                physicalAttack: 0,
+                                physicalDefense: 7,
+                                magicAttack: 0,
+                                magicDefense: 3
+                            },
+                            isRange: false
+                        },
+                        musket:{
+                            weaponName: 'Musket',
+                            weaponStats: {
+                                physicalAttack: 10,
+                                physicalDefense: 0,
+                                magicAttack: 0,
+                                magicDefense: 0
+                            },
+                            isRange: false
+                        },
+                    }
                 }
             }
         }

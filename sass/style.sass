@@ -40,6 +40,18 @@
     justify-content: space-around
     border: 2px solid #fff
     border-radius: 5px
+    &__header
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        width: 100%
+        padding: 15px
+    .list
+        &__item
+            img
+                width: 50%
+
     &__desc
         min-height: 320px
         padding: 10px
@@ -136,6 +148,8 @@
                     display: none
             .hide
                 display: none
+        .hide
+            display: none
     .overlay
         position: absolute
         top: 0

@@ -20,6 +20,8 @@ const screenFirstWeapon = document.querySelector('.screen__first__weapon');
 
 const screenSecondWeapon = document.querySelector('.screen__second__weapon');
 
+const screenCharacterOverview = document.querySelector('.screen__character-overview');
+
 closePopupBtn.addEventListener('click', closePopup);
 
 popupOverlay.addEventListener('click', closePopup);
@@ -32,6 +34,12 @@ const player = {
         armourPoints: null,
         manaPoints: null
     },
+    firstWeapon: {
+
+    },
+    secondWeapon: {
+
+    }
 }
 
 chooseYourRace()
@@ -105,7 +113,7 @@ function chooseYourClass(choosedRace){
             player.class = classOption[i].innerHTML;
             screenFirstWeapon.classList.remove('hide');
             screenClass.classList.add('hide');
-            chooseYourFirstWeapon(choosedClass);
+            chooseYourWeapon(choosedClass);
         });
         optionInfo.addEventListener('click', () =>{
             popup.classList.add('show-popup');
@@ -118,34 +126,69 @@ function chooseYourClass(choosedRace){
     }                                                                                                            
 }
 
-function chooseYourFirstWeapon(choosedClass){
-    const weaponOption = screenFirstWeapon.querySelectorAll('.option__btn');
-    const weaponStats = popup.querySelectorAll('.stats__item span');
-    const arrayOfWeapons = Object.values(choosedClass.startWeapon.firstWeapon);
-    for(let i = 0; i < weaponOption.length; i++){
-        weaponOption[i].innerHTML = arrayOfWeapons[i].weaponName;
-        weaponOption[i].closest('.choose__option').querySelector('.option__info').addEventListener('click', () =>{
+function chooseYourWeapon(choosedClass){
+    const weaponOptionFirstWeapon = screenFirstWeapon.querySelectorAll('.option__btn');
+    const weaponOptionSecondWeapon = screenSecondWeapon.querySelectorAll('.option__btn');
+    const weaponStats = popup.querySelectorAll('.weapon__content__stats .stats__item span');
+    const arrayOfFirstWeapons = Object.values(choosedClass.startWeapon.firstWeapon);
+    const arrayOfSecondWeapons = Object.values(choosedClass.startWeapon.secondWeapon);
+    for(let i = 0; i < weaponOptionFirstWeapon.length; i++){
+        weaponOptionFirstWeapon[i].innerHTML = arrayOfFirstWeapons[i].weaponName;
+        weaponOptionFirstWeapon[i].closest('.choose__option').querySelector('.option__info').addEventListener('click', () =>{
             popup.classList.add('show-popup');
             body.classList.add('noscroll');
-            popupTitle.innerHTML = weaponOption[i].innerHTML;
-            const arrayOfWeaponStats = Object.values(arrayOfWeapons[i].weaponStats);
+            popup.querySelector('.weapon__content__stats').classList.remove('hide');
+            popup.querySelector('.content__stats').classList.add('hide');
+            popupTitle.innerHTML = weaponOptionFirstWeapon[i].innerHTML;
+            const arrayOfWeaponStats = Object.values(arrayOfFirstWeapons[i].weaponStats);
             for(let j = 0; j < weaponStats.length; j++){
                 weaponStats[j].innerHTML = arrayOfWeaponStats[j];
             }
         })
-        weaponOption[i].addEventListener('click', () =>{
+        weaponOptionFirstWeapon[i].addEventListener('click', () =>{
+            player.firstWeapon[Object.keys(player.firstWeapon)] = arrayOfFirstWeapons[i];                            
             screenSecondWeapon.classList.remove('hide');
             screenFirstWeapon.classList.add('hide');
-            chooseYourSecondWeapon(choosedClass);
+            for(let i = 0; i < weaponOptionSecondWeapon.length; i++){
+                weaponOptionSecondWeapon[i].innerHTML = arrayOfSecondWeapons[i].weaponName;
+                weaponOptionSecondWeapon[i].closest('.choose__option').querySelector('.option__info').addEventListener('click', () =>{
+                    popup.classList.add('show-popup');
+                    body.classList.add('noscroll');
+                    popup.querySelector('.weapon__content__stats').classList.remove('hide');
+                    popup.querySelector('.content__stats').classList.add('hide');
+                    popupTitle.innerHTML = weaponOptionSecondWeapon[i].innerHTML;
+                    const arrayOfWeaponStats = Object.values(arrayOfSecondWeapons[i].weaponStats);
+                    for(let j = 0; j < weaponStats.length; j++){
+                        weaponStats[j].innerHTML = arrayOfWeaponStats[j];
+                    }
+                })
+                weaponOptionSecondWeapon[i].addEventListener('click', () =>{
+                    player.secondWeapon[Object.keys(player.secondWeapon)] = arrayOfSecondWeapons[i];
+                    screenSecondWeapon.classList.add('hide');
+                    screenCharacterOverview.classList.remove('hide');
+                    characterOverview(); 
+                })
+            }
         })
     }
 }
 
-function chooseYourSecondWeapon(choosedClass){
-    const weaponOption = screenSecondWeapon.querySelectorAll('.option__btn');
-    const weaponStats = popup.querySelectorAll('.stats__item span');
-    const arrayOfWeapons = Object.values(choosedClass.startWeapon.secondWeapon);
-    for(let i = 0; i < weaponOption.length; i++){
-        weaponOption[i].innerHTML = arrayOfWeapons[i].weaponName;
-    }
+function characterOverview(){
+    console.log(player);
+    const arrayOfPlayer = Object.values(player);
+    const arrayOfPlayerStats = Object.values(player.stats);
+    const listOfItems = screenCharacterOverview.querySelectorAll('.item__span');
+    const listOfSpanStats = screenCharacterOverview.querySelectorAll('.race-and-class-stats__span');
+    for(let i = 0; i < listOfItems.length; i++){
+        listOfItems[i].innerHTML = arrayOfPlayer[i]; 
+        listOfSpanStats[i].innerHTML = arrayOfPlayerStats[i];
+    };
+    screenCharacterOverview.querySelectorAll('.footer__btn').forEach(elem =>{
+        elem.addEventListener('click', () =>{
+            if(elem.classList.contains('back-btn') === true){
+                screenCharacterOverview.classList.add('hide');
+                screenRace.classList.remove('hide');
+            }
+        })
+    })
 }
