@@ -42,7 +42,21 @@ const player = {
     }
 }
 
-chooseYourRace()
+function closePopup(){
+    popup.classList.remove('show-popup');
+    body.classList.remove('noscroll');
+};
+
+startScreen();
+
+function startScreen(){
+    const screenStart = document.querySelector('#start-screen');
+    screenStart.querySelector('#start-btn').addEventListener('click', () =>{
+        screenRace.classList.remove('hide');
+        screenStart.classList.add('hide');
+        chooseYourRace();
+    });
+};
 
 function chooseYourRace(){
     const optionInfo = screenRace.querySelectorAll('.option__info');                                        // all .option__info on screenRace
@@ -89,12 +103,7 @@ function chooseYourRace(){
             }                                                                                               // the end of condition
         })                                                                                                  // the end of event
     })                                                                                                      // the end of cycle
-}
-
-function closePopup(){
-    popup.classList.remove('show-popup');
-    body.classList.remove('noscroll');
-}
+};
 
 function chooseYourClass(choosedRace){
     const classOption = screenClass.querySelectorAll('.option__btn');                                        
@@ -124,7 +133,7 @@ function chooseYourClass(choosedRace){
             }
         }) 
     }                                                                                                            
-}
+};
 
 function chooseYourWeapon(choosedClass){
     const weaponOptionFirstWeapon = screenFirstWeapon.querySelectorAll('.option__btn');
@@ -171,7 +180,7 @@ function chooseYourWeapon(choosedClass){
             }
         })
     }
-}
+};
 
 function characterOverview(){
     const arrayOfPlayer = Object.values(player);
@@ -212,6 +221,13 @@ function characterOverview(){
                     popup.querySelector('.content__stats').classList.remove('hide');
                 }
             }
+            screenCharacterOverview.classList.add('hide');
+            chooseLocation();
         })
     })
+};
+
+function chooseLocation(){
+    const screenLocation = document.querySelector('#location-screen');
+    screenLocation.classList.remove('hide');
 }
