@@ -1,5 +1,7 @@
 import race from './race__stats.js';
 
+import castleText from './castle__description.js';
+
 const popup = document.querySelector('#popup');
 
 const popupOverlay = document.querySelector('.overlay');
@@ -229,5 +231,47 @@ function characterOverview(){
 
 function chooseLocation(){
     const screenLocation = document.querySelector('#location-screen');
+    const chooseLocation = screenLocation.querySelectorAll('.choose__item');
     screenLocation.classList.remove('hide');
+    for(let i = 0; i < chooseLocation.length; i++){
+        chooseLocation[i].addEventListener('click', () =>{
+            screenLocation.classList.add('hide');
+            castle();
+        })
+    };
+}
+
+function castle(){
+    const screenCatsle = document.querySelector('#castle-screen');
+    screenCatsle.querySelector('.main__title').innerHTML = castleText.russian.castleEntrance.entranceName;
+    screenCatsle.querySelector('.main__desc').innerHTML = castleText.russian.castleEntrance.entranceDescr;
+    const screenCastleBtn = screenCatsle.querySelectorAll('.main__btn');
+    for(let i = 0; i < screenCastleBtn.length; i++){
+        if(screenCastleBtn[i].classList.contains('hide-btn') != true){
+            screenCastleBtn[i].innerHTML = castleText.russian.castleEntrance.entranceBtn;
+            screenCastleBtn[i].addEventListener('click', () =>{
+                screenCatsle.querySelector('.main').classList.toggle('rotation');
+                setTimeout(() => {
+                    screenCatsle.querySelector('.main__title').innerHTML = castleText.russian.castleCourtyard.courtyardName;
+                    screenCatsle.querySelector('.main__desc').innerHTML = castleText.russian.castleCourtyard.courtyardDescr;
+                    const screenCastleBtn = screenCatsle.querySelectorAll('.main__btn');
+                    for(let i = 0; i < screenCastleBtn.length; i++){
+                        if(screenCastleBtn[i].classList.contains('hide-btn') === true){
+                            screenCastleBtn[i].classList.remove('hide-btn');
+                        }
+                    }
+                  }, "500")
+            })
+        }
+        
+    }
+    screenCatsle.classList.remove('hide');
+}
+
+function courtyardCastleBarracks(){
+    const screenCourtyardBarracks = document.querySelector('#barracks-courtyard-screen');
+    screenCourtyardBarracks.querySelector('.main__title').innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barrakcsName;
+    screenCourtyardBarracks.querySelector('.main__desc').innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barracksDescr;
+    screenCourtyardBarracks.querySelector('.main__btn').innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barracksBtn;
+    screenCourtyardBarracks.classList.remove('hide');
 }

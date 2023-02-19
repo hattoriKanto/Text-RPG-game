@@ -40,6 +40,9 @@
     &:hover, &:focus
         transform: scale(1.03)
 
+.hide-btn
+    display: none
+
 .main
     display: flex
     padding: 15px
@@ -50,6 +53,7 @@
     justify-content: space-around
     border: 2px solid #fff
     border-radius: 5px
+    transition: 2000ms transform
     &__header
         display: flex
         flex-direction: column
@@ -94,7 +98,8 @@
             border-radius: 20px
             background: transparent
     &__title
-        font-size: 40px
+        font-size: 30px
+        line-height: 1.75
     &__desc
         min-height: 200px
         padding: 10px
@@ -206,7 +211,7 @@
 
 .location
     &__main
-        padding: 15px
+        padding: 40px
         height: 100%
         min-height: 600px
         display: flex
@@ -216,7 +221,7 @@
         border: 2px solid #fff
         border-radius: 5px
     &__title
-        font-size: 40px
+        font-size: 20px
     &__footer
         width: 100%
     .footer
@@ -236,6 +241,7 @@
                 border: 2px solid #fff
                 border-radius: 5px
                 transition: 500ms all
+                cursor: pointer
                 &:hover, &:focus
                     transform: scale(1.03)
             .item
@@ -262,3 +268,13 @@
                 background: #000
 
 /// LOCATION SECTION END ///
+
+.screen
+    .main
+        &__footer
+            display: flex
+            flex-direction: column
+            align-items: center
+            gap: 20px
+.rotation
+    transform: rotateX(360deg)
