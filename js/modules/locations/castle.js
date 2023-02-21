@@ -3,6 +3,10 @@ import castleText from '../../castle__description.js';
 
 const screenCastle = document.querySelector('#castle-screen');
 
+const screenCastleDescr = screenCastle.querySelector('.main__desc');
+
+const screenCastleTitle = screenCastle.querySelector('.main__title');
+
 const screenCastleBtn = screenCastle.querySelectorAll('.main__btn');
 
 screenCastle.querySelectorAll('.main__btn').forEach(elem =>{
@@ -17,9 +21,9 @@ screenCastle.querySelectorAll('.main__btn').forEach(elem =>{
 
 function castle(){
 
-    screenCastle.querySelector('.main__title').innerHTML = castleText.russian.castleEntrance.entranceName;
+    screenCastleTitle.innerHTML = castleText.russian.castleEntrance.entranceName;
 
-    screenCastle.querySelector('.main__desc').innerHTML = castleText.russian.castleEntrance.entranceDescr;
+    screenCastleDescr.innerHTML = castleText.russian.castleEntrance.entranceDescr;
 
     for(let i = 0; i < screenCastleBtn.length; i++){
 
@@ -47,9 +51,9 @@ function castleCourtyard(){
 
     setTimeout(() => {
 
-        screenCastle.querySelector('.main__title').innerHTML = castleText.russian.castleCourtyard.courtyardName;
+        screenCastleTitle.innerHTML = castleText.russian.castleCourtyard.courtyardName;
 
-        screenCastle.querySelector('.main__desc').innerHTML = castleText.russian.castleCourtyard.courtyardDescr;
+        screenCastleDescr.innerHTML = castleText.russian.castleCourtyard.courtyardDescr;
 
         for(let i = 0; i < screenCastleBtn.length; i++){
 
@@ -93,9 +97,9 @@ function castleBarracks(){
 
     setTimeout(() =>{
 
-        screenCastle.querySelector('.main__title').innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barrakcsName;
+        screenCastleTitle.innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barrakcsName;
 
-        screenCastle.querySelector('.main__desc').innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barracksDescr;
+        screenCastleDescr.innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barracksDescr;
 
         screenCastle.querySelectorAll('.main__btn').forEach(elem =>{
 
@@ -125,9 +129,9 @@ function barracksInside(){
 
     setTimeout(() =>{
 
-        screenCastle.querySelector('.main__title').innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideName;
+        screenCastleTitle.innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideName;
 
-        screenCastle.querySelector('.main__desc').innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideDescr;
+        screenCastleDescr.innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideDescr;
 
         for(let i = 0; i < screenCastleBtn.length; i++){
 
@@ -139,10 +143,127 @@ function barracksInside(){
                 
             screenCastleBtn[i].innerHTML = arrayBtns[i];
 
+            screenCastleBtn[i].addEventListener('click', () =>{
+
+                if(screenCastleBtn[i].innerHTML === 'Осмотреть второй этаж'){
+
+                    secondFloor();
+
+                };
+
+                if(screenCastleBtn[i].innerHTML === 'Осмотреть первый этаж'){
+
+                    firstFloor();
+
+                };
+
+            });
+
         };
 
-
     }, "500");
+
+};
+
+function firstFloor(){
+
+    const arrayBtns = Object.values(castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideFirstFloor.firstFloorBtn);
+
+    setTimeout(() =>{
+
+        screenCastleTitle.innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideFirstFloor.firstFloorName;
+
+        screenCastleDescr.innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideFirstFloor.firstFloorDescr;
+
+        for(let i = 0; i < screenCastleBtn.length; i++){
+
+            screenCastleBtn[i].classList.remove('hide-btn');
+                
+            screenCastleBtn[i].innerHTML = arrayBtns[i];
+
+            screenCastleBtn[i].addEventListener('click', () =>{
+
+                if(screenCastleBtn[i].innerHTML === castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideFirstFloor.firstFloorBtn.thirdBtn){
+
+                    castleCourtyard();
+
+                };
+
+            });
+
+        };
+
+    }, '500');
+
+};
+
+function secondFloor(){
+
+    const arrayBtns = Object.values(castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideSecondFloor.secondFloorBtn);
+
+    setTimeout(() =>{
+
+        screenCastleTitle.innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideSecondFloor.secondFloorName;
+
+        screenCastleDescr.innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideSecondFloor.secondFloorDescr;
+
+        for(let i = 0; i < screenCastleBtn.length; i++){
+
+            screenCastleBtn[i].classList.remove('hide-btn');
+                
+            screenCastleBtn[i].innerHTML = arrayBtns[i];
+
+            screenCastleBtn[i].addEventListener('click', () =>{
+
+                if(screenCastleBtn[i].innerHTML === castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideSecondFloor.secondFloorBtn.thirdBtn){
+
+                    barracksInside();
+
+                };
+
+                if(screenCastleBtn[i].innerHTML === castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideSecondFloor.secondFloorBtn.firstBtn){
+
+                    legionnaireRooms();
+
+                };
+
+                if(screenCastleBtn[i].innerHTML === castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideSecondFloor.secondFloorBtn.secondBtn){
+
+                    officerRoom();
+                    
+                };
+
+            });
+
+        };
+
+    }, '500');
+
+};
+
+function legionnaireRooms(){
+
+    const arrayBtns = Object.values(castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideSecondFloor.legionnaireRooms.legionnaireRoomsBtn);
+
+    setTimeout(() =>{
+
+        screenCastleTitle.innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideSecondFloor.legionnaireRooms.legionnaireRoomsName;
+
+        screenCastleDescr.innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideSecondFloor.legionnaireRooms.legionnaireRoomsDescr;
+
+        for(let i = 0; i < screenCastleBtn.length; i++){
+
+            if(screenCastleBtn[i].classList.contains('btn-1') === false){
+
+                screenCastleBtn[i].classList.add('hide-btn');
+
+            };
+                
+            screenCastleBtn[i].innerHTML = arrayBtns[i];
+
+        };
+
+    }, '500');
 
 };
 
@@ -154,9 +275,9 @@ function deadBody(){
 
     setTimeout(() =>{
 
-        screenCastle.querySelector('.main__title').innerHTML = castleText.russian.castleCourtyard.courtyardDeadBody.deadBodyName;
+        screenCastleTitle.innerHTML = castleText.russian.castleCourtyard.courtyardDeadBody.deadBodyName;
 
-        screenCastle.querySelector('.main__desc').innerHTML = castleText.russian.castleCourtyard.courtyardDeadBody.deadBodyDescr;
+        screenCastleDescr.innerHTML = castleText.russian.castleCourtyard.courtyardDeadBody.deadBodyDescr;
 
         for(let i = 0; i < screenCastleBtn.length; i++){
 

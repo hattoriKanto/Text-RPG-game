@@ -1,9 +1,21 @@
 
 import race from '../race__stats.js';
 
+import player from '../script.js';
+
+import chooseLocation from '../modules/locations/choose__location.js';
+
 const screenRace = document.querySelector('#race-screen');
 
 const screenClass = document.querySelector('#class-screen');
+
+const screenFirstWeapon = document.querySelector('.screen__first__weapon');
+
+const screenSecondWeapon = document.querySelector('.screen__second__weapon');
+
+const screenCharacterOverview = document.querySelector('.screen__character-overview');
+
+const popupTitle = document.querySelector('#popup .content__title');
 
 function chooseYourRace(){
 
@@ -158,95 +170,180 @@ function chooseYourClass(choosedRace){
 };
 
 function chooseYourWeapon(choosedClass){
+
     const weaponOptionFirstWeapon = screenFirstWeapon.querySelectorAll('.option__btn');
+
     const weaponOptionSecondWeapon = screenSecondWeapon.querySelectorAll('.option__btn');
+
     const weaponStats = popup.querySelectorAll('.weapon__content__stats .stats__item span');
+
     const arrayOfFirstWeapons = Object.values(choosedClass.startWeapon.firstWeapon);
+
     const arrayOfSecondWeapons = Object.values(choosedClass.startWeapon.secondWeapon);
+
     for(let i = 0; i < weaponOptionFirstWeapon.length; i++){
+
         weaponOptionFirstWeapon[i].innerHTML = arrayOfFirstWeapons[i].weaponName;
+
         weaponOptionFirstWeapon[i].closest('.choose__option').querySelector('.option__info').addEventListener('click', () =>{
+
             popup.classList.add('show-popup');
+
             body.classList.add('noscroll');
+
             popup.querySelector('.weapon__content__stats').classList.remove('hide');
+
             popup.querySelector('.content__stats').classList.add('hide');
+
             popupTitle.innerHTML = weaponOptionFirstWeapon[i].innerHTML;
+
             const arrayOfWeaponStats = Object.values(arrayOfFirstWeapons[i].weaponStats);
+
             for(let j = 0; j < weaponStats.length; j++){
+
                 weaponStats[j].innerHTML = arrayOfWeaponStats[j];
-            }
-        })
+
+            };
+
+        });
+
         weaponOptionFirstWeapon[i].addEventListener('click', () =>{
-            player.weapon.firstWeapon[Object.keys(player.weapon.firstWeapon)] = arrayOfFirstWeapons[i];                            
+
+            player.weapon.firstWeapon[Object.keys(player.weapon.firstWeapon)] = arrayOfFirstWeapons[i]; 
+
             screenSecondWeapon.classList.remove('hide');
+
             screenFirstWeapon.classList.add('hide');
+
             for(let i = 0; i < weaponOptionSecondWeapon.length; i++){
+
                 weaponOptionSecondWeapon[i].innerHTML = arrayOfSecondWeapons[i].weaponName;
+
                 weaponOptionSecondWeapon[i].closest('.choose__option').querySelector('.option__info').addEventListener('click', () =>{
+
                     popup.classList.add('show-popup');
+
                     body.classList.add('noscroll');
+
                     popup.querySelector('.weapon__content__stats').classList.remove('hide');
+
                     popup.querySelector('.content__stats').classList.add('hide');
+
                     popupTitle.innerHTML = weaponOptionSecondWeapon[i].innerHTML;
+
                     const arrayOfWeaponStats = Object.values(arrayOfSecondWeapons[i].weaponStats);
+
                     for(let j = 0; j < weaponStats.length; j++){
+
                         weaponStats[j].innerHTML = arrayOfWeaponStats[j];
-                    }
-                })
+
+                    };
+                });
                 weaponOptionSecondWeapon[i].addEventListener('click', () =>{
+
                     player.weapon.secondWeapon[Object.keys(player.weapon.secondWeapon)] = arrayOfSecondWeapons[i];
+
                     screenSecondWeapon.classList.add('hide');
+
                     screenCharacterOverview.classList.remove('hide');
+
                     characterOverview(); 
-                })
-            }
-        })
-    }
+
+                });
+
+            };
+
+        });
+
+    };
+
 };
 
 function characterOverview(){
+
     const arrayOfPlayer = Object.values(player);
+
     const arrayOfPlayerStats = Object.values(player.stats);
+
     const arrayOfPlayerWeapons = Object.values(player.weapon);
+
     const listOfRaceClass = screenCharacterOverview.querySelectorAll('.item__span');
+
     const listOfStats = screenCharacterOverview.querySelectorAll('.race-and-class-stats__span');
+
     const listOfWeapons = screenCharacterOverview.querySelectorAll('.weapons__span');
+
     for(let i = 0; i < listOfRaceClass.length; i++){
+
         listOfRaceClass[i].innerHTML = arrayOfPlayer[i]; 
+
     };
+
     for(let j = 0; j < listOfStats.length; j++){
+
         listOfStats[j].innerHTML = arrayOfPlayerStats[j];
+
     };
+
     for(let i = 0; i < listOfWeapons.length; i++){
+
         const arrayOfWeapon = Object.values(arrayOfPlayerWeapons[i]);
+
         listOfWeapons[i].innerHTML = arrayOfWeapon[0].weaponName;
+
         listOfWeapons[i].closest('.weapons__item').querySelector('.weapons__btn').addEventListener('click', () =>{
+
             popup.classList.add('show-popup');
+
             body.classList.add('noscroll');
+
             popup.querySelector('.weapon__content__stats').classList.remove('hide');
+
             popup.querySelector('.content__stats').classList.add('hide');
+
             popupTitle.innerHTML = arrayOfWeapon[0].weaponName;
+
             const weaponStats = popup.querySelectorAll('.weapon__content__stats .stats__item span');
+
             const arrayOfWeaponStats = Object.values(arrayOfWeapon[0].weaponStats);
+
             for(let j = 0; j < weaponStats.length; j++){
+
                 weaponStats[j].innerHTML = arrayOfWeaponStats[j];
-            }
-        })
+
+            };
+
+        });
+
     };
     screenCharacterOverview.querySelectorAll('.footer__btn').forEach(elem =>{
+
         elem.addEventListener('click', () =>{
+
             if(elem.classList.contains('back-btn') === true){
+
                 screenCharacterOverview.classList.add('hide');
+
                 screenRace.classList.remove('hide');
+
                 if(popup.querySelector('.content__stats').classList.contains('hide') === true){
+
                     popup.querySelector('.weapon__content__stats').classList.add('hide');
+
                     popup.querySelector('.content__stats').classList.remove('hide');
-                }
-            }
+
+                };
+
+            };
+
             screenCharacterOverview.classList.add('hide');
+
             chooseLocation();
-        })
-    })
+
+        });
+
+    });
+
 };
 
 export default chooseYourRace;

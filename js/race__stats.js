@@ -2,7 +2,7 @@
 
 const race = {
     human: { 
-        raceName: 'Human',
+        raceName: 'Человек',
         globalStats: {
             healthPoints: 10,
             armourPoints: 0,
@@ -10,7 +10,7 @@ const race = {
         },
         class: {
             legionnaire: {
-                className: 'Legionnaire of the First Legion',
+                className: 'Легионер из Первого имперского легиона',
                 classStats: {
                     bonusHealthPoints: 5,
                     bonusArmourPoints: 5,
@@ -84,7 +84,7 @@ const race = {
                 }
             },
             scout: {
-                className: 'Scout of the Fifth light brigade',
+                className: 'Разведчик из Пятой лёгкой бригады',
                 classStats: {
                     bonusHealthPoints: 7,
                     bonusArmourPoints: 3,
@@ -158,7 +158,7 @@ const race = {
                 }
             },
             agent: {
-                className: 'Agent of the Imperial Intelligent',
+                className: 'Агент из Имперской разведки',
                 classStats: {
                     bonusHealthPoints: 5,
                     bonusArmourPoints: 2,
@@ -235,7 +235,7 @@ const race = {
         }
     },
     dwarf: {
-        raceName: 'Dwarf',
+        raceName: 'Гном',
         globalStats:{
             healthPoints: 7,
             armourPoints: 3,
@@ -317,7 +317,7 @@ const race = {
                 }
             },
             warrior: {
-                className: 'Warrior of the High Throne',
+                className: 'Воин Верховного Трона',
                 classStats: {
                     bonusHealthPoints: 3,
                     bonusArmourPoints: 7,
@@ -391,7 +391,7 @@ const race = {
                 }
             },
             berserk: {
-                className: 'Berserk of the First Pillar',
+                className: 'Берсерк Первого Столпа',
                 classStats: {
                     bonusHealthPoints: 7,
                     bonusArmourPoints: 3,
@@ -467,7 +467,7 @@ const race = {
         }
     },
     elf: {
-        raceName: 'Elf',
+        raceName: 'Эльф',
         globalStats: {
             healthPoints: 7,
             armourPoints: 0,
@@ -475,7 +475,7 @@ const race = {
         },
         class: {
             defender: {
-                className: 'Defender of the Greenburg`s gate',
+                className: 'Защитник Гринбурских ворот',
                 classStats: {
                     bonusHealthPoints: 4,
                     bonusArmourPoints: 3,
@@ -483,7 +483,7 @@ const race = {
                 }
             },
             mage: {
-                className: 'Mage of the Angalt',
+                className: 'Маг из Ангальта',
                 classStats: {
                     bonusHealthPoints: 3,
                     bonusArmourPoints: 0,
@@ -491,7 +491,7 @@ const race = {
                 }
             },
             infiltrator: {
-                className: 'Shadow infiltrator',
+                className: 'Теневой инфильтратор',
                 classStats: {
                     bonusHealthPoints: 5,
                     bonusArmourPoints: 1,
