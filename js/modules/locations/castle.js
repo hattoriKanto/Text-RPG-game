@@ -1,5 +1,9 @@
 
-import castleText from '../../castle__description.js';
+import castleEntranceRus from '../text/castle/russian/castleEntranceRus.js';
+
+import castleCourtyardRus from '../text/castle/russian/castleCourtyardRus.js';
+
+import castleBarracksRus from '../text/castle/russian/castleBarracksRus.js';
 
 const screenCastle = document.querySelector('#castle-screen');
 
@@ -19,19 +23,31 @@ screenCastle.querySelectorAll('.main__btn').forEach(elem =>{
 
 });
 
+function removeHideOnBtns(){
+
+    screenCastleBtn.forEach(elem =>{
+
+        elem.classList.remove('hide-btn');
+
+    });
+
+};
+
 function castle(){
 
-    screenCastleTitle.innerHTML = castleText.russian.castleEntrance.entranceName;
+    screenCastleTitle.innerHTML = castleEntranceRus.entranceName;
 
-    screenCastleDescr.innerHTML = castleText.russian.castleEntrance.entranceDescr;
+    screenCastleDescr.innerHTML = castleEntranceRus.entranceDescr;
 
     for(let i = 0; i < screenCastleBtn.length; i++){
 
         if(screenCastleBtn[i].classList.contains('hide-btn') != true){
 
-            screenCastleBtn[i].innerHTML = castleText.russian.castleEntrance.entranceBtn;
+            screenCastleBtn[i].innerHTML = castleEntranceRus.entranceBtn;
 
-            screenCastleBtn[i].addEventListener('click', () =>{
+            screenCastleBtn[i].addEventListener('click', (event) =>{
+
+                event.preventDefault();
 
                 castleCourtyard();
 
@@ -47,21 +63,17 @@ function castle(){
 
 function castleCourtyard(){
 
-    const arrayCastleBtn = Object.values(castleText.russian.castleCourtyard.courtyardBtn);
+    const arrayCastleBtn = Object.values(castleCourtyardRus.courtyardBtn);
 
     setTimeout(() => {
 
-        screenCastleTitle.innerHTML = castleText.russian.castleCourtyard.courtyardName;
+        removeHideOnBtns();
 
-        screenCastleDescr.innerHTML = castleText.russian.castleCourtyard.courtyardDescr;
+        screenCastleTitle.innerHTML = castleCourtyardRus.courtyardName;
+
+        screenCastleDescr.innerHTML = castleCourtyardRus.courtyardDescr;
 
         for(let i = 0; i < screenCastleBtn.length; i++){
-
-            if(screenCastleBtn[i].classList.contains('hide-btn') === true){
-
-                screenCastleBtn[i].classList.remove('hide-btn');
-
-            };
 
             screenCastleBtn[i].innerHTML = arrayCastleBtn[i];
 
@@ -97,9 +109,11 @@ function castleBarracks(){
 
     setTimeout(() =>{
 
-        screenCastleTitle.innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barrakcsName;
+        removeHideOnBtns();
 
-        screenCastleDescr.innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barracksDescr;
+        screenCastleTitle.innerHTML = castleBarracksRus.barrakcsName;
+
+        screenCastleDescr.innerHTML = castleBarracksRus.barracksDescr;
 
         screenCastle.querySelectorAll('.main__btn').forEach(elem =>{
 
@@ -109,15 +123,17 @@ function castleBarracks(){
 
             };
 
-            elem.innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barracksBtn;
-
-            elem.addEventListener('click', () =>{
-
-                barracksInside();
-
-            });
+            elem.innerHTML = castleBarracksRus.barracksBtn;
 
         });
+
+        screenCastle.querySelector('.btn-1').addEventListener('click', (event) =>{
+
+            event.preventDefault();
+
+            barracksInside();
+
+        })
 
     }, "500");
 
@@ -125,13 +141,15 @@ function castleBarracks(){
 
 function barracksInside(){
     
-    const arrayBtns = Object.values(castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideNameBtn);
+    const arrayBtns = Object.values(castleBarracksRus.barracksInside.barracksInsideNameBtn);
 
     setTimeout(() =>{
 
-        screenCastleTitle.innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideName;
+        removeHideOnBtns();
 
-        screenCastleDescr.innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideDescr;
+        screenCastleTitle.innerHTML = castleBarracksRus.barracksInside.barracksInsideName;
+
+        screenCastleDescr.innerHTML = castleBarracksRus.barracksInside.barracksInsideDescr;
 
         for(let i = 0; i < screenCastleBtn.length; i++){
 
@@ -143,7 +161,9 @@ function barracksInside(){
                 
             screenCastleBtn[i].innerHTML = arrayBtns[i];
 
-            screenCastleBtn[i].addEventListener('click', () =>{
+            screenCastleBtn[i].addEventListener('click', (event) =>{
+
+                event.preventDefault();
 
                 if(screenCastleBtn[i].innerHTML === 'Осмотреть второй этаж'){
 
@@ -167,23 +187,25 @@ function barracksInside(){
 
 function firstFloor(){
 
-    const arrayBtns = Object.values(castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideFirstFloor.firstFloorBtn);
+    const arrayBtns = Object.values(castleBarracksRus.barracksInsideFirstFloor.firstFloorBtn);
 
     setTimeout(() =>{
 
-        screenCastleTitle.innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideFirstFloor.firstFloorName;
+        removeHideOnBtns();
 
-        screenCastleDescr.innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideFirstFloor.firstFloorDescr;
+        screenCastleTitle.innerHTML = castleBarracksRus.barracksInsideFirstFloor.firstFloorName;
+
+        screenCastleDescr.innerHTML = castleBarracksRus.barracksInsideFirstFloor.firstFloorDescr;
 
         for(let i = 0; i < screenCastleBtn.length; i++){
-
-            screenCastleBtn[i].classList.remove('hide-btn');
                 
             screenCastleBtn[i].innerHTML = arrayBtns[i];
 
-            screenCastleBtn[i].addEventListener('click', () =>{
+            screenCastleBtn[i].addEventListener('click', (event) =>{
 
-                if(screenCastleBtn[i].innerHTML === castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideFirstFloor.firstFloorBtn.thirdBtn){
+                event.preventDefault();
+
+                if(screenCastleBtn[i].innerHTML === castleBarracksRus.barracksInsideFirstFloor.firstFloorBtn.thirdBtn){
 
                     castleCourtyard();
 
@@ -193,41 +215,43 @@ function firstFloor(){
 
         };
 
-    }, '500');
+    }, '650');
 
 };
 
 function secondFloor(){
 
-    const arrayBtns = Object.values(castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideSecondFloor.secondFloorBtn);
+    const arrayBtns = Object.values(castleBarracksRus.barracksInsideSecondFloor.secondFloorBtn);
 
     setTimeout(() =>{
 
-        screenCastleTitle.innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideSecondFloor.secondFloorName;
+        removeHideOnBtns();
 
-        screenCastleDescr.innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideSecondFloor.secondFloorDescr;
+        screenCastleTitle.innerHTML = castleBarracksRus.barracksInsideSecondFloor.secondFloorName;
+
+        screenCastleDescr.innerHTML = castleBarracksRus.barracksInsideSecondFloor.secondFloorDescr;
 
         for(let i = 0; i < screenCastleBtn.length; i++){
 
-            screenCastleBtn[i].classList.remove('hide-btn');
+            if(screenCastleBtn[i].classList.contains('btn-3') === true){
+
+                screenCastleBtn[i].classList.add('hide-btn');
+
+            };
                 
             screenCastleBtn[i].innerHTML = arrayBtns[i];
 
-            screenCastleBtn[i].addEventListener('click', () =>{
+            screenCastleBtn[i].addEventListener('click', (event) =>{
 
-                if(screenCastleBtn[i].innerHTML === castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideSecondFloor.secondFloorBtn.thirdBtn){
+                event.preventDefault();
 
-                    barracksInside();
-
-                };
-
-                if(screenCastleBtn[i].innerHTML === castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideSecondFloor.secondFloorBtn.firstBtn){
+                if(screenCastleBtn[i].innerHTML === castleBarracksRus.barracksInsideSecondFloor.secondFloorBtn.firstBtn){
 
                     legionnaireRooms();
 
                 };
 
-                if(screenCastleBtn[i].innerHTML === castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideSecondFloor.secondFloorBtn.secondBtn){
+                if(screenCastleBtn[i].innerHTML === castleBarracksRus.barracksInsideSecondFloor.secondFloorBtn.secondBtn){
 
                     officerRoom();
                     
@@ -237,19 +261,112 @@ function secondFloor(){
 
         };
 
-    }, '500');
+    }, '650');
 
 };
 
 function legionnaireRooms(){
 
-    const arrayBtns = Object.values(castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideSecondFloor.legionnaireRooms.legionnaireRoomsBtn);
+    castleBarracksRus.legionnaireRooms.isVisited = true;
+
+    const arrayBtns = Object.values(castleBarracksRus.legionnaireRooms.legionnaireRoomsBtn);
 
     setTimeout(() =>{
 
-        screenCastleTitle.innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideSecondFloor.legionnaireRooms.legionnaireRoomsName;
+        removeHideOnBtns();
 
-        screenCastleDescr.innerHTML = castleText.russian.castleCourtyard.courtyardBarrakcs.barracksInside.barracksInsideSecondFloor.legionnaireRooms.legionnaireRoomsDescr;
+        screenCastleTitle.innerHTML = castleBarracksRus.legionnaireRooms.legionnaireRoomsName;
+
+        screenCastleDescr.innerHTML = castleBarracksRus.legionnaireRooms.legionnaireRoomsDescr;
+
+        for(let i = 0; i < screenCastleBtn.length; i++){
+
+
+            if(screenCastleBtn[i].classList.contains('btn-1') === false){
+
+                screenCastleBtn[i].classList.add('hide-btn');
+
+            };
+                
+            screenCastleBtn[i].innerHTML = arrayBtns[i];
+
+            screenCastleBtn[i].addEventListener('click', (event) =>{
+
+                event.preventDefault();
+
+                officerRoom();
+
+            });
+
+        };
+
+    }, '650');
+
+};
+
+function officerRoom(){
+
+    castleBarracksRus.officerRoom.isVisited = true;
+
+    const arrayBtns = Object.values(castleBarracksRus.officerRoom.officerRoomBtn);
+
+    setTimeout(() =>{
+
+        removeHideOnBtns();
+
+        screenCastleTitle.innerHTML = castleBarracksRus.officerRoom.officerRoomName;
+
+        screenCastleDescr.innerHTML = castleBarracksRus.officerRoom.officerRoomDescr;
+
+        for(let i = 0; i < screenCastleBtn.length; i++){
+
+            if(screenCastleBtn[i].classList.contains('btn-3') === true){
+
+                screenCastleBtn[i].classList.add('hide-btn');
+
+            };
+                
+            screenCastleBtn[i].innerHTML = arrayBtns[i];
+
+            screenCastleBtn[i].addEventListener('click', (event) =>{
+
+                event.preventDefault();
+
+                if(screenCastleBtn[i].innerHTML === castleBarracksRus.officerRoom.officerRoomBtn.firstBtn){
+
+                    officerDeadBody();
+    
+                };
+    
+                if(screenCastleBtn[i].innerHTML === castleBarracksRus.officerRoom.officerRoomBtn.secondBtn){
+    
+                    officerTable();
+    
+                };
+
+                console.log('-');
+
+            });
+
+        };
+
+    }, '650');
+
+};
+
+function officerDeadBody(){
+
+    castleBarracksRus.officerDeadBody.isVisited = true;
+
+    const arrayBtns = Object.values(castleBarracksRus.officerDeadBody.officerDeadBodyBtn);
+
+    setTimeout(() =>{
+
+        removeHideOnBtns();
+
+        screenCastleTitle.innerHTML = castleBarracksRus.officerDeadBody.officerDeadBodyName;
+
+        screenCastleDescr.innerHTML = castleBarracksRus.officerDeadBody.officerDeadBodyDescr;
 
         for(let i = 0; i < screenCastleBtn.length; i++){
 
@@ -263,21 +380,93 @@ function legionnaireRooms(){
 
         };
 
-    }, '500');
+    }, '650');
 
+};
+
+function officerTable(){
+    
+    castleBarracksRus.officerTable.isVisited = true;
+
+    const arrayBtns = Object.values(castleBarracksRus.officerTable.officerTableBtn);
+
+    setTimeout(() =>{
+
+        removeHideOnBtns();
+
+        screenCastleTitle.innerHTML = castleBarracksRus.officerTable.officerTableName;
+
+        screenCastleDescr.innerHTML = castleBarracksRus.officerTable.officerTableDescr;
+
+        for(let i = 0; i < screenCastleBtn.length; i++){
+
+            if(screenCastleBtn[i].classList.contains('btn-1') === false){
+
+                screenCastleBtn[i].classList.add('hide-btn');
+
+            };
+                
+            screenCastleBtn[i].innerHTML = arrayBtns[i];
+
+            screenCastleBtn[i].addEventListener('click', () =>{
+
+                pieceOfPaper();
+
+            })
+
+        };
+
+    }, '650');
+
+};
+
+function pieceOfPaper(){
+    
+    const arrayBtns = Object.values(castleBarracksRus.pieceOfPaper.pieceOfPaperBtn);
+
+    setTimeout(() =>{
+
+        removeHideOnBtns();
+
+        screenCastleTitle.innerHTML = castleBarracksRus.pieceOfPaper.pieceOfPaperName;
+
+        screenCastleDescr.innerHTML = castleBarracksRus.pieceOfPaper.pieceOfPaperDescr;
+
+        for(let i = 0; i < screenCastleBtn.length; i++){
+
+            if(screenCastleBtn[i].classList.contains('btn-1') === false){
+
+                screenCastleBtn[i].classList.add('hide-btn');
+
+            };
+                
+            screenCastleBtn[i].innerHTML = arrayBtns[i];
+
+            screenCastleBtn[i].addEventListener('click', () =>{
+
+                officerDeadBody();
+
+            })
+
+        };
+
+    }, '650');
+    
 };
 
 /// CASTLE---COURTYARD---DEAD__BODY
 
 function deadBody(){
 
-    const arrayBtns = Object.values(castleText.russian.castleCourtyard.courtyardDeadBody.deadBodyBtn);
+    const arrayBtns = Object.values(castleCourtyardRus.courtyardDeadBody.deadBodyBtn);
 
     setTimeout(() =>{
 
-        screenCastleTitle.innerHTML = castleText.russian.castleCourtyard.courtyardDeadBody.deadBodyName;
+        removeHideOnBtns();
 
-        screenCastleDescr.innerHTML = castleText.russian.castleCourtyard.courtyardDeadBody.deadBodyDescr;
+        screenCastleTitle.innerHTML = castleCourtyardRus.courtyardDeadBody.deadBodyName;
+
+        screenCastleDescr.innerHTML = castleCourtyardRus.courtyardDeadBody.deadBodyDescr;
 
         for(let i = 0; i < screenCastleBtn.length; i++){
 
@@ -289,7 +478,9 @@ function deadBody(){
                 
             screenCastleBtn[i].innerHTML = arrayBtns[i];
 
-            screenCastleBtn[i].addEventListener('click', () =>{
+            screenCastleBtn[i].addEventListener('click', (event) =>{
+
+                event.preventDefault();
 
                 if(screenCastleBtn[i].innerHTML === 'Осмотреть казармы'){
         
