@@ -45,9 +45,9 @@ function castle(){
 
             screenCastleBtn[i].innerHTML = castleEntranceRus.entranceBtn;
 
-            screenCastleBtn[i].addEventListener('click', (event) =>{
+            screenCastleBtn[i].addEventListener('click', () =>{
 
-                event.preventDefault();
+                
 
                 castleCourtyard();
 
@@ -127,9 +127,9 @@ function castleBarracks(){
 
         });
 
-        screenCastle.querySelector('.btn-1').addEventListener('click', (event) =>{
+        screenCastle.querySelector('.btn-1').addEventListener('click', () =>{
 
-            event.preventDefault();
+            
 
             barracksInside();
 
@@ -161,9 +161,9 @@ function barracksInside(){
                 
             screenCastleBtn[i].innerHTML = arrayBtns[i];
 
-            screenCastleBtn[i].addEventListener('click', (event) =>{
+            screenCastleBtn[i].addEventListener('click', () =>{
 
-                event.preventDefault();
+                
 
                 if(screenCastleBtn[i].innerHTML === 'Осмотреть второй этаж'){
 
@@ -187,6 +187,8 @@ function barracksInside(){
 
 function firstFloor(){
 
+    castleBarracksRus.barracksInsideFirstFloor.isVisited = true;
+
     const arrayBtns = Object.values(castleBarracksRus.barracksInsideFirstFloor.firstFloorBtn);
 
     setTimeout(() =>{
@@ -201,13 +203,17 @@ function firstFloor(){
                 
             screenCastleBtn[i].innerHTML = arrayBtns[i];
 
-            screenCastleBtn[i].addEventListener('click', (event) =>{
+            screenCastleBtn[i].addEventListener('click', () =>{
 
-                event.preventDefault();
+                if(screenCastleBtn[i].innerHTML === castleBarracksRus.barracksInsideFirstFloor.firstFloorBtn.firstBtn){
 
-                if(screenCastleBtn[i].innerHTML === castleBarracksRus.barracksInsideFirstFloor.firstFloorBtn.thirdBtn){
+                    kitchenRoom();
 
-                    castleCourtyard();
+                };
+
+                if(screenCastleBtn[i].innerHTML === castleBarracksRus.barracksInsideFirstFloor.firstFloorBtn.secondBtn){
+
+                    armoryRoom();
 
                 };
 
@@ -220,6 +226,8 @@ function firstFloor(){
 };
 
 function secondFloor(){
+
+    castleBarracksRus.barracksInsideSecondFloor.isVisited = true;
 
     const arrayBtns = Object.values(castleBarracksRus.barracksInsideSecondFloor.secondFloorBtn);
 
@@ -241,9 +249,9 @@ function secondFloor(){
                 
             screenCastleBtn[i].innerHTML = arrayBtns[i];
 
-            screenCastleBtn[i].addEventListener('click', (event) =>{
+            screenCastleBtn[i].addEventListener('click', () =>{
 
-                event.preventDefault();
+                
 
                 if(screenCastleBtn[i].innerHTML === castleBarracksRus.barracksInsideSecondFloor.secondFloorBtn.firstBtn){
 
@@ -269,8 +277,6 @@ function legionnaireRooms(){
 
     castleBarracksRus.legionnaireRooms.isVisited = true;
 
-    const arrayBtns = Object.values(castleBarracksRus.legionnaireRooms.legionnaireRoomsBtn);
-
     setTimeout(() =>{
 
         removeHideOnBtns();
@@ -281,20 +287,37 @@ function legionnaireRooms(){
 
         for(let i = 0; i < screenCastleBtn.length; i++){
 
-
             if(screenCastleBtn[i].classList.contains('btn-1') === false){
 
                 screenCastleBtn[i].classList.add('hide-btn');
 
             };
                 
-            screenCastleBtn[i].innerHTML = arrayBtns[i];
+            if(castleBarracksRus.officerRoom.isVisited === false){
+    
+                screenCastleBtn[i].innerHTML = castleBarracksRus.legionnaireRooms.legionnaireRoomsBtn.firstBtn;
 
-            screenCastleBtn[i].addEventListener('click', (event) =>{
+            };
 
-                event.preventDefault();
+            if(castleBarracksRus.officerRoom.isVisited === true){
 
-                officerRoom();
+                screenCastleBtn[i].innerHTML = castleBarracksRus.legionnaireRooms.legionnaireRoomsBtn.secondBtn;
+
+            };
+                
+            screenCastleBtn[i].addEventListener('click', () =>{
+
+                if(screenCastleBtn[i].innerHTML === castleBarracksRus.legionnaireRooms.legionnaireRoomsBtn.firstBtn){
+    
+                    officerRoom();
+    
+                };
+
+                if(screenCastleBtn[i].innerHTML === castleBarracksRus.legionnaireRooms.legionnaireRoomsBtn.secondBtn){
+
+                    firstFloor();
+    
+                };
 
             });
 
@@ -328,9 +351,9 @@ function officerRoom(){
                 
             screenCastleBtn[i].innerHTML = arrayBtns[i];
 
-            screenCastleBtn[i].addEventListener('click', (event) =>{
+            screenCastleBtn[i].addEventListener('click', () =>{
 
-                event.preventDefault();
+                
 
                 if(screenCastleBtn[i].innerHTML === castleBarracksRus.officerRoom.officerRoomBtn.firstBtn){
 
@@ -344,8 +367,6 @@ function officerRoom(){
     
                 };
 
-                console.log('-');
-
             });
 
         };
@@ -357,8 +378,6 @@ function officerRoom(){
 function officerDeadBody(){
 
     castleBarracksRus.officerDeadBody.isVisited = true;
-
-    const arrayBtns = Object.values(castleBarracksRus.officerDeadBody.officerDeadBodyBtn);
 
     setTimeout(() =>{
 
@@ -375,8 +394,46 @@ function officerDeadBody(){
                 screenCastleBtn[i].classList.add('hide-btn');
 
             };
+
+            if(castleBarracksRus.officerTable.isVisited === false){
+    
+                screenCastleBtn[i].innerHTML = castleBarracksRus.officerDeadBody.officerDeadBodyBtn.firstBtn;
+
+            };
+
+            if(castleBarracksRus.officerTable.isVisited === true){
+
+                screenCastleBtn[i].innerHTML = castleBarracksRus.officerDeadBody.officerDeadBodyBtn.secondBtn;
+
+            };
+
+            if(castleBarracksRus.officerTable.isVisited === true && castleBarracksRus.legionnaireRooms.isVisited === true){
+
+                screenCastleBtn[i].innerHTML = castleBarracksRus.officerDeadBody.officerDeadBodyBtn.thirdBtn;
+
+            };
                 
-            screenCastleBtn[i].innerHTML = arrayBtns[i];
+            screenCastleBtn[i].addEventListener('click', () =>{
+
+                if(screenCastleBtn[i].innerHTML === castleBarracksRus.officerDeadBody.officerDeadBodyBtn.firstBtn){
+    
+                    officerTable();
+    
+                };
+
+                if(screenCastleBtn[i].innerHTML === castleBarracksRus.officerDeadBody.officerDeadBodyBtn.secondBtn){
+
+                    legionnaireRooms();
+    
+                };
+
+                if(screenCastleBtn[i].innerHTML === castleBarracksRus.officerDeadBody.officerDeadBodyBtn.thirdBtn){
+    
+                    firstFloor();
+    
+                };
+
+            });
 
         };
 
@@ -422,11 +479,7 @@ function officerTable(){
 
 function pieceOfPaper(){
     
-    const arrayBtns = Object.values(castleBarracksRus.pieceOfPaper.pieceOfPaperBtn);
-
     setTimeout(() =>{
-
-        removeHideOnBtns();
 
         screenCastleTitle.innerHTML = castleBarracksRus.pieceOfPaper.pieceOfPaperName;
 
@@ -439,19 +492,141 @@ function pieceOfPaper(){
                 screenCastleBtn[i].classList.add('hide-btn');
 
             };
-                
-            screenCastleBtn[i].innerHTML = arrayBtns[i];
 
+            if(castleBarracksRus.officerDeadBody.isVisited === false){
+    
+                screenCastleBtn[i].innerHTML = castleBarracksRus.pieceOfPaper.pieceOfPaperBtn.firstBtn;
+
+            };
+
+            if(castleBarracksRus.officerDeadBody.isVisited === true){
+
+                screenCastleBtn[i].innerHTML = castleBarracksRus.pieceOfPaper.pieceOfPaperBtn.secondBtn;
+
+            };
+
+            if(castleBarracksRus.officerDeadBody.isVisited === true && castleBarracksRus.legionnaireRooms.isVisited === true){
+
+                screenCastleBtn[i].innerHTML = castleBarracksRus.pieceOfPaper.pieceOfPaperBtn.thirdBtn;
+
+            };
+                
             screenCastleBtn[i].addEventListener('click', () =>{
 
-                officerDeadBody();
+                if(screenCastleBtn[i].innerHTML === castleBarracksRus.pieceOfPaper.pieceOfPaperBtn.firstBtn){
+    
+                    officerDeadBody();
+    
+                };
 
-            })
+                if(screenCastleBtn[i].innerHTML === castleBarracksRus.pieceOfPaper.pieceOfPaperBtn.secondBtn){
+
+                    legionnaireRooms();
+    
+                };
+
+                if(screenCastleBtn[i].innerHTML === castleBarracksRus.pieceOfPaper.pieceOfPaperBtn.thirdBtn){
+    
+                    firstFloor();
+    
+                };
+
+            });
 
         };
 
     }, '650');
     
+};
+
+function kitchenRoom(){
+
+    castleBarracksRus.kitchenRoom.isVisited = true;
+    
+    setTimeout(() =>{
+
+        screenCastleTitle.innerHTML = castleBarracksRus.kitchenRoom.kitchenRoomName;
+
+        screenCastleDescr.innerHTML = castleBarracksRus.kitchenRoom.kitchenRoomDescr;
+
+        for(let i = 0; i < screenCastleBtn.length; i++){
+
+            if(screenCastleBtn[i].classList.contains('btn-1') === false){
+
+                screenCastleBtn[i].classList.add('hide-btn');
+
+            };
+                
+            screenCastleBtn[i].addEventListener('click', () =>{
+
+                if(screenCastleBtn[i].innerHTML === castleBarracksRus.kitchenRoom.kitchenRoomBtn.firstBtn){
+    
+                    armoryRoom();
+    
+                };
+
+                if(screenCastleBtn[i].innerHTML === castleBarracksRus.kitchenRoom.kitchenRoomBtn.secondBtn){
+
+                    secondFloor();
+    
+                };
+
+                if(screenCastleBtn[i].innerHTML === castleBarracksRus.kitchenRoom.kitchenRoomBtn.thirdBtn){
+    
+                    castleCourtyard();
+    
+                };
+
+            });
+
+        };
+
+    }, '650');
+    
+};
+
+function armoryRoom(){
+
+    castleBarracksRus.armoryRoom.isVisited = true;
+    
+    setTimeout(() =>{
+
+        screenCastleTitle.innerHTML = castleBarracksRus.armoryRoom.armoryRoomName;
+
+        screenCastleDescr.innerHTML = castleBarracksRus.armoryRoom.armoryRoomDescr;
+
+        for(let i = 0; i < screenCastleBtn.length; i++){
+
+            if(screenCastleBtn[i].classList.contains('btn-1') === false){
+
+                screenCastleBtn[i].classList.add('hide-btn');
+
+            };
+                
+            screenCastleBtn[i].addEventListener('click', () =>{
+
+                if(screenCastleBtn[i].innerHTML === castleBarracksRus.armoryRoom.armoryRoomBtn.firstBtn){
+    
+                    armoryRoom();
+    
+                };
+
+                if(screenCastleBtn[i].innerHTML === castleBarracksRus.armoryRoom.armoryRoomBtn.secondBtn){
+
+                    secondFloor();
+    
+                };
+
+            });
+
+        };
+
+    }, '650');
+    
+};
+
+function armoryTable(){
+
 };
 
 /// CASTLE---COURTYARD---DEAD__BODY
@@ -478,9 +653,9 @@ function deadBody(){
                 
             screenCastleBtn[i].innerHTML = arrayBtns[i];
 
-            screenCastleBtn[i].addEventListener('click', (event) =>{
+            screenCastleBtn[i].addEventListener('click', () =>{
 
-                event.preventDefault();
+                
 
                 if(screenCastleBtn[i].innerHTML === 'Осмотреть казармы'){
         
