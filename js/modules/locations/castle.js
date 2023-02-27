@@ -2,6 +2,8 @@ import castleEntranceRus from '../text/castle/russian/castleEntranceRus.js';
 
 import castleCourtyardRus from '../text/castle/russian/castleCourtyardRus.js';
 
+import castleStablesRus from '../text/castle/russian/castleStablesRus.js';
+
 import castleBarracksRus from '../text/castle/russian/castleBarracksRus.js';
 
 const screenCastle = document.querySelector('#castle-screen');
@@ -12,11 +14,17 @@ const screenCastleTitle = screenCastle.querySelector('.main__title');
 
 const screenCastleBtn = screenCastle.querySelectorAll('.main__btn');
 
-screenCastle.querySelectorAll('.main__btn').forEach(elem =>{
+screenCastleBtn.forEach(elem =>{
 
     elem.addEventListener('click', () =>{
 
         screenCastle.querySelector('.main').classList.toggle('rotation');
+
+        console.log(screenCastleTitle.innerHTML);
+
+        console.log(`FirstFloor: ${castleBarracksRus.barracksInsideFirstFloor.isVisited}`);
+
+        console.log(`SecondFloor: ${castleBarracksRus.barracksInsideSecondFloor.isVisited}`);
 
     });
 
@@ -46,8 +54,6 @@ function castle(){
 
             screenCastleBtn[i].addEventListener('click', () =>{
 
-                
-
                 castleCourtyard();
 
             });
@@ -76,29 +82,61 @@ function castleCourtyard(){
 
             screenCastleBtn[i].innerHTML = arrayCastleBtn[i];
 
-            if(screenCastleBtn[i].innerHTML === 'Осмотреть казармы'){
+            screenCastleBtn[i].addEventListener('click', () =>{
 
-                screenCastleBtn[i].addEventListener('click', () =>{
+                if(screenCastleBtn[i].innerHTML === castleCourtyardRus.courtyardBtn.firstBtn){
+
+                    castleStables();
+
+                };
+
+                if(screenCastleBtn[i].innerHTML === castleCourtyardRus.courtyardBtn.secondBtn){
 
                     castleBarracks();
 
-                });
+                };
 
-            };
-
-            if(screenCastleBtn[i].innerHTML === 'Осмотреть подозрительный труп'){
-
-                screenCastleBtn[i].addEventListener('click', () =>{
+                if(screenCastleBtn[i].innerHTML === castleCourtyardRus.courtyardBtn.thirdBtn){
 
                     deadBody();
 
-                });
+                };
 
-            };
+            });
 
         };
 
-    }, "500");
+    }, '650');
+
+};
+
+/// CASTLE---COURTYARD---STABLE
+
+function castleStables(){
+
+    const arrayBtns = Object.values(castleStablesRus.stablesBtn);
+
+    setTimeout(() =>{
+
+        removeHideOnBtns();
+
+        screenCastleTitle.innerHTML = castleStablesRus.stablesName;
+
+        screenCastleDescr.innerHTML = castleStablesRus.stablesDescr;
+
+        for(let i = 0; i < screenCastleBtn.length; i++){
+
+            if(screenCastleBtn[i].classList.contains('btn-3') === true){
+
+                screenCastleBtn[i].classList.add('hide-btn');
+
+            };
+
+            screenCastleBtn[i].innerHTML = arrayBtns[i];
+
+        };
+
+    }, '650');
 
 };
 
@@ -114,7 +152,7 @@ function castleBarracks(){
 
         screenCastleDescr.innerHTML = castleBarracksRus.barracksDescr;
 
-        screenCastle.querySelectorAll('.main__btn').forEach(elem =>{
+        screenCastleBtn.forEach(elem =>{
 
             if(elem.classList.contains('btn-1') === false){
 
@@ -124,17 +162,15 @@ function castleBarracks(){
 
             elem.innerHTML = castleBarracksRus.barracksBtn;
 
+            elem.addEventListener('click', () =>{
+
+                barracksInside();
+
+            });
+
         });
 
-        screenCastle.querySelector('.btn-1').addEventListener('click', () =>{
-
-            
-
-            barracksInside();
-
-        })
-
-    }, "500");
+    }, '650');
 
 };
 
@@ -180,7 +216,7 @@ function barracksInside(){
 
         };
 
-    }, "500");
+    }, '650');
 
 };
 
@@ -199,6 +235,12 @@ function firstFloor(){
         screenCastleDescr.innerHTML = castleBarracksRus.barracksInsideFirstFloor.firstFloorDescr;
 
         for(let i = 0; i < screenCastleBtn.length; i++){
+
+            if(screenCastleBtn[i].classList.contains('btn-3') === true){
+
+                screenCastleBtn[i].classList.add('hide-btn');
+
+            };
                 
             screenCastleBtn[i].innerHTML = arrayBtns[i];
 
@@ -296,29 +338,37 @@ function legionnaireRooms(){
     
                 screenCastleBtn[i].innerHTML = castleBarracksRus.legionnaireRooms.legionnaireRoomsBtn.firstBtn;
 
+                screenCastleBtn[i].addEventListener('click', () =>{
+
+                    officerRoom();
+
+                });
+
             };
 
-            if(castleBarracksRus.officerRoom.isVisited === true){
+            if(castleBarracksRus.officerRoom.isVisited === true && castleBarracksRus.barracksInsideFirstFloor.isVisited === false){
 
                 screenCastleBtn[i].innerHTML = castleBarracksRus.legionnaireRooms.legionnaireRoomsBtn.secondBtn;
 
-            };
-                
-            screenCastleBtn[i].addEventListener('click', () =>{
-
-                if(screenCastleBtn[i].innerHTML === castleBarracksRus.legionnaireRooms.legionnaireRoomsBtn.firstBtn){
-    
-                    officerRoom();
-    
-                };
-
-                if(screenCastleBtn[i].innerHTML === castleBarracksRus.legionnaireRooms.legionnaireRoomsBtn.secondBtn){
+                screenCastleBtn[i].addEventListener('click', () =>{
 
                     firstFloor();
-    
-                };
 
-            });
+                });
+
+            };
+
+            if(castleBarracksRus.officerRoom.isVisited === true && castleBarracksRus.barracksInsideFirstFloor.isVisited === true){
+
+                screenCastleBtn[i].innerHTML = castleBarracksRus.legionnaireRooms.legionnaireRoomsBtn.thirdBtn;
+
+                screenCastleBtn[i].addEventListener('click', () =>{
+
+                    castleCourtyard();
+
+                });
+
+            };
 
         };
 
@@ -398,41 +448,49 @@ function officerDeadBody(){
     
                 screenCastleBtn[i].innerHTML = castleBarracksRus.officerDeadBody.officerDeadBodyBtn.firstBtn;
 
+                screenCastleBtn[i].addEventListener('click', () =>{
+
+                    officerTable();
+
+                });
+
             };
 
             if(castleBarracksRus.officerTable.isVisited === true){
 
                 screenCastleBtn[i].innerHTML = castleBarracksRus.officerDeadBody.officerDeadBodyBtn.secondBtn;
 
+                screenCastleBtn[i].addEventListener('click', () =>{
+
+                    legionnaireRooms();
+
+                });
+
             };
 
-            if(castleBarracksRus.officerTable.isVisited === true && castleBarracksRus.legionnaireRooms.isVisited === true){
+            if(castleBarracksRus.officerTable.isVisited === true && castleBarracksRus.legionnaireRooms.isVisited === true && castleBarracksRus.barracksInsideFirstFloor.isVisited === false){
 
                 screenCastleBtn[i].innerHTML = castleBarracksRus.officerDeadBody.officerDeadBodyBtn.thirdBtn;
 
-            };
-                
-            screenCastleBtn[i].addEventListener('click', () =>{
+                screenCastleBtn[i].addEventListener('click', () =>{
 
-                if(screenCastleBtn[i].innerHTML === castleBarracksRus.officerDeadBody.officerDeadBodyBtn.firstBtn){
-    
-                    officerTable();
-    
-                };
-
-                if(screenCastleBtn[i].innerHTML === castleBarracksRus.officerDeadBody.officerDeadBodyBtn.secondBtn){
-
-                    legionnaireRooms();
-    
-                };
-
-                if(screenCastleBtn[i].innerHTML === castleBarracksRus.officerDeadBody.officerDeadBodyBtn.thirdBtn){
-    
                     firstFloor();
-    
-                };
 
-            });
+                });
+
+            };
+
+            if(castleBarracksRus.officerTable.isVisited === true && castleBarracksRus.legionnaireRooms.isVisited === true && castleBarracksRus.barracksInsideFirstFloor.isVisited === true){
+
+                screenCastleBtn[i].innerHTML = castleBarracksRus.officerDeadBody.officerDeadBodyBtn.fourthBtn;
+
+                screenCastleBtn[i].addEventListener('click', () =>{
+
+                    castleCourtyard();
+
+                });
+
+            };
 
         };
 
@@ -496,41 +554,49 @@ function pieceOfPaper(){
     
                 screenCastleBtn[i].innerHTML = castleBarracksRus.pieceOfPaper.pieceOfPaperBtn.firstBtn;
 
+                screenCastleBtn[i].addEventListener('click', () =>{
+
+                    officerDeadBody();
+
+                });
+
             };
 
-            if(castleBarracksRus.officerDeadBody.isVisited === true){
+            if(castleBarracksRus.officerDeadBody.isVisited === true && castleBarracksRus.legionnaireRooms.isVisited === false){
 
                 screenCastleBtn[i].innerHTML = castleBarracksRus.pieceOfPaper.pieceOfPaperBtn.secondBtn;
 
+                screenCastleBtn[i].addEventListener('click', () =>{
+
+                    legionnaireRooms();
+
+                });
+
             };
 
-            if(castleBarracksRus.officerDeadBody.isVisited === true && castleBarracksRus.legionnaireRooms.isVisited === true){
+            if(castleBarracksRus.officerDeadBody.isVisited === true && castleBarracksRus.legionnaireRooms.isVisited === true && castleBarracksRus.barracksInsideFirstFloor.isVisited === false){
 
                 screenCastleBtn[i].innerHTML = castleBarracksRus.pieceOfPaper.pieceOfPaperBtn.thirdBtn;
 
-            };
-                
-            screenCastleBtn[i].addEventListener('click', () =>{
+                screenCastleBtn[i].addEventListener('click', () =>{
 
-                if(screenCastleBtn[i].innerHTML === castleBarracksRus.pieceOfPaper.pieceOfPaperBtn.firstBtn){
-    
-                    officerDeadBody();
-    
-                };
-
-                if(screenCastleBtn[i].innerHTML === castleBarracksRus.pieceOfPaper.pieceOfPaperBtn.secondBtn){
-
-                    legionnaireRooms();
-    
-                };
-
-                if(screenCastleBtn[i].innerHTML === castleBarracksRus.pieceOfPaper.pieceOfPaperBtn.thirdBtn){
-    
                     firstFloor();
-    
-                };
 
-            });
+                });
+
+            };
+
+            if(castleBarracksRus.officerDeadBody.isVisited === true && castleBarracksRus.legionnaireRooms.isVisited === true && castleBarracksRus.barracksInsideFirstFloor.isVisited === true){
+
+                screenCastleBtn[i].innerHTML = castleBarracksRus.pieceOfPaper.pieceOfPaperBtn.fourthBtn;
+
+                screenCastleBtn[i].addEventListener('click', () =>{
+
+                    castleCourtyard();
+
+                });
+
+            };
 
         };
 
@@ -556,27 +622,41 @@ function kitchenRoom(){
 
             };
                 
-            screenCastleBtn[i].addEventListener('click', () =>{
+            if(castleBarracksRus.armoryRoom.isVisited === false){
 
-                if(screenCastleBtn[i].innerHTML === castleBarracksRus.kitchenRoom.kitchenRoomBtn.firstBtn){
-    
+                screenCastleBtn[i].innerHTML = castleBarracksRus.kitchenRoom.kitchenRoomBtn.firstBtn;
+
+                screenCastleBtn[i].addEventListener('click', () =>{
+
                     armoryRoom();
-    
-                };
 
-                if(screenCastleBtn[i].innerHTML === castleBarracksRus.kitchenRoom.kitchenRoomBtn.secondBtn){
+                });
+
+            };
+
+            if(castleBarracksRus.armoryRoom.isVisited === true && castleBarracksRus.barracksInsideSecondFloor.isVisited === false){
+
+                screenCastleBtn[i].innerHTML = castleBarracksRus.kitchenRoom.kitchenRoomBtn.secondBtn;
+
+                screenCastleBtn[i].addEventListener('click', () =>{
 
                     secondFloor();
-    
-                };
 
-                if(screenCastleBtn[i].innerHTML === castleBarracksRus.kitchenRoom.kitchenRoomBtn.thirdBtn){
-    
+                });
+
+            };
+
+            if(castleBarracksRus.armoryRoom.isVisited === true && castleBarracksRus.barracksInsideSecondFloor.isVisited === true){
+
+                screenCastleBtn[i].innerHTML = castleBarracksRus.kitchenRoom.kitchenRoomBtn.thirdBtn;
+
+                screenCastleBtn[i].addEventListener('click', () =>{
+
                     castleCourtyard();
-    
-                };
 
-            });
+                });
+
+            };
 
         };
 
@@ -587,8 +667,12 @@ function kitchenRoom(){
 function armoryRoom(){
 
     castleBarracksRus.armoryRoom.isVisited = true;
+
+    const arrayBtns = Object.values(castleBarracksRus.armoryRoom.armoryRoomBtn);
     
     setTimeout(() =>{
+
+        removeHideOnBtns();
 
         screenCastleTitle.innerHTML = castleBarracksRus.armoryRoom.armoryRoomName;
 
@@ -596,23 +680,25 @@ function armoryRoom(){
 
         for(let i = 0; i < screenCastleBtn.length; i++){
 
-            if(screenCastleBtn[i].classList.contains('btn-1') === false){
+            if(screenCastleBtn[i].classList.contains('btn-3') === true){
 
                 screenCastleBtn[i].classList.add('hide-btn');
 
             };
+
+            screenCastleBtn[i].innerHTML = arrayBtns[i];
                 
             screenCastleBtn[i].addEventListener('click', () =>{
 
                 if(screenCastleBtn[i].innerHTML === castleBarracksRus.armoryRoom.armoryRoomBtn.firstBtn){
     
-                    armoryRoom();
+                    armoryBlood();
     
                 };
 
                 if(screenCastleBtn[i].innerHTML === castleBarracksRus.armoryRoom.armoryRoomBtn.secondBtn){
 
-                    secondFloor();
+                    armoryTable();
     
                 };
 
@@ -626,6 +712,148 @@ function armoryRoom(){
 
 function armoryTable(){
 
+    castleBarracksRus.armoryTable.isVisited = true;
+
+    setTimeout(() =>{
+
+        removeHideOnBtns();
+
+        screenCastleTitle.innerHTML = castleBarracksRus.armoryTable.armoryTableName;
+
+        screenCastleDescr.innerHTML = castleBarracksRus.armoryTable.armoryTableDescr;
+
+        for(let i = 0; i < screenCastleBtn.length; i++){
+
+            if(screenCastleBtn[i].classList.contains('btn-1') === false){
+
+                screenCastleBtn[i].classList.add('hide-btn');
+
+            };
+                
+            if(castleBarracksRus.armoryBlood.isVisited === false){
+
+                screenCastleBtn[i].innerHTML = castleBarracksRus.armoryTable.armoryTableBtn.firstBtn;
+
+                screenCastleBtn[i].addEventListener('click', () =>{
+
+                    armoryBlood();
+
+                });
+
+            };
+
+            if(castleBarracksRus.armoryBlood.isVisited === true && castleBarracksRus.kitchenRoom.isVisited === false){
+
+                screenCastleBtn[i].innerHTML = castleBarracksRus.armoryTable.armoryTableBtn.secondBtn;
+
+                screenCastleBtn[i].addEventListener('click', () =>{
+
+                    kitchenRoom();
+
+                });
+
+            };
+
+            if(castleBarracksRus.armoryBlood.isVisited === true && castleBarracksRus.kitchenRoom.isVisited === true && castleBarracksRus.barracksInsideSecondFloor.isVisited === false){
+
+                screenCastleBtn[i].innerHTML = castleBarracksRus.armoryTable.armoryTableBtn.thirdBtn;
+
+                screenCastleBtn[i].addEventListener('click', () =>{
+
+                    secondFloor();
+
+                });
+
+            };
+
+            if(castleBarracksRus.armoryBlood.isVisited === true && castleBarracksRus.kitchenRoom.isVisited === true && castleBarracksRus.barracksInsideSecondFloor.isVisited === true){
+
+                screenCastleBtn[i].innerHTML = castleBarracksRus.armoryTable.armoryTableBtn.fourthBtn;
+
+                screenCastleBtn[i].addEventListener('click', () =>{
+
+                    castleCourtyard();
+
+                });
+
+            };
+
+        };
+
+    }, '650');
+};
+
+function armoryBlood(){
+
+    castleBarracksRus.armoryBlood.isVisited = true;
+
+    setTimeout(() =>{
+
+        removeHideOnBtns();
+
+        screenCastleTitle.innerHTML = castleBarracksRus.armoryBlood.armoryBloodName;
+
+        screenCastleDescr.innerHTML = castleBarracksRus.armoryBlood.armoryBloodDescr;
+
+        for(let i = 0; i < screenCastleBtn.length; i++){
+
+            if(screenCastleBtn[i].classList.contains('btn-1') === false){
+
+                screenCastleBtn[i].classList.add('hide-btn');
+
+            };
+                
+            if(castleBarracksRus.armoryTable.isVisited === false){
+
+                screenCastleBtn[i].innerHTML = castleBarracksRus.armoryBlood.armoryBloodBtn.firstBtn;
+
+                screenCastleBtn[i].addEventListener('click', () =>{
+
+                    armoryTable();
+
+                });
+
+            };
+
+            if(castleBarracksRus.armoryTable.isVisited === true && castleBarracksRus.kitchenRoom.isVisited === false){
+
+                screenCastleBtn[i].innerHTML = castleBarracksRus.armoryBlood.armoryBloodBtn.secondBtn;
+
+                screenCastleBtn[i].addEventListener('click', () =>{
+
+                    kitchenRoom();
+
+                });
+
+            };
+
+            if(castleBarracksRus.armoryTable.isVisited === true && castleBarracksRus.kitchenRoom.isVisited === true && castleBarracksRus.barracksInsideSecondFloor.isVisited === false){
+
+                screenCastleBtn[i].innerHTML = castleBarracksRus.armoryBlood.armoryBloodBtn.thirdBtn;
+
+                screenCastleBtn[i].addEventListener('click', () =>{
+
+                    secondFloor();
+
+                });
+
+            };
+
+            if(castleBarracksRus.armoryTable.isVisited === true && castleBarracksRus.kitchenRoom.isVisited === true && castleBarracksRus.barracksInsideSecondFloor.isVisited === true){
+
+                screenCastleBtn[i].innerHTML = castleBarracksRus.armoryBlood.armoryBloodBtn.fourthBtn;
+
+                screenCastleBtn[i].addEventListener('click', () =>{
+
+                    castleCourtyard();
+
+                });
+
+            };
+
+        };
+
+    }, '650');
 };
 
 /// CASTLE---COURTYARD---DEAD__BODY
@@ -666,7 +894,7 @@ function deadBody(){
 
         };
 
-    }, "500");
+    }, '650');
     
 };
 

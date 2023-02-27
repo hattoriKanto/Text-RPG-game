@@ -153,7 +153,7 @@ const castleBarracksRus = {
 
             secondBtn: 'Осмотреть первый этаж',
 
-            fourthBtn: 'Выйти во внутренний двор'
+            thirdBtn: 'Выйти во внутренний двор'
 
         },
 

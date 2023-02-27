@@ -7,7 +7,7 @@ const castleCourtyardRus = {
 
     courtyardBtn: {
 
-        firstBtn: 'Осмотреть стойла',
+        firstBtn: 'Осмотреть конюшни',
 
         secondBtn: 'Осмотреть казармы',
 
