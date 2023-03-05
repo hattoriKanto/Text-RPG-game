@@ -25,9 +25,13 @@ const castleCourtyardRus = {
 
             firstBtn: 'Осмотреть стойла',
 
-            secondBtn: 'Осмотреть казармы'
+            secondBtn: 'Осмотреть казармы',
 
-        }
+            thirdBtn: 'Двигаться в сторону донжона'
+
+        },
+
+        isVisited: false
 
     }
 

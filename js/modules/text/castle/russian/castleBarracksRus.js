@@ -7,6 +7,8 @@ const castleBarracksRus = {
                 
     barracksBtn: 'Войти в казармы',
 
+    isVisited: false,
+
     barracksInside: {
 
         barracksInsideName: 'Внутренние помещения казарм',
