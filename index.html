@@ -29,110 +29,69 @@
             </ul>
         </div>
     </div>
-    <section id="start-screen" class="screen__start screen start">
-        <div class="container">
-            <div class="start__main main">
-                <div class="main__header">
-                    <h1 class="main__title">Lorem</h1>
-                    <div class="main__desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque excepturi iste molestias ea incidunt, sunt beatae corporis autem officia quasi cumque est rem at ex tenetur quas. Inventore, corrupti mollitia! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem numquam nobis dicta explicabo officiis ex voluptatem earum quisquam asperiores beatae odit ducimus quam, eaque nulla amet debitis eligendi voluptas quo.</div>
-                </div>
-                <button id="start-btn" class="main__btn button">Let's get started!</button>
-            </div>
-        </div>
-    </section>
-    <section id="race-screen" class="screen__race screen race hide">
-        <div class="container">
-            <div class="race__main main">
-                <div class="main__header">
-                    <div class="main__desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque excepturi iste molestias ea incidunt, sunt beatae corporis autem officia quasi cumque est rem at ex tenetur quas. Inventore, corrupti mollitia! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem numquam nobis dicta explicabo officiis ex voluptatem earum quisquam asperiores beatae odit ducimus quam, eaque nulla amet debitis eligendi voluptas quo.</div>
-                </div>
-                <div class="main__choose choose__race choose">
-                    <div class="choose__option choose__option-1 option">
-                        <button id="race__human" class="option__btn button"></button>
-                        <button id="race__human__info" class="option__info"><img src="./img/info.png" alt="Click for more information about a race"></button>
+    <button id="inventory-btn" class="inventory-btn hide-inventory-btn">
+        <img class="inventory-btn__img" src="./img/other/inventory.png" alt="">
+    </button>
+    <div id="inventory" class="inventory popup">
+        <div class="overlay"></div>
+        <div class="popup__content inventory__content">
+            <div id="close__popup" class="close-btn"></div>
+            <div class="inventory__weapons weapons">
+                <div class="weapons__wrapper">
+                    <h3 class="weapons__title">weapon-1</h3>
+                    <div class="weapons__img-wrapper">
+                        <img class="weapons__img" src="./img/inventory/wp1.png" alt="weapon-1-img">
+                        <button class="weapons__btn btn">
+                            <img class="btn__img" src="./img/info.png" alt="">
+                        </button>
                     </div>
-                    <div class="choose__option choose__option-2 option">
-                        <button id="race__dwarf" class="option__btn button"></button>
-                        <button id="race__dwarf__info" class="option__info"><img src="./img/info.png" alt="Click for more information about a race"></button>
-                    </div>
-                    <div class="choose__option choose__option-3 option">
-                        <button id="race__elf" class="option__btn button"></button>
-                        <button id="race__elf__info" class="option__info"><img src="./img/info.png" alt="Click for more information about a race"></button>
+                </div>
+                <div class="weapons__wrapper">
+                    <h3 class="weapons__title">weapon-2</h3>
+                    <div class="weapons__img-wrapper">
+                        <img class="weapons__img" src="./img/inventory/wp2.png" alt="weapon-2-img">
+                        <button class="weapons__btn btn">
+                            <img class="btn__img" src="./img/info.png" alt="">
+                        </button>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <section id="class-screen" class="screen__class screen class hide">
-        <div class="container">
-            <div class="class__main main">
-                <div class="main__header">
-                    <div class="main__desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque excepturi iste molestias ea incidunt, sunt beatae corporis autem officia quasi cumque est rem at ex tenetur quas. Inventore, corrupti mollitia! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem numquam nobis dicta explicabo officiis ex voluptatem earum quisquam asperiores beatae odit ducimus quam, eaque nulla amet debitis eligendi voluptas quo.</div>
+            <div class="inventory__items">
+                <div class="inventory__item">
+                    <div id="health-potion-counter" class="inventory__counter">0</div>
+                    <img class="inventory__img" src="./img/inventory/health__potion.png" alt="">
                 </div>
-                <div class="main__choose choose__class choose">
-                    <div class="choose__option choose__option-1 option">
-                        <button id="class__1" class="option__btn button"></button>
-                        <button id="class__1__info" class="option__info"><img src="./img/info.png" alt="Click for more information about a race"></button>
-                    </div>
-                    <div class="choose__option choose__option-2 option">
-                        <button id="class__2" class="option__btn button"></button>
-                        <button id="class__2__info" class="option__info"><img src="./img/info.png" alt="Click for more information about a race"></button>
-                    </div>
-                    <div class="choose__option choose__option-3 option">
-                        <button id="class__3" class="option__btn button"></button>
-                        <button id="class__3__info" class="option__info"><img src="./img/info.png" alt="Click for more information about a race"></button>
-                    </div>
+                <div class="inventory__item">
+                    <div id="health-potion-counter" class="inventory__counter">0</div>
+                    <img class="inventory__img" src="./img/inventory/mana__potion.png" alt="">
                 </div>
+                <div class="inventory__item">1</div>
+                <div class="inventory__item">1</div>
+                <div class="inventory__item">1</div>
+                <div class="inventory__item">1</div>
+                <div class="inventory__item">1</div>
+                <div class="inventory__item">1</div>
+                <div class="inventory__item">1</div>
             </div>
         </div>
-    </section>
-    <section class="screen__first__weapon screen first__weapon hide">
+    </div>
+    <section id="char-creating-screen" class="screen__char-creating screen char-creating">
         <div class="container">
-            <div class="first__weapon__main main">
+            <div class="char-creating__main main">
                 <div class="main__header">
-                    <div class="main__desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque excepturi iste molestias ea incidunt, sunt beatae corporis autem officia quasi cumque est rem at ex tenetur quas. Inventore, corrupti mollitia! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem numquam nobis dicta explicabo officiis ex voluptatem earum quisquam asperiores beatae odit ducimus quam, eaque nulla amet debitis eligendi voluptas quo.</div>
+                    <h1 class="main__title"></h1>
+                    <div class="main__desc"></div>
                 </div>
-                <div class="main__choose choose__class choose">
-                    <div class="choose__option choose__option-1 option">
-                        <button id="first__weapon__1" class="option__btn button"></button>
-                        <button id="first__weapon__1__info" class="option__info"><img src="./img/info.png" alt="Click for more information about a race"></button>
-                    </div>
-                    <div class="choose__option choose__option-2 option">
-                        <button id="first__weapon__2" class="option__btn button"></button>
-                        <button id="first__weapon__2__info" class="option__info"><img src="./img/info.png" alt="Click for more information about a race"></button>
-                    </div>
-                    <div class="choose__option choose__option-3 option">
-                        <button id="first__weapon__3" class="option__btn button"></button>
-                        <button id="first__weapon__3__info" class="option__info"><img src="./img/info.png" alt="Click for more information about a race"></button>
-                    </div>
+                <div class="main__footer">
+                    <button id="first-btn" class="main__btn btn-1 button"></button>
+                    <button id="second-btn" class="main__btn btn-2 button hide-btn"></button>
+                    <button id="third-btn" class="main__btn btn-3 button hide-btn"></button>
+                    <button id="fourth-btn" class="main__btn btn-4 button hide-btn"></button>
                 </div>
             </div>
         </div>
     </section>
-    <section class="screen__second__weapon screen second__weapon hide">
-        <div class="container">
-            <div class="second__weapon__main main">
-                <div class="main__header">
-                    <div class="main__desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque excepturi iste molestias ea incidunt, sunt beatae corporis autem officia quasi cumque est rem at ex tenetur quas. Inventore, corrupti mollitia! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem numquam nobis dicta explicabo officiis ex voluptatem earum quisquam asperiores beatae odit ducimus quam, eaque nulla amet debitis eligendi voluptas quo.</div>
-                </div>
-                <div class="main__choose choose__class choose">
-                    <div class="choose__option choose__option-1 option">
-                        <button id="second__weapon__1" class="option__btn button"></button>
-                        <button id="second__weapon__1__info" class="option__info"><img src="./img/info.png" alt="Click for more information about a race"></button>
-                    </div>
-                    <div class="choose__option choose__option-2 option">
-                        <button id="second__weapon__2" class="option__btn button"></button>
-                        <button id="second__weapon__2__info" class="option__info"><img src="./img/info.png" alt="Click for more information about a race"></button>
-                    </div>
-                    <div class="choose__option choose__option-3 option">
-                        <button id="second__weapon__3" class="option__btn button"></button>
-                        <button id="second__weapon__3__info" class="option__info"><img src="./img/info.png" alt="Click for more information about a race"></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="screen__character-overview screen character-overview hide">
+    <section class="screen__character-overview screen character-overview hide-screen">
         <div class="container">
             <div class="character-overview__main main">
                 <div class="main__header">   
@@ -158,7 +117,7 @@
             </div>
         </div>
     </section>
-    <section id="location-screen" class="screen__location screen location hide">
+    <section id="location-screen" class="screen__location screen location hide-screen">
         <div class="container">
             <div class="location__main">
                 <div class="location__header">
@@ -191,7 +150,7 @@
             </div>
         </div>
     </section>
-    <section id="castle-screen" class="screen__castle screen castle hide">
+    <section id="castle-screen" class="screen__castle screen castle hide-screen">
         <div class="container">
             <div class="castle__main main">
                 <div class="main__header">

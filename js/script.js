@@ -1,5 +1,5 @@
 
-import chooseYourRace from './modules/creating__character.js';
+import startScreen from "./modules/creating__character.js";
 
 const popup = document.querySelector('#popup');
 
@@ -44,20 +44,6 @@ const player = {
 };
 
 startScreen();
-
-function startScreen(){
-
-    const screenStart = document.querySelector('#start-screen');
-
-    screenStart.querySelector('#start-btn').addEventListener('click', () =>{
-
-        screenStart.classList.add('hide');
-
-        chooseYourRace();
-
-    });
-
-};
 
 function closePopup(){
 

@@ -1,6 +1,8 @@
 
 import castleLocation from '../locations/castle.js';
 
+import showInventory from '../inventory.js';
+
 const locationName = {
 
     russian: {
@@ -17,13 +19,15 @@ const locationName = {
 
 function chooseLocation(){
 
+    showInventory();
+
     const screenLocation = document.querySelector('#location-screen');
 
     const chooseLocation = screenLocation.querySelectorAll('.choose__item');
 
     const locationNameRus = Object.values(locationName.russian);
 
-    screenLocation.classList.remove('hide');
+    screenLocation.classList.remove('hide-screen');
 
     for(let i = 0; i < chooseLocation.length; i++){
 
@@ -31,7 +35,7 @@ function chooseLocation(){
 
         chooseLocation[i].addEventListener('click', () =>{
 
-            screenLocation.classList.add('hide');
+            screenLocation.classList.add('hide-screen');
 
             castleLocation();
 

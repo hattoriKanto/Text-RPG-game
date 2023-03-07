@@ -26,7 +26,7 @@
     z-index: 1
     transition: 500ms all
 
-.hide
+.hide-screen
     top: 0
     left: -100%
 
@@ -268,6 +268,76 @@
                 background: #000
 
 /// LOCATION SECTION END ///
+
+/// INVENTORY SECTION END ///
+
+.inventory-btn
+    display: flex
+    position: absolute
+    top: 30px
+    right: 30px
+    z-index: 2
+    width: 60px
+    height: 60px
+    border: 2px solid #fff
+    border-radius: 5px
+    background: transparent
+    transition: 500ms all
+    &:hover
+        transform: scale(1.13)
+.hide-inventory-btn
+    display: none
+.inventory
+    &__content
+        padding: 40px
+        width: 800px
+        flex-direction: row
+        align-items: normal
+        gap: 20px
+    &__weapons
+        display: flex
+        flex-basis: 50%
+        border: 2px solid #fff
+        border-radius: 5px
+    .weapons
+        &__title
+            text-align: center
+        &__wrapper
+            position: relative
+            display: flex
+            flex-direction: column
+            flex-basis: 50%
+        &__img-wrapper
+            width: 100%
+            height: 100%
+        &__btn
+            position: absolute
+            bottom: 0
+            right: 0
+            background: transparent
+    &__items
+        flex-basis: 50%
+        display: grid
+        grid-template-rows: 33.33% 33.33% 33.33%
+        grid-template-columns: 33.33% 33.33% 33.33%
+    &__item
+        position: relative
+        display: flex
+        justify-content: center
+        align-items: center
+        border-bottom: 2px solid
+        border-right: 2px solid
+        border-radius: 5px
+    &__counter
+        position: absolute
+        top: 0
+        right: 10px
+        font-size: 20px
+    &__img
+        width: 80px
+        height: 80px
+
+/// INVENTORY SECTION END ///
 
 .screen
     .main

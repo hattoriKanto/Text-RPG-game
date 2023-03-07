@@ -56,7 +56,7 @@ function castle(){
         
     };
 
-    screenCastle.classList.remove('hide');
+    screenCastle.classList.remove('hide-screen');
 
 };
 

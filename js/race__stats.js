@@ -1,4 +1,3 @@
-'use strict'
 
 const race = {
     human: { 
@@ -243,7 +242,7 @@ const race = {
         },
         class: {
             protector: {
-                className: 'Protector of the Stone',
+                className: 'Защитник Камня',
                 classStats: {
                     bonusHealthPoints: 5,
                     bonusArmourPoints: 5,
