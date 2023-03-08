@@ -1,6 +1,14 @@
 
 const weaponsRus = {
 
+    mainText: {
+
+        textTitle: 'Заголовок',
+
+        textDescr: 'Описание'
+
+    },
+
     humanWeapons:{
 
         meleeWeapons: {
@@ -116,3 +124,5 @@ const weaponsRus = {
         }
     }
 }
+
+export default weaponsRus;

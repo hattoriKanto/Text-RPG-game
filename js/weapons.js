@@ -53,7 +53,7 @@ const weapons = {
 
         },
 
-        manaWeapons: {
+        magicWeapons: {
 
             rod: {
 
