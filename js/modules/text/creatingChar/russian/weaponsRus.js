@@ -13,7 +13,7 @@ const weaponsRus = {
 
         meleeWeapons: {
 
-            name: 'Оружие ближнего боя',
+            nameTypeWeapon: 'Оружие ближнего боя',
 
             pilas: {
 
@@ -43,7 +43,7 @@ const weaponsRus = {
 
         rangeWeapons: {
 
-            name: 'Дальнобойное оружие',
+            nameTypeWeapon: 'Дальнобойное оружие',
 
             crossbow: {
 
@@ -73,7 +73,7 @@ const weaponsRus = {
 
         magicWeapons: {
 
-            name: 'Магическое оружие',
+            nameTypeWeapon: 'Магическое оружие',
 
             rod: {
 
@@ -103,7 +103,7 @@ const weaponsRus = {
 
         defenceWeapons: {
 
-            name: 'Оборонительное оружие',
+            nameTypeWeapon: 'Оборонительное оружие',
 
             skartos: {
 

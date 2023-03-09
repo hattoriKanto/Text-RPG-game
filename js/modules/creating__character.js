@@ -121,9 +121,9 @@ function chooseClass(choosedRaceIndex){
 
             screenCreatingCharBtn[i].addEventListener('click', () =>{
 
-                const choosedClassIndex = i;
+                const choosedClass = Object.keys(Object.values(classRus)[choosedRaceIndex])[i];
 
-                chooseWeaponType(choosedClassIndex);
+                chooseWeaponType(choosedClass);
 
             });
     
@@ -133,29 +133,27 @@ function chooseClass(choosedRaceIndex){
 
 };
 
-function chooseWeaponType(choosedClassIndex){
+function chooseWeaponType(choosedClass){
+
+    const arrayOfClassWeapon  = [];
 
     let booleanTrueCounter = 0;
 
-    const arrayWeaponsValues = Object.values(Object.values(humanClasses)[choosedClassIndex].classWeapons);
+    const arrayWeaponsType = [];
 
-    const arrayWeaponsKeys = Object.keys(Object.values(humanClasses)[choosedClassIndex].classWeapons);
-
-    const arrayWeaponsTextKeys = Object.values(Object.keys(weaponsRus.humanWeapons));
-
-    arrayWeaponsValues.forEach(elem =>{
-
-        if(elem === true){
+    for(let classWeapon in humanClasses[choosedClass].classWeapons){
+    
+        if(humanClasses[choosedClass].classWeapons[classWeapon] === true){
 
             booleanTrueCounter++;
 
+            arrayWeaponsType.push(weaponsRus.humanWeapons[classWeapon].nameTypeWeapon);
+
+            arrayOfClassWeapon.push(classWeapon)
+            
         };
 
-    });
-
-    console.log(arrayWeaponsKeys);
-
-    console.log(arrayWeaponsTextKeys);
+    };
 
     setTimeout(() =>{
         
@@ -166,12 +164,22 @@ function chooseWeaponType(choosedClassIndex){
         screenCreatingCharDescr.innerHTML = weaponsRus.mainText.textDescr;
 
         for(let i = 0; i < screenCreatingCharBtn.length; i++){
-
-            screenCreatingCharBtn[i].innerHTML
-
-            if(i < booleanTrueCounter){
+    
+            if(i > booleanTrueCounter - 1){
 
                 screenCreatingCharBtn[i].classList.add('hide-btn');
+
+            }else{
+
+                screenCreatingCharBtn[i].innerHTML = arrayWeaponsType[i];
+
+                screenCreatingCharBtn[i].addEventListener('click', () =>{
+
+                    const choosedWeaponType = arrayOfClassWeapon[i];
+
+                    chooseWeapon(choosedWeaponType);
+            
+                });
 
             };
 
@@ -180,5 +188,11 @@ function chooseWeaponType(choosedClassIndex){
     }, '650');
 
 };
+
+function chooseWeapon(choosedWeaponType){
+
+    console.log(choosedWeaponType)
+
+}
 
 export default startScreen;
