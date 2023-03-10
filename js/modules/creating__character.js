@@ -15,47 +15,33 @@ const screenCreatingCharDescr = screenCreatingChar.querySelector('.main__desc');
 
 const screenCreatingCharTitle = screenCreatingChar.querySelector('.main__title');
 
-const screenCreatingCharBtn = screenCreatingChar.querySelectorAll('.main__btn');
-
-screenCreatingCharBtn.forEach(elem =>{
-
-    elem.addEventListener('click', () =>{
-
-        screenCreatingChar.querySelector('.main').classList.toggle('rotation');
-
-    });
-
-});
-
-function removeHideOnBtns(){
-
-    screenCreatingCharBtn.forEach(elem =>{
-
-        elem.classList.remove('hide-btn');
-
-    });
-
-};
+const screenCreatingCharFooter = screenCreatingChar.querySelector('.main__footer');
 
 function startScreen(){
+
+    const button = document.createElement('button');
+
+    button.className = 'main__btn button';
+
+    screenCreatingCharFooter.appendChild(button);
+
+    button.innerText = startScreenRus.textBtn;
 
     screenCreatingCharTitle.innerHTML = startScreenRus.textTitle;
 
     screenCreatingCharDescr.innerHTML = startScreenRus.textDescr;
 
-    screenCreatingCharBtn.forEach(elem =>{
+    button.addEventListener('click', () =>{
 
-        if(elem.classList.contains('btn-1') === true){
+        setTimeout(() =>{
 
-            elem.innerHTML = startScreenRus.textBtn;
+            button.remove();
 
-            elem.addEventListener('click', () =>{
+        }, '650');
 
-                chooseRace();
+        screenCreatingChar.querySelector('.main').classList.toggle('rotation');
 
-            });
-
-        };
+        chooseRace();
 
     });
 
@@ -63,31 +49,49 @@ function startScreen(){
 
 function chooseRace(){
 
+    const arrayRaces = Object.values(raceRus.races);
+
+    const arrayRaceKey = [];
+
+    for(let key in raceRus.races){
+
+        arrayRaceKey.push(key);
+
+    };
+
     setTimeout(() =>{
-        
-        removeHideOnBtns();
-        
+                
         screenCreatingCharTitle.innerHTML = raceRus.mainText.textTitle;
 
         screenCreatingCharDescr.innerHTML = raceRus.mainText.textDescr;
 
-        for(let i = 0; i < screenCreatingCharBtn.length; i++){
+        for(let i = 0; i < arrayRaces.length; i++){
 
-            if(screenCreatingCharBtn[i].classList.contains('btn-4') === true){
-    
-                screenCreatingCharBtn[i].classList.add('hide-btn');
-    
-            }else{
+            const button = document.createElement('button');
 
-                screenCreatingCharBtn[i].innerHTML = Object.values(raceRus)[i+1].raceName;
+            button.className = 'main__btn button';
 
-            };
+            screenCreatingCharFooter.appendChild(button);
 
-            screenCreatingCharBtn[i].addEventListener('click', () =>{
+            button.innerText = arrayRaces[i].raceName;
 
-                const choosedRaceIndex = i + 1;
+            button.addEventListener('click', () =>{
 
-                chooseClass(choosedRaceIndex);
+                setTimeout(() =>{
+
+                    screenCreatingCharFooter.querySelectorAll('.button').forEach(elem =>{
+
+                        elem.remove();
+
+                    });
+        
+                }, '650');
+
+                screenCreatingChar.querySelector('.main').classList.toggle('rotation');
+
+                const choosedRace = arrayRaceKey[i];
+
+                chooseClass(choosedRace);
 
             });
     
@@ -97,31 +101,49 @@ function chooseRace(){
 
 };
 
-function chooseClass(choosedRaceIndex){
+function chooseClass(choosedRace){
+
+    const arrayClass = Object.values(classRus.classes[choosedRace]);
+
+    const arrayClassKey = [];
+
+    for(let key in classRus.classes[choosedRace]){
+
+        arrayClassKey.push(key);
+
+    };
 
     setTimeout(() =>{
-        
-        removeHideOnBtns();
-        
+                
         screenCreatingCharTitle.innerHTML = classRus.mainText.textTitle;
 
         screenCreatingCharDescr.innerHTML = classRus.mainText.textDescr;
 
-        for(let i = 0; i < screenCreatingCharBtn.length; i++){
+        for(let i = 0; i < arrayClass.length; i++){
 
-            if(screenCreatingCharBtn[i].classList.contains('btn-4') === true){
-    
-                screenCreatingCharBtn[i].classList.add('hide-btn');
-    
-            }else{
+            const button = document.createElement('button');
 
-                screenCreatingCharBtn[i].innerHTML = Object.values(Object.values(classRus)[choosedRaceIndex])[i].className; // Значения объекта classRus добавляютья в массив; у выбранной рассы(по индексу) добавляет значения(классы) в массив; по номеру итерации выбирает класс и применяет значение свойства className в HTML
+            button.className = 'main__btn button';
 
-            };
+            screenCreatingCharFooter.appendChild(button);
 
-            screenCreatingCharBtn[i].addEventListener('click', () =>{
+            button.innerText = arrayClass[i].className;
 
-                const choosedClass = Object.keys(Object.values(classRus)[choosedRaceIndex])[i];
+            button.addEventListener('click', () =>{
+
+                setTimeout(() =>{
+
+                    screenCreatingCharFooter.querySelectorAll('.button').forEach(elem =>{
+
+                        elem.remove();
+
+                    });
+        
+                }, '650');
+
+                screenCreatingChar.querySelector('.main').classList.toggle('rotation');
+
+                const choosedClass = arrayClassKey[i];
 
                 chooseWeaponType(choosedClass);
 
@@ -135,9 +157,9 @@ function chooseClass(choosedRaceIndex){
 
 function chooseWeaponType(choosedClass){
 
-    const arrayOfClassWeapon  = [];
-
     let booleanTrueCounter = 0;
+
+    const arrayOfClassWeapon  = [];
 
     const arrayWeaponsType = [];
 
@@ -147,41 +169,49 @@ function chooseWeaponType(choosedClass){
 
             booleanTrueCounter++;
 
-            arrayWeaponsType.push(weaponsRus.humanWeapons[classWeapon].nameTypeWeapon);
+            arrayWeaponsType.push(weaponsRus.humanWeapons[classWeapon].mainText.nameTypeWeapon);
 
-            arrayOfClassWeapon.push(classWeapon)
+            arrayOfClassWeapon.push(classWeapon);
             
         };
 
     };
 
     setTimeout(() =>{
-        
-        removeHideOnBtns();
-        
+                
         screenCreatingCharTitle.innerHTML = weaponsRus.mainText.textTitle;
 
         screenCreatingCharDescr.innerHTML = weaponsRus.mainText.textDescr;
 
-        for(let i = 0; i < screenCreatingCharBtn.length; i++){
-    
-            if(i > booleanTrueCounter - 1){
+        for(let i = 0; i < arrayWeaponsType.length; i++){
 
-                screenCreatingCharBtn[i].classList.add('hide-btn');
+            const button = document.createElement('button');
 
-            }else{
+            button.className = 'main__btn button';
 
-                screenCreatingCharBtn[i].innerHTML = arrayWeaponsType[i];
+            screenCreatingCharFooter.appendChild(button);
 
-                screenCreatingCharBtn[i].addEventListener('click', () =>{
+            button.innerText = arrayWeaponsType[i];
 
-                    const choosedWeaponType = arrayOfClassWeapon[i];
+            button.addEventListener('click', () =>{
 
-                    chooseWeapon(choosedWeaponType);
-            
-                });
+                setTimeout(() =>{
 
-            };
+                    screenCreatingCharFooter.querySelectorAll('.button').forEach(elem =>{
+
+                        elem.remove();
+
+                    });
+        
+                }, '650');
+
+                screenCreatingChar.querySelector('.main').classList.toggle('rotation');
+
+                const choosedWeaponType = arrayOfClassWeapon[i];
+
+                chooseWeapon(choosedWeaponType);
+
+            });
 
         };
 
@@ -191,7 +221,35 @@ function chooseWeaponType(choosedClass){
 
 function chooseWeapon(choosedWeaponType){
 
-    console.log(choosedWeaponType)
+    const arrayWeapons = [];
+
+    for(let weapon in weaponsRus.humanWeapons[choosedWeaponType].weapons){
+
+        arrayWeapons.push(weaponsRus.humanWeapons[choosedWeaponType].weapons[weapon].weaponsName);
+
+    };
+
+    setTimeout(() =>{
+                
+        screenCreatingCharTitle.innerHTML = weaponsRus.humanWeapons[choosedWeaponType].nameTypeWeapon;
+
+        screenCreatingCharDescr.innerHTML = weaponsRus.humanWeapons[choosedWeaponType].descrTypeWeapon;
+
+        for(let i = 0; i < arrayWeapons.length; i++){
+
+            const button = document.createElement('button');
+
+            button.className = 'main__btn button';
+
+            screenCreatingCharFooter.appendChild(button);
+
+            button.innerText = arrayWeapons[i];
+
+        };
+
+    }, '650');
+
+
 
 }
 

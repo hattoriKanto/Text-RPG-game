@@ -9,27 +9,31 @@ const raceRus = {
 
     },
 
-    human: {
+    races: {
 
-        raceName: 'Человек',
+        human: {
 
-        raceDescr: 'Описание'
-
-    },
-
-    dwarf: {
-
-        raceName: 'Гном' ,
-
-        raceDescr: 'Описание'
-
-    },
-
-    elf: {
-
-        raceName: 'Эльф' ,
-
-        raceDescr: 'Описание'
+            raceName: 'Человек',
+    
+            raceDescr: 'Описание'
+    
+        },
+    
+        dwarf: {
+    
+            raceName: 'Гном' ,
+    
+            raceDescr: 'Описание'
+    
+        },
+    
+        elf: {
+    
+            raceName: 'Эльф' ,
+    
+            raceDescr: 'Описание'
+    
+        }
 
     }
 
