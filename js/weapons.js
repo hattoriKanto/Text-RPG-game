@@ -1,7 +1,7 @@
 
 const weapons = {
 
-    humanWeapons:{
+    human:{
 
         meleeWeapons: {
 
@@ -103,8 +103,8 @@ const weapons = {
 
     },
 
-    dwarfWeapons: {},
+    dwarf: {},
 
-    elfWeapons: {}
+    elf: {}
 
 }

@@ -13,36 +13,6 @@ closePopupBtn.addEventListener('click', closePopup);
 
 popupOverlay.addEventListener('click', closePopup);
 
-const player = {
-
-    race: '',
-
-    class: '',
-
-    stats: {
-
-        healthPoints: null,
-
-        armourPoints: null,
-
-        manaPoints: null
-
-    },
-
-    weapon: {
-
-        firstWeapon: {
-
-        },
-
-        secondWeapon: {
-    
-        }   
-
-    }
-
-};
-
 startScreen();
 
 function closePopup(){
@@ -52,5 +22,3 @@ function closePopup(){
     body.classList.remove('noscroll');
 
 };
-
-export default player;

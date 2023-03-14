@@ -87,29 +87,26 @@
             </div>
         </div>
     </section>
-    <section class="screen__character-overview screen character-overview hide-screen">
+    <section id="character-overview-screen" class="screen__character-overview screen character-overview hide-screen">
         <div class="container">
             <div class="character-overview__main main">
                 <div class="main__header">   
-                    <div class="main__title">Your character overview:</div>             
+                    <div class="main__title"></div>             
                     <ul class="main__list list">
-                        <li class="list__item item race">Race: <span class="item__span"></span></li>
-                        <li class="list__item item class">Class: <span class="item__span"></span></li>
+                        <li class="list__item item race"><span class="item__text"></span><span class="item__value"></span></li>
+                        <li class="list__item item class"><span class="item__text"></span><span class="item__value"></span></li>
                         <ul class="race-and-class-stats item">
-                            <li class="list__item race-and-class-stats__item"><img src="./img/HP.png" alt=""> <span class="race-and-class-stats__span"></span></li>
-                            <li class="list__item race-and-class-stats__item"><img src="./img/AP.png" alt=""> <span class="race-and-class-stats__span"></span></li>
-                            <li class="list__item race-and-class-stats__item"><img src="./img/MP.png" alt=""> <span class="race-and-class-stats__span"></span></li>                        
+                            <li class="list__item race-and-class-stats__item"><img src="./img/HP.png" alt=""><span class="race-and-class-stats__span"></span></li>
+                            <li class="list__item race-and-class-stats__item"><img src="./img/AP.png" alt=""><span class="race-and-class-stats__span"></span></li>
+                            <li class="list__item race-and-class-stats__item"><img src="./img/MP.png" alt=""><span class="race-and-class-stats__span"></span></li>                        
                         </ul>
                         <ul class="weapons item">
-                            <li class="list__item weapons__item">First weapon: <span class="weapons__span"></span><button class="weapons__btn"><img class="weapons__img" src="./img/info.png" alt=""></button></li>
-                            <li class="list__item weapons__item">Second weapon: <span class="weapons__span"></span><button class="weapons__btn"><img class="weapons__img" src="./img/info.png" alt=""></button></li>
+                            <li class="list__item weapons__item"><span class="item__text"></span> <span class="item__value"></span><button class="weapons__btn"><img class="weapons__img" src="./img/info.png" alt=""></button></li>
+                            <li class="list__item weapons__item"><span class="item__text"></span> <span class="item__value"></span><button class="weapons__btn"><img class="weapons__img" src="./img/info.png" alt=""></button></li>
                         </ul>
                     </ul>
                 </div>
-                <div class="main__footer footer">
-                    <button class="footer__btn back-btn button">Back</button>
-                    <button class="footer__btn done-btn button">Done</button>
-                </div>
+                <div class="main__footer footer"></div>
             </div>
         </div>
     </section>

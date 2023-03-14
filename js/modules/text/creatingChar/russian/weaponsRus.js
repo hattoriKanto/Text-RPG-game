@@ -9,7 +9,7 @@ const weaponsRus = {
 
     },
 
-    humanWeapons:{
+    human:{
 
         meleeWeapons: {
 
