@@ -103,7 +103,73 @@ const weapons = {
 
     },
 
-    dwarf: {},
+    dwarf: {
+ 
+        meleeWeapons: {
+
+            hastar: {
+
+                physicalAttackPoints: 5,
+
+                physicalDefencePoints: 5
+
+            },
+
+            axe: {
+
+                physicalAttackPoints: 7,
+
+                physicalDefencePoints: 3
+
+            },
+
+            scramandor: {
+
+                physicalAttackPoints: 6,
+
+                physicalDefencePoints: 4
+
+            }
+
+        },
+
+        rangeWeapons: {
+
+            crossbow: {
+
+                physicalAttackPoints: 8
+
+            },
+
+            musket: {
+
+                physicalAttackPoints: 10
+                
+            }
+
+        },
+
+        defenceWeapons: {
+
+            skartos: {
+
+                physicalDefencePoints: 5,
+
+                magicalDefencePoints: 5
+
+            },
+
+            partha: {
+
+                physicalDefencePoints: 4,
+
+                magicalDefencePoints: 6
+
+            }
+
+        }
+
+    },
 
     elf: {}
 

@@ -91,12 +91,22 @@
         align-items: center
         justify-content: space-evenly
     .footer
-        &__btn
-            width: 40%
-            height: 60px
-            border: 2px solid #fff
-            border-radius: 20px
-            background: transparent
+        &__item
+            display: flex
+            width: 70%
+            align-items: center
+            justify-content: center
+            gap: 20px
+    &__button-info
+        display: flex
+        align-items: center
+        justify-content: center
+        width: 60px
+        height: 60px
+        background: transparent
+        img
+            width: 100%
+
     &__title
         font-size: 30px
         line-height: 1.75
@@ -104,23 +114,6 @@
         min-height: 200px
         padding: 10px
         text-align: center
-    &__choose
-        width: 100%
-        display: flex
-        flex-direction: column
-        align-items: center
-        justify-content: space-between
-        gap: 20px
-    .choose
-        &__option
-            width: 100%
-            display: flex
-            align-items: center
-            justify-content: center
-            gap: 20px
-        .option
-            &__info
-                background: transparent
 
 .close-btn
     position: absolute

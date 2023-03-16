@@ -1,15 +1,15 @@
 
 import player from "./player.js";
 
-import racesStats from "./races&Classes/racesStats.js";
+import racesStats from "./races__classes__weapons/racesStats.js";
 
-import classesStats from "./races&Classes/classesStats.js";
+import classesStats from "./races__classes__weapons/classesStats.js";
 
-import weaponsClasses from "./races&Classes/weaponsClasses.js";
+import weaponsClasses from "./races__classes__weapons/classesWeapons.js";
 
 import startScreenRus from "./text/creatingChar/russian/startScreenRus.js";
 
-import raceRus from "./text/creatingChar/russian/raceesRus.js";
+import raceRus from "./text/creatingChar/russian/racesRus.js";
 
 import classRus from "./text/creatingChar/russian/chooseClassRus.js";
 
@@ -28,6 +28,68 @@ const screenCreatingCharDescr = screenCreatingChar.querySelector('.main__desc');
 const screenCreatingCharTitle = screenCreatingChar.querySelector('.main__title');
 
 const screenCreatingCharFooter = screenCreatingChar.querySelector('.main__footer');
+
+function popup(){
+
+    document.querySelector('.popup').classList.add('show-popup');
+
+    document.querySelector('#close__popup').addEventListener('click', closePopup);
+
+    document.querySelector('.overlay').addEventListener('click', closePopup);
+
+    function closePopup(){
+
+        document.querySelector('.popup').classList.remove('show-popup');
+
+        document.querySelector('body').classList.remove('noscroll');
+
+    };
+
+};
+
+function addElements(value){
+
+    const footerItem = document.createElement('div');
+
+    const button = document.createElement('button');
+
+    const buttonInfo = document.createElement('button');
+
+    const infoImg = document.createElement('img');
+
+    footerItem.className = 'footer__item';
+
+    button.className = 'footer__btn main__btn button';
+
+    buttonInfo.className = 'footer__btn main__button-info';
+
+    screenCreatingCharFooter.appendChild(footerItem);
+
+    footerItem.appendChild(button);
+
+    footerItem.appendChild(buttonInfo);
+
+    buttonInfo.appendChild(infoImg);
+
+    infoImg.src = './img/other/info.png';
+
+    button.innerText = value;
+
+};
+
+function btnInfoPopup(){
+
+    screenCreatingCharFooter.querySelectorAll('.main__button-info').forEach((elem) =>{
+
+        elem.addEventListener('click', () =>{
+
+            popup();
+
+        });
+
+    });
+
+}
 
 function startScreen(){
 
@@ -79,31 +141,31 @@ function chooseRace(){
 
         for(let i = 0; i < arrayRaces.length; i++){
 
-            const button = document.createElement('button');
+            const raceName = arrayRaces[i].raceName;
 
-            button.className = 'main__btn button';
+            addElements(raceName);
 
-            screenCreatingCharFooter.appendChild(button);
+        };
 
-            button.innerText = arrayRaces[i].raceName;
+        screenCreatingCharFooter.querySelectorAll('.main__btn').forEach((elem, index) =>{
 
-            button.addEventListener('click', () =>{
+            elem.addEventListener('click', () =>{
 
                 setTimeout(() =>{
 
-                    screenCreatingCharFooter.querySelectorAll('.button').forEach(elem =>{
-
-                        elem.remove();
-
-                    });
+                    screenCreatingCharFooter.querySelectorAll('.footer__btn').forEach(elem =>{
         
+                        elem.remove();
+        
+                    });
+                        
                 }, '650');
 
                 screenCreatingChar.querySelector('.main').classList.toggle('rotation');
 
-                const choosedRace = arrayRaceKey[i];
+                const choosedRace = arrayRaceKey[index];
 
-                player.mainText.race = button.innerText;
+                player.mainText.race = elem.innerText;
 
                 for(let races in racesStats){
 
@@ -126,8 +188,10 @@ function chooseRace(){
                 chooseClass(choosedRace);
 
             });
-    
-        };
+
+        });
+
+        btnInfoPopup();
 
     }, '650');
 
@@ -135,7 +199,9 @@ function chooseRace(){
 
 function chooseClass(choosedRace){
 
-    const arrayClass = Object.values(classRus.classes[choosedRace]);
+    console.log(choosedRace)
+
+    const arrayClasses = Object.values(classRus.classes[choosedRace]);
 
     const arrayClassKey = [];
 
@@ -151,33 +217,33 @@ function chooseClass(choosedRace){
 
         screenCreatingCharDescr.innerHTML = classRus.mainText.textDescr;
 
-        for(let i = 0; i < arrayClass.length; i++){
+        for(let i = 0; i < arrayClasses.length; i++){
 
-            const button = document.createElement('button');
+            const className = arrayClasses[i].className;
 
-            button.className = 'main__btn button';
+            addElements(className);
+    
+        };
 
-            screenCreatingCharFooter.appendChild(button);
+        screenCreatingCharFooter.querySelectorAll('.main__btn').forEach((elem, index) =>{
 
-            button.innerText = arrayClass[i].className;
-
-            button.addEventListener('click', () =>{
+            elem.addEventListener('click', () =>{
 
                 setTimeout(() =>{
 
-                    screenCreatingCharFooter.querySelectorAll('.button').forEach(elem =>{
-
-                        elem.remove();
-
-                    });
+                    screenCreatingCharFooter.querySelectorAll('.footer__btn').forEach(elem =>{
         
+                        elem.remove();
+        
+                    });
+                        
                 }, '650');
 
                 screenCreatingChar.querySelector('.main').classList.toggle('rotation');
 
-                const choosedClass = arrayClassKey[i];
+                const choosedClass = arrayClassKey[index];
 
-                player.mainText.class = button.innerText;
+                player.mainText.class = elem.innerText;
 
                 for(let classes in classesStats[choosedRace]){
 
@@ -196,8 +262,10 @@ function chooseClass(choosedRace){
                 chooseFirstWeaponType(choosedRace, choosedClass);
 
             });
-    
-        };
+
+        });
+
+        btnInfoPopup();
 
     }, '650');
 
@@ -256,6 +324,20 @@ function chooseFirstWeaponType(choosedRace, choosedClass){
                 screenCreatingChar.querySelector('.main').classList.toggle('rotation');
 
                 const choosedWeaponType = arrayOfClassWeapon[i];
+
+                for(let classes in classesStats[choosedRace]){
+
+                    if(classes === choosedClass){
+
+                        for(let stats in player.classStats){
+
+                            player.classStats[stats] = classesStats[choosedRace][classes][stats];
+
+                        };
+
+                    };
+
+                };
 
                 chooseFirstWeapon(choosedRace, choosedClass, choosedWeaponType);
 
@@ -497,4 +579,4 @@ function charOverview(){
 
 };
 
-export default startScreen;
+export default startScreen; 

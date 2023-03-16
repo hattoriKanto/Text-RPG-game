@@ -1,5 +1,5 @@
 
-const weaponsClasses = {
+const classesWeapons = {
 
     human: {
 
@@ -123,4 +123,4 @@ const weaponsClasses = {
 
 };
 
-export default weaponsClasses;
+export default classesWeapons;

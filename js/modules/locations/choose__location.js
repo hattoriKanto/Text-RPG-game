@@ -1,5 +1,5 @@
 
-import castleLocation from '../locations/castle.js';
+import castleLocation from './castle.js';
 
 import showInventory from '../inventory.js';
 
