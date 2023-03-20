@@ -10,155 +10,139 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="popup" class="popup">
-        <div class="overlay"></div>
-        <div class="popup__content content">
-            <div id="close__popup" class="close-btn"></div>
-            <h3 class="content__title"></h3>
-            <div class="content__desc">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti minus deserunt hic culpa neque eveniet voluptate ab perferendis sint consequatur recusandae id facere totam in voluptatibus rerum sapiente, magnam expedita.</div>
-            <ul class="content__stats stats">
-                <li class="stats__item"><img src="./img/HP.png" alt=""><span></span></li>
-                <li class="stats__item"><img src="./img/AP.png" alt=""><span></span></li>
-                <li class="stats__item"><img src="./img/MP.png" alt=""><span></span></li>
-            </ul>
-            <ul class="weapon__content__stats stats hide">
-                <li class="stats__item"><img src="./img/physical__attack.png" alt=""><span></span></li>
-                <li class="stats__item"><img src="./img/physical__defence.png" alt=""><span></span></li>
-                <li class="stats__item"><img src="./img/magic__attack.png" alt=""><span></span></li>
-                <li class="stats__item"><img src="./img/magic__defence.png" alt=""><span></span></li>
-            </ul>
-        </div>
-    </div>
-    <button id="inventory-btn" class="inventory-btn hide-inventory-btn">
-        <img class="inventory-btn__img" src="./img/other/inventory.png" alt="">
-    </button>
-    <div id="inventory" class="inventory popup">
-        <div class="overlay"></div>
-        <div class="popup__content inventory__content">
-            <div id="close__popup" class="close-btn"></div>
-            <div class="inventory__weapons weapons">
-                <div class="weapons__wrapper">
-                    <h3 class="weapons__title">weapon-1</h3>
-                    <div class="weapons__img-wrapper">
-                        <img class="weapons__img" src="./img/inventory/wp1.png" alt="weapon-1-img">
-                        <button class="weapons__btn btn">
-                            <img class="btn__img" src="./img/info.png" alt="">
-                        </button>
+    <div class="wrapper">
+        <div id="popup" class="popup"></div>
+        <button id="inventory-btn" class="inventory-btn hide-inventory-btn">
+            <img class="inventory-btn__img" src="./img/other/inventory.png" alt="">
+        </button>
+        <div id="inventory" class="inventory popup">
+            <div class="overlay"></div>
+            <div class="popup__content inventory__content">
+                <div id="close__popup" class="close-btn"></div>
+                <div class="inventory__weapons weapons">
+                    <div class="weapons__wrapper">
+                        <h3 class="weapons__title">weapon-1</h3>
+                        <div class="weapons__img-wrapper">
+                            <img class="weapons__img" src="./img/inventory/wp1.png" alt="weapon-1-img">
+                            <button class="weapons__btn btn">
+                                <img class="btn__img" src="./img/info.png" alt="">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="weapons__wrapper">
+                        <h3 class="weapons__title">weapon-2</h3>
+                        <div class="weapons__img-wrapper">
+                            <img class="weapons__img" src="./img/inventory/wp2.png" alt="weapon-2-img">
+                            <button class="weapons__btn btn">
+                                <img class="btn__img" src="./img/info.png" alt="">
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="weapons__wrapper">
-                    <h3 class="weapons__title">weapon-2</h3>
-                    <div class="weapons__img-wrapper">
-                        <img class="weapons__img" src="./img/inventory/wp2.png" alt="weapon-2-img">
-                        <button class="weapons__btn btn">
-                            <img class="btn__img" src="./img/info.png" alt="">
-                        </button>
+                <div class="inventory__items">
+                    <div class="inventory__item">
+                        <div id="health-potion-counter" class="inventory__counter">0</div>
+                        <img class="inventory__img" src="./img/inventory/health__potion.png" alt="">
+                    </div>
+                    <div class="inventory__item">
+                        <div id="health-potion-counter" class="inventory__counter">0</div>
+                        <img class="inventory__img" src="./img/inventory/mana__potion.png" alt="">
+                    </div>
+                    <div class="inventory__item">1</div>
+                    <div class="inventory__item">1</div>
+                    <div class="inventory__item">1</div>
+                    <div class="inventory__item">1</div>
+                    <div class="inventory__item">1</div>
+                    <div class="inventory__item">1</div>
+                    <div class="inventory__item">1</div>
+                </div>
+            </div>
+        </div>
+        <section id="char-creating-screen" class="screen__char-creating screen char-creating">
+            <div class="container">
+                <div class="char-creating__main main">
+                    <div class="main__header">
+                        <h1 class="main__title"></h1>
+                        <div class="main__desc"></div>
+                    </div>
+                    <div class="main__footer">
                     </div>
                 </div>
             </div>
-            <div class="inventory__items">
-                <div class="inventory__item">
-                    <div id="health-potion-counter" class="inventory__counter">0</div>
-                    <img class="inventory__img" src="./img/inventory/health__potion.png" alt="">
-                </div>
-                <div class="inventory__item">
-                    <div id="health-potion-counter" class="inventory__counter">0</div>
-                    <img class="inventory__img" src="./img/inventory/mana__potion.png" alt="">
-                </div>
-                <div class="inventory__item">1</div>
-                <div class="inventory__item">1</div>
-                <div class="inventory__item">1</div>
-                <div class="inventory__item">1</div>
-                <div class="inventory__item">1</div>
-                <div class="inventory__item">1</div>
-                <div class="inventory__item">1</div>
-            </div>
-        </div>
-    </div>
-    <section id="char-creating-screen" class="screen__char-creating screen char-creating">
-        <div class="container">
-            <div class="char-creating__main main">
-                <div class="main__header">
-                    <h1 class="main__title"></h1>
-                    <div class="main__desc"></div>
-                </div>
-                <div class="main__footer">
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="character-overview-screen" class="screen__character-overview screen character-overview hide-screen">
-        <div class="container">
-            <div class="character-overview__main main">
-                <div class="main__header">   
-                    <div class="main__title"></div>             
-                    <ul class="main__list list">
-                        <li class="list__item item race"><span class="item__text"></span><span class="item__value"></span></li>
-                        <li class="list__item item class"><span class="item__text"></span><span class="item__value"></span></li>
-                        <ul class="race-and-class-stats item">
-                            <li class="list__item race-and-class-stats__item"><img src="./img/HP.png" alt=""><span class="race-and-class-stats__span"></span></li>
-                            <li class="list__item race-and-class-stats__item"><img src="./img/AP.png" alt=""><span class="race-and-class-stats__span"></span></li>
-                            <li class="list__item race-and-class-stats__item"><img src="./img/MP.png" alt=""><span class="race-and-class-stats__span"></span></li>                        
+        </section>
+        <section id="character-overview-screen" class="screen__character-overview screen character-overview hide-screen">
+            <div class="container">
+                <div class="character-overview__main main">
+                    <div class="main__header">   
+                        <div class="main__title"></div>             
+                        <ul class="main__list list">
+                            <li class="list__item item race"><span class="item__text"></span><span class="item__value"></span></li>
+                            <li class="list__item item class"><span class="item__text"></span><span class="item__value"></span></li>
+                            <ul class="race-and-class-stats item">
+                                <li class="list__item race-and-class-stats__item"><img src="./img/HP.png" alt=""><span class="race-and-class-stats__span"></span></li>
+                                <li class="list__item race-and-class-stats__item"><img src="./img/AP.png" alt=""><span class="race-and-class-stats__span"></span></li>
+                                <li class="list__item race-and-class-stats__item"><img src="./img/MP.png" alt=""><span class="race-and-class-stats__span"></span></li>                        
+                            </ul>
+                            <ul class="weapons item">
+                                <li class="list__item weapons__item"><span class="item__text"></span> <span class="item__value"></span><button class="weapons__btn"><img class="weapons__img" src="./img/info.png" alt=""></button></li>
+                                <li class="list__item weapons__item"><span class="item__text"></span> <span class="item__value"></span><button class="weapons__btn"><img class="weapons__img" src="./img/info.png" alt=""></button></li>
+                            </ul>
                         </ul>
-                        <ul class="weapons item">
-                            <li class="list__item weapons__item"><span class="item__text"></span> <span class="item__value"></span><button class="weapons__btn"><img class="weapons__img" src="./img/info.png" alt=""></button></li>
-                            <li class="list__item weapons__item"><span class="item__text"></span> <span class="item__value"></span><button class="weapons__btn"><img class="weapons__img" src="./img/info.png" alt=""></button></li>
-                        </ul>
-                    </ul>
+                    </div>
+                    <div class="main__footer footer"></div>
                 </div>
-                <div class="main__footer footer"></div>
             </div>
-        </div>
-    </section>
-    <section id="location-screen" class="screen__location screen location hide-screen">
-        <div class="container">
-            <div class="location__main">
-                <div class="location__header">
-                    <h2 class="location__title">Choose your location which you want to travel: </h2>
-                </div>
-                <div class="location__footer footer">
-                    <div class="footer__choose choose">
-                        <div class="choose__item item">
-                            <div class="item__img-wrapper">
-                                <img class="item__img" src="./img/location/castle.jpg" alt="">
+        </section>
+        <section id="location-screen" class="screen__location screen location hide-screen">
+            <div class="container">
+                <div class="location__main">
+                    <div class="location__header">
+                        <h2 class="location__title">Choose your location which you want to travel: </h2>
+                    </div>
+                    <div class="location__footer footer">
+                        <div class="footer__choose choose">
+                            <div class="choose__item item">
+                                <div class="item__img-wrapper">
+                                    <img class="item__img" src="./img/location/castle.jpg" alt="">
+                                </div>
+                                <h2 class="item__title"></h2>
                             </div>
-                            <h2 class="item__title"></h2>
-                        </div>
-                        <div class="choose__item item bg-black">
-                            <div class="item__img-wrapper hide">
-                                <img class="item__img" src="./img/location/village.jpg" alt="">
+                            <div class="choose__item item bg-black">
+                                <div class="item__img-wrapper hide">
+                                    <img class="item__img" src="./img/location/village.jpg" alt="">
+                                </div>
+                                <h2 class="item__title hide"></h2>
+                                <img class="item__lock" src="./img/other/lock.png" alt="">
                             </div>
-                            <h2 class="item__title hide"></h2>
-                            <img class="item__lock" src="./img/other/lock.png" alt="">
-                        </div>
-                        <div class="choose__item item bg-black">
-                            <div class="item__img-wrapper hide">
-                                <img class="item__img" src="./img/location/rift.jpg" alt="">
+                            <div class="choose__item item bg-black">
+                                <div class="item__img-wrapper hide">
+                                    <img class="item__img" src="./img/location/rift.jpg" alt="">
+                                </div>
+                                <h2 class="item__title hide"></h2>
+                                <img class="item__lock" src="./img/other/lock.png" alt="">
                             </div>
-                            <h2 class="item__title hide"></h2>
-                            <img class="item__lock" src="./img/other/lock.png" alt="">
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <section id="castle-screen" class="screen__castle screen castle hide-screen">
-        <div class="container">
-            <div class="castle__main main">
-                <div class="main__header">
-                    <h1 class="main__title"></h1>
-                    <div class="main__desc"></div>
-                </div>
-                <div class="main__footer">
-                    <button id="first-btn" class="main__btn btn-1 button"></button>
-                    <button id="second-btn" class="main__btn btn-2 button hide-btn"></button>
-                    <button id="third-btn" class="main__btn btn-3 button hide-btn"></button>
-                    <button id="fourth-btn" class="main__btn btn-4 button hide-btn"></button>
+        </section>
+        <section id="castle-screen" class="screen__castle screen castle hide-screen">
+            <div class="container">
+                <div class="castle__main main">
+                    <div class="main__header">
+                        <h1 class="main__title"></h1>
+                        <div class="main__desc"></div>
+                    </div>
+                    <div class="main__footer">
+                        <button id="first-btn" class="main__btn btn-1 button"></button>
+                        <button id="second-btn" class="main__btn btn-2 button hide-btn"></button>
+                        <button id="third-btn" class="main__btn btn-3 button hide-btn"></button>
+                        <button id="fourth-btn" class="main__btn btn-4 button hide-btn"></button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
     <script type="module" src="./js/script.js"></script>
 </body>
 </html>

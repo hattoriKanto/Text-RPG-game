@@ -1,6 +1,10 @@
 
 import player from "./player.js";
 
+import weapons from "../weapons.js";
+
+import images from "./images.js";
+
 import racesStats from "./races__classes__weapons/racesStats.js";
 
 import classesStats from "./races__classes__weapons/classesStats.js";
@@ -11,7 +15,7 @@ import startScreenRus from "./text/creatingChar/russian/startScreenRus.js";
 
 import raceRus from "./text/creatingChar/russian/racesRus.js";
 
-import classRus from "./text/creatingChar/russian/chooseClassRus.js";
+import classesRus from "./text/creatingChar/russian/classesRus.js";
 
 import weaponsRus from "./text/creatingChar/russian/weaponsRus.js";
 
@@ -29,19 +33,117 @@ const screenCreatingCharTitle = screenCreatingChar.querySelector('.main__title')
 
 const screenCreatingCharFooter = screenCreatingChar.querySelector('.main__footer');
 
-function popup(){
+let counterClickBtnInfo = 0;
 
-    document.querySelector('.popup').classList.add('show-popup');
+function popup(value, stats, keyForImages){
 
-    document.querySelector('#close__popup').addEventListener('click', closePopup);
+    const arrayStats = Object.values(stats);
 
-    document.querySelector('.overlay').addEventListener('click', closePopup);
+    const popup = document.querySelector('#popup');
 
-    function closePopup(){
+    popup.classList.toggle('show-popup');
 
-        document.querySelector('.popup').classList.remove('show-popup');
+    addElementsToPopup(arrayStats, keyForImages);
 
-        document.querySelector('body').classList.remove('noscroll');
+    function addElementsToPopup(arrayStats, keyForImages){
+
+        const overlay = document.createElement('div');
+
+        const contentPopup = document.createElement('div');
+
+        const closeBtnPopup = document.createElement('div');
+
+        const titlePopup = document.createElement('h3');
+
+        const descrPopup = document.createElement('div');
+
+        const contentStats = document.createElement('ul');
+
+        overlay.className = 'overlay close__popup';
+        
+        contentPopup.className = 'popup__content content';
+
+        closeBtnPopup.className = 'close-btn close__popup';
+
+        closeBtnPopup.id = 'close__popup';
+
+        titlePopup.className = 'content__title';
+
+        descrPopup.className = 'content__descr';
+
+        contentStats.className = 'content__stats stats';
+
+        popup.appendChild(overlay);
+
+        popup.appendChild(contentPopup);
+
+        contentPopup.appendChild(closeBtnPopup);
+
+        contentPopup.appendChild(titlePopup);
+
+        contentPopup.appendChild(descrPopup);
+
+        contentPopup.appendChild(contentStats);
+
+        document.querySelectorAll('.close__popup').forEach(elem =>{
+
+            elem.addEventListener('click', () =>{
+
+                popup.classList.remove('show-popup');
+            
+                document.querySelector('body').classList.remove('noscroll');
+
+                setTimeout(() =>{
+
+                    overlay.remove();
+
+                    contentPopup.remove();
+
+                }, '120');
+
+            });
+
+        });
+
+        addTextPopup(value, titlePopup, descrPopup);
+
+        addStatsPopup(arrayStats, contentStats, keyForImages);
+
+    };
+
+    function addTextPopup(value, titlePopup, descrPopup){
+
+        titlePopup.innerText = value.name;
+
+        descrPopup.innerText = value.descr;
+
+    };
+
+    function addStatsPopup(arrayStats, contentStats, keyForImages){
+
+        const arrayImages = Object.values(images.stats[keyForImages]);
+
+        for(let i = 0; i < arrayStats.length; i++){
+
+            const statsItem = document.createElement('li');
+
+            const statsSpan = document.createElement('span');
+
+            const statsImg = document.createElement('img');
+
+            statsItem.className = 'stats__item';
+
+            statsImg.src = arrayImages[i];
+
+            contentStats.appendChild(statsItem);
+
+            statsItem.appendChild(statsImg);
+
+            statsItem.appendChild(statsSpan);
+
+            statsSpan.innerText = arrayStats[i];
+
+        };
 
     };
 
@@ -61,7 +163,7 @@ function addElements(value){
 
     button.className = 'footer__btn main__btn button';
 
-    buttonInfo.className = 'footer__btn main__button-info';
+    buttonInfo.className = 'footer__btn main__btn-info';
 
     screenCreatingCharFooter.appendChild(footerItem);
 
@@ -77,19 +179,21 @@ function addElements(value){
 
 };
 
-function btnInfoPopup(){
+function changeSlide(){
 
-    screenCreatingCharFooter.querySelectorAll('.main__button-info').forEach((elem) =>{
+    setTimeout(() =>{
 
-        elem.addEventListener('click', () =>{
+        screenCreatingCharFooter.querySelectorAll('.footer__item').forEach(elem =>{
 
-            popup();
+            elem.remove();
 
         });
+            
+    }, '650');
 
-    });
+    screenCreatingChar.querySelector('.main').classList.toggle('rotation');
 
-}
+};
 
 function startScreen(){
 
@@ -141,29 +245,45 @@ function chooseRace(){
 
         for(let i = 0; i < arrayRaces.length; i++){
 
-            const raceName = arrayRaces[i].raceName;
+            const name = arrayRaces[i].name;
 
-            addElements(raceName);
+            addElements(name);
 
         };
 
         screenCreatingCharFooter.querySelectorAll('.main__btn').forEach((elem, index) =>{
 
+            const choosedRace = arrayRaceKey[index];
+
+            elem.closest('.footer__item').querySelector('.main__btn-info').addEventListener('click', () =>{
+
+                counterClickBtnInfo++;
+
+                if(counterClickBtnInfo === 1){
+
+                    elem.disabled = true;
+
+                    setTimeout(() =>{
+
+                        elem.disabled = false;
+
+                        counterClickBtnInfo = 0;
+
+                    }, '120');
+
+                };
+
+                const stats = racesStats[choosedRace];
+
+                const keyForImages = 'races';
+                
+                popup(raceRus.races[choosedRace], stats, keyForImages); 
+
+            });
+
             elem.addEventListener('click', () =>{
 
-                setTimeout(() =>{
-
-                    screenCreatingCharFooter.querySelectorAll('.footer__btn').forEach(elem =>{
-        
-                        elem.remove();
-        
-                    });
-                        
-                }, '650');
-
-                screenCreatingChar.querySelector('.main').classList.toggle('rotation');
-
-                const choosedRace = arrayRaceKey[index];
+                changeSlide();
 
                 player.mainText.race = elem.innerText;
 
@@ -185,13 +305,13 @@ function chooseRace(){
 
                 };
 
+                counterClickBtnInfo = 0;
+
                 chooseClass(choosedRace);
 
             });
 
         });
-
-        btnInfoPopup();
 
     }, '650');
 
@@ -199,13 +319,11 @@ function chooseRace(){
 
 function chooseClass(choosedRace){
 
-    console.log(choosedRace)
-
-    const arrayClasses = Object.values(classRus.classes[choosedRace]);
+    const arrayClasses = Object.values(classesRus.classes[choosedRace]);
 
     const arrayClassKey = [];
 
-    for(let key in classRus.classes[choosedRace]){
+    for(let key in classesRus.classes[choosedRace]){
 
         arrayClassKey.push(key);
 
@@ -213,35 +331,51 @@ function chooseClass(choosedRace){
 
     setTimeout(() =>{
                 
-        screenCreatingCharTitle.innerHTML = classRus.mainText.textTitle;
+        screenCreatingCharTitle.innerHTML = classesRus.mainText.textTitle;
 
-        screenCreatingCharDescr.innerHTML = classRus.mainText.textDescr;
+        screenCreatingCharDescr.innerHTML = classesRus.mainText.textDescr;
 
         for(let i = 0; i < arrayClasses.length; i++){
 
-            const className = arrayClasses[i].className;
+            const name = arrayClasses[i].name;
 
-            addElements(className);
+            addElements(name);
     
         };
 
         screenCreatingCharFooter.querySelectorAll('.main__btn').forEach((elem, index) =>{
 
+            const choosedClass = arrayClassKey[index];
+
+            elem.closest('.footer__item').querySelector('.main__btn-info').addEventListener('click', () =>{
+
+                counterClickBtnInfo++;
+
+                if(counterClickBtnInfo === 1){
+
+                    elem.disabled = true;
+
+                    setTimeout(() =>{
+
+                        elem.disabled = false;
+
+                        counterClickBtnInfo = 0;
+
+                    }, '120');
+
+                };
+
+                const stats = classesStats[choosedRace][choosedClass];
+
+                const keyForImages = 'classes';
+                
+                popup(classesRus.classes[choosedRace][choosedClass], stats, keyForImages);
+
+            });
+
             elem.addEventListener('click', () =>{
 
-                setTimeout(() =>{
-
-                    screenCreatingCharFooter.querySelectorAll('.footer__btn').forEach(elem =>{
-        
-                        elem.remove();
-        
-                    });
-                        
-                }, '650');
-
-                screenCreatingChar.querySelector('.main').classList.toggle('rotation');
-
-                const choosedClass = arrayClassKey[index];
+                changeSlide();
 
                 player.mainText.class = elem.innerText;
 
@@ -259,13 +393,13 @@ function chooseClass(choosedRace){
 
                 };
 
+                counterClickBtnInfo = 0;
+
                 chooseFirstWeaponType(choosedRace, choosedClass);
 
             });
 
         });
-
-        btnInfoPopup();
 
     }, '650');
 
@@ -285,7 +419,7 @@ function chooseFirstWeaponType(choosedRace, choosedClass){
 
             booleanTrueCounter++;
 
-            arrayWeaponsType.push(weaponsRus[choosedRace][classWeapon].mainText.nameTypeWeapon);
+            arrayWeaponsType.push(weaponsRus[choosedRace][classWeapon].mainText.name);
 
             arrayOfClassWeapon.push(classWeapon);
             
@@ -301,49 +435,49 @@ function chooseFirstWeaponType(choosedRace, choosedClass){
 
         for(let i = 0; i < arrayWeaponsType.length; i++){
 
-            const button = document.createElement('button');
+            const weaponType = arrayWeaponsType[i];
 
-            button.className = 'main__btn button';
+            addElements(weaponType);
 
-            screenCreatingCharFooter.appendChild(button);
+        };
 
-            button.innerText = arrayWeaponsType[i];
+        screenCreatingCharFooter.querySelectorAll('.main__btn').forEach((elem, index) =>{
 
-            button.addEventListener('click', () =>{
+            const choosedWeaponType = arrayOfClassWeapon[index];
 
-                setTimeout(() =>{
+            elem.closest('.footer__item').querySelector('.main__btn-info').addEventListener('click', () =>{
 
-                    screenCreatingCharFooter.querySelectorAll('.button').forEach(elem =>{
+                counterClickBtnInfo++;
 
-                        elem.remove();
+                if(counterClickBtnInfo === 1){
 
-                    });
-        
-                }, '650');
+                    elem.disabled = true;
 
-                screenCreatingChar.querySelector('.main').classList.toggle('rotation');
+                    setTimeout(() =>{
 
-                const choosedWeaponType = arrayOfClassWeapon[i];
+                        elem.disabled = false;
 
-                for(let classes in classesStats[choosedRace]){
+                        counterClickBtnInfo = 0;
 
-                    if(classes === choosedClass){
-
-                        for(let stats in player.classStats){
-
-                            player.classStats[stats] = classesStats[choosedRace][classes][stats];
-
-                        };
-
-                    };
+                    }, '120');
 
                 };
+                
+                popup(weaponsRus[choosedRace][choosedWeaponType].mainText);
+
+            });
+
+            elem.addEventListener('click', () =>{
+
+                changeSlide();
+
+                counterClickBtnInfo = 0;
 
                 chooseFirstWeapon(choosedRace, choosedClass, choosedWeaponType);
 
             });
 
-        };
+        });
 
     }, '650');
 
@@ -353,49 +487,69 @@ function chooseFirstWeapon(choosedRace, choosedClass, choosedWeaponType){
 
     const arrayWeapons = [];
 
+    const arrayWeaponsKey = Object.keys(weaponsRus[choosedRace][choosedWeaponType].weapons);
+
     for(let weapon in weaponsRus[choosedRace][choosedWeaponType].weapons){
 
-        arrayWeapons.push(weaponsRus[choosedRace][choosedWeaponType].weapons[weapon].weaponsName);
+        arrayWeapons.push(weaponsRus[choosedRace][choosedWeaponType].weapons[weapon].name);
 
     };
 
     setTimeout(() =>{
                 
-        screenCreatingCharTitle.innerHTML = weaponsRus[choosedRace][choosedWeaponType].mainText.nameTypeWeapon;
+        screenCreatingCharTitle.innerHTML = weaponsRus[choosedRace][choosedWeaponType].mainText.name;
 
-        screenCreatingCharDescr.innerHTML = weaponsRus[choosedRace][choosedWeaponType].mainText.descrTypeWeapon;
+        screenCreatingCharDescr.innerHTML = weaponsRus[choosedRace][choosedWeaponType].mainText.descr;
 
         for(let i = 0; i < arrayWeapons.length; i++){
 
-            const button = document.createElement('button');
+            const weaponFirst = arrayWeapons[i];
 
-            button.className = 'main__btn button';
+            addElements(weaponFirst);
 
-            screenCreatingCharFooter.appendChild(button);
+        };
 
-            button.innerText = arrayWeapons[i];
+        screenCreatingCharFooter.querySelectorAll('.main__btn').forEach((elem, index) =>{
 
-            button.addEventListener('click', () =>{
+            const weaponFirstKey = arrayWeaponsKey[index];
 
-                setTimeout(() =>{
+            elem.closest('.footer__item').querySelector('.main__btn-info').addEventListener('click', () =>{
 
-                    screenCreatingCharFooter.querySelectorAll('.button').forEach(elem =>{
+                counterClickBtnInfo++;
 
-                        elem.remove();
+                if(counterClickBtnInfo === 1){
 
-                    });
-        
-                }, '650');
+                    elem.disabled = true;
 
-                screenCreatingChar.querySelector('.main').classList.toggle('rotation');
+                    setTimeout(() =>{
 
-                player.mainText.firstWeapon = button.innerHTML;
+                        elem.disabled = false;
+
+                        counterClickBtnInfo = 0;
+
+                    }, '120');
+
+                };
+                
+                popup(weaponsRus[choosedRace][choosedWeaponType].weapons[weaponFirstKey]);
+
+            });
+
+            elem.addEventListener('click', () =>{
+
+                changeSlide();
+    
+                player.mainText.firstWeapon = arrayWeapons[index];
+
+                player.weaponStats.firstWeapon = weapons[choosedRace][choosedWeaponType][weaponFirstKey];
+
+                counterClickBtnInfo = 0;
 
                 chooseSecondWeaponType(choosedRace, choosedClass, choosedWeaponType);
 
             });
 
-        };
+        });
 
     }, '650');
 
@@ -415,7 +569,7 @@ function chooseSecondWeaponType(choosedRace, choosedClass, choosedWeaponType){
 
             booleanTrueCounter++;
 
-            arrayWeaponsType.push(weaponsRus[choosedRace][classWeapon].mainText.nameTypeWeapon);
+            arrayWeaponsType.push(weaponsRus[choosedRace][classWeapon].mainText.name);
 
             arrayOfClassWeapon.push(classWeapon);
 
@@ -431,34 +585,48 @@ function chooseSecondWeaponType(choosedRace, choosedClass, choosedWeaponType){
 
         for(let i = 0; i < arrayWeaponsType.length; i++){
 
-            const button = document.createElement('button');
+            const weaponType = arrayWeaponsType[i];
 
-            button.className = 'main__btn button';
+            addElements(weaponType);
 
-            screenCreatingCharFooter.appendChild(button);
+            screenCreatingCharFooter.querySelectorAll('.main__btn').forEach((elem, index) =>{
 
-            button.innerText = arrayWeaponsType[i];
+                const choosedWeaponType = arrayOfClassWeapon[index];
 
-            button.addEventListener('click', () =>{
+                elem.closest('.footer__item').querySelector('.main__btn-info').addEventListener('click', () =>{
 
-                setTimeout(() =>{
+                    counterClickBtnInfo++;
 
-                    screenCreatingCharFooter.querySelectorAll('.button').forEach(elem =>{
+                    if(counterClickBtnInfo === 1){
+    
+                        elem.disabled = true;
+    
+                        setTimeout(() =>{
+    
+                            elem.disabled = false;
+    
+                            counterClickBtnInfo = 0;
+    
+                        }, '120');
+    
+                    };
+                
+                    popup(weaponsRus[choosedRace][choosedWeaponType].mainText);
+    
+                });
 
-                        elem.remove();
+                elem.addEventListener('click', () =>{
+    
+                    changeSlide();
 
-                    });
+                    counterClickBtnInfo = 0;
         
-                }, '650');
-
-                screenCreatingChar.querySelector('.main').classList.toggle('rotation');
-
-                const choosedWeaponType = arrayOfClassWeapon[i];
-
-                chooseSecondWeapon(choosedRace, choosedWeaponType)
-
+                    chooseSecondWeapon(choosedRace, choosedWeaponType);
+    
+                });
+    
             });
-
+    
         };
 
     }, '650');
@@ -469,51 +637,71 @@ function chooseSecondWeapon(choosedRace, choosedWeaponType){
 
     const arrayWeapons = [];
 
+    const arrayWeaponsKey = Object.keys(weaponsRus[choosedRace][choosedWeaponType].weapons);
+
     for(let weapon in weaponsRus[choosedRace][choosedWeaponType].weapons){
 
-        arrayWeapons.push(weaponsRus[choosedRace][choosedWeaponType].weapons[weapon].weaponsName);
+        arrayWeapons.push(weaponsRus[choosedRace][choosedWeaponType].weapons[weapon].name);
 
     };
 
     setTimeout(() =>{
                 
-        screenCreatingCharTitle.innerHTML = weaponsRus[choosedRace][choosedWeaponType].mainText.nameTypeWeapon;
+        screenCreatingCharTitle.innerHTML = weaponsRus[choosedRace][choosedWeaponType].mainText.name;
 
-        screenCreatingCharDescr.innerHTML = weaponsRus[choosedRace][choosedWeaponType].mainText.descrTypeWeapon;
+        screenCreatingCharDescr.innerHTML = weaponsRus[choosedRace][choosedWeaponType].mainText.descr;
 
         for(let i = 0; i < arrayWeapons.length; i++){
 
-            const button = document.createElement('button');
+            const weaponSecond = arrayWeapons[i];
 
-            button.className = 'main__btn button';
+            addElements(weaponSecond);
 
-            screenCreatingCharFooter.appendChild(button);
+        };
 
-            button.innerText = arrayWeapons[i];
+        screenCreatingCharFooter.querySelectorAll('.main__btn').forEach((elem, index) =>{
 
-            button.addEventListener('click', () =>{
+            const weaponSecondKey = arrayWeaponsKey[index];
 
-                setTimeout(() =>{
+            elem.closest('.footer__item').querySelector('.main__btn-info').addEventListener('click', () =>{
 
-                    screenCreatingCharFooter.querySelectorAll('.button').forEach(elem =>{
+                counterClickBtnInfo++;
 
-                        elem.remove();
+                if(counterClickBtnInfo === 1){
 
-                    });
-        
-                }, '650');
+                    elem.disabled = true;
 
-                player.mainText.secondWeapon = button.innerHTML;
+                    setTimeout(() =>{
+
+                        elem.disabled = false;
+
+                        counterClickBtnInfo = 0;
+
+                    }, '120');
+
+                };
+                
+                popup(weaponsRus[choosedRace][choosedWeaponType].weapons[weaponSecondKey]);
+
+            });
+
+            elem.addEventListener('click', () =>{
+
+                player.mainText.secondWeapon = arrayWeapons[index];
+
+                player.weaponStats.secondWeapon = weapons[choosedRace][choosedWeaponType][weaponSecondKey];
 
                 screenCreatingChar.classList.add('hide-screen');
 
                 charOverviewScreen.classList.remove('hide-screen');
 
+                counterClickBtnInfo = 0;
+
                 charOverview();
 
             });
 
-        };
+        });
 
     }, '650');
 

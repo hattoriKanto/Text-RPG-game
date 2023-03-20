@@ -13,25 +13,25 @@ const raceRus = {
 
         human: {
 
-            raceName: 'Человек',
+            name: 'Человек',
     
-            raceDescr: 'Описание'
+            descr: 'Описание'
     
         },
     
         dwarf: {
     
-            raceName: 'Гном' ,
+            name: 'Гном' ,
     
-            raceDescr: 'Описание'
+            descr: 'Описание'
     
         },
     
         elf: {
     
-            raceName: 'Эльф' ,
+            name: 'Эльф' ,
     
-            raceDescr: 'Описание'
+            descr: 'Описание'
     
         }
 

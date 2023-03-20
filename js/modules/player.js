@@ -37,13 +37,9 @@ const player = {
 
     weaponStats: {
 
-        firstWeapon: {
+        firstWeapon: {},
 
-        },
-
-        secondWeapon: {
-    
-        }   
+        secondWeapon: {}
 
     }
 
