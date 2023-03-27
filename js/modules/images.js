@@ -21,6 +21,18 @@ const images = {
 
             attack: './img/stats/AtP.png'
 
+        },
+
+        weapons: {
+
+            physicalAttack: '',
+
+            physicalDefence: '',
+
+            magicAttack: '',
+
+            magicDefence: ''
+
         }
 
     }

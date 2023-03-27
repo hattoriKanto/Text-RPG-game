@@ -12,101 +12,131 @@ const screenCastleDescr = screenCastle.querySelector('.main__desc');
 
 const screenCastleTitle = screenCastle.querySelector('.main__title');
 
-const screenCastleBtn = screenCastle.querySelectorAll('.main__btn');
+const mainFooter = screenCastle.querySelector('.main__footer');
 
-screenCastleBtn.forEach(elem =>{
+function addElements(arrayBtns, arrayLength){
 
-    elem.addEventListener('click', () =>{
+    for(let i = 0; i < arrayLength; i++){
 
-        screenCastle.querySelector('.main').classList.toggle('rotation');
+        const button = document.createElement('button');
 
-    });
+        mainFooter.appendChild(button);
 
-});
+        button.className = 'main__btn button';
 
-function removeHideOnBtns(){
+        button.innerText = arrayBtns[i];
 
-    screenCastleBtn.forEach(elem =>{
-
-        elem.classList.remove('hide-btn');
-
-    });
+    };
 
 };
 
+function addSingleBtn(){
+
+    const button = document.createElement('button');
+
+    mainFooter.appendChild(button);
+
+    button.className = 'main__btn button';
+
+};
+
+function changeSlide(){
+
+    setTimeout(() =>{
+
+        screenCastle.querySelectorAll('.button').forEach(elem =>{
+
+            elem.remove();
+
+        });
+            
+    }, '650');
+
+    screenCastle.querySelector('.main').classList.toggle('rotation');
+
+};
+
+castle();
+
 function castle(){
 
-    screenCastleTitle.innerHTML = castleEntranceRus.entranceName;
-
-    screenCastleDescr.innerHTML = castleEntranceRus.entranceDescr;
-
-    for(let i = 0; i < screenCastleBtn.length; i++){
-
-        if(screenCastleBtn[i].classList.contains('hide-btn') === false){
-
-            screenCastleBtn[i].innerHTML = castleEntranceRus.entranceBtn;
-
-            screenCastleBtn[i].addEventListener('click', () =>{
-
-                castleCourtyard();
-
-            });
-
-        };
-        
-    };
-
     screenCastle.classList.remove('hide-screen');
+
+    const arrayBtns = Object.values(castleEntranceRus.button);
+
+    const arrayLength = arrayBtns.length;
+
+    addElements(arrayBtns, arrayLength);
+
+    screenCastleTitle.innerText = castleEntranceRus.title;
+    
+    screenCastleDescr.innerText = castleEntranceRus.descr;
+
+    screenCastle.querySelector('.button').addEventListener('click', () =>{
+
+        changeSlide();
+
+        castleCourtyard();
+
+    });
 
 };
 
 function castleCourtyard(){
 
-    const arrayCastleBtn = Object.values(castleCourtyardRus.courtyardBtn);
+    const arrayBtns = Object.values(castleCourtyardRus.button);
 
     setTimeout(() => {
 
-        removeHideOnBtns();
+        const arrayLength = arrayBtns.length;
 
-        screenCastleTitle.innerHTML = castleCourtyardRus.courtyardName;
+        addElements(arrayBtns, arrayLength);
 
-        screenCastleDescr.innerHTML = castleCourtyardRus.courtyardDescr;
+        screenCastleTitle.innerText = castleCourtyardRus.title;
 
-        for(let i = 0; i < screenCastleBtn.length; i++){
+        screenCastleDescr.innerText = castleCourtyardRus.descr;
 
-            if(screenCastleBtn[i].classList.contains('btn-4') === true){
+        const screenCastleBtns = screenCastle.querySelectorAll('.button');
 
-                screenCastleBtn[i].classList.add('hide-btn');
+        addEventListener(screenCastleBtns);
 
-            };
+    }, '650');
 
-            screenCastleBtn[i].innerHTML = arrayCastleBtn[i];
+    function addEventListener(screenCastleBtns){
 
-            screenCastleBtn[i].addEventListener('click', () =>{
+        for(let i = 0; i < screenCastleBtns.length; i++){
 
-                if(screenCastleBtn[i].innerHTML === castleCourtyardRus.courtyardBtn.firstBtn){
+            screenCastleBtns[i].addEventListener('click', () =>{
+    
+                if(screenCastleBtns[i].innerText === castleCourtyardRus.button.firstBtn){
+
+                    changeSlide();
 
                     castleStables();
 
                 };
 
-                if(screenCastleBtn[i].innerHTML === castleCourtyardRus.courtyardBtn.secondBtn){
+                if(screenCastleBtns[i].innerText === castleCourtyardRus.button.secondBtn){
+
+                    changeSlide();
 
                     castleBarracks();
 
                 };
 
-                if(screenCastleBtn[i].innerHTML === castleCourtyardRus.courtyardBtn.thirdBtn){
+                if(screenCastleBtns[i].innerText === castleCourtyardRus.button.thirdBtn){
+
+                    changeSlide();
 
                     deadBody();
 
                 };
-
+    
             });
-
+    
         };
 
-    }, '650');
+    };
 
 };
 
@@ -116,593 +146,890 @@ function castleStables(){
 
     castleBarracksRus.isVisited = true;
 
-    const arrayBtns = Object.values(castleStablesRus.stablesBtn);
+    const arrayBtns = Object.values(castleStablesRus.button);
 
     setTimeout(() =>{
 
-        removeHideOnBtns();
+        const arrayLength = arrayBtns.length;
 
-        screenCastleTitle.innerHTML = castleStablesRus.stablesName;
+        addElements(arrayBtns, arrayLength);
 
-        screenCastleDescr.innerHTML = castleStablesRus.stablesDescr;
+        screenCastleTitle.innerText = castleStablesRus.title;
 
-        for(let i = 0; i < screenCastleBtn.length; i++){
+        screenCastleDescr.innerText = castleStablesRus.descr;
+    
+        const screenCastleBtns = screenCastle.querySelectorAll('.button');
+    
+        addEventListener(screenCastleBtns);
+    
+    }, '650');
 
-            if(screenCastleBtn[i].classList.contains('btn-3') === true || screenCastleBtn[i].classList.contains('btn-4') === true){
+    function addEventListener(screenCastleBtns){
 
-                screenCastleBtn[i].classList.add('hide-btn');
+        for(let i = 0; i < screenCastleBtns.length; i++){
 
-            };
+            screenCastleBtns[i].addEventListener('click', () =>{
+    
+                if(screenCastleBtns[i].innerText === castleStablesRus.button.firstBtn){
 
-
-            screenCastleBtn[i].innerHTML = arrayBtns[i];
-
-            screenCastleBtn[i].addEventListener('click', () =>{
-
-                if(screenCastleBtn[i].innerHTML === castleStablesRus.stablesBtn.firstBtn){
+                    changeSlide();
 
                     stablesInside();
 
                 };
 
-                if(screenCastleBtn[i].innerHTML === castleStablesRus.stablesBtn.secondBtn){
+                if(screenCastleBtns[i].innerText === castleStablesRus.button.secondBtn){
+
+                    changeSlide();
 
                     stablesDoor();
 
                 };
-
+    
             });
 
         };
 
-    }, '650');
+    };
 
 };
 
 function stablesInside(){
 
-    castleStablesRus.stableInside.isVisited = true;
+    castleStablesRus.stablesInside.isVisited = true;
 
-    const arrayBtns = Object.values(castleStablesRus.stableInside.stableInsideBtn);
+    const arrayBtns = Object.values(castleStablesRus.stablesInside.button);
 
     setTimeout(() =>{
 
-        removeHideOnBtns();
+        const arrayLength = arrayBtns.length;
 
-        screenCastleTitle.innerHTML = castleStablesRus.stableInside.stableInsideName;
+        addElements(arrayBtns, arrayLength);
 
-        screenCastleDescr.innerHTML = castleStablesRus.stableInside.stableInsideDescr;
+        screenCastleTitle.innerText = castleStablesRus.stablesInside.title;
 
-        for(let i = 0; i < screenCastleBtn.length; i++){
+        screenCastleDescr.innerText = castleStablesRus.stablesInside.descr;
+    
+        const screenCastleBtns = screenCastle.querySelectorAll('.button');
+    
+        addEventListener(screenCastleBtns);
+    
+    }, '650');
 
-            if(screenCastleBtn[i].classList.contains('btn-4') === true){
+    function addEventListener(screenCastleBtns){
 
-                screenCastleBtn[i].classList.add('hide-btn');
+        for(let i = 0; i < screenCastleBtns.length; i++){
 
-            };
+            screenCastleBtns[i].addEventListener('click', () =>{
+    
+                if(screenCastleBtns[i].innerText === castleStablesRus.stablesInside.button.firstBtn){
 
-            screenCastleBtn[i].innerHTML = arrayBtns[i];
+                    changeSlide();
 
-            screenCastleBtn[i].addEventListener('click', () =>{
-
-                if(screenCastleBtn[i].innerHTML === castleStablesRus.stableInside.stableInsideBtn.firstBtn){
-
-                    stablePile();
-
-                };
-
-                if(screenCastleBtn[i].innerHTML === castleStablesRus.stableInside.stableInsideBtn.secondBtn){
-
-                    stableLeft();
+                    stablesPile();
 
                 };
 
-                if(screenCastleBtn[i].innerHTML === castleStablesRus.stableInside.stableInsideBtn.thirdBtn){
+                if(screenCastleBtns[i].innerText === castleStablesRus.stablesInside.button.secondBtn){
 
-                    stableRight();
+                    changeSlide();
+
+                    stablesLeft();
 
                 };
 
+                if(screenCastleBtns[i].innerText === castleStablesRus.stablesInside.button.thirdBtn){
+
+                    changeSlide();
+
+                    stablesRight();
+
+                };
+    
             });
 
         };
 
-    }, '650');
+    };
 
 };
 
 function stablesDoor(){
 
-    castleStablesRus.stableDoor.isVisited = true;
+    castleStablesRus.stablesDoor.isVisited = true;
 
-    const arrayBtns = Object.values(castleStablesRus.stableDoor.stableDoorBtn);
+    const arrayBtns = Object.values(castleStablesRus.stablesDoor.button);
 
     setTimeout(() =>{
 
-        removeHideOnBtns();
+        const arrayLength = arrayBtns.length;
 
-        screenCastleTitle.innerHTML = castleStablesRus.stableDoor.stableDoorName;
+        addElements(arrayBtns, arrayLength);
 
-        screenCastleDescr.innerHTML = castleStablesRus.stableDoor.stableDoorDescr;
+        screenCastleTitle.innerText = castleStablesRus.stablesDoor.title;
 
-        for(let i = 0; i < screenCastleBtn.length; i++){
+        screenCastleDescr.innerText = castleStablesRus.stablesDoor.descr;
+    
+        const screenCastleBtns = screenCastle.querySelectorAll('.button');
+    
+        addEventListener(screenCastleBtns);
+    
+    }, '650');
 
-            if(screenCastleBtn[i].classList.contains('btn-4') === true){
+    function addEventListener(screenCastleBtns){
 
-                screenCastleBtn[i].classList.add('hide-btn');
+        for(let i = 0; i < screenCastleBtns.length; i++){
+
+            screenCastleBtns[i].addEventListener('click', () =>{
+    
+                if(screenCastleBtns[i].innerText === castleStablesRus.stablesDoor.button.firstBtn){
+
+                    changeSlide();
+
+                    stablesWalls();
+
+                };
+
+                if(screenCastleBtns[i].innerText === castleStablesRus.stablesDoor.button.secondBtn){
+
+                    changeSlide();
+
+                    stablesFloor();;
+
+                };
+
+                if(screenCastleBtns[i].innerText === castleStablesRus.stablesDoor.button.thirdBtn){
+
+                    changeSlide();
+
+                    stablesWindow();
+
+                };
+    
+            });
+
+        };
+
+    };
+
+};
+
+function stablesWalls(){
+
+    castleStablesRus.stablesWalls.isVisited = true;
+
+    const arrayBtns = Object.values(castleStablesRus.stablesWalls.button);
+
+    setTimeout(() =>{
+
+        if(castleStablesRus.stablesFloor.isVisited === false && castleStablesRus.stablesWindow.isVisited === false){
+
+            const arrayLength = arrayBtns.length - 2;
+            
+            addElements(arrayBtns, arrayLength);
+
+            const screenCastleBtns = screenCastle.querySelectorAll('.button');
+    
+            addEventListener(screenCastleBtns);
+
+            function addEventListener(screenCastleBtns){
+
+                screenCastleBtns.forEach(elem =>{
+
+                    elem.addEventListener('click', () =>{
+
+                        if(elem.innerText === arrayBtns[0]){
+    
+                            changeSlide();
+    
+                            stablesFloor();
+    
+                        };
+    
+                        if(elem.innerText === arrayBtns[1]){
+    
+                            changeSlide();
+    
+                            stablesWindow();
+    
+                        };
+
+                    });
+
+                });
 
             };
 
-            screenCastleBtn[i].innerHTML = arrayBtns[i];
+        };
 
-            screenCastleBtn[i].addEventListener('click', () =>{
+        if(castleStablesRus.stablesFloor.isVisited === false && castleStablesRus.stablesWindow.isVisited === true){
 
-                if(screenCastleBtn[i].innerHTML === castleStablesRus.stableDoor.stableDoorBtn.firstBtn){
+            addSingleBtn();
 
-                    stableWalls();
+            screenCastle.querySelector('.button').innerText = arrayBtns[0];
 
-                };
+            screenCastle.querySelector('.button').addEventListener('click', () =>{
 
-                if(screenCastleBtn[i].innerHTML === castleStablesRus.stableDoor.stableDoorBtn.secondBtn){
+                changeSlide();
 
-                    stableFloor();
-
-                };
-
-                if(screenCastleBtn[i].innerHTML === castleStablesRus.stableDoor.stableDoorBtn.thirdBtn){
-
-                    stableWindow();
-
-                };
+                stablesFloor();
 
             });
 
         };
 
+        if(castleStablesRus.stablesFloor.isVisited === true && castleStablesRus.stablesWindow.isVisited === false){
+
+            addSingleBtn();
+
+            screenCastle.querySelector('.button').innerText = arrayBtns[1];
+
+            screenCastle.querySelector('.button').addEventListener('click', () =>{
+
+                changeSlide();
+
+                stablesWindow();
+
+            });
+
+        };
+
+        if(castleStablesRus.stablesFloor.isVisited === false && castleStablesRus.stablesWindow.isVisited === true){
+
+            addSingleBtn();
+
+            screenCastle.querySelector('.button').innerText = arrayBtns[2];
+
+            screenCastle.querySelector('.button').addEventListener('click', () =>{
+
+                changeSlide();
+
+                stablesFloor();
+
+            });
+
+        };
+
+        if(castleStablesRus.stablesFloor.isVisited === true && castleStablesRus.stablesWindow.isVisited === true && castleStablesRus.stablesInside.isVisited === true){
+
+            addSingleBtn();
+
+            screenCastle.querySelector('.button').innerText = arrayBtns[3];
+
+            screenCastle.querySelector('.button').addEventListener('click', () =>{
+
+                changeSlide();
+
+                castleCourtyard();
+
+            });
+
+        };
+
+        screenCastleTitle.innerText = castleStablesRus.stablesWalls.title;
+
+        screenCastleDescr.innerText = castleStablesRus.stablesWalls.descr;
+            
     }, '650');
 
 };
 
-function stableWalls(){
+function stablesFloor(){
 
-    castleStablesRus.stableWalls.isVisited = true;
+    castleStablesRus.stablesFloor.isVisited = true;
 
-    const arrayBtns = Object.values(castleStablesRus.stableWalls.stableWallsBtn);
+    const arrayBtns = Object.values(castleStablesRus.stablesFloor.button);
 
     setTimeout(() =>{
 
-        removeHideOnBtns();
+        if(castleStablesRus.stablesWalls.isVisited === false && castleStablesRus.stablesWindow.isVisited === false){
 
-        screenCastleTitle.innerHTML = castleStablesRus.stableWalls.stableWallsName;
+            const arrayLength = arrayBtns.length - 2;
 
-        screenCastleDescr.innerHTML = castleStablesRus.stableWalls.stableWallsDescr;
+            addElements(arrayBtns, arrayLength);
 
-        for(let i = 0; i < screenCastleBtn.length; i++){
+            const screenCastleBtns = screenCastle.querySelectorAll('.button');
+    
+            addEventListener(screenCastleBtns);
 
-            screenCastleBtn[i].innerHTML = arrayBtns[i];
+            function addEventListener(screenCastleBtns){
 
-            if(castleStablesRus.stableFloor.isVisited === false && castleStablesRus.stableWindow.isVisited === false){
+                screenCastleBtns.forEach(elem =>{
 
-                if(screenCastleBtn[i].classList.contains('btn-3') === true || screenCastleBtn[i].classList.contains('btn-4') === true){
+                    elem.addEventListener('click', () =>{
 
-                    screenCastleBtn[i].classList.add('hide-btn');
+                        if(elem.innerText === arrayBtns[0]){
+    
+                            changeSlide();
+    
+                            stablesWalls();
+    
+                        };
+    
+                        if(elem.innerText === arrayBtns[1]){
+    
+                            changeSlide();
+    
+                            stablesWindow();
+    
+                        };
 
-                };
+                    });
 
-            };
-
-            if(castleStablesRus.stableFloor.isVisited === true && castleStablesRus.stableWindow.isVisited === false){
-
-                if(screenCastleBtn[i].classList.contains('btn-1') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
-
-            };
-
-            if(castleStablesRus.stableFloor.isVisited === false && castleStablesRus.stableWindow.isVisited === true){
-
-                if(screenCastleBtn[i].classList.contains('btn-2') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
-
-            };
-
-            if(castleStablesRus.stableFloor.isVisited === true && castleStablesRus.stableWindow.isVisited === true){
-
-                if(screenCastleBtn[i].classList.contains('btn-3') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
-
-            };
-
-            if(castleStablesRus.stableFloor.isVisited === true && castleStablesRus.stableWindow.isVisited === true && castleStablesRus.stableInside.isVisited === true){
-
-                if(screenCastleBtn[i].classList.contains('btn-4') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
+                });
 
             };
 
         };
 
+        if(castleStablesRus.stablesWalls.isVisited === false && castleStablesRus.stablesWindow.isVisited === true){
+
+            addSingleBtn();
+
+            screenCastle.querySelector('.button').innerText = arrayBtns[0];
+
+            screenCastle.querySelector('.button').addEventListener('click', () =>{
+
+                changeSlide();
+
+                stablesWalls();
+
+            });
+
+        };
+
+        if(castleStablesRus.stablesWalls.isVisited === true && castleStablesRus.stablesWindow.isVisited === false){
+
+            addSingleBtn();
+
+            screenCastle.querySelector('.button').innerText = arrayBtns[1];
+
+            screenCastle.querySelector('.button').addEventListener('click', () =>{
+
+                changeSlide();
+
+                stablesWindow();
+
+            });
+
+        };
+
+        if(castleStablesRus.stablesWalls.isVisited === true && castleStablesRus.stablesWindow.isVisited === true){
+
+            addSingleBtn();
+
+            screenCastle.querySelector('.button').innerText = arrayBtns[2];
+
+            screenCastle.querySelector('.button').addEventListener('click', () =>{
+
+                changeSlide();
+
+                stablesInside();
+
+            });
+
+        };
+
+        if(castleStablesRus.stablesWalls.isVisited === true && castleStablesRus.stablesWindow.isVisited === true && castleStablesRus.stablesInside.isVisited === true){
+
+            addSingleBtn();
+
+            screenCastle.querySelector('.button').innerText = arrayBtns[3];
+
+            screenCastle.querySelector('.button').addEventListener('click', () =>{
+
+                changeSlide();
+
+                castleCourtyard();
+
+            });
+
+        };
+
+        screenCastleTitle.innerText = castleStablesRus.stablesFloor.title;
+
+        screenCastleDescr.innerText = castleStablesRus.stablesFloor.descr;
+            
     }, '650');
 
 };
 
-function stableFloor(){
+function stablesWindow(){
 
-    castleStablesRus.stableFloor.isVisited = true;
+    castleStablesRus.stablesWindow.isVisited = true;
 
-    const arrayBtns = Object.values(castleStablesRus.stableFloor.stableFloorBtn);
+    const arrayBtns = Object.values(castleStablesRus.stablesWindow.button);
 
     setTimeout(() =>{
 
-        removeHideOnBtns();
+        if(castleStablesRus.stablesWalls.isVisited === false && castleStablesRus.stablesFloor.isVisited === false){
 
-        screenCastleTitle.innerHTML = castleStablesRus.stableFloor.stableFloorName;
+            const arrayLength = arrayBtns.length - 2;
+            
+            addElements(arrayBtns, arrayLength);
 
-        screenCastleDescr.innerHTML = castleStablesRus.stableFloor.stableFloorDescr;
+            const screenCastleBtns = screenCastle.querySelectorAll('.button');
+    
+            addEventListener(screenCastleBtns);
 
-        for(let i = 0; i < screenCastleBtn.length; i++){
+            function addEventListener(screenCastleBtns){
 
-            screenCastleBtn[i].innerHTML = arrayBtns[i];
+                screenCastleBtns.forEach(elem =>{
 
-            if(castleStablesRus.stableWalls.isVisited === false && castleStablesRus.stableWindow.isVisited === false){
+                    elem.addEventListener('click', () =>{
 
-                if(screenCastleBtn[i].classList.contains('btn-3') === true || screenCastleBtn[i].classList.contains('btn-4') === true){
+                        if(elem.innerText === arrayBtns[0]){
+    
+                            changeSlide();
+    
+                            stablesWalls();
+    
+                        };
+    
+                        if(elem.innerText === arrayBtns[1]){
+    
+                            changeSlide();
+    
+                            stablesFloor();
+    
+                        };
 
-                    screenCastleBtn[i].classList.add('hide-btn');
+                    });
 
-                };
-
-            };
-
-            if(castleStablesRus.stableWalls.isVisited === true && castleStablesRus.stableWindow.isVisited === false){
-
-                if(screenCastleBtn[i].classList.contains('btn-1') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
-
-            };
-
-            if(castleStablesRus.stableWalls.isVisited === false && castleStablesRus.stableWindow.isVisited === true){
-
-                if(screenCastleBtn[i].classList.contains('btn-2') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
-
-            };
-
-            if(castleStablesRus.stableWalls.isVisited === true && castleStablesRus.stableWindow.isVisited === true){
-
-                if(screenCastleBtn[i].classList.contains('btn-3') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
-
-            };
-
-            if(castleStablesRus.stableWalls.isVisited === true && castleStablesRus.stableWindow.isVisited === true && castleStablesRus.stableInside.isVisited === true){
-
-                if(screenCastleBtn[i].classList.contains('btn-4') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
+                });
 
             };
 
         };
 
+        if(castleStablesRus.stablesWalls.isVisited === false && castleStablesRus.stablesFloor.isVisited === true){
+
+            addSingleBtn();
+
+            screenCastle.querySelector('.button').innerText = arrayBtns[0];
+
+            screenCastle.querySelector('.button').addEventListener('click', () =>{
+
+                changeSlide();
+
+                stablesWalls();
+
+            });
+
+        };
+
+        if(castleStablesRus.stablesWalls.isVisited === true && castleStablesRus.stablesFloor.isVisited === false){
+
+            addSingleBtn();
+
+            screenCastle.querySelector('.button').innerText = arrayBtns[1];
+
+            screenCastle.querySelector('.button').addEventListener('click', () =>{
+
+                changeSlide();
+
+                stablesFloor();
+
+            });
+
+        };
+
+        if(castleStablesRus.stablesWalls.isVisited === true && castleStablesRus.stablesFloor.isVisited === true && castleStablesRus.stablesInside.isVisited === false){
+
+            addSingleBtn();
+
+            screenCastle.querySelector('.button').innerText = arrayBtns[2];
+
+            screenCastle.querySelector('.button').addEventListener('click', () =>{
+
+                changeSlide();
+
+                stablesInside();
+
+            });
+
+        };
+
+        if(castleStablesRus.stablesWalls.isVisited === true && castleStablesRus.stablesFloor.isVisited === true && castleStablesRus.stablesInside.isVisited === true){
+
+            addSingleBtn();
+
+            screenCastle.querySelector('.button').innerText = arrayBtns[3];
+
+            screenCastle.querySelector('.button').addEventListener('click', () =>{
+
+                changeSlide();
+
+                castleCourtyard();
+
+            });
+
+        };
+
+        screenCastleTitle.innerText = castleStablesRus.stablesWindow.title;
+
+        screenCastleDescr.innerText = castleStablesRus.stablesWindow.descr;
+            
     }, '650');
 
 };
 
-function stableWindow(){
+function stablesRight(){
 
-    castleStablesRus.stableWindow.isVisited = true;
+    castleStablesRus.stablesRight.isVisited = true;
 
-    const arrayBtns = Object.values(castleStablesRus.stableWindow.stableWindowBtn);
+    const arrayBtns = Object.values(castleStablesRus.stablesRight.button);
 
     setTimeout(() =>{
 
-        removeHideOnBtns();
+        if(castleStablesRus.stablesPile.isVisited === false && castleStablesRus.stablesLeft.isVisited === false && castleStablesRus.stablesDoor.isVisited === false){
 
-        screenCastleTitle.innerHTML = castleStablesRus.stableWindow.stableWindowName;
+            const arrayLength = arrayBtns.length - 2;
 
-        screenCastleDescr.innerHTML = castleStablesRus.stableWindow.stableWindowDescr;
+            addElements(arrayBtns, arrayLength);
 
-        for(let i = 0; i < screenCastleBtn.length; i++){
+            const screenCastleBtns = screenCastle.querySelectorAll('.button');
+    
+            addEventListener(screenCastleBtns);
 
-            screenCastleBtn[i].innerHTML = arrayBtns[i];
+            function addEventListener(screenCastleBtns){
 
-            if(castleStablesRus.stableWalls.isVisited === false && castleStablesRus.stableFloor.isVisited === false){
+                screenCastleBtns.forEach(elem =>{
 
-                if(screenCastleBtn[i].classList.contains('btn-3') === true || screenCastleBtn[i].classList.contains('btn-4') === true){
+                    elem.addEventListener('click', () =>{
 
-                    screenCastleBtn[i].classList.add('hide-btn');
+                        if(elem.innerText === arrayBtns[0]){
+    
+                            changeSlide();
+    
+                            stablesPile();
+    
+                        };
+    
+                        if(elem.innerText === arrayBtns[1]){
+    
+                            changeSlide();
+    
+                            stablesLeft();
+    
+                        };
 
-                };
+                    });
 
-            };
-
-            if(castleStablesRus.stableWalls.isVisited === true && castleStablesRus.stableFloor.isVisited === false){
-
-                if(screenCastleBtn[i].classList.contains('btn-1') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
-
-            };
-
-            if(castleStablesRus.stableWalls.isVisited === false && castleStablesRus.stableFloor.isVisited === true){
-
-                if(screenCastleBtn[i].classList.contains('btn-2') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
-
-            };
-
-            if(castleStablesRus.stableWalls.isVisited === true && castleStablesRus.stableFloor.isVisited === true){
-
-                if(screenCastleBtn[i].classList.contains('btn-3') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
-
-            };
-
-            if(castleStablesRus.stableWalls.isVisited === true && castleStablesRus.stableFloor.isVisited === true && castleStablesRus.stableInside.isVisited === true){
-
-                if(screenCastleBtn[i].classList.contains('btn-4') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
+                });
 
             };
 
         };
 
+        if(castleStablesRus.stablesPile.isVisited === false && castleStablesRus.stablesLeft.isVisited === true && castleStablesRus.stablesDoor.isVisited === false){
+
+            addSingleBtn();
+
+            screenCastle.querySelector('.button').innerText = arrayBtns[0];
+
+            screenCastle.querySelector('.button').addEventListener('click', () =>{
+
+                changeSlide();
+
+                stablesPile();
+
+            });
+
+        };
+
+        if(castleStablesRus.stablesPile.isVisited === true && castleStablesRus.stablesLeft.isVisited === false && castleStablesRus.stablesDoor.isVisited === false){
+
+            addSingleBtn();
+
+            screenCastle.querySelector('.button').innerText = arrayBtns[1];
+
+            screenCastle.querySelector('.button').addEventListener('click', () =>{
+
+                changeSlide();
+
+                stablesLeft();
+
+            });
+
+        };
+
+        if(castleStablesRus.stablesPile.isVisited === true && castleStablesRus.stablesLeft.isVisited === true && castleStablesRus.stablesDoor.isVisited === false){
+
+            addSingleBtn();
+
+            screenCastle.querySelector('.button').innerText = arrayBtns[2];
+
+            screenCastle.querySelector('.button').addEventListener('click', () =>{
+
+                changeSlide();
+
+                stablesDoor();
+
+            });
+
+        };
+
+        if(castleStablesRus.stablesPile.isVisited === true && castleStablesRus.stablesLeft.isVisited === true && castleStablesRus.stablesDoor.isVisited === true){
+
+            addSingleBtn();
+
+            screenCastle.querySelector('.button').innerText = arrayBtns[3];
+
+            screenCastle.querySelector('.button').addEventListener('click', () =>{
+
+                changeSlide();
+
+                castleCourtyard();
+
+            });
+
+        };
+
+        screenCastleTitle.innerText = castleStablesRus.stablesRight.title;
+
+        screenCastleDescr.innerText = castleStablesRus.stablesRight.descr;
+            
     }, '650');
 
 };
 
-function stableRight(){
+function stablesLeft(){
 
-    castleStablesRus.stableRight.isVisited = true;
+    castleStablesRus.stablesLeft.isVisited = true;
 
-    const arrayBtns = Object.values(castleStablesRus.stableRight.stableRightBtn);
+    const arrayBtns = Object.values(castleStablesRus.stablesLeft.button);
 
     setTimeout(() =>{
 
-        removeHideOnBtns();
+        if(castleStablesRus.stablesPile.isVisited === false && castleStablesRus.stablesRight.isVisited === false && castleStablesRus.stablesDoor.isVisited === false){
 
-        screenCastleTitle.innerHTML = castleStablesRus.stableRight.stableRightName;
+            const arrayLength = arrayBtns.length - 2;
 
-        screenCastleDescr.innerHTML = castleStablesRus.stableRight.stableRightDescr;
+            addElements(arrayBtns, arrayLength);
 
-        for(let i = 0; i < screenCastleBtn.length; i++){
+            const screenCastleBtns = screenCastle.querySelectorAll('.button');
+    
+            addEventListener(screenCastleBtns);
 
-            screenCastleBtn[i].innerHTML = arrayBtns[i];
+            function addEventListener(screenCastleBtns){
 
-            if(castleStablesRus.stableLeft.isVisited === false && castleStablesRus.stablePile.isVisited === false){
+                screenCastleBtns.forEach(elem =>{
 
-                if(screenCastleBtn[i].classList.contains('btn-3') === true || screenCastleBtn[i].classList.contains('btn-4') === true){
+                    elem.addEventListener('click', () =>{
 
-                    screenCastleBtn[i].classList.add('hide-btn');
+                        if(elem.innerText === arrayBtns[0]){
+    
+                            changeSlide();
+    
+                            stablesPile();
+    
+                        };
+    
+                        if(elem.innerText === arrayBtns[1]){
+    
+                            changeSlide();
+    
+                            stablesRight();
+    
+                        };
 
-                };
+                    });
 
-            };
-
-            if(castleStablesRus.stableLeft.isVisited === true && castleStablesRus.stablePile.isVisited === false){
-
-                if(screenCastleBtn[i].classList.contains('btn-1') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
-
-            };
-
-            if(castleStablesRus.stableLeft.isVisited === false && castleStablesRus.stablePile.isVisited === true){
-
-                if(screenCastleBtn[i].classList.contains('btn-2') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
-
-            };
-
-            if(castleStablesRus.stableLeft.isVisited === true && castleStablesRus.stablePile.isVisited === true){
-
-                if(screenCastleBtn[i].classList.contains('btn-3') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
-
-            };
-
-            if(castleStablesRus.stableLeft.isVisited === true && castleStablesRus.stablePile.isVisited === true && castleStablesRus.stableDoor.isVisited === true){
-
-                if(screenCastleBtn[i].classList.contains('btn-4') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
+                });
 
             };
 
         };
 
+        if(castleStablesRus.stablesPile.isVisited === false && castleStablesRus.stablesRight.isVisited === true && castleStablesRus.stablesDoor.isVisited === false){
+
+            addSingleBtn();
+
+            screenCastle.querySelector('.button').innerText = arrayBtns[0];
+
+            screenCastle.querySelector('.button').addEventListener('click', () =>{
+
+                changeSlide();
+
+                stablesPile();
+
+            });
+
+        };
+
+        if(castleStablesRus.stablesPile.isVisited === true && castleStablesRus.stablesRight.isVisited === false && castleStablesRus.stablesDoor.isVisited === false){
+
+            addSingleBtn();
+
+            screenCastle.querySelector('.button').innerText = arrayBtns[1];
+
+            screenCastle.querySelector('.button').addEventListener('click', () =>{
+
+                changeSlide();
+
+                stablesRight();
+
+            });
+
+        };
+
+        if(castleStablesRus.stablesPile.isVisited === true && castleStablesRus.stablesRight.isVisited === true && castleStablesRus.stablesDoor.isVisited === false){
+
+            addSingleBtn();
+
+            screenCastle.querySelector('.button').innerText = arrayBtns[2];
+
+            screenCastle.querySelector('.button').addEventListener('click', () =>{
+
+                changeSlide();
+
+                stablesDoor();
+
+            });
+
+        };
+
+        if(castleStablesRus.stablesPile.isVisited === true && castleStablesRus.stablesRight.isVisited === true && castleStablesRus.stablesDoor.isVisited === true){
+
+            addSingleBtn();
+
+            screenCastle.querySelector('.button').innerText = arrayBtns[3];
+
+            screenCastle.querySelector('.button').addEventListener('click', () =>{
+
+                changeSlide();
+
+                castleCourtyard();
+
+            });
+
+        };
+
+        screenCastleTitle.innerText = castleStablesRus.stablesLeft.title;
+
+        screenCastleDescr.innerText = castleStablesRus.stablesLeft.descr;
+            
     }, '650');
 
 };
 
-function stableLeft(){
+function stablesPile(){
 
-    castleStablesRus.stableLeft.isVisited = true;
+    castleStablesRus.stablesPile.isVisited = true;
 
-    const arrayBtns = Object.values(castleStablesRus.stableLeft.stablLeftBtn);
+    const arrayBtns = Object.values(castleStablesRus.stablesPile.button);
 
     setTimeout(() =>{
 
-        removeHideOnBtns();
+        if(castleStablesRus.stablesRight.isVisited === false && castleStablesRus.stablesLeft.isVisited === false && castleStablesRus.stablesDoor.isVisited === false){
+            
+            const arrayLength = arrayBtns.length - 2;
 
-        screenCastleTitle.innerHTML = castleStablesRus.stableLeft.stableLeftName;
+            addElements(arrayBtns, arrayLength);
 
-        screenCastleDescr.innerHTML = castleStablesRus.stableLeft.stableLeftDescr;
+            const screenCastleBtns = screenCastle.querySelectorAll('.button');
+    
+            addEventListener(screenCastleBtns);
 
-        for(let i = 0; i < screenCastleBtn.length; i++){
+            function addEventListener(screenCastleBtns){
 
-            screenCastleBtn[i].innerHTML = arrayBtns[i];
+                screenCastleBtns.forEach(elem =>{
 
-            if(castleStablesRus.stableRight.isVisited === false && castleStablesRus.stablePile.isVisited === false){
+                    elem.addEventListener('click', () =>{
 
-                if(screenCastleBtn[i].classList.contains('btn-3') === true || screenCastleBtn[i].classList.contains('btn-4') === true){
+                        if(elem.innerText === arrayBtns[0]){
+    
+                            changeSlide();
+    
+                            stablesLeft();
+    
+                        };
+    
+                        if(elem.innerText === arrayBtns[1]){
+    
+                            changeSlide();
+    
+                            stablesRight();
+    
+                        };
 
-                    screenCastleBtn[i].classList.add('hide-btn');
+                    });
 
-                };
-
-            };
-
-            if(castleStablesRus.stableRight.isVisited === true && castleStablesRus.stablePile.isVisited === false){
-
-                if(screenCastleBtn[i].classList.contains('btn-1') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
-
-            };
-
-            if(castleStablesRus.stableRight.isVisited === false && castleStablesRus.stablePile.isVisited === true){
-
-                if(screenCastleBtn[i].classList.contains('btn-2') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
-
-            };
-
-            if(castleStablesRus.stableRight.isVisited === true && castleStablesRus.stablePile.isVisited === true){
-
-                if(screenCastleBtn[i].classList.contains('btn-3') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
-
-            };
-
-            if(castleStablesRus.stableRight.isVisited === true && castleStablesRus.stablePile.isVisited === true && castleStablesRus.stableDoor.isVisited === true){
-
-                if(screenCastleBtn[i].classList.contains('btn-4') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
+                });
 
             };
 
         };
 
-    }, '650');
+        if(castleStablesRus.stablesRight.isVisited === false && castleStablesRus.stablesLeft.isVisited === true && castleStablesRus.stablesDoor.isVisited === false){
 
-};
+            addSingleBtn();
 
-function stablePile(){
+            screenCastle.querySelector('.button').innerText = arrayBtns[0];
 
-    castleStablesRus.stablePile.isVisited = true;
+            screenCastle.querySelector('.button').addEventListener('click', () =>{
 
-    const arrayBtns = Object.values(castleStablesRus.stablePile.stablPileBtn);
+                changeSlide();
 
-    setTimeout(() =>{
+                stablesRight();
 
-        removeHideOnBtns();
-
-        screenCastleTitle.innerHTML = castleStablesRus.stablePile.stablePileName;
-
-        screenCastleDescr.innerHTML = castleStablesRus.stablePile.stablePileDescr;
-
-        for(let i = 0; i < screenCastleBtn.length; i++){
-
-            screenCastleBtn[i].innerHTML = arrayBtns[i];
-
-            if(castleStablesRus.stableRight.isVisited === false && castleStablesRus.stableLeft.isVisited === false){
-
-                if(screenCastleBtn[i].classList.contains('btn-3') === true || screenCastleBtn[i].classList.contains('btn-4') === true){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
-
-            };
-
-            if(castleStablesRus.stableRight.isVisited === true && castleStablesRus.stableLeft.isVisited === false){
-
-                if(screenCastleBtn[i].classList.contains('btn-1') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
-
-            };
-
-            if(castleStablesRus.stableRight.isVisited === false && castleStablesRus.stableLeft.isVisited === true){
-
-                if(screenCastleBtn[i].classList.contains('btn-2') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
-
-            };
-
-            if(castleStablesRus.stableRight.isVisited === true && castleStablesRus.stableLeft.isVisited === true){
-
-                if(screenCastleBtn[i].classList.contains('btn-3') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
-
-            };
-
-            if(castleStablesRus.stableRight.isVisited === true && castleStablesRus.stableLeft.isVisited === true && castleStablesRus.stableDoor.isVisited === true){
-
-                if(screenCastleBtn[i].classList.contains('btn-4') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
-
-            };
+            });
 
         };
 
+        if(castleStablesRus.stablesRight.isVisited === true && castleStablesRus.stablesLeft.isVisited === false && castleStablesRus.stablesDoor.isVisited === false){
+
+            addSingleBtn();
+
+            screenCastle.querySelector('.button').innerText = arrayBtns[1];
+
+            screenCastle.querySelector('.button').addEventListener('click', () =>{
+
+                changeSlide();
+
+                stablesLeft();
+
+            });
+
+        };
+
+        if(castleStablesRus.stablesRight.isVisited === true && castleStablesRus.stablesLeft.isVisited === true && castleStablesRus.stablesDoor.isVisited === false){
+
+            addSingleBtn();
+
+            screenCastle.querySelector('.button').innerText = arrayBtns[2];
+
+            screenCastle.querySelector('.button').addEventListener('click', () =>{
+
+                changeSlide();
+
+                stablesDoor();
+
+            });
+
+        };
+
+        if(castleStablesRus.stablesRight.isVisited === true && castleStablesRus.stablesLeft.isVisited === true && castleStablesRus.stablesDoor.isVisited === true){
+
+            addSingleBtn();
+
+            screenCastle.querySelector('.button').innerText = arrayBtns[3];
+
+            screenCastle.querySelector('.button').addEventListener('click', () =>{
+
+                changeSlide();
+
+                castleCourtyard();
+
+            });
+
+        };
+
+        screenCastleTitle.innerText = castleStablesRus.stablesPile.title;
+
+        screenCastleDescr.innerText = castleStablesRus.stablesPile.descr;
+            
     }, '650');
 
 };
@@ -713,79 +1040,71 @@ function stablePile(){
 
 function castleBarracks(){
 
+    const arrayBtns = Object.values(castleBarracksRus.button);
+
     castleBarracksRus.isVisited = true;
 
     setTimeout(() =>{
 
-        removeHideOnBtns();
+        addElements(arrayBtns, arrayLength);
 
-        screenCastleTitle.innerHTML = castleBarracksRus.barrakcsName;
+        screenCastleTitle.innerText = castleBarracksRus.title;
 
-        screenCastleDescr.innerHTML = castleBarracksRus.barracksDescr;
-
-        screenCastleBtn.forEach(elem =>{
-
-            if(elem.classList.contains('btn-1') === false){
-
-                elem.classList.add('hide-btn');
-
-            };
-
-            elem.innerHTML = castleBarracksRus.barracksBtn;
-
-            elem.addEventListener('click', () =>{
-
-                barracksInside();
-
-            });
-
-        });
+        screenCastleDescr.innerText = castleBarracksRus.descr;
 
     }, '650');
+
+    screenCastle.querySelector('.button').addEventListener('click', () =>{
+
+        changeSlide();
+
+        barracksInside();
+
+    });
 
 };
 
 function barracksInside(){
     
-    const arrayBtns = Object.values(castleBarracksRus.barracksInside.barracksInsideNameBtn);
+    const arrayBtns = Object.values(castleBarracksRus.barracksInside.button);
 
     setTimeout(() =>{
 
-        removeHideOnBtns();
+        addElements(arrayBtns, arrayLength);
 
-        screenCastleTitle.innerHTML = castleBarracksRus.barracksInside.barracksInsideName;
+        screenCastleTitle.innerText = castleBarracksRus.barracksInside.title;
 
-        screenCastleDescr.innerHTML = castleBarracksRus.barracksInside.barracksInsideDescr;
+        screenCastleDescr.innerText = castleBarracksRus.barracksInside.descr;
+    
+        const screenCastleBtns = screenCastle.querySelectorAll('.button');
+    
+        addEventListener(screenCastleBtns);
+    
+    }, '650');
 
-        for(let i = 0; i < screenCastleBtn.length; i++){
+    function addEventListener(screenCastleBtns){
 
-            screenCastleBtn[i].innerHTML = arrayBtns[i];
+        for(let i = 0; i < screenCastleBtns.length; i++){
 
-            if(screenCastleBtn[i].classList.contains('btn-3') === true || screenCastleBtn[i].classList.contains('btn-4') === true){
-
-                screenCastleBtn[i].classList.add('hide-btn');
-
-            };
-                
-            screenCastleBtn[i].addEventListener('click', () =>{
-
-                if(screenCastleBtn[i].innerHTML === castleBarracksRus.barracksInside.barracksInsideNameBtn.firstBtn){
+            screenCastleBtns[i].addEventListener('click', () =>{
+    
+                if(screenCastleBtns[i].innerText === castleBarracksRus.barracksInside.button.firstBtn){
 
                     firstFloor();
 
                 };
 
-                if(screenCastleBtn[i].innerHTML === castleBarracksRus.barracksInside.barracksInsideNameBtn.secondBtn){
+                if(screenCastleBtns[i].innerText === castleBarracksRus.barracksInside.button.secondBtn){
 
                     secondFloor();
 
                 };
-
+    
             });
 
         };
 
-    }, '650');
+    };
 
 };
 
@@ -793,45 +1112,45 @@ function firstFloor(){
 
     castleBarracksRus.barracksInsideFirstFloor.isVisited = true;
 
-    const arrayBtns = Object.values(castleBarracksRus.barracksInsideFirstFloor.firstFloorBtn);
+    const arrayBtns = Object.values(castleBarracksRus.barracksInsideFirstFloor.button);
 
     setTimeout(() =>{
 
-        removeHideOnBtns();
+        addElements(arrayBtns, arrayLength);
 
-        screenCastleTitle.innerHTML = castleBarracksRus.barracksInsideFirstFloor.firstFloorName;
+        screenCastleTitle.innerText = castleBarracksRus.barracksInsideFirstFloor.title;
 
-        screenCastleDescr.innerHTML = castleBarracksRus.barracksInsideFirstFloor.firstFloorDescr;
+        screenCastleDescr.innerText = castleBarracksRus.barracksInsideFirstFloor.descr;
+    
+        const screenCastleBtns = screenCastle.querySelectorAll('.button');
+    
+        addEventListener(screenCastleBtns);
+    
+    }, '650');
 
-        for(let i = 0; i < screenCastleBtn.length; i++){
+    function addEventListener(screenCastleBtns){
 
-            if(screenCastleBtn[i].classList.contains('btn-3') === true || screenCastleBtn[i].classList.contains('btn-4') === true){
+        for(let i = 0; i < screenCastleBtns.length; i++){
 
-                screenCastleBtn[i].classList.add('hide-btn');
-
-            };
-                
-            screenCastleBtn[i].innerHTML = arrayBtns[i];
-
-            screenCastleBtn[i].addEventListener('click', () =>{
-
-                if(screenCastleBtn[i].innerHTML === castleBarracksRus.barracksInsideFirstFloor.firstFloorBtn.firstBtn){
+            screenCastleBtns[i].addEventListener('click', () =>{
+    
+                if(screenCastleBtns[i].innerText === castleBarracksRus.barracksInsideFirstFloor.button.firstBtn){
 
                     kitchenRoom();
 
                 };
 
-                if(screenCastleBtn[i].innerHTML === castleBarracksRus.barracksInsideFirstFloor.firstFloorBtn.secondBtn){
+                if(screenCastleBtns[i].innerText === castleBarracksRus.barracksInsideFirstFloor.button.secondBtn){
 
-                    armoryRoom();
+                    armoryRoom();;
 
                 };
-
+    
             });
 
         };
 
-    }, '650');
+    };
 
 };
 
@@ -839,45 +1158,45 @@ function secondFloor(){
 
     castleBarracksRus.barracksInsideSecondFloor.isVisited = true;
 
-    const arrayBtns = Object.values(castleBarracksRus.barracksInsideSecondFloor.secondFloorBtn);
+    const arrayBtns = Object.values(castleBarracksRus.barracksInsideSecondFloor.button);
 
     setTimeout(() =>{
 
-        removeHideOnBtns();
+        addElements(arrayBtns, arrayLength);
 
-        screenCastleTitle.innerHTML = castleBarracksRus.barracksInsideSecondFloor.secondFloorName;
+        screenCastleTitle.innerText = castleBarracksRus.barracksInsideSecondFloor.title;
 
-        screenCastleDescr.innerHTML = castleBarracksRus.barracksInsideSecondFloor.secondFloorDescr;
+        screenCastleDescr.innerText = castleBarracksRus.barracksInsideSecondFloor.descr;
+    
+        const screenCastleBtns = screenCastle.querySelectorAll('.button');
+    
+        addEventListener(screenCastleBtns);
+    
+    }, '650');
 
-        for(let i = 0; i < screenCastleBtn.length; i++){
+    function addEventListener(screenCastleBtns){
 
-            screenCastleBtn[i].innerHTML = arrayBtns[i];
+        for(let i = 0; i < screenCastleBtns.length; i++){
 
-            if(screenCastleBtn[i].classList.contains('btn-3') === true || screenCastleBtn[i].classList.contains('btn-4') === true){
-
-                screenCastleBtn[i].classList.add('hide-btn');
-
-            };
-                
-            screenCastleBtn[i].addEventListener('click', () =>{
-
-                if(screenCastleBtn[i].innerHTML === castleBarracksRus.barracksInsideSecondFloor.secondFloorBtn.firstBtn){
+            screenCastleBtns[i].addEventListener('click', () =>{
+    
+                if(screenCastleBtns[i].innerText === castleBarracksRus.barracksInsideSecondFloor.button.firstBtn){
 
                     legionnaireRooms();
 
                 };
 
-                if(screenCastleBtn[i].innerHTML === castleBarracksRus.barracksInsideSecondFloor.secondFloorBtn.secondBtn){
+                if(screenCastleBtns[i].innerText === castleBarracksRus.barracksInsideSecondFloor.button.secondBtn){
 
-                    officerRoom();
-                    
+                    officerRoom();;
+
                 };
-
+    
             });
 
         };
 
-    }, '650');
+    };
 
 };
 
@@ -887,59 +1206,59 @@ function legionnaireRooms(){
 
     setTimeout(() =>{
 
-        removeHideOnBtns();
+        const button = document.createElement('button');
 
-        screenCastleTitle.innerHTML = castleBarracksRus.legionnaireRooms.legionnaireRoomsName;
+        mainFooter.appendChild(button);
 
-        screenCastleDescr.innerHTML = castleBarracksRus.legionnaireRooms.legionnaireRoomsDescr;
+        button.className = 'main__btn button';
 
-        for(let i = 0; i < screenCastleBtn.length; i++){
+        screenCastleTitle.innerText = castleBarracksRus.legionnaireRooms.title;
 
-            if(screenCastleBtn[i].classList.contains('btn-1') === false){
-
-                screenCastleBtn[i].classList.add('hide-btn');
-
-            };
-                
-            if(castleBarracksRus.officerRoom.isVisited === false){
+        screenCastleDescr.innerText = castleBarracksRus.legionnaireRooms.descr;
+        
+        addTextAndEvent(button);
     
-                screenCastleBtn[i].innerHTML = castleBarracksRus.legionnaireRooms.legionnaireRoomsBtn.firstBtn;
+    }, '650');
 
-                screenCastleBtn[i].addEventListener('click', () =>{
+    function addTextAndEvent(button){
 
-                    officerRoom();
+        if(castleBarracksRus.officerRoom.isVisited === false && castleBarracksRus.barracksInsideFirstFloor.isVisited === false){
 
-                });
+            button.innerText = castleBarracksRus.legionnaireRooms.button.firstBtn;
 
-            };
+            button.addEventListener('click', () =>{
 
-            if(castleBarracksRus.officerRoom.isVisited === true && castleBarracksRus.barracksInsideFirstFloor.isVisited === false){
+                officerRoom();
 
-                screenCastleBtn[i].innerHTML = castleBarracksRus.legionnaireRooms.legionnaireRoomsBtn.secondBtn;
-
-                screenCastleBtn[i].addEventListener('click', () =>{
-
-                    firstFloor();
-
-                });
-
-            };
-
-            if(castleBarracksRus.officerRoom.isVisited === true && castleBarracksRus.barracksInsideFirstFloor.isVisited === true){
-
-                screenCastleBtn[i].innerHTML = castleBarracksRus.legionnaireRooms.legionnaireRoomsBtn.thirdBtn;
-
-                screenCastleBtn[i].addEventListener('click', () =>{
-
-                    castleCourtyard();
-
-                });
-
-            };
+            });
 
         };
 
-    }, '650');
+        if(castleBarracksRus.officerRoom.isVisited === true && castleBarracksRus.barracksInsideFirstFloor.isVisited === false){
+
+            button.innerText = castleBarracksRus.legionnaireRooms.button.secondBtn;
+
+            button.addEventListener('click', () =>{
+
+                firstFloor();
+
+            });
+
+        };
+
+        if(castleBarracksRus.officerRoom.isVisited === true && castleBarracksRus.barracksInsideFirstFloor.isVisited === true){
+
+            button.innerText = castleBarracksRus.legionnaireRooms.button.thirdBtn;
+
+            button.addEventListener('click', () =>{
+
+                castleCourtyard();
+
+            });
+
+        };
+
+    };
 
 };
 
@@ -947,45 +1266,45 @@ function officerRoom(){
 
     castleBarracksRus.officerRoom.isVisited = true;
 
-    const arrayBtns = Object.values(castleBarracksRus.officerRoom.officerRoomBtn);
+    const arrayBtns = Object.values(castleBarracksRus.officerRoom.button);
 
     setTimeout(() =>{
 
-        removeHideOnBtns();
+        addElements(arrayBtns, arrayLength);
 
-        screenCastleTitle.innerHTML = castleBarracksRus.officerRoom.officerRoomName;
+        screenCastleTitle.innerText = castleBarracksRus.officerRoom.title;
 
-        screenCastleDescr.innerHTML = castleBarracksRus.officerRoom.officerRoomDescr;
+        screenCastleDescr.innerText = castleBarracksRus.officerRoom.descr;
+    
+        const screenCastleBtns = screenCastle.querySelectorAll('.button');
+    
+        addEventListener(screenCastleBtns);
+    
+    }, '650');
 
-        for(let i = 0; i < screenCastleBtn.length; i++){
+    function addEventListener(screenCastleBtns){
 
-            screenCastleBtn[i].innerHTML = arrayBtns[i];
+        for(let i = 0; i < screenCastleBtns.length; i++){
 
-            if(screenCastleBtn[i].classList.contains('btn-3') === true || screenCastleBtn[i].classList.contains('btn-4') === true){
-
-                screenCastleBtn[i].classList.add('hide-btn');
-
-            };
-                
-            screenCastleBtn[i].addEventListener('click', () =>{
-
-                if(screenCastleBtn[i].innerHTML === castleBarracksRus.officerRoom.officerRoomBtn.firstBtn){
+            screenCastleBtns[i].addEventListener('click', () =>{
+    
+                if(screenCastleBtns[i].innerText === castleBarracksRus.officerRoom.button.firstBtn){
 
                     officerDeadBody();
-    
-                };
-    
-                if(screenCastleBtn[i].innerHTML === castleBarracksRus.officerRoom.officerRoomBtn.secondBtn){
-    
-                    officerTable();
-    
+
                 };
 
+                if(screenCastleBtns[i].innerText === castleBarracksRus.officerRoom.button.secondBtn){
+
+                    officerTable();;
+
+                };
+    
             });
 
         };
 
-    }, '650');
+    };
 
 };
 
@@ -993,87 +1312,73 @@ function officerDeadBody(){
 
     castleBarracksRus.officerDeadBody.isVisited = true;
 
-    const arrayBtns = Object.values(castleBarracksRus.officerDeadBody.officerDeadBodyBtn);
-
     setTimeout(() =>{
 
-        removeHideOnBtns();
+        const button = document.createElement('button');
 
-        screenCastleTitle.innerHTML = castleBarracksRus.officerDeadBody.officerDeadBodyName;
+        mainFooter.appendChild(button);
 
-        screenCastleDescr.innerHTML = castleBarracksRus.officerDeadBody.officerDeadBodyDescr;
+        button.className = 'main__btn button';
 
-        for(let i = 0; i < screenCastleBtn.length; i++){
+        screenCastleTitle.innerText = castleBarracksRus.officerDeadBody.title;
 
-            screenCastleBtn[i].innerHTML = arrayBtns[i];
-
-            if(castleBarracksRus.officerTable.isVisited === false){
-
-                if(screenCastleBtn[i].classList.contains('btn-1') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
+        screenCastleDescr.innerText = castleBarracksRus.officerDeadBody.descr;
+        
+        addTextAndEvent(button);
     
-                };
-    
-                screenCastleBtn[i].addEventListener('click', () =>{
+    }, '650');
 
-                    officerTable();
+    function addTextAndEvent(button){
 
-                });
+        if(castleBarracksRus.officerTable.isVisited === false && castleBarracksRus.legionnaireRooms.isVisited === false && castleBarracksRus.barracksInsideFirstFloor.isVisited === false){
 
-            };
+            button.innerText = castleBarracksRus.officerTable.button.firstBtn;
 
-            if(castleBarracksRus.officerTable.isVisited === true){
+            button.addEventListener('click', () =>{
 
-                if(screenCastleBtn[i].classList.contains('btn-2') === false){
+                officerTable();
 
-                    screenCastleBtn[i].classList.add('hide-btn');
-    
-                };
-
-                screenCastleBtn[i].addEventListener('click', () =>{
-
-                    legionnaireRooms();
-
-                });
-
-            };
-
-            if(castleBarracksRus.officerTable.isVisited === true && castleBarracksRus.legionnaireRooms.isVisited === true && castleBarracksRus.barracksInsideFirstFloor.isVisited === false){
-
-                if(screenCastleBtn[i].classList.contains('btn-3') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-    
-                };
-
-                screenCastleBtn[i].addEventListener('click', () =>{
-
-                    firstFloor();
-
-                });
-
-            };
-
-            if(castleBarracksRus.officerTable.isVisited === true && castleBarracksRus.legionnaireRooms.isVisited === true && castleBarracksRus.barracksInsideFirstFloor.isVisited === true){
-
-                if(screenCastleBtn[i].classList.contains('btn-4') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-    
-                };
-
-                screenCastleBtn[i].addEventListener('click', () =>{
-
-                    castleCourtyard();
-
-                });
-
-            };
+            });
 
         };
 
-    }, '650');
+        if(castleBarracksRus.officerTable.isVisited === true && castleBarracksRus.legionnaireRooms.isVisited === false && castleBarracksRus.barracksInsideFirstFloor.isVisited === false){
+
+            button.innerText = castleBarracksRus.officerTable.button.secondBtn;
+
+            button.addEventListener('click', () =>{
+
+                legionnaireRooms();
+
+            });
+
+        };
+
+        if(castleBarracksRus.officerTable.isVisited === true && castleBarracksRus.legionnaireRooms.isVisited === true && castleBarracksRus.barracksInsideFirstFloor.isVisited === false){
+
+            button.innerText = castleBarracksRus.officerDeadBody.button.thirdBtn;
+
+            button.addEventListener('click', () =>{
+
+                firstFloor();
+
+            });
+
+        };
+
+        if(castleBarracksRus.officerTable.isVisited === true && castleBarracksRus.legionnaireRooms.isVisited === true && castleBarracksRus.barracksInsideFirstFloor.isVisited === true){
+
+            button.innerText = castleBarracksRus.officerDeadBody.button.fourthBtn;
+
+            button.addEventListener('click', () =>{
+
+                castleCourtyard();
+
+            });
+
+        };
+
+    };
 
 };
 
@@ -1081,189 +1386,159 @@ function officerTable(){
     
     castleBarracksRus.officerTable.isVisited = true;
 
-    const arrayBtns = Object.values(castleBarracksRus.officerTable.officerTableBtn);
+    const arrayBtns = Object.values(castleBarracksRus.officerTable.button);
 
     setTimeout(() =>{
 
-        removeHideOnBtns();
+        addElements(arrayBtns, arrayLength);
 
-        screenCastleTitle.innerHTML = castleBarracksRus.officerTable.officerTableName;
+        screenCastleTitle.innerText = castleBarracksRus.officerTable.title;
 
-        screenCastleDescr.innerHTML = castleBarracksRus.officerTable.officerTableDescr;
-
-        for(let i = 0; i < screenCastleBtn.length; i++){
-
-            if(screenCastleBtn[i].classList.contains('btn-1') === false){
-
-                screenCastleBtn[i].classList.add('hide-btn');
-
-            };
-                
-            screenCastleBtn[i].innerHTML = arrayBtns[i];
-
-            screenCastleBtn[i].addEventListener('click', () =>{
-
-                pieceOfPaper();
-
-            })
-
-        };
+        screenCastleDescr.innerText = castleBarracksRus.officerTable.descr;
 
     }, '650');
+
+    screenCastle.querySelector('.button').addEventListener('click', () =>{
+
+        changeSlide();
+
+        pieceOfPaper();
+
+    });
 
 };
 
 function pieceOfPaper(){
 
-    const arrayBtns = Object.values(castleBarracksRus.pieceOfPaper.pieceOfPaperBtn); 
-    
     setTimeout(() =>{
 
-        screenCastleTitle.innerHTML = castleBarracksRus.pieceOfPaper.pieceOfPaperName;
+        const button = document.createElement('button');
 
-        screenCastleDescr.innerHTML = castleBarracksRus.pieceOfPaper.pieceOfPaperDescr;
+        mainFooter.appendChild(button);
 
-        for(let i = 0; i < screenCastleBtn.length; i++){
+        button.className = 'main__btn button';
 
-            screenCastleBtn[i].innerHTML = arrayBtns[i];
+        screenCastleTitle.innerText = castleBarracksRus.pieceOfPaper.title;
 
-            if(castleBarracksRus.officerDeadBody.isVisited === false){
-
-                if(screenCastleBtn[i].classList.contains('btn-1') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
+        screenCastleDescr.innerText = castleBarracksRus.pieceOfPaper.descr;
+        
+        addTextAndEvent(button);
     
-                };
-    
-                screenCastleBtn[i].addEventListener('click', () =>{
+    }, '650');
 
-                    officerDeadBody();
+    function addTextAndEvent(button){
 
-                });
+        if(castleBarracksRus.officerDeadBody.isVisited === false && castleBarracksRus.legionnaireRooms.isVisited === false && castleBarracksRus.barracksInsideFirstFloor.isVisited === false){
 
-            };
+            button.innerText = castleBarracksRus.pieceOfPaper.button.firstBtn;
 
-            if(castleBarracksRus.officerDeadBody.isVisited === true && castleBarracksRus.legionnaireRooms.isVisited === false){
+            button.addEventListener('click', () =>{
 
-                if(screenCastleBtn[i].classList.contains('btn-2') === false){
+                officerDeadBody();
 
-                    screenCastleBtn[i].classList.add('hide-btn');
-    
-                };
-
-                screenCastleBtn[i].addEventListener('click', () =>{
-
-                    legionnaireRooms();
-
-                });
-
-            };
-
-            if(castleBarracksRus.officerDeadBody.isVisited === true && castleBarracksRus.legionnaireRooms.isVisited === true && castleBarracksRus.barracksInsideFirstFloor.isVisited === false){
-
-                if(screenCastleBtn[i].classList.contains('btn-3') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-    
-                };
-
-                screenCastleBtn[i].addEventListener('click', () =>{
-
-                    firstFloor();
-
-                });
-
-            };
-
-            if(castleBarracksRus.officerDeadBody.isVisited === true && castleBarracksRus.legionnaireRooms.isVisited === true && castleBarracksRus.barracksInsideFirstFloor.isVisited === true){
-
-                if(screenCastleBtn[i].classList.contains('btn-4') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-    
-                };
-
-                screenCastleBtn[i].addEventListener('click', () =>{
-
-                    castleCourtyard();
-
-                });
-
-            };
+            });
 
         };
 
-    }, '650');
+        if(castleBarracksRus.officerDeadBody.isVisited === true && castleBarracksRus.legionnaireRooms.isVisited === false && castleBarracksRus.barracksInsideFirstFloor.isVisited === false){
+
+            button.innerText = castleBarracksRus.pieceOfPaper.button.secondBtn;
+
+            button.addEventListener('click', () =>{
+
+                legionnaireRooms();
+
+            });
+
+        };
+
+        if(castleBarracksRus.officerDeadBody.isVisited === true && castleBarracksRus.legionnaireRooms.isVisited === true && castleBarracksRus.barracksInsideFirstFloor.isVisited === false){
+
+            button.innerText = castleBarracksRus.pieceOfPaper.button.thirdBtn;
+
+            button.addEventListener('click', () =>{
+
+                firstFloor();
+
+            });
+
+        };
+
+        if(castleBarracksRus.officerDeadBody.isVisited === true && castleBarracksRus.legionnaireRooms.isVisited === true && castleBarracksRus.barracksInsideFirstFloor.isVisited === true){
+
+            button.innerText = castleBarracksRus.pieceOfPaper.button.fourthBtn;
+
+            button.addEventListener('click', () =>{
+
+                castleCourtyard();
+
+            });
+
+        };
+
+    };
     
 };
 
 function kitchenRoom(){
 
     castleBarracksRus.kitchenRoom.isVisited = true;
-
-    const arrayBtns = Object.values(castleBarracksRus.kitchenRoom.kitchenRoomBtn);
     
     setTimeout(() =>{
 
-        screenCastleTitle.innerHTML = castleBarracksRus.kitchenRoom.kitchenRoomName;
+        const button = document.createElement('button');
 
-        screenCastleDescr.innerHTML = castleBarracksRus.kitchenRoom.kitchenRoomDescr;
+        mainFooter.appendChild(button);
 
-        for(let i = 0; i < screenCastleBtn.length; i++){
+        button.className = 'main__btn button';
 
-            screenCastleBtn[i].innerHTML = arrayBtns[i];
-                
-            if(castleBarracksRus.armoryRoom.isVisited === false){
+        screenCastleTitle.innerText = castleBarracksRus.kitchenRoom.title;
 
-                if(screenCastleBtn[i].classList.contains('btn-1') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
+        screenCastleDescr.innerText = castleBarracksRus.kitchenRoom.descr;
+        
+        addTextAndEvent(button);
     
-                };
+    }, '650');
 
-                screenCastleBtn[i].addEventListener('click', () =>{
+    function addTextAndEvent(button){
 
-                    armoryRoom();
+        if(castleBarracksRus.armoryRoom.isVisited === false && castleBarracksRus.barracksInsideSecondFloor.isVisited === false){
 
-                });
+            button.innerText = castleBarracksRus.kitchenRoom.button.firstBtn;
 
-            };
+            button.addEventListener('click', () =>{
 
-            if(castleBarracksRus.armoryRoom.isVisited === true && castleBarracksRus.barracksInsideSecondFloor.isVisited === false){
+                officerRoom();
 
-                if(screenCastleBtn[i].classList.contains('btn-2') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-    
-                };
-
-                screenCastleBtn[i].addEventListener('click', () =>{
-
-                    secondFloor();
-
-                });
-
-            };
-
-            if(castleBarracksRus.armoryRoom.isVisited === true && castleBarracksRus.barracksInsideSecondFloor.isVisited === true){
-
-                if(screenCastleBtn[i].classList.contains('btn-3') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-    
-                };
-
-                screenCastleBtn[i].addEventListener('click', () =>{
-
-                    castleCourtyard();
-
-                });
-
-            };
+            });
 
         };
 
-    }, '650');
+        if(castleBarracksRus.armoryRoom.isVisited === true && castleBarracksRus.barracksInsideSecondFloor.isVisited === false){
+
+            button.innerText = castleBarracksRus.kitchenRoom.button.secondBtn;
+
+            button.addEventListener('click', () =>{
+
+                firstFloor();
+
+            });
+
+        };
+
+        if(castleBarracksRus.armoryRoom.isVisited === true && castleBarracksRus.barracksInsideSecondFloor.isVisited === true){
+
+            button.innerText = castleBarracksRus.kitchenRoom.button.thirdBtn;
+
+            button.addEventListener('click', () =>{
+
+                castleCourtyard();
+
+            });
+
+        };
+
+    };
     
 };
 
@@ -1272,44 +1547,44 @@ function armoryRoom(){
     castleBarracksRus.armoryRoom.isVisited = true;
 
     const arrayBtns = Object.values(castleBarracksRus.armoryRoom.armoryRoomBtn);
-    
+
     setTimeout(() =>{
 
-        removeHideOnBtns();
+        addElements(arrayBtns, arrayLength);
 
-        screenCastleTitle.innerHTML = castleBarracksRus.armoryRoom.armoryRoomName;
+        screenCastleTitle.innerText = castleBarracksRus.armoryRoom.title;
 
-        screenCastleDescr.innerHTML = castleBarracksRus.armoryRoom.armoryRoomDescr;
-
-        for(let i = 0; i < screenCastleBtn.length; i++){
-
-            screenCastleBtn[i].innerHTML = arrayBtns[i];
-
-            if(screenCastleBtn[i].classList.contains('btn-3') === true || screenCastleBtn[i].classList.contains('btn-4') === true){
-
-                screenCastleBtn[i].classList.add('hide-btn');
-
-            };
-                
-            screenCastleBtn[i].addEventListener('click', () =>{
-
-                if(screenCastleBtn[i].innerHTML === castleBarracksRus.armoryRoom.armoryRoomBtn.firstBtn){
+        screenCastleDescr.innerText = castleBarracksRus.armoryRoom.descr;
     
+        const screenCastleBtns = screenCastle.querySelectorAll('.button');
+    
+        addEventListener(screenCastleBtns);
+    
+    }, '650');
+
+    function addEventListener(screenCastleBtns){
+
+        for(let i = 0; i < screenCastleBtns.length; i++){
+
+            screenCastleBtns[i].addEventListener('click', () =>{
+    
+                if(screenCastleBtns[i].innerText === castleBarracksRus.armoryRoom.button.firstBtn){
+
                     armoryBlood();
-    
+
                 };
 
-                if(screenCastleBtn[i].innerHTML === castleBarracksRus.armoryRoom.armoryRoomBtn.secondBtn){
+                if(screenCastleBtns[i].innerText === castleBarracksRus.armoryRoom.button.secondBtn){
 
                     armoryTable();
-    
-                };
 
+                };
+    
             });
 
         };
 
-    }, '650');
+    };
     
 };
 
@@ -1319,158 +1594,147 @@ function armoryTable(){
 
     setTimeout(() =>{
 
-        removeHideOnBtns();
+        const button = document.createElement('button');
 
-        screenCastleTitle.innerHTML = castleBarracksRus.armoryTable.armoryTableName;
+        mainFooter.appendChild(button);
 
-        screenCastleDescr.innerHTML = castleBarracksRus.armoryTable.armoryTableDescr;
+        button.className = 'main__btn button';
 
-        for(let i = 0; i < screenCastleBtn.length; i++){
+        screenCastleTitle.innerText = castleBarracksRus.pieceOfPaper.title;
 
-            if(screenCastleBtn[i].classList.contains('btn-1') === false){
+        screenCastleDescr.innerText = castleBarracksRus.pieceOfPaper.descr;
+        
+        addTextAndEvent(button);
+    
+    }, '650');
 
-                screenCastleBtn[i].classList.add('hide-btn');
+    function addTextAndEvent(button){
 
-            };
-                
-            if(castleBarracksRus.armoryBlood.isVisited === false){
+        if(castleBarracksRus.officerDeadBody.isVisited === false && castleBarracksRus.legionnaireRooms.isVisited === false && castleBarracksRus.barracksInsideFirstFloor.isVisited === false){
 
-                screenCastleBtn[i].innerHTML = castleBarracksRus.armoryTable.armoryTableBtn.firstBtn;
+            button.innerText = castleBarracksRus.armoryTable.button.firstBtn;
 
-                screenCastleBtn[i].addEventListener('click', () =>{
+            button.addEventListener('click', () =>{
 
-                    armoryBlood();
+                armoryBlood();
 
-                });
-
-            };
-
-            if(castleBarracksRus.armoryBlood.isVisited === true && castleBarracksRus.kitchenRoom.isVisited === false){
-
-                screenCastleBtn[i].innerHTML = castleBarracksRus.armoryTable.armoryTableBtn.secondBtn;
-
-                screenCastleBtn[i].addEventListener('click', () =>{
-
-                    kitchenRoom();
-
-                });
-
-            };
-
-            if(castleBarracksRus.armoryBlood.isVisited === true && castleBarracksRus.kitchenRoom.isVisited === true && castleBarracksRus.barracksInsideSecondFloor.isVisited === false){
-
-                screenCastleBtn[i].innerHTML = castleBarracksRus.armoryTable.armoryTableBtn.thirdBtn;
-
-                screenCastleBtn[i].addEventListener('click', () =>{
-
-                    secondFloor();
-
-                });
-
-            };
-
-            if(castleBarracksRus.armoryBlood.isVisited === true && castleBarracksRus.kitchenRoom.isVisited === true && castleBarracksRus.barracksInsideSecondFloor.isVisited === true){
-
-                screenCastleBtn[i].innerHTML = castleBarracksRus.armoryTable.armoryTableBtn.fourthBtn;
-
-                screenCastleBtn[i].addEventListener('click', () =>{
-
-                    castleCourtyard();
-
-                });
-
-            };
+            });
 
         };
 
-    }, '650');
+        if(castleBarracksRus.officerDeadBody.isVisited === true && castleBarracksRus.legionnaireRooms.isVisited === false && castleBarracksRus.barracksInsideFirstFloor.isVisited === false){
+
+            button.innerText = castleBarracksRus.armoryTable.button.secondBtn;
+
+            button.addEventListener('click', () =>{
+
+                kitchenRoom();
+
+            });
+
+        };
+
+        if(castleBarracksRus.armoryBlood.isVisited === true && castleBarracksRus.kitchenRoom.isVisited === true && castleBarracksRus.barracksInsideSecondFloor.isVisited === false){
+
+            button.innerText = castleBarracksRus.armoryTable.button.thirdBtn;
+
+            button.addEventListener('click', () =>{
+
+                secondFloor();
+
+            });
+
+        };
+
+        if(castleBarracksRus.armoryBlood.isVisited === true && castleBarracksRus.kitchenRoom.isVisited === true && castleBarracksRus.barracksInsideSecondFloor.isVisited === true){
+
+            button.innerText = castleBarracksRus.armoryTable.button.fourthBtn;
+
+            button.addEventListener('click', () =>{
+
+                castleCourtyard();
+
+            });
+
+        };
+
+    };
+
 };
 
 function armoryBlood(){
 
     castleBarracksRus.armoryBlood.isVisited = true;
 
-    const arrayBtns = Object.values(castleBarracksRus.armoryBlood.armoryBloodBtn);
-
     setTimeout(() =>{
 
-        removeHideOnBtns();
+        const button = document.createElement('button');
 
-        screenCastleTitle.innerHTML = castleBarracksRus.armoryBlood.armoryBloodName;
+        mainFooter.appendChild(button);
 
-        screenCastleDescr.innerHTML = castleBarracksRus.armoryBlood.armoryBloodDescr;
+        button.className = 'main__btn button';
 
-        for(let i = 0; i < screenCastleBtn.length; i++){
+        screenCastleTitle.innerText = castleBarracksRus.pieceOfPaper.title;
 
-            screenCastleBtn[i].innerHTML = arrayBtns[i];
-                
-            if(castleBarracksRus.armoryTable.isVisited === false){
-
-                if(screenCastleBtn[i].classList.contains('btn-1') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
+        screenCastleDescr.innerText = castleBarracksRus.pieceOfPaper.descr;
+        
+        addTextAndEvent(button);
     
-                };
+    }, '650');
 
-                screenCastleBtn[i].addEventListener('click', () =>{
+    function addTextAndEvent(button){
 
-                    armoryTable();
+        if(castleBarracksRus.armoryTable.isVisited === false && castleBarracksRus.kitchenRoom.isVisited === false && castleBarracksRus.barracksInsideSecondFloor.isVisited === false){
 
-                });
+            button.innerText = castleBarracksRus.armoryBlood.button.firstBtn;
 
-            };
+            button.addEventListener('click', () =>{
 
-            if(castleBarracksRus.armoryTable.isVisited === true && castleBarracksRus.kitchenRoom.isVisited === false){
+                armoryTable();
 
-                if(screenCastleBtn[i].classList.contains('btn-2') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-    
-                };
-
-                screenCastleBtn[i].addEventListener('click', () =>{
-
-                    kitchenRoom();
-
-                });
-
-            };
-
-            if(castleBarracksRus.armoryTable.isVisited === true && castleBarracksRus.kitchenRoom.isVisited === true && castleBarracksRus.barracksInsideSecondFloor.isVisited === false){
-
-                if(screenCastleBtn[i].classList.contains('btn-3') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-    
-                };
-
-                screenCastleBtn[i].addEventListener('click', () =>{
-
-                    secondFloor();
-
-                });
-
-            };
-
-            if(castleBarracksRus.armoryTable.isVisited === true && castleBarracksRus.kitchenRoom.isVisited === true && castleBarracksRus.barracksInsideSecondFloor.isVisited === true){
-
-                if(screenCastleBtn[i].classList.contains('btn-4') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-    
-                };
-
-                screenCastleBtn[i].addEventListener('click', () =>{
-
-                    castleCourtyard();
-
-                });
-
-            };
+            });
 
         };
 
-    }, '650');
+        if(castleBarracksRus.armoryTable.isVisited === true && castleBarracksRus.kitchenRoom.isVisited === false && castleBarracksRus.barracksInsideSecondFloor.isVisited === false){
+
+            button.innerText = castleBarracksRus.armoryBlood.button.secondBtn;
+
+            button.addEventListener('click', () =>{
+
+                kitchenRoom();
+
+            });
+
+        };
+
+        if(castleBarracksRus.armoryTable.isVisited === true && castleBarracksRus.kitchenRoom.isVisited === true && castleBarracksRus.barracksInsideSecondFloor.isVisited === false){
+
+            button.innerText = castleBarracksRus.armoryBlood.button.thirdBtn;
+
+            button.addEventListener('click', () =>{
+
+                secondFloor();
+
+            });
+
+        };
+
+        if(castleBarracksRus.armoryTable.isVisited === true && castleBarracksRus.kitchenRoom.isVisited === true && castleBarracksRus.barracksInsideSecondFloor.isVisited === true){
+
+            button.innerText = castleBarracksRus.armoryBlood.button.fourthBtn;
+
+            button.addEventListener('click', () =>{
+
+                castleCourtyard();
+
+            });
+
+        };
+
+    };
+
+
 };
 
 /// CASTLE---COURTYARD---BARRACKS---END
@@ -1481,102 +1745,114 @@ function deadBody(){
 
     castleCourtyardRus.courtyardDeadBody.isVisited = true;
 
-    const arrayBtns = Object.values(castleCourtyardRus.courtyardDeadBody.deadBodyBtn);
+    const arrayBtns = Object.values(castleCourtyardRus.courtyardDeadBody.button);
 
     setTimeout(() =>{
 
-        removeHideOnBtns();
+        if(castleBarracksRus.isVisited === false && castleStablesRus.isVisited === false){
 
-        screenCastleTitle.innerHTML = castleCourtyardRus.courtyardDeadBody.deadBodyName;
+            addElements(arrayBtns, arrayLength);
 
-        screenCastleDescr.innerHTML = castleCourtyardRus.courtyardDeadBody.deadBodyDescr;
+            const screenCastleBtns = screenCastle.querySelectorAll('.button');
+    
+            addEventListener(screenCastleBtns);
 
-        for(let i = 0; i < screenCastleBtn.length; i++){
+            function addEventListener(screenCastleBtns){
 
-            screenCastleBtn[i].innerHTML = arrayBtns[i];
+                screenCastleBtns.forEach(elem =>{
 
-            if(castleBarracksRus.isVisited === false && castleStablesRus.isVisited === false){
+                    elem.addEventListener('click', () =>{
 
-                if(screenCastleBtn[i].classList.contains('btn-3') === true || screenCastleBtn[i].classList.contains('btn-4') === true){
+                        if(elem.innerText === arrayBtns[0]){
+    
+                            changeSlide();
+    
+                            castleBarracks();
+    
+                        };
+    
+                        if(elem.innerText === arrayBtns[1]){
+    
+                            changeSlide();
+    
+                            castleStables();
+    
+                        };
 
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
-                
-                screenCastleBtn[i].addEventListener('click', () =>{
-
-                    if(screenCastleBtn[i].innerHTML === castleCourtyardRus.courtyardDeadBody.deadBodyBtn.firstBtn){
-
-                        castleStables();
-
-                    };
-
-                    if(screenCastleBtn[i].innerHTML === castleCourtyardRus.courtyardDeadBody.deadBodyBtn.secondBtn){
-
-                        castleBarracks();
-
-                    };
-
-                });
-
-            };
-
-
-            if(castleBarracksRus.isVisited === true && castleStablesRus.isVisited === false){
-
-                if(screenCastleBtn[i].classList.contains('btn-1') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
-
-                screenCastleBtn[i].addEventListener('click', () =>{
-
-                    if(screenCastleBtn[i].innerHTML === castleCourtyardRus.courtyardDeadBody.deadBodyBtn.firstBtn){
-
-                        castleStables();
-
-                    };
+                    });
 
                 });
-
-            };
-
-            if(castleBarracksRus.isVisited === false && castleStablesRus.isVisited === true){
-
-                if(screenCastleBtn[i].classList.contains('btn-2') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
-
-                screenCastleBtn[i].addEventListener('click', () =>{
-
-                    if(screenCastleBtn[i].innerHTML === castleCourtyardRus.courtyardDeadBody.deadBodyBtn.secondBtn){
-
-                        castleBarracks();
-
-                    };
-
-                });
-
-            };
-
-
-            if(castleBarracksRus.isVisited === true && castleStablesRus.isVisited === true){
-
-                if(screenCastleBtn[i].classList.contains('btn-3') === false){
-
-                    screenCastleBtn[i].classList.add('hide-btn');
-
-                };
 
             };
 
         };
 
+        if(castleBarracksRus.isVisited === false && castleStablesRus.isVisited === true){
+
+            const button = document.createElement('button');
+
+            mainFooter.appendChild(button);
+
+            button.className = 'main__btn button';
+
+            button.innerText = arrayBtns[0];
+
+            button.addEventListener('click', () =>{
+
+                changeSlide();
+
+                castleBarracks();
+
+            });
+
+        };
+
+        if(castleBarracksRus.isVisited === true && castleStablesRus.isVisited === false){
+
+            const button = document.createElement('button');
+
+            mainFooter.appendChild(button);
+
+            button.className = 'main__btn button';
+
+            button.innerText = arrayBtns[1];
+
+            button.addEventListener('click', () =>{
+
+                changeSlide();
+
+                castleStables();
+
+            });
+
+        };
+
+        if(castleBarracksRus.isVisited === true && castleStablesRus.isVisited === true){
+
+            const button = document.createElement('button');
+
+            mainFooter.appendChild(button);
+
+            button.className = 'main__btn button';
+
+            button.innerText = arrayBtns[2];
+
+            button.addEventListener('click', () =>{
+
+                changeSlide();
+
+                console.log('Work in progress...');
+
+            });
+
+        };
+
+        screenCastleTitle.innerText = castleCourtyardRus.courtyardDeadBody.title;
+
+        screenCastleDescr.innerText = castleCourtyardRus.courtyardDeadBody.descr;
+            
     }, '650');
-    
+
 };
 
 /// CASTLE---COURTYARD---DEAD__BODY--END

@@ -149,13 +149,11 @@ function popup(value, stats, keyForImages){
 
 };
 
-function addElements(value){
+function addElements(value, needInfoBtn){
 
     const footerItem = document.createElement('div');
 
     const button = document.createElement('button');
-
-    const buttonInfo = document.createElement('button');
 
     const infoImg = document.createElement('img');
 
@@ -163,19 +161,25 @@ function addElements(value){
 
     button.className = 'footer__btn main__btn button';
 
-    buttonInfo.className = 'footer__btn main__btn-info';
-
     screenCreatingCharFooter.appendChild(footerItem);
 
     footerItem.appendChild(button);
 
-    footerItem.appendChild(buttonInfo);
-
-    buttonInfo.appendChild(infoImg);
-
-    infoImg.src = './img/other/info.png';
-
     button.innerText = value;
+
+    if(needInfoBtn === true){
+
+        const buttonInfo = document.createElement('button');
+
+        buttonInfo.className = 'footer__btn main__btn-info';
+
+        buttonInfo.appendChild(infoImg);
+
+        footerItem.appendChild(buttonInfo);
+
+        infoImg.src = './img/other/info.png';
+
+    };
 
 };
 
@@ -226,6 +230,8 @@ function startScreen(){
 };
 
 function chooseRace(){
+    
+    const needInfoBtn = true;
 
     const arrayRaces = Object.values(raceRus.races);
 
@@ -247,7 +253,7 @@ function chooseRace(){
 
             const name = arrayRaces[i].name;
 
-            addElements(name);
+            addElements(name, needInfoBtn);
 
         };
 
@@ -319,6 +325,8 @@ function chooseRace(){
 
 function chooseClass(choosedRace){
 
+    const needInfoBtn = true;
+
     const arrayClasses = Object.values(classesRus.classes[choosedRace]);
 
     const arrayClassKey = [];
@@ -339,7 +347,7 @@ function chooseClass(choosedRace){
 
             const name = arrayClasses[i].name;
 
-            addElements(name);
+            addElements(name, needInfoBtn);
     
         };
 
@@ -407,6 +415,8 @@ function chooseClass(choosedRace){
 
 function chooseFirstWeaponType(choosedRace, choosedClass){
 
+    const needInfoBtn = false;
+
     let booleanTrueCounter = 0;
 
     const arrayOfClassWeapon  = [];
@@ -437,35 +447,13 @@ function chooseFirstWeaponType(choosedRace, choosedClass){
 
             const weaponType = arrayWeaponsType[i];
 
-            addElements(weaponType);
+            addElements(weaponType, needInfoBtn);
 
         };
 
         screenCreatingCharFooter.querySelectorAll('.main__btn').forEach((elem, index) =>{
 
             const choosedWeaponType = arrayOfClassWeapon[index];
-
-            elem.closest('.footer__item').querySelector('.main__btn-info').addEventListener('click', () =>{
-
-                counterClickBtnInfo++;
-
-                if(counterClickBtnInfo === 1){
-
-                    elem.disabled = true;
-
-                    setTimeout(() =>{
-
-                        elem.disabled = false;
-
-                        counterClickBtnInfo = 0;
-
-                    }, '120');
-
-                };
-                
-                popup(weaponsRus[choosedRace][choosedWeaponType].mainText);
-
-            });
 
             elem.addEventListener('click', () =>{
 
@@ -484,6 +472,8 @@ function chooseFirstWeaponType(choosedRace, choosedClass){
 };
 
 function chooseFirstWeapon(choosedRace, choosedClass, choosedWeaponType){
+
+    const needInfoBtn = true;
 
     const arrayWeapons = [];
 
@@ -505,7 +495,7 @@ function chooseFirstWeapon(choosedRace, choosedClass, choosedWeaponType){
 
             const weaponFirst = arrayWeapons[i];
 
-            addElements(weaponFirst);
+            addElements(weaponFirst, needInfoBtn);
 
         };
 
@@ -530,8 +520,12 @@ function chooseFirstWeapon(choosedRace, choosedClass, choosedWeaponType){
                     }, '120');
 
                 };
+
+                const stats = weapons[choosedRace][choosedWeaponType][weaponFirstKey];
+
+                const keyForImages = 'weapons';
                 
-                popup(weaponsRus[choosedRace][choosedWeaponType].weapons[weaponFirstKey]);
+                popup(weaponsRus[choosedRace][choosedWeaponType].weapons[weaponFirstKey], stats, keyForImages);
 
             });
 
@@ -556,6 +550,8 @@ function chooseFirstWeapon(choosedRace, choosedClass, choosedWeaponType){
 };
 
 function chooseSecondWeaponType(choosedRace, choosedClass, choosedWeaponType){
+
+    const needInfoBtn = false;
 
     let booleanTrueCounter = 0;
 
@@ -587,53 +583,33 @@ function chooseSecondWeaponType(choosedRace, choosedClass, choosedWeaponType){
 
             const weaponType = arrayWeaponsType[i];
 
-            addElements(weaponType);
+            addElements(weaponType, needInfoBtn);
 
-            screenCreatingCharFooter.querySelectorAll('.main__btn').forEach((elem, index) =>{
-
-                const choosedWeaponType = arrayOfClassWeapon[index];
-
-                elem.closest('.footer__item').querySelector('.main__btn-info').addEventListener('click', () =>{
-
-                    counterClickBtnInfo++;
-
-                    if(counterClickBtnInfo === 1){
-    
-                        elem.disabled = true;
-    
-                        setTimeout(() =>{
-    
-                            elem.disabled = false;
-    
-                            counterClickBtnInfo = 0;
-    
-                        }, '120');
-    
-                    };
-                
-                    popup(weaponsRus[choosedRace][choosedWeaponType].mainText);
-    
-                });
-
-                elem.addEventListener('click', () =>{
-    
-                    changeSlide();
-
-                    counterClickBtnInfo = 0;
-        
-                    chooseSecondWeapon(choosedRace, choosedWeaponType);
-    
-                });
-    
-            });
-    
         };
+
+        screenCreatingCharFooter.querySelectorAll('.main__btn').forEach((elem, index) =>{
+
+            const choosedWeaponType = arrayOfClassWeapon[index];
+
+            elem.addEventListener('click', () =>{
+
+                changeSlide();
+
+                counterClickBtnInfo = 0;
+    
+                chooseSecondWeapon(choosedRace, choosedWeaponType);
+
+            });
+
+        });
 
     }, '650');
 
 };
 
 function chooseSecondWeapon(choosedRace, choosedWeaponType){
+
+    const needInfoBtn = true;
 
     const arrayWeapons = [];
 
@@ -655,7 +631,7 @@ function chooseSecondWeapon(choosedRace, choosedWeaponType){
 
             const weaponSecond = arrayWeapons[i];
 
-            addElements(weaponSecond);
+            addElements(weaponSecond, needInfoBtn);
 
         };
 
@@ -680,8 +656,12 @@ function chooseSecondWeapon(choosedRace, choosedWeaponType){
                     }, '120');
 
                 };
+
+                const stats = weapons[choosedRace][choosedWeaponType][weaponSecondKey];
+
+                const keyForImages = 'weapons';
                 
-                popup(weaponsRus[choosedRace][choosedWeaponType].weapons[weaponSecondKey]);
+                popup(weaponsRus[choosedRace][choosedWeaponType].weapons[weaponSecondKey], stats, keyForImages);
 
             });
 
