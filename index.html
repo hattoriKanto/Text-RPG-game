@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P:regular&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/style.min.css">
     <title>Document</title>
@@ -127,18 +128,36 @@
             </div>
         </section>
         <section id="castle-screen" class="screen__castle screen castle">
-            <div class="container">
-                <div class="castle__main main">
-                    <div class="main__header">
-                        <h1 class="main__title"></h1>
-                        <div class="main__desc"></div>
+            <img class="castle__bg bg" src="./img/background/castle.png" alt="">
+            <div class="castle__wrapper">
+                <div class="container">
+                    <div class="castle__main main">
+                        <div class="main__header">
+                            <h1 class="main__title"></h1>
+                            <div class="main__desc"></div>
+                        </div>
+                        <div class="main__footer"></div>
                     </div>
-                    <div class="main__footer"></div>
                 </div>
             </div>
         </section>
-        <section id="battle-screen" class="screen__battle screen battle hide-screen"></section>
+        <section id="battle-screen" class="screen__battle screen battle hide-screen">
+            <img class="battle__bg bg" src="./img/background/castle.png" alt="">
+            <div class="battle__wrapper wrapper">
+                <div class="container">
+                    <div class="battle__main main">
+                        <img class="main__bg" src="./img/background/castle-battle-1.png" alt="">
+                        <div class="main__content content">
+                            <div id="enemies" class="content__column enemies"></div>
+                            <div id="start-battle" class="content__column start-battle"></div>
+                            <div id="player" class="content__column player"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script type="module" src="./js/script.js"></script>
 </body>
 </html>

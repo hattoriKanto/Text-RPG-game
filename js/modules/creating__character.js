@@ -689,8 +689,6 @@ function chooseSecondWeapon(choosedRace, choosedWeaponType){
 
 function charOverview(){
 
-    console.log(player);
-
     const arrayPlayerText = Object.values(player.mainText);
 
     const arrayText = Object.values(charOverviewRus.overviewText);

@@ -1,3 +1,6 @@
+
+/// IMPORTS---START
+
 import castleEntranceRus from '../text/castle/russian/castleEntranceRus.js';
 
 import castleCourtyardRus from '../text/castle/russian/castleCourtyardRus.js';
@@ -6,6 +9,16 @@ import castleStablesRus from '../text/castle/russian/castleStablesRus.js';
 
 import castleBarracksRus from '../text/castle/russian/castleBarracksRus.js';
 
+import castleEncounterRus from '../text/castle/russian/casteEncounterRus.js';
+
+import enemiesRus from '../text/enemies/russian/enemiesRus.js';
+
+import battleScreenPreparation from '../battle/battleScreen.js';
+
+/// IMPORTS---END
+
+/// GLOBAL---VARIABLES---START
+
 const screenCastle = document.querySelector('#castle-screen');
 
 const screenCastleDescr = screenCastle.querySelector('.main__desc');
@@ -13,6 +26,8 @@ const screenCastleDescr = screenCastle.querySelector('.main__desc');
 const screenCastleTitle = screenCastle.querySelector('.main__title');
 
 const mainFooter = screenCastle.querySelector('.main__footer');
+
+/// GLOBAL---VARIABLES---END
 
 function addElements(arrayBtns, arrayLength){
 
@@ -55,8 +70,6 @@ function changeSlide(){
     screenCastle.querySelector('.main').classList.toggle('rotation');
 
 };
-
-castle();
 
 function castle(){
 
@@ -394,7 +407,7 @@ function stablesWalls(){
 
         };
 
-        if(castleStablesRus.stablesFloor.isVisited === false && castleStablesRus.stablesWindow.isVisited === true){
+        if(castleStablesRus.stablesFloor.isVisited === true && castleStablesRus.stablesWindow.isVisited === true && castleStablesRus.stablesInside.isVisited === false){
 
             addSingleBtn();
 
@@ -404,7 +417,7 @@ function stablesWalls(){
 
                 changeSlide();
 
-                stablesFloor();
+                stablesInside();
 
             });
 
@@ -514,7 +527,7 @@ function stablesFloor(){
 
         };
 
-        if(castleStablesRus.stablesWalls.isVisited === true && castleStablesRus.stablesWindow.isVisited === true){
+        if(castleStablesRus.stablesWalls.isVisited === true && castleStablesRus.stablesWindow.isVisited === true && castleStablesRus.stablesInside.isVisited === false){
 
             addSingleBtn();
 
@@ -802,7 +815,7 @@ function stablesLeft(){
 
     setTimeout(() =>{
 
-        if(castleStablesRus.stablesPile.isVisited === false && castleStablesRus.stablesRight.isVisited === false && castleStablesRus.stablesDoor.isVisited === false){
+        if(castleStablesRus.stablesPile.isVisited === false && castleStablesRus.stablesRight.isVisited === false){
 
             const arrayLength = arrayBtns.length - 2;
 
@@ -842,7 +855,7 @@ function stablesLeft(){
 
         };
 
-        if(castleStablesRus.stablesPile.isVisited === false && castleStablesRus.stablesRight.isVisited === true && castleStablesRus.stablesDoor.isVisited === false){
+        if(castleStablesRus.stablesPile.isVisited === false && castleStablesRus.stablesRight.isVisited === true){
 
             addSingleBtn();
 
@@ -858,7 +871,7 @@ function stablesLeft(){
 
         };
 
-        if(castleStablesRus.stablesPile.isVisited === true && castleStablesRus.stablesRight.isVisited === false && castleStablesRus.stablesDoor.isVisited === false){
+        if(castleStablesRus.stablesPile.isVisited === true && castleStablesRus.stablesRight.isVisited === false){
 
             addSingleBtn();
 
@@ -922,7 +935,7 @@ function stablesPile(){
 
     setTimeout(() =>{
 
-        if(castleStablesRus.stablesRight.isVisited === false && castleStablesRus.stablesLeft.isVisited === false && castleStablesRus.stablesDoor.isVisited === false){
+        if(castleStablesRus.stablesRight.isVisited === false && castleStablesRus.stablesLeft.isVisited === false){
             
             const arrayLength = arrayBtns.length - 2;
 
@@ -962,7 +975,7 @@ function stablesPile(){
 
         };
 
-        if(castleStablesRus.stablesRight.isVisited === false && castleStablesRus.stablesLeft.isVisited === true && castleStablesRus.stablesDoor.isVisited === false){
+        if(castleStablesRus.stablesRight.isVisited === true && castleStablesRus.stablesLeft.isVisited === false){
 
             addSingleBtn();
 
@@ -972,13 +985,13 @@ function stablesPile(){
 
                 changeSlide();
 
-                stablesRight();
+                stablesLeft();
 
             });
 
         };
 
-        if(castleStablesRus.stablesRight.isVisited === true && castleStablesRus.stablesLeft.isVisited === false && castleStablesRus.stablesDoor.isVisited === false){
+        if(castleStablesRus.stablesRight.isVisited === false && castleStablesRus.stablesLeft.isVisited === true){
 
             addSingleBtn();
 
@@ -988,7 +1001,7 @@ function stablesPile(){
 
                 changeSlide();
 
-                stablesLeft();
+                stablesRight();
 
             });
 
@@ -1090,11 +1103,15 @@ function barracksInside(){
     
                 if(screenCastleBtns[i].innerText === castleBarracksRus.barracksInside.button.firstBtn){
 
+                    changeSlide();
+
                     firstFloor();
 
                 };
 
                 if(screenCastleBtns[i].innerText === castleBarracksRus.barracksInside.button.secondBtn){
+
+                    changeSlide();
 
                     secondFloor();
 
@@ -1857,4 +1874,78 @@ function deadBody(){
 
 /// CASTLE---COURTYARD---DEAD__BODY--END
 
-export default castle;
+function encounter(){
+
+    const enemiesCount = 3;
+
+    const arrayEnemiesValue = Object.values(enemiesRus.lowTier);
+
+    const arrayEnemiesKey = [];
+
+    const arrayRandomEnemiesValue = [];
+
+    const arrayRandomEnemiesKey = [];
+
+    randomEnemies();
+
+    function randomEnemies(){
+
+        for(let key in enemiesRus.lowTier){
+
+            arrayEnemiesKey.push(key);
+
+        };
+
+        for(let i = 0; i < enemiesCount; i++){
+
+            const random = Math.floor(Math.random() * arrayEnemiesValue.length);
+
+            arrayRandomEnemiesValue.push(arrayEnemiesValue[random]);
+
+            arrayRandomEnemiesKey.push(arrayEnemiesKey[random]);
+
+        };
+
+    };
+
+    setTimeout(() =>{
+
+        addSingleBtn();
+
+        addTextToElements();
+
+        function addTextToElements(){
+
+            screenCastleTitle.innerText = castleEncounterRus.title;
+
+            for(let i = 0; i < arrayRandomEnemiesValue.length; i++){
+    
+                screenCastleDescr.innerText += castleEncounterRus.descr + ' ' + arrayRandomEnemiesValue[i].name;
+    
+            };
+
+            screenCastle.querySelector('.button').innerText = castleEncounterRus.button.firstBtn;
+
+        };
+
+        addEventListener(screenCastle.querySelector('.button'));
+    
+    }, '650');
+
+    function addEventListener(screenCastleBtn){
+
+        screenCastleBtn.addEventListener('click', () =>{
+
+            screenCastle.classList.add('hide-screen');
+
+            console.log(arrayRandomEnemiesValue)
+
+            battleScreenPreparation(arrayRandomEnemiesValue, arrayRandomEnemiesKey);
+
+        });
+
+    };
+
+};
+
+export default encounter;

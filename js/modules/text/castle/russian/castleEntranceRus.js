@@ -11,6 +11,6 @@ const castleEntranceRus = {
 
         }
 
-}
+};
 
 export default castleEntranceRus;
