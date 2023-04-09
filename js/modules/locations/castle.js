@@ -29,6 +29,8 @@ const mainFooter = screenCastle.querySelector('.main__footer');
 
 /// GLOBAL---VARIABLES---END
 
+/// REPEATABLE---FUNCTIONS---START
+
 function addElements(arrayBtns, arrayLength){
 
     for(let i = 0; i < arrayLength; i++){
@@ -70,6 +72,8 @@ function changeSlide(){
     screenCastle.querySelector('.main').classList.toggle('rotation');
 
 };
+
+/// REPEATABLE---FUNCTIONS---END
 
 function castle(){
 
@@ -1875,6 +1879,8 @@ function deadBody(){
 /// CASTLE---COURTYARD---DEAD__BODY--END
 
 function encounter(){
+
+    screenCastle.classList.remove('hide-screen')
 
     const enemiesCount = 3;
 

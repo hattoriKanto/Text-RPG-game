@@ -59,21 +59,23 @@
                 </div>
             </div>
         </div>
-        <section id="char-creating-screen" class="screen__char-creating screen char-creating hide-screen">
-            <div class="container">
-                <div class="char-creating__main main">
-                    <div class="main__header">
-                        <h1 class="main__title"></h1>
-                        <div class="main__desc"></div>
-                    </div>
-                    <div class="main__footer">
+        <section id="char-creating-screen" class="screen__char-creating screen char-creating">
+            <div class="char-creating__wrapper wrapper">
+                <div class="char-creating__container container">
+                    <div class="char-creating__main screen__main main">
+                        <div class="main__header">
+                            <h1 class="main__title"></h1>
+                            <div class="main__desc"></div>
+                        </div>
+                        <div class="main__footer">
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
         <section id="character-overview-screen" class="screen__character-overview screen character-overview hide-screen">
             <div class="container">
-                <div class="character-overview__main main">
+                <div class="character-overview__main screen__main main">
                     <div class="main__header">   
                         <div class="main__title"></div>             
                         <ul class="main__list list">
@@ -95,43 +97,45 @@
             </div>
         </section>
         <section id="location-screen" class="screen__location screen location hide-screen">
-            <div class="container">
-                <div class="location__main">
-                    <div class="location__header">
-                        <h2 class="location__title">Choose your location which you want to travel: </h2>
-                    </div>
-                    <div class="location__footer footer">
-                        <div class="footer__choose choose">
-                            <div class="choose__item item">
-                                <div class="item__img-wrapper">
-                                    <img class="item__img" src="./img/location/castle.jpg" alt="">
+            <div class="location__wrapper wrapper">
+                <div class="location__container container">
+                    <div class="location__main main">
+                        <div class="location__header">
+                            <h2 class="location__title">Choose your location which you want to travel: </h2>
+                        </div>
+                        <div class="location__footer footer">
+                            <div class="footer__choose choose">
+                                <div class="choose__item item">
+                                    <div class="item__img-wrapper">
+                                        <img class="item__img" src="./img/location/castle.jpg" alt="">
+                                    </div>
+                                    <h2 class="item__title"></h2>
                                 </div>
-                                <h2 class="item__title"></h2>
-                            </div>
-                            <div class="choose__item item bg-black">
-                                <div class="item__img-wrapper hide">
-                                    <img class="item__img" src="./img/location/village.jpg" alt="">
+                                <div class="choose__item item bg-black">
+                                    <div class="item__img-wrapper hide">
+                                        <img class="item__img" src="./img/location/village.jpg" alt="">
+                                    </div>
+                                    <h2 class="item__title hide"></h2>
+                                    <img class="item__lock" src="./img/other/lock.png" alt="">
                                 </div>
-                                <h2 class="item__title hide"></h2>
-                                <img class="item__lock" src="./img/other/lock.png" alt="">
-                            </div>
-                            <div class="choose__item item bg-black">
-                                <div class="item__img-wrapper hide">
-                                    <img class="item__img" src="./img/location/rift.jpg" alt="">
+                                <div class="choose__item item bg-black">
+                                    <div class="item__img-wrapper hide">
+                                        <img class="item__img" src="./img/location/rift.jpg" alt="">
+                                    </div>
+                                    <h2 class="item__title hide"></h2>
+                                    <img class="item__lock" src="./img/other/lock.png" alt="">
                                 </div>
-                                <h2 class="item__title hide"></h2>
-                                <img class="item__lock" src="./img/other/lock.png" alt="">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section id="castle-screen" class="screen__castle screen castle">
+        <section id="castle-screen" class="screen__castle screen castle hide-screen">
             <img class="castle__bg bg" src="./img/background/castle.png" alt="">
-            <div class="castle__wrapper">
-                <div class="container">
-                    <div class="castle__main main">
+            <div class="castle__wrapper wrapper">
+                <div class="castle__container container">
+                    <div class="castle__main screen__main main">
                         <div class="main__header">
                             <h1 class="main__title"></h1>
                             <div class="main__desc"></div>
@@ -144,13 +148,13 @@
         <section id="battle-screen" class="screen__battle screen battle hide-screen">
             <img class="battle__bg bg" src="./img/background/castle.png" alt="">
             <div class="battle__wrapper wrapper">
-                <div class="container">
-                    <div class="battle__main main">
-                        <img class="main__bg" src="./img/background/castle-battle-1.png" alt="">
+                <div class="battle__container container">
+                    <div class="battle__main screen__main main">
+                        <div class="main__bg"></div>
                         <div class="main__content content">
-                            <div id="enemies" class="content__column enemies"></div>
-                            <div id="start-battle" class="content__column start-battle"></div>
-                            <div id="player" class="content__column player"></div>
+                            <div id="enemies" class="content__column column enemies"></div>
+                            <div id="start-battle" class="content__column content__start-battle column start-battle"></div>
+                            <div id="player" class="content__column column player"></div>
                         </div>
                     </div>
                 </div>

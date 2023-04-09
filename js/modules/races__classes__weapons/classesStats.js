@@ -5,37 +5,49 @@ const classesStats = {
 
         legionnaire: {
 
-            healthPoints: 5,
+            stats: {
 
-            manaPoints: 0,
+                healthPoints: 5,
 
-            armourPoints: 5,
+                manaPoints: 0,
+    
+                armourPoints: 5
 
-            attackPoints: 0
+            },
+
+            canUseMagic: false
 
         },
 
         scout: {
 
-            healthPoints: 3,
+            stats: {
 
-            manaPoints: 0,
+                healthPoints: 3,
 
-            armourPoints: 2,
+                manaPoints: 0,
+    
+                armourPoints: 2
 
-            attackPoints: 5
+            },
+
+            canUseMagic: false
 
         },
 
         agent: {
 
-            healthPoints: 3,
+            stats: {
 
-            manaPoints: 4,
+                healthPoints: 3,
 
-            armourPoints: 0,
+                manaPoints: 4,
+    
+                armourPoints: 0
 
-            attackPoints: 3
+            },
+
+            canUseMagic: true,
 
         }
 
@@ -45,37 +57,49 @@ const classesStats = {
 
         protector: {
 
-            healthPoints: 4,
+            stats: {  
 
-            manaPoints: 0,
+                healthPoints: 4,
 
-            armourPoints: 4,
+                manaPoints: 0,
+    
+                armourPoints: 4
 
-            attackPoints: 2
+            },
+
+            canUseMagic: false
 
         },
 
         berserk: {
 
-            healthPoints: 2,
+            stats: {
 
-            manaPoints: 0,
+                healthPoints: 2,
 
-            armourPoints: 2,
+                manaPoints: 0,
 
-            attackPoints: 6
+                armourPoints: 2
+
+            },
+
+            canUseMagic: false
 
         },
 
         guardsman: {
 
-            healthPoints: 4,
+            stats: {
 
-            manaPoints: 0,
+                healthPoints: 4,
 
-            armourPoints: 6,
+                manaPoints: 0,
+    
+                armourPoints: 6
 
-            attackPoints: 0
+            },
+
+            canUseMagic: false
 
         }
     },
@@ -84,37 +108,49 @@ const classesStats = {
 
         warrior: {
 
-            healthPoints: 2,
+            stats: {
 
-            manaPoints: 5,
+                healthPoints: 2,
 
-            armourPoints: 3,
+                manaPoints: 5,
 
-            attackPoints: 0
+                armourPoints: 3
+
+            },
+
+            canUseMagic: true
 
         },
 
         mage: {
 
-            healthPoints: 0,
+            stats: {
 
-            manaPoints: 7,
+                healthPoints: 0,
 
-            armourPoints: 0,
+                manaPoints: 7,
+    
+                armourPoints: 0
 
-            attackPoints: 3 
+            },
+
+            canUseMagic: true
 
         },
 
         infiltrator: {
 
-            healthPoints: 0,
+            stats: {
 
-            manaPoints: 5,
+                healthPoints: 0,
 
-            armourPoints: 0,
+                manaPoints: 5,
+    
+                armourPoints: 0
 
-            attackPoints: 5
+            },
+
+            canUseMagic: true
 
         }
         

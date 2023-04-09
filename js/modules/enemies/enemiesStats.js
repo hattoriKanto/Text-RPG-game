@@ -9,9 +9,7 @@ const enemiesStats = {
 
             manaPoints: 0,
 
-            armourPoints: 0,
-
-            attackPoints: 4
+            armourPoints: 0
 
         },
 
@@ -21,9 +19,7 @@ const enemiesStats = {
 
             manaPoints: 0,
 
-            armourPoints: 2,
-
-            attackPoints: 0
+            armourPoints: 0
 
         },
 
@@ -33,9 +29,7 @@ const enemiesStats = {
 
             manaPoints: 2,
 
-            armourPoints: 0,
-
-            attackPoints: 2
+            armourPoints: 0
 
         }
 

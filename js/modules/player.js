@@ -1,6 +1,18 @@
 
 const player = {
 
+    playerKey: {
+
+        raceKey: '',
+
+        classKey: '',
+
+        firstWeaponType: '',
+
+        secondWeaponType: ''
+
+    },
+
     mainText: {
 
         race: '',
@@ -13,7 +25,7 @@ const player = {
 
     },
 
-    raceStats: {
+    playerStats: {
 
         healthPoints: 0,
 
@@ -23,25 +35,15 @@ const player = {
 
     },
 
-    classStats: {
-
-        healthPoints: 0,
-
-        manaPoints: 0,
-        
-        armourPoints: 0,
-
-        attackPoints: 0
-
-    },
-
     weaponStats: {
 
         firstWeapon: {},
 
         secondWeapon: {}
 
-    }
+    },
+
+    canUseMagic: false
 
 };
 

@@ -23,6 +23,8 @@ import charOverviewRus from "./text/overviewChar/russian/overviewCharRus.js";
 
 import chooseLocation from "./locations/choose__location.js";
 
+import encounter from "./locations/castle.js";
+
 const charOverviewScreen = document.querySelector('#character-overview-screen');
 
 const screenCreatingChar = document.querySelector('#char-creating-screen');
@@ -293,15 +295,17 @@ function chooseRace(){
 
                 player.mainText.race = elem.innerText;
 
+                player.playerKey.raceKey = arrayRaceKey[index];
+
                 for(let races in racesStats){
 
                     if(races === choosedRace){
 
-                        for(let stats in player.raceStats){
+                        for(let stats in player.playerStats){
 
                             if(stats != 'armourPoints'){
 
-                                player.raceStats[stats] = racesStats[races][stats];
+                                player.playerStats[stats] = racesStats[races][stats];
 
                             };
 
@@ -387,13 +391,17 @@ function chooseClass(choosedRace){
 
                 player.mainText.class = elem.innerText;
 
+                player.playerKey.classKey = choosedClass;
+
+                player.canUseMagic = classesStats[choosedRace][choosedClass].canUseMagic;
+
                 for(let classes in classesStats[choosedRace]){
 
                     if(classes === choosedClass){
 
-                        for(let stats in player.classStats){
+                        for(let stats in player.playerStats){
 
-                            player.classStats[stats] = classesStats[choosedRace][classes][stats];
+                            player.playerStats[stats] = player.playerStats[stats] + classesStats[choosedRace][classes].stats[stats];
 
                         };
 
@@ -460,6 +468,8 @@ function chooseFirstWeaponType(choosedRace, choosedClass){
                 changeSlide();
 
                 counterClickBtnInfo = 0;
+
+                player.playerKey.firstWeaponType = choosedWeaponType;
 
                 chooseFirstWeapon(choosedRace, choosedClass, choosedWeaponType);
 
@@ -596,6 +606,8 @@ function chooseSecondWeaponType(choosedRace, choosedClass, choosedWeaponType){
                 changeSlide();
 
                 counterClickBtnInfo = 0;
+
+                player.playerKey.secondWeaponType = choosedWeaponType;
     
                 chooseSecondWeapon(choosedRace, choosedWeaponType);
 
@@ -689,6 +701,8 @@ function chooseSecondWeapon(choosedRace, choosedWeaponType){
 
 function charOverview(){
 
+    console.log(player)
+
     const arrayPlayerText = Object.values(player.mainText);
 
     const arrayText = Object.values(charOverviewRus.overviewText);
@@ -735,7 +749,7 @@ function charOverview(){
 
                 charOverviewScreen.classList.add('hide-screen');
 
-                chooseLocation();
+                encounter();
 
             };
 

@@ -1,7 +1,11 @@
 
-import castleLocation from './castle.js';
+/// IMPORTS---START
+
+import castle from './castle.js';
 
 import showInventory from '../inventory.js';
+
+/// IMPORTS---END
 
 const locationName = {
 
@@ -37,7 +41,7 @@ function chooseLocation(){
 
             screenLocation.classList.add('hide-screen');
 
-            castleLocation();
+            castle();
 
         });
 
