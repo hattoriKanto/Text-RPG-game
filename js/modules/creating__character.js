@@ -5,19 +5,9 @@ import weapons from "../weapons.js";
 
 import images from "./images.js";
 
-import racesStats from "./races__classes__weapons/racesStats.js";
+import racesStats from "./racesClassesWeapons/racesStats.js";
 
-import classesStats from "./races__classes__weapons/classesStats.js";
-
-import weaponsClasses from "./races__classes__weapons/classesWeapons.js";
-
-import startScreenRus from "./text/creatingChar/russian/startScreenRus.js";
-
-import raceRus from "./text/creatingChar/russian/racesRus.js";
-
-import classesRus from "./text/creatingChar/russian/classesRus.js";
-
-import weaponsRus from "./text/creatingChar/russian/weaponsRus.js";
+import classesStats from "./racesClassesWeapons/classesStats.js";
 
 import charOverviewRus from "./text/overviewChar/russian/overviewCharRus.js";
 
@@ -37,7 +27,9 @@ const screenCreatingCharFooter = screenCreatingChar.querySelector('.main__footer
 
 let counterClickBtnInfo = 0;
 
-function popup(value, stats, keyForImages){
+function popup(value, stats, statsKeys){
+
+    console.log(statsKeys)
 
     const arrayStats = Object.values(stats);
 
@@ -45,9 +37,9 @@ function popup(value, stats, keyForImages){
 
     popup.classList.toggle('show-popup');
 
-    addElementsToPopup(arrayStats, keyForImages);
+    addElementsToPopup(arrayStats, statsKeys);
 
-    function addElementsToPopup(arrayStats, keyForImages){
+    function addElementsToPopup(arrayStats, statsKeys){
 
         const overlay = document.createElement('div');
 
@@ -109,7 +101,7 @@ function popup(value, stats, keyForImages){
 
         addTextPopup(value, titlePopup, descrPopup);
 
-        addStatsPopup(arrayStats, contentStats, keyForImages);
+        addStatsPopup(arrayStats, contentStats, statsKeys);
 
     };
 
@@ -121,9 +113,7 @@ function popup(value, stats, keyForImages){
 
     };
 
-    function addStatsPopup(arrayStats, contentStats, keyForImages){
-
-        const arrayImages = Object.values(images.stats[keyForImages]);
+    function addStatsPopup(arrayStats, contentStats, statsKeys){
 
         for(let i = 0; i < arrayStats.length; i++){
 
@@ -135,7 +125,7 @@ function popup(value, stats, keyForImages){
 
             statsItem.className = 'stats__item';
 
-            statsImg.src = arrayImages[i];
+            statsImg.src = images.stats[statsKeys[i]];
 
             contentStats.appendChild(statsItem);
 
@@ -283,9 +273,9 @@ function chooseRace(){
 
                 const stats = racesStats[choosedRace];
 
-                const keyForImages = 'races';
+                const statsKeys = Object.keys(racesStats[choosedRace]);
                 
-                popup(raceRus.races[choosedRace], stats, keyForImages); 
+                popup(raceRus.races[choosedRace], stats, statsKeys); 
 
             });
 
@@ -296,6 +286,8 @@ function chooseRace(){
                 player.mainText.race = elem.innerText;
 
                 player.playerKey.raceKey = arrayRaceKey[index];
+
+                player.playerImg = images.player[choosedRace];
 
                 for(let races in racesStats){
 
@@ -377,11 +369,11 @@ function chooseClass(choosedRace){
 
                 };
 
-                const stats = classesStats[choosedRace][choosedClass];
+                const stats = classesStats[choosedRace][choosedClass].stats;
 
-                const keyForImages = 'classes';
+                const statsKeys = Object.keys(classesStats[choosedRace][choosedClass].stats);
                 
-                popup(classesRus.classes[choosedRace][choosedClass], stats, keyForImages);
+                popup(classesRus.classes[choosedRace][choosedClass], stats, statsKeys);
 
             });
 
@@ -533,9 +525,9 @@ function chooseFirstWeapon(choosedRace, choosedClass, choosedWeaponType){
 
                 const stats = weapons[choosedRace][choosedWeaponType][weaponFirstKey];
 
-                const keyForImages = 'weapons';
+                const statsKeys = Object.keys(weapons[choosedRace][choosedWeaponType][weaponFirstKey]);
                 
-                popup(weaponsRus[choosedRace][choosedWeaponType].weapons[weaponFirstKey], stats, keyForImages);
+                popup(weaponsRus[choosedRace][choosedWeaponType].weapons[weaponFirstKey], stats, statsKeys);
 
             });
 
@@ -671,9 +663,9 @@ function chooseSecondWeapon(choosedRace, choosedWeaponType){
 
                 const stats = weapons[choosedRace][choosedWeaponType][weaponSecondKey];
 
-                const keyForImages = 'weapons';
+                const statsKey = Object.keys(weapons[choosedRace][choosedWeaponType][weaponSecondKey]);
                 
-                popup(weaponsRus[choosedRace][choosedWeaponType].weapons[weaponSecondKey], stats, keyForImages);
+                popup(weaponsRus[choosedRace][choosedWeaponType].weapons[weaponSecondKey], stats, statsKey);
 
             });
 

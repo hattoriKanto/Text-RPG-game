@@ -1,9 +1,15 @@
 
+/// IMPORTS---START ///
+
 import player from "../player.js";
 
 import images from "../images.js";
 
 import enemiesStats from "../enemies/enemiesStats.js";
+
+/// IMPORTS---END ///
+
+/// GLOBAL---VARIABLES---START ///
 
 const screenBattle = document.querySelector('#battle-screen');
 
@@ -11,13 +17,19 @@ let arrayEnemiesKey = [];
 
 let arrayEnemiesValue = [];
 
-function uniqueImagesEnemies(imgEnemies, index){
-    
-    imgEnemies.src = images.enemies.lowTier[arrayEnemiesKey[index]];
-    
-    imgEnemies.classList.add('img-top');
+/// GLOBAL---VARIABLES---END ///
 
+/// REPEATABLE---FUNCTIONS---START ///
+
+function uniqueImg(itemImg, index){
+    
+    itemImg.src = images.enemies.lowTier[arrayEnemiesKey[index]];
+    
 };
+
+/// REPEATABLE---FUNCTIONS---END ///
+
+/// FUNCTIONS---START ///
 
 function battleScreenPreparation(arrayRandomEnemiesValue, arrayRandomEnemiesKey){
 
@@ -31,113 +43,159 @@ function battleScreenPreparation(arrayRandomEnemiesValue, arrayRandomEnemiesKey)
 
     screenBattle.classList.remove('hide-screen');
 
-    addElements();
+    createHTMLElements();
 
 };
 
-function addElements(){
+function createHTMLElements(){
 
-    addEnemiesElements();
+    mainElements();
 
-    addStartBattleElements();
+    function mainElements(){
 
-    addPlayerElements();
+        const battleBg = document.createElement('img');
 
-    function addEnemiesElements(){
-
-        const columnEnemies = screenBattle.querySelector('#enemies');
-
-        for(let i = 0; i < 3; i++){
-
-            const itemEnemies = document.createElement('div');
-
-            const itemBgEnemies = document.createElement('div');
-
-            const wrapperImgEnemies = document.createElement('div');
-
-            const imgEnemies = document.createElement('img');
+        const container = document.createElement('div');
     
-            itemEnemies.className = 'column__item enemies__item item';
-
-            itemBgEnemies.className = 'item__bg bg-animation';
-
-            wrapperImgEnemies.className = 'item__wrapper-img';
-
-            imgEnemies.className = 'item__img enemies__img';
-
-            uniqueImagesEnemies(imgEnemies, i);
-            
-            columnEnemies.appendChild(itemEnemies);
-
-            itemEnemies.appendChild(itemBgEnemies);
+        const battleWrapper = document.createElement('div');
     
-            itemEnemies.appendChild(wrapperImgEnemies);
-
-            wrapperImgEnemies.appendChild(imgEnemies);
+        const battleMain = document.createElement('div');
+        
+        const mainWrapper = document.createElement('div');
     
+        const mainFirstColumn = document.createElement('div');
+    
+        const mainSecondColumn = document.createElement('div');
+    
+        const mainThirdColumn = document.createElement('div');
+    
+        battleBg.className = 'battle__bg bg';
+    
+        container.className = 'battle__container container';
+    
+        battleWrapper.className = 'battle__wrapper wrapper';
+    
+        battleMain.className = 'battle__main screen__main main';
+        
+        mainWrapper.className = 'main__wrapper wrapper';
+    
+        mainFirstColumn.className = 'wrapper__column column first-column';
+    
+        mainSecondColumn.className = 'wrapper__column column second-column';
+    
+        mainThirdColumn.className = 'wrapper__column column third-column';
+
+        mainFirstColumn.id = 'first-column';
+    
+        mainSecondColumn.id = 'second-column';
+    
+        mainThirdColumn.id = 'third-column';
+
+        screenBattle.appendChild(battleBg);
+
+        screenBattle.appendChild(container);
+
+        container.appendChild(battleWrapper);
+
+        battleWrapper.appendChild(battleMain);
+
+        battleMain.appendChild(mainWrapper);
+
+        mainWrapper.appendChild(mainFirstColumn);
+
+        mainWrapper.appendChild(mainSecondColumn);
+
+        mainWrapper.appendChild(mainThirdColumn);
+
+        firstColumnElements();
+
+        secondColumnElements();
+
+        thirdColumnElements();
+
+    };
+
+    function firstColumnElements(){
+
+        const column = screenBattle.querySelector('#first-column');
+
+        for(let i = 0; i < arrayEnemiesKey.length; i++){
+
+            const columnItem = document.createElement('div');
+
+            const itemBg = document.createElement('div');
+
+            const itemImgWrapper = document.createElement('div');
+
+            const itemImg = document.createElement('img');
+
+            columnItem.className = 'column__item first-column__item item';
+
+            itemBg.className = 'item__bg bg-animation';
+
+            itemImgWrapper.className = 'item__wrapper-img';
+
+            itemImg.className = 'item__img first-column__img';
+
+            column.appendChild(columnItem);
+
+            columnItem.appendChild(itemBg);
+    
+            columnItem.appendChild(itemImgWrapper);
+
+            itemImgWrapper.appendChild(itemImg);
+
+            uniqueImg(itemImg, i);
+
         };
 
     };
 
-    function addStartBattleElements(){
+    function secondColumnElements(){
 
-        const columnStartBattle = screenBattle.querySelector('#start-battle');
+        const column = document.querySelector('#second-column');
 
-        const btnStartBattle = document.createElement('button');
+        const columnBtn = document.createElement('button');
 
-        const imgStartBattle = document.createElement('img');
+        const btnImg = document.createElement('img');
 
-        const textStartBattle = document.createElement('div');
+        columnBtn.className = 'second-column__button button';
+        
+        btnImg.className = 'button__img';
 
-        btnStartBattle.className = 'content__btn start-battle__button';
-
-        imgStartBattle.className = 'start-battle__img';
-
-        textStartBattle.className = 'content__text start-battle__text';
+        column.appendChild(columnBtn);
     
-        imgStartBattle.src = './img/start-battle.png';
+        columnBtn.appendChild(btnImg);
 
-        textStartBattle.innerText = 'Начать';
+        btnImg.src = images.battle.other.startBattle;
 
-        columnStartBattle.appendChild(btnStartBattle);
-
-        btnStartBattle.appendChild(imgStartBattle);
-
-        btnStartBattle.appendChild(textStartBattle);
-
-        addEventListener(btnStartBattle);
+        addEventListener(columnBtn);
 
     };
 
-    function addPlayerElements(){
+    function thirdColumnElements(){
 
-        const columnPlayer = screenBattle.querySelector('#player');
+        const column = document.querySelector('#third-column');
 
-        const itemPlayer = document.createElement('div');
+        const columnItem = document.createElement('div');
     
-        const imgPlayer = document.createElement('img');
-    
-        itemPlayer.className = 'column__item player__item';
-    
-        imgPlayer.className = 'item__img player__img';
-    
-        imgPlayer.src = images.player[player.playerKey.raceKey];
+        const columnImg = document.createElement('img');
 
-        if(player.playerKey.raceKey != 'dwarf'){
+        columnItem.className = 'column__item third-column__item item';
     
-            imgPlayer.classList.add('img-top');
+        columnImg.className = 'item__img third-column__img';
+
+        column.appendChild(columnItem);
     
-        };
-    
-        columnPlayer.appendChild(itemPlayer);
-    
-        itemPlayer.appendChild(imgPlayer);
+        columnItem.appendChild(columnImg);
+
+        columnImg.src = player.playerImg;
 
     };
 
 };
 
-function hideAnimation(btnStartBattle){
+function hideAnimation(columnBtn){
 
     screenBattle.querySelectorAll('.column__item').forEach(elem =>{
 
@@ -145,7 +203,7 @@ function hideAnimation(btnStartBattle){
 
     });
 
-    btnStartBattle.classList.add('column__elem-hide');
+    columnBtn.classList.add('column__elem-hide');
 
 };
 
@@ -159,15 +217,15 @@ function removeElements(){
 
 };
 
-function addEventListener(btnStartBattle){
+function addEventListener(columnBtn){
 
-    btnStartBattle.addEventListener('click', () =>{
+    columnBtn.addEventListener('click', () =>{
 
-        hideAnimation(btnStartBattle);
+        hideAnimation(columnBtn);
 
         setTimeout(() => {
 
-            btnStartBattle.remove();
+            columnBtn.remove();
 
             removeElements();
     
@@ -636,5 +694,7 @@ function battleStart(){
     });
 
 };
+
+/// FUNCTIONS---END ///
 
 export default battleScreenPreparation;

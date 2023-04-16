@@ -3,8 +3,6 @@
 
 import castle from './castle.js';
 
-import showInventory from '../inventory.js';
-
 /// IMPORTS---END
 
 const locationName = {

@@ -3,57 +3,23 @@ const images = {
 
     stats: {
 
-        player: {
+        healthPoints: './img/stats/HP.png',
 
-            health: './img/stats/HP.png',
+        manaPoints: './img/stats/manaPoints.png',
 
-            mana: './img/stats/MP.png',
+        armourPoints: './img/stats/AP.png',
 
-            armour: './img/stats/AP.png'
+        attackPoints: './img/stats/AtP.png',
 
-        },
+        defencePoints: './img/stats/DP.png',
 
-        races: {
+        meleeDamage: './img/stats/MeD.png',
 
-            health: './img/stats/HP.png',
+        rangeDamage: './img/stats/RD.png',
 
-            mana: './img/stats/MP.png'
+        magicDamage: './img/stats/MD.png',
 
-        },
-
-        classes: {
-
-            health: './img/stats/HP.png',
-
-            mana: './img/stats/MP.png',
-
-            armour: './img/stats/AP.png'
-
-        },
-
-        weapons: {
-
-            physicalAttack: '',
-
-            physicalDefence: '',
-
-            magicAttack: '',
-
-            magicDefence: ''
-
-        },
-
-        enemies: {
-
-            health: './img/stats/HP.png',
-
-            mana: './img/stats/MP.png',
-
-            armour: './img/stats/AP.png',
-
-            attack: './img/stats/AtP.png'
-
-        }
+        physicalDefencePoints: './img/stats/physicalDefencePoints.png'
 
     },
 
@@ -120,7 +86,11 @@ const images = {
 
     other: {
 
-        arrow: './img/other/arrow.png'
+        arrow: './img/other/arrow.png',
+
+        startBattle: './img/other/startBattle.png',
+
+        btnInfoImg: './img/other/info.png'
 
     }
 

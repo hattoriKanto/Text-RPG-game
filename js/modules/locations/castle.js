@@ -13,8 +13,6 @@ import castleEncounterRus from '../text/castle/russian/casteEncounterRus.js';
 
 import enemiesRus from '../text/enemies/russian/enemiesRus.js';
 
-import battleScreenPreparation from '../battle/battleScreen.js';
-
 /// IMPORTS---END
 
 /// GLOBAL---VARIABLES---START

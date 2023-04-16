@@ -11,69 +11,10 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="wrapper">
-        <div id="popup" class="popup"></div>
-        <button id="inventory-btn" class="inventory-btn hide-inventory-btn">
-            <img class="inventory-btn__img" src="./img/other/inventory.png" alt="">
-        </button>
-        <div id="inventory" class="inventory popup">
-            <div class="overlay"></div>
-            <div class="popup__content inventory__content">
-                <div id="close__popup" class="close-btn"></div>
-                <div class="inventory__weapons weapons">
-                    <div class="weapons__wrapper">
-                        <h3 class="weapons__title">weapon-1</h3>
-                        <div class="weapons__img-wrapper">
-                            <img class="weapons__img" src="./img/inventory/wp1.png" alt="weapon-1-img">
-                            <button class="weapons__btn btn">
-                                <img class="btn__img" src="./img/info.png" alt="">
-                            </button>
-                        </div>
-                    </div>
-                    <div class="weapons__wrapper">
-                        <h3 class="weapons__title">weapon-2</h3>
-                        <div class="weapons__img-wrapper">
-                            <img class="weapons__img" src="./img/inventory/wp2.png" alt="weapon-2-img">
-                            <button class="weapons__btn btn">
-                                <img class="btn__img" src="./img/info.png" alt="">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="inventory__items">
-                    <div class="inventory__item">
-                        <div id="health-potion-counter" class="inventory__counter">0</div>
-                        <img class="inventory__img" src="./img/inventory/health__potion.png" alt="">
-                    </div>
-                    <div class="inventory__item">
-                        <div id="health-potion-counter" class="inventory__counter">0</div>
-                        <img class="inventory__img" src="./img/inventory/mana__potion.png" alt="">
-                    </div>
-                    <div class="inventory__item">1</div>
-                    <div class="inventory__item">1</div>
-                    <div class="inventory__item">1</div>
-                    <div class="inventory__item">1</div>
-                    <div class="inventory__item">1</div>
-                    <div class="inventory__item">1</div>
-                    <div class="inventory__item">1</div>
-                </div>
-            </div>
-        </div>
-        <section id="char-creating-screen" class="screen__char-creating screen char-creating">
-            <div class="char-creating__wrapper wrapper">
-                <div class="char-creating__container container">
-                    <div class="char-creating__main screen__main main">
-                        <div class="main__header">
-                            <h1 class="main__title"></h1>
-                            <div class="main__desc"></div>
-                        </div>
-                        <div class="main__footer">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="character-overview-screen" class="screen__character-overview screen character-overview hide-screen">
+    <div id="popup" class="popup"></div>
+    <div id="choose-lang" class="choose-lang popup"></div>
+    <section id="char-creating-screen" class="screen__char-creating screen char-creating"></section>
+    <section id="character-overview-screen" class="screen__character-overview screen character-overview hide-screen">
             <div class="container">
                 <div class="character-overview__main screen__main main">
                     <div class="main__header">   
@@ -95,8 +36,8 @@
                     <div class="main__footer footer"></div>
                 </div>
             </div>
-        </section>
-        <section id="location-screen" class="screen__location screen location hide-screen">
+    </section>
+    <section id="location-screen" class="screen__location screen location hide-screen">
             <div class="location__wrapper wrapper">
                 <div class="location__container container">
                     <div class="location__main main">
@@ -107,20 +48,20 @@
                             <div class="footer__choose choose">
                                 <div class="choose__item item">
                                     <div class="item__img-wrapper">
-                                        <img class="item__img" src="./img/location/castle.jpg" alt="">
+                                        <img class="item__img" src="" alt="">
                                     </div>
                                     <h2 class="item__title"></h2>
                                 </div>
                                 <div class="choose__item item bg-black">
                                     <div class="item__img-wrapper hide">
-                                        <img class="item__img" src="./img/location/village.jpg" alt="">
+                                        <img class="item__img" src="" alt="">
                                     </div>
                                     <h2 class="item__title hide"></h2>
                                     <img class="item__lock" src="./img/other/lock.png" alt="">
                                 </div>
                                 <div class="choose__item item bg-black">
                                     <div class="item__img-wrapper hide">
-                                        <img class="item__img" src="./img/location/rift.jpg" alt="">
+                                        <img class="item__img" src="" alt="">
                                     </div>
                                     <h2 class="item__title hide"></h2>
                                     <img class="item__lock" src="./img/other/lock.png" alt="">
@@ -130,9 +71,9 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <section id="castle-screen" class="screen__castle screen castle hide-screen">
-            <img class="castle__bg bg" src="./img/background/castle.png" alt="">
+    </section>
+    <section id="castle-screen" class="screen__castle screen castle hide-screen">
+            <img class="castle__bg bg" src="" alt="">
             <div class="castle__wrapper wrapper">
                 <div class="castle__container container">
                     <div class="castle__main screen__main main">
@@ -144,23 +85,8 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <section id="battle-screen" class="screen__battle screen battle hide-screen">
-            <img class="battle__bg bg" src="./img/background/castle.png" alt="">
-            <div class="battle__wrapper wrapper">
-                <div class="battle__container container">
-                    <div class="battle__main screen__main main">
-                        <div class="main__bg"></div>
-                        <div class="main__content content">
-                            <div id="enemies" class="content__column column enemies"></div>
-                            <div id="start-battle" class="content__column content__start-battle column start-battle"></div>
-                            <div id="player" class="content__column column player"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
+    </section>
+    <section id="battle-screen" class="screen__battle battle hide-screen"></section>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script type="module" src="./js/script.js"></script>
 </body>

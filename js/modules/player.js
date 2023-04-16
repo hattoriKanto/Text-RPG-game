@@ -1,27 +1,29 @@
 
 const player = {
 
+    playerImg: null,
+
     playerKey: {
 
-        raceKey: '',
+        race: null,
 
-        classKey: '',
+        class: null,
 
-        firstWeaponType: '',
+        firstWeapon: null,
 
-        secondWeaponType: ''
+        secondWeapon: null
 
     },
 
     mainText: {
 
-        race: '',
+        race: null,
 
-        class: '',
+        class: null,
 
-        firstWeapon: '',
+        firstWeapon: null,
 
-        secondWeapon: ''
+        secondWeapon: null
 
     },
 
@@ -31,7 +33,11 @@ const player = {
 
         manaPoints: 0,
         
-        armourPoints: 0
+        armourPoints: 0,
+
+        attackPoints: 0,
+
+        defencePoints: 0
 
     },
 

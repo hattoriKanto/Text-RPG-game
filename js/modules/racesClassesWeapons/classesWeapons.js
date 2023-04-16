@@ -97,7 +97,7 @@ const classesWeapons = {
 
         mage: {
 
-            meleeWeapons: false,
+            meleeWeapons: true,
 
             rangeWeapons: false,
 

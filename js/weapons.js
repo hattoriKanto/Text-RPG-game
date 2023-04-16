@@ -7,25 +7,25 @@ const weapons = {
 
             pilas: {
 
-                physicalAttackPoints: 5,
+                meleeDamage: 5,
 
-                physicalDefencePoints: 5
+                weaponDefence: 5
 
             },
 
             bronus: {
 
-                physicalAttackPoints: 7,
+                meleeDamage: 7,
 
-                physicalDefencePoints: 3
+                weaponDefence: 3
 
             },
 
             dagius: {
 
-                physicalAttackPoints: 6,
+                meleeDamage: 6,
 
-                physicalDefencePoints: 4
+                weaponDefence: 4
 
             }
 
@@ -35,19 +35,19 @@ const weapons = {
 
             crossbow: {
 
-                physicalAttackPoints: 8
+                rangeDamage: 8
 
             },
 
             bow: {
 
-                physicalAttackPoints: 6
+                rangeDamage: 6
 
             },
 
             musket: {
 
-                physicalAttackPoints: 10
+                rangeDamage: 10
                 
             }
 
@@ -57,25 +57,23 @@ const weapons = {
 
             rod: {
 
-                physicalAttackPoints: 0,
-
-                magicalAttackPoints: 10
+                magicDamage: 8,
 
             },
 
             spatra: {
 
-                physicalAttackPoints: 5,
+                magicDamage: 5,
 
-                magicalAttackPoints: 5
+                meleeDamage: 5
                 
             },
 
             wardius: {
 
-                physicalAttackPoints: 7,
+                magicDamage: 4,
 
-                magicalAttackPoints: 3
+                meleeDamage: 6
                 
             }
 
@@ -85,17 +83,17 @@ const weapons = {
 
             skartos: {
 
-                physicalDefencePoints: 5,
+                magicalDefencePoints: 2,
 
-                magicalDefencePoints: 5
+                physicalDefencePoints: 3
 
             },
 
             partha: {
 
-                physicalDefencePoints: 4,
+                magicalDefencePoints: 3,
 
-                magicalDefencePoints: 6
+                physicalDefencePoints: 2
 
             }
 
