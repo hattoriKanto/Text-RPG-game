@@ -31,14 +31,14 @@ const player = {
 
         healthPoints: 0,
 
-        manaPoints: 0,
-        
         armourPoints: 0,
 
         attackPoints: 0,
 
-        defencePoints: 0
+        defencePoints: 0,
 
+        canAttackTwice: null
+        
     },
 
     weaponStats: {
@@ -48,8 +48,6 @@ const player = {
         secondWeapon: {}
 
     },
-
-    canUseMagic: false
 
 };
 

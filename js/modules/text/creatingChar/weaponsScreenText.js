@@ -31,7 +31,7 @@ const weaponsScreenText = {
         
                             textTitle: 'Pilas',
             
-                            textDescr: 'Description'
+                            textDescr: 'Pilas is spear-type weapon, that is the eldest weapon in the imperial military. One of the key advantages of the spear is its versatility. It can be used for thrusting attacks at close range and it can also be used for throwing attacks, allowing the wielder to strike from a distance or to take down fast-moving targets. However, the spear is also a relatively lightweight weapon that requires skill and precision to use effectively. It can be easily deflected or blocked by more heavily armored opponents, making it less effective against heavily armored foes. Additionally, it can be difficult to use in close quarters or in confined spaces.'
             
                         },
             
@@ -39,7 +39,7 @@ const weaponsScreenText = {
             
                             textTitle: 'Bronus',
             
-                            textDescr: 'Description'
+                            textDescr: 'Bronus is mace-type weapon. One of the key advantages of the mace is its ability to penetrate armor. Unlike bladed weapons such as swords or axes, which may be deflected by armor or bone, the blunt force of a mace can deliver a devastating blow that bypasses these defenses. This makes it an ideal choice for fighting heavily armored opponents. However, the weight and bulk of the mace also make it a slower and less agile weapon than some others.'
             
                         },
             
@@ -47,7 +47,7 @@ const weaponsScreenText = {
             
                             textTitle: 'Dagius',
             
-                            textDescr: 'Description'
+                            textDescr: 'Dagius is a symbol of the Empire`s power and might, and is a weapon that strikes fear into the hearts of its enemies. Any warrior who wields Dagius can be sure that they are wielding a weapon of exceptional quality and power, one that is sure to help them achieve victory on the battlefield. It is designed to be fast and agile, allowing the wielder to strike quickly and move deftly in combat. '
             
                         }
         
@@ -99,7 +99,7 @@ const weaponsScreenText = {
         
                     mainText: {
         
-                        textTitle: 'Магическое оружие',
+                        textTitle: 'Magic weapons',
         
                         textDescr: 'Description'
         
@@ -117,7 +117,7 @@ const weaponsScreenText = {
             
                         spatra: {
             
-                            textTitle: 'Спатра',
+                            textTitle: 'Spatra',
             
                             textDescr: 'Description'
             
@@ -139,7 +139,7 @@ const weaponsScreenText = {
         
                     mainText: {
         
-                        textTitle: 'Оборонительное оружие',
+                        textTitle: 'Defensive weapons',
         
                         textDescr: 'Description'
         
@@ -149,17 +149,17 @@ const weaponsScreenText = {
         
                         skartos: {
         
-                            textTitle: 'Скартос',
+                            textTitle: 'Skartos',
             
-                            textDescr: 'Классический щит легионеров. Один из символов легионов, который изначально был не из стали. В отличии от парфы, который всегда был из металла, скартос делался из дерева. Во время длительных дождливых или снежных периодов, а так же во время интессивных боёв, щит быстро приходил в негодность. После личной унии гномов Священного Камня и императора Карла I Униата, имперцы получили доступ к шахтам, которые были богаты различными металлами. С этой отправной точки и начинается путь современного скартоса. Усиленный защитой от магии, он стал гордостью гномов и людей, которые совместно смогли создать шедевр военного ремесла. Главным минусом скартоса является его размер и вес. За пределами легиона никто использовать его не сможет в ввиду его габаритов.'
+                            textDescr: 'The skartos is a formidable piece of defensive equipment, designed to provide reliable protection to its wielder in the heat of battle. Made from durable materials and crafted with precision, the shield is designed to be held in the hand and offers excellent coverage to the body. At the center of the shield is a large, sturdy boss that helps to deflect incoming blows and distribute the force of impact across the surface of the shield. The edges of the shield are reinforced with metal, providing additional strength and durability.'
             
                         },
             
                         partha: {
             
-                            textTitle: 'Парфа',
+                            textTitle: 'Partha',
             
-                            textDescr: 'Щит, которым пользуються часовые. После реформы Адриана, было сформирована новая имперская структура. Эта структура получила название - Корпус часовых. Их обязанности отличались от обязанностей легионеров, поэтому вооружение легионов часовым не подходило. Отсюда и начинается путь парфы. Облегчённый, по сравнению с щитом легионеров, парфа слегка уступает в живучести, но имеет повышенную сопротивляемость магии. Благодарю закруглённым краям, парфа не затрудняет обзор, как скартос, но и делает обладателя более уязвимым к атакам с растояния.'
+                            textDescr: 'This type of shield is typically round or oval in shape, and is designed to be held in the hand for maximum mobility and flexibility on the battlefield. One of the key advantages of the partha shield is its maneuverability. Unlike larger shields, the partha can be easily moved and positioned in response to changing battle conditions, allowing the wielder to quickly adapt to new threats and opportunities. This makes it an ideal choice for agile and mobile warriors, who rely on speed and dexterity to overcome their opponents.'
             
                         }
         
@@ -184,7 +184,7 @@ const weaponsScreenText = {
         
                         hastar: {
         
-                            textTitle: 'Гастар',
+                            textTitle: 'Hastar',
             
                             textDescr: 'Description'
             
@@ -192,7 +192,7 @@ const weaponsScreenText = {
             
                         axe: {
             
-                            textTitle: 'Топор',
+                            textTitle: 'Axe',
             
                             textDescr: 'Description'
             
@@ -200,7 +200,7 @@ const weaponsScreenText = {
             
                         scramandor: {
             
-                            textTitle: 'Скрамандор',
+                            textTitle: 'Scramandor',
             
                             textDescr: 'Description'
             

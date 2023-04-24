@@ -3,25 +3,19 @@ const racesStats = {
 
     human: {
 
-        healthPoints: 5,
-
-        manaPoints: 5,
+        healthPoints: 10
 
     },
 
     dwarf: {
 
-        healthPoints: 10,
-
-        manaPoints: 0,
+        healthPoints: 10
 
     },
 
     elf: {
 
-        healthPoints: 3,
-
-        manaPoints: 7,
+        healthPoints: 10
 
     }
 

@@ -6,78 +6,74 @@ const classesStats = {
         legionnaire: {
 
             stats: {
-
-                healthPoints: 2,
-
-                manaPoints: 0,
     
-                armourPoints: 3,
+                armourPoints: 4,
 
                 attackPoints: 2,
 
-                defencePoints: 3
+                defencePoints: 4,
+
+                canAttackTwice: false
 
             },
 
-            bonusStats: {
+            weapon: {
 
-                defencePoints: 3
+                oneHandedWeapons: true,
 
-            },
+                defensiveWeapons: true
 
-            canUseMagic: false
+            }
 
         },
 
         scout: {
 
             stats: {
-
-                healthPoints: 2,
-
-                manaPoints: 0,
     
-                armourPoints: 2,
+                armourPoints: 4,
 
                 attackPoints: 4,
 
-                defencePoints: 2
+                defencePoints: 2,
+
+                canAttackTwice: false
 
             },
 
-            bonusStats: {
+            weapon: {
 
-                rangeDamage: 3
+                oneHandedWeapons: true,
 
-            },
+                rangeWeapons: true
 
-            canUseMagic: false
+            }
 
         },
 
         agent: {
 
             stats: {
-
-                healthPoints: 2,
-
-                manaPoints: 4,
     
-                armourPoints: 0,
+                armourPoints: 3,
 
-                attackPoints: 2,
+                attackPoints: 5,
 
-                defencePoints: 2
+                defencePoints: 2,
 
-            },
-
-            bonusStats: {
-
-                attackPoints: 3
+                canAttackTwice: true
 
             },
 
-            canUseMagic: true,
+            weapon: {
+
+                oneHandedWeapons: true,
+
+                rangeWeapons: true,
+
+                magicWeapons: true
+
+            }
 
         }
 
@@ -88,26 +84,27 @@ const classesStats = {
         protector: {
 
             stats: {  
-
-                healthPoints: 3,
-
-                manaPoints: 0,
     
-                armourPoints: 4,
+                armourPoints: 6,
 
-                attackPoints: 1,
+                attackPoints: 2,
 
-                defencePoints: 3
+                defencePoints: 2,
 
-            },
-
-            bonusStats: {
-
-                armourPoints: 3
+                canAttackTwice: false
 
             },
 
-            canUseMagic: false
+            weapon: {
+
+                oneHandedWeapons: true,
+
+                twoHandedWeapons: true,
+
+                defensiveWeapons: true,
+
+                rangeWeapons: true
+            },
 
         },
 
@@ -115,53 +112,48 @@ const classesStats = {
 
             stats: {
 
-                healthPoints: 2,
-
-                manaPoints: 0,
-
-                armourPoints: 2,
+                armourPoints: 4,
 
                 attackPoints: 5,
 
-                defencePoints: 1
+                defencePoints: 1,
+
+                canAttackTwice: false
 
             },
 
-            bonusStats: {
+            weapon: {
 
-                meleeDamage: 3
+                twoHandedWeapons: true
 
             },
-
-            canUseMagic: false
 
         },
 
         guardsman: {
 
             stats: {
-
-                healthPoints: 2,
-
-                manaPoints: 0,
     
-                armourPoints: 4,
+                armourPoints: 5,
 
-                attackPoints: 2,
+                attackPoints: 3,
 
-                defencePoints: 2
+                defencePoints: 2,
+
+                canAttackTwice: false
 
             },
 
-            bonusStats: {
+            weapon: {
 
-                defencePoints: 3
+                oneHandedWeapons: true,
+
+                defensiveWeapons: true,
+
+                rangeWeapons: true
 
             },
             
-
-            canUseMagic: false
-
         }
     },
 
@@ -171,79 +163,75 @@ const classesStats = {
 
             stats: {
 
-                healthPoints: 2,
+                armourPoints: 4,
 
-                manaPoints: 4,
+                attackPoints: 3,
 
-                armourPoints: 2,
+                defencePoints: 3,
 
-                attackPoints: 1,
-
-                defencePoints: 1
+                canAttackTwice: false
 
             },
 
-            bonusStats: {
+            weapon: {
 
-                magicDamage: 3
+                oneHandedWeapons: true,
 
+                magicWeapons: true,
+
+                defensiveWeapons: true,
+
+                rangeWeapons: true
             },
-
-            canUseMagic: true
 
         },
 
-        mage: {
+        keeper: {
 
             stats: {
-
-                healthPoints: 2,
-
-                manaPoints: 6,
     
-                armourPoints: 0,
+                armourPoints: 5,
 
-                attackPoints: 2,
+                attackPoints: 4,
 
-                defencePoints: 0
+                defencePoints: 2,
 
-            },
-
-            bonusStats: {
-
-                manaPoints: 3
+                canAttackTwice: false
 
             },
 
-            canUseMagic: true
+            weapon: {
+
+                twoHandedWeapons: true,
+
+                magicWeapons: true
+            },
 
         },
 
         infiltrator: {
 
             stats: {
-
-                healthPoints: 2,
-
-                manaPoints: 4,
     
-                armourPoints: 0,
+                armourPoints: 2,
 
                 attackPoints: 4,
 
-                defencePoints: 0
+                defencePoints: 4,
+
+                canAttackTwice: true
 
             },
 
-            bonusStats: {
+            weapon: {
 
-                rangeDamage: 3,
+                oneHandedWeapons: true,
 
-                meleeDamage: 3
+                magicWeapons: true,
+
+                rangeWeapons: true
 
             },
-
-            canUseMagic: true
 
         }
         

@@ -9,8 +9,6 @@ import racesStats from "./racesClassesWeapons/racesStats.js";
 
 import classesStats from "./racesClassesWeapons/classesStats.js";
 
-import charOverviewRus from "./text/overviewChar/russian/overviewCharRus.js";
-
 import chooseLocation from "./locations/choose__location.js";
 
 import encounter from "./locations/castle.js";

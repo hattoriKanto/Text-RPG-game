@@ -18,6 +18,16 @@
     &:hover
         transform: scale(1.03)
 
+.btn-info
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 60px
+    height: 60px
+    background: transparent
+    &__img
+        width: 100%
+
 .screen
     position: fixed
     width: 100%
@@ -63,16 +73,6 @@
                 justify-content: center
                 width: 100%
                 gap: 10px
-            &__btn-info
-                display: flex
-                align-items: center
-                justify-content: center
-                width: 60px
-                height: 60px
-                background: transparent
-            .btn-info
-                &__img
-                    width: 100%
         &__title
             font-size: 30px
             line-height: 1.75
@@ -80,6 +80,35 @@
             min-height: 200px
             padding: 10px
             text-align: center
+        &__list
+            display: flex
+            flex-direction: column
+            align-items: center
+            justify-content: center
+            gap: 15px
+            width: 100%
+        .list
+            &__item
+                display: flex
+                align-items: center
+                justify-content: center
+                gap: 10px
+                font-size: 16px
+            &__stats-list
+                display: flex
+                align-items: center
+                gap: 50px
+            .stats-list
+                &__img
+                    width: 48px
+                    height: 48px
+            .weapons
+                &__button
+                    width: 40px
+                    height: 40px
+                .btn-info
+                    &__img
+                        width: 70%
 
 .show-screen
     animation: show-screen ease 2s 1 forwards
@@ -105,17 +134,43 @@
         max-width: 500px
 
 .popup
+    display: flex
+    justify-content: center
+    align-items: center
     position: fixed
-    top: 0
+    top: -100%
     left: 0
     width: 100%
     height: 100%
     background-color: rgba(0, 0, 0, 0.8)
+    z-index: 2
+    &__close-btn
+        position: absolute
+        padding: 10px
+        top: 10px
+        right: 10px
+        background: transparent
+        transition: 500ms all
+        cursor: pointer
+        &::after, &::before
+            content: ''
+            display: block
+            position: absolute
+            top: 10px
+            left: 0
+            width: 20px
+            height: 2px   
+            background: #e0e1dd
+            transform: rotate(45deg)
+        &::before
+                transform: rotate(-45deg)
+        &:hover, &:active
+            transform: scale(1.1)
     &__wrapper
         display: flex
         align-items: center
         justify-content: center
-        width: 100%
+        width: 50%
         height: 100%
         padding: 30px 10px
     &__content
@@ -154,6 +209,9 @@
         gap: 25px
         width: 100% 
       
+.show-popup
+    animation: show-popup ease 2s 1 forwards
+
 .hide-popup
     animation: hide-popup ease 2s 1 forwards
 
@@ -161,12 +219,23 @@
 
 /// KEYFRAMES ///
 
+@keyframes show-popup
+    0%
+        top: -100%
+        opacity: 0
+
+    100%
+        top: 0
+        opacity: 1
+
 @keyframes hide-popup
     0%
         top: 0
+        opacity: 1
 
     100%
-        top: -100%
+        top: 100%
+        opacity: 0
 
 @keyframes show-screen
     0%

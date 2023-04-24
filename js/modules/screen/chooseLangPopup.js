@@ -85,6 +85,8 @@ function eventListener(){
 
             const choosedLang = Object.values(chooseLanguageText.buttonText)[index];
 
+            chooseLangPopup.classList.remove('show-popup');
+
             chooseLangPopup.classList.add('hide-popup');
 
             setTimeout(() => {
