@@ -9,9 +9,13 @@ const player = {
 
         class: null,
 
-        firstWeapon: null,
+        weaponKeys: {
 
-        secondWeapon: null
+            firstWeapon: null,
+
+            secondWeapon: null
+
+        }
 
     },
 
@@ -27,7 +31,7 @@ const player = {
 
     },
 
-    playerStats: {
+    playerTraits: {
 
         healthPoints: 0,
 
@@ -41,7 +45,7 @@ const player = {
         
     },
 
-    weaponStats: {
+    weaponTraits: {
 
         firstWeapon: {},
 

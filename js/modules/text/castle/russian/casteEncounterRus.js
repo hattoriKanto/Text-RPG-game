@@ -1,5 +1,5 @@
 
-const castleEncounterRus = {
+const castleEncounterText = {
 
     title: 'Title',
 
@@ -13,4 +13,4 @@ const castleEncounterRus = {
 
 };
 
-export default castleEncounterRus;
+export default castleEncounterText;

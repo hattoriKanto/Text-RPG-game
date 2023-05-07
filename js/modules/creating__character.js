@@ -1,18 +1,4 @@
 
-import player from "./player.js";
-
-import weapons from "../weapons.js";
-
-import images from "./images.js";
-
-import racesStats from "./racesClassesWeapons/racesStats.js";
-
-import classesStats from "./racesClassesWeapons/classesStats.js";
-
-import chooseLocation from "./locations/choose__location.js";
-
-import encounter from "./locations/castle.js";
-
 const charOverviewScreen = document.querySelector('#character-overview-screen');
 
 const screenCreatingChar = document.querySelector('#char-creating-screen');
@@ -748,5 +734,3 @@ function charOverview(){
     };
 
 };
-
-export default startScreen; 

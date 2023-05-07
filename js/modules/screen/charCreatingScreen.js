@@ -13,11 +13,13 @@ import charOverviewText from "../text/creatingChar/charOverviewText.js";
 
 import popup from "../screen/popup.js";
 
-import racesStats from "../racesClassesWeapons/racesStats.js";
+import location from "../screen/locationScreen.js";
 
-import classesStats from "../racesClassesWeapons/classesStats.js";
+import racesTraits from "../racesClassesWeapons/racesTraits.js";
 
-import classesWeapons from "../racesClassesWeapons/classesWeapons.js";
+import classesTraits from "../racesClassesWeapons/classesTraits.js";
+
+import weaponsTraits from "../racesClassesWeapons/weaponsTraits.js";
 
 import images from "../images.js";
 
@@ -26,8 +28,6 @@ import player from "../player.js";
 /// IMPORTS---END ///
 
 /// GLOBAL---VARIABLES---START ///
-
-const charCreatingScreen = document.querySelector('#char-creating-screen');
 
 let playerRaceKey = '';
 
@@ -43,6 +43,26 @@ let counterWeapon = 0;
 
 /// REPEATABLE---FUNCTIONS---START ///
 
+function disableButton(){
+
+    document.querySelector('#char-creating').querySelectorAll('.btn-info').forEach(elem =>{
+
+        elem.disabled = true;
+                    
+    });
+
+};
+
+function enableButton(){
+
+    document.querySelector('#char-creating').querySelectorAll('.btn-info').forEach(elem =>{
+
+        elem.disabled = false;
+                    
+    });
+
+};
+
 function createFooterItem(footerItemCount, needInfoBtn){
 
     for(let i = 0; i < footerItemCount; i++){
@@ -55,7 +75,7 @@ function createFooterItem(footerItemCount, needInfoBtn){
 
         footerBtn.className = 'footer__button button';
 
-        charCreatingScreen.querySelector('.footer').appendChild(footerItem);
+        document.querySelector('#char-creating').querySelector('.footer').appendChild(footerItem);
 
         footerItem.appendChild(footerBtn);
 
@@ -89,9 +109,9 @@ function weaponsTypeKeys(){
 
     let booleanTrueCounter = 0;
 
-    for(let classWeapon in classesWeapons[playerRaceKey][playerClassKey]){
+    for(let classWeapon in classesTraits[playerRaceKey][playerClassKey].weapon){
     
-        if(classWeapon != choosedWeaponType && classesWeapons[playerRaceKey][playerClassKey][classWeapon] === true){
+        if(classWeapon != choosedWeaponType && classesTraits[playerRaceKey][playerClassKey].weapon[classWeapon] === true){
     
             booleanTrueCounter++;
     
@@ -121,7 +141,7 @@ function chooseWeaponType(arrayOfClassWeapon, arrayWeaponsType){
 
         createFooterItem(footerItemCount, needInfoBtn);
 
-        charCreatingScreen.querySelectorAll('.button').forEach((elem, index) =>{
+        document.querySelector('#char-creating').querySelectorAll('.button').forEach((elem, index) =>{
 
             elem.innerText = arrayWeaponsType[index];
 
@@ -133,17 +153,17 @@ function chooseWeaponType(arrayOfClassWeapon, arrayWeaponsType){
 
     function eventListener(){
 
-        charCreatingScreen.querySelectorAll('.button').forEach((elem, index) =>{
+        document.querySelector('#char-creating').querySelectorAll('.button').forEach((elem, index) =>{
 
             elem.addEventListener('click', () =>{
 
                 choosedWeaponType = arrayOfClassWeapon[index];
 
-                charCreatingScreen.querySelector('.wrapper').classList.toggle('rotation');
+                document.querySelector('#char-creating').querySelector('.wrapper').classList.toggle('rotation');
 
                 setTimeout(() => {
             
-                    charCreatingScreen.querySelectorAll('.footer__item').forEach(elem =>{
+                    document.querySelector('#char-creating').querySelectorAll('.footer__item').forEach(elem =>{
             
                         elem.remove();
                     
@@ -167,9 +187,55 @@ function chooseWeapon(choosedWeaponType){
 
     const arrayDescr = [];
 
+    const arrayWeaponKey = [];
+
+    let footerItemCount = [];
+
     const needInfoBtn = true;
 
-    const footerItemCount = Object.values(weaponsScreenText.language[language][playerRaceKey][choosedWeaponType].weapons).length;
+    if(counterWeapon === 2){
+
+        for(let key in weaponsTraits[playerRaceKey][choosedWeaponType]){
+
+            if(weaponsTraits[playerRaceKey][choosedWeaponType][key].isTwoHanded === false){
+
+                arrayWeaponKey.push(key);
+
+                footerItemCount.push(key);
+
+            };
+    
+        };
+
+    } else{
+
+        if(playerClassKey === 'berserk'){
+
+            for(let key in weaponsTraits[playerRaceKey][choosedWeaponType]){
+
+                if(weaponsTraits[playerRaceKey][choosedWeaponType][key].isTwoHanded === true){
+
+                    arrayWeaponKey.push(key);
+
+                    footerItemCount.push(key);
+
+                };
+        
+            };
+
+        } else{
+
+            for(let key in weaponsTraits[playerRaceKey][choosedWeaponType]){
+
+                arrayWeaponKey.push(key);
+    
+                footerItemCount.push(key);
+        
+            };
+
+        };
+
+    };
 
     setTimeout(() => {
         
@@ -177,25 +243,35 @@ function chooseWeapon(choosedWeaponType){
 
         document.querySelector('.main__descr').innerText = weaponsScreenText.language[language][playerRaceKey][choosedWeaponType].mainText.textDescr;
 
-        createFooterItem(footerItemCount, needInfoBtn);
+        createFooterItem(footerItemCount.length, needInfoBtn);
 
-        charCreatingScreen.querySelectorAll('.button').forEach((elem, index) =>{
+        document.querySelector('#char-creating').querySelectorAll('.btn-info').forEach(elem =>{
 
-            elem.innerText = Object.values(weaponsScreenText.language[language][playerRaceKey][choosedWeaponType].weapons)[index].textTitle;
+            elem.classList.add('btn-info__weapon');
 
-            arrayDescr.push(Object.values(weaponsScreenText.language[language][playerRaceKey][choosedWeaponType].weapons)[index].textDescr);
+        });
+
+        document.querySelector('#char-creating').querySelectorAll('.button').forEach((button, index) =>{
+
+            const arrayElements = Object.values(weaponsScreenText.language[language][playerRaceKey][choosedWeaponType].weapons[arrayWeaponKey[index]]); 
+
+            button.innerText = arrayElements[0];
+
+            arrayDescr.push(arrayElements[1]);
 
         });
 
         eventListener();
 
-        btnInfoEventListener(arrayDescr);
+        btnInfoEventListener(arrayDescr, arrayWeaponKey);
 
     }, '650');
 
     function eventListener(){
 
-        charCreatingScreen.querySelectorAll('.button').forEach((elem, index) =>{
+        document.querySelector('#char-creating').querySelectorAll('.button').forEach((elem, index) =>{
+
+            const choosedWeapon = arrayWeaponKey[index];
 
             elem.addEventListener('click', () =>{
 
@@ -211,11 +287,13 @@ function chooseWeapon(choosedWeaponType){
 
                     addDataToPlayer(key, text, keyWord);
 
-                    charCreatingScreen.querySelector('.wrapper').classList.toggle('rotation');
+                    player.weaponTraits[keyWord] = weaponsTraits[playerRaceKey][choosedWeaponType][choosedWeapon].traits;
+
+                    document.querySelector('#char-creating').querySelector('.wrapper').classList.toggle('rotation');
 
                     setTimeout(() => {
                 
-                        charCreatingScreen.querySelectorAll('.footer__item').forEach(elem =>{
+                        document.querySelector('#char-creating').querySelectorAll('.footer__item').forEach(elem =>{
                 
                             elem.remove();
                         
@@ -223,7 +301,15 @@ function chooseWeapon(choosedWeaponType){
                 
                     }, '650');
 
-                    weaponsTypeKeys();
+                    if(weaponsTraits[playerRaceKey][choosedWeaponType][choosedWeapon].isTwoHanded === true || playerClassKey === 'berserk'){
+
+                        charOverview();
+
+                    }else{
+
+                        weaponsTypeKeys();
+
+                    };
 
                 } else if(counterWeapon === 2){
 
@@ -231,11 +317,13 @@ function chooseWeapon(choosedWeaponType){
 
                     addDataToPlayer(key, text, keyWord);
 
-                    charCreatingScreen.querySelector('.wrapper').classList.toggle('rotation');
+                    player.weaponTraits[keyWord] = weaponsTraits[playerRaceKey][choosedWeaponType][choosedWeapon].traits;
+
+                    document.querySelector('#char-creating').querySelector('.wrapper').classList.toggle('rotation');
 
                     setTimeout(() => {
                 
-                        charCreatingScreen.querySelectorAll('.footer__item').forEach(elem =>{
+                        document.querySelector('#char-creating').querySelectorAll('.footer__item').forEach(elem =>{
                 
                             elem.remove();
                         
@@ -257,47 +345,96 @@ function chooseWeapon(choosedWeaponType){
 
 function addDataToPlayer(key, text, keyWord){
 
-    player.playerKey[keyWord] = key;
+    if(keyWord === 'firstWeapon' || keyWord === 'secondWeapon'){
+
+        player.playerKey.weaponKeys[keyWord] = key;
+
+    } else{
+
+        player.playerKey[keyWord] = key;
+
+    }
 
     player.mainText[keyWord] = text;
-
-    console.log(player)
-
+    
 };
 
 function btnInfoEventListener(arrayDescr, arrayKey){
 
-    charCreatingScreen.querySelectorAll('.button').forEach((elem, index) =>{
+    if(arrayDescr === null && arrayKey === null){
 
-        const titlePopup = elem.innerText;
+        document.querySelector('#char-creating').querySelectorAll('.weapons__item').forEach((elem, index) =>{
 
-        const key = arrayKey[index];
-
-        elem.closest('.footer__item').querySelector('.btn-info').addEventListener('click', () =>{
-
-            if(elem.closest('.footer__item').querySelector('.btn-info').classList.contains('btn-info__race') === true){
-
-                const stats = Object.values(racesStats[key]);
+            const titlePopup = elem.querySelector('.weapons__value').innerText;
+        
+            elem.querySelector('.btn-info__char-overview').addEventListener('click', () =>{
     
-                const statsKeys = Object.keys(racesStats[key]);
+                const traits = Object.values(Object.values(player.weaponTraits)[index]);
 
-                popup(titlePopup, arrayDescr[index], stats, statsKeys);
+                const traitsKeys = Object.keys(Object.values(player.weaponTraits)[index]);
     
-            };
-
-            if(elem.closest('.footer__item').querySelector('.btn-info').classList.contains('btn-info__class') === true){
-
-                const stats = Object.values(classesStats[playerRaceKey][key].stats);
+                popup(titlePopup, null, traits, traitsKeys);
     
-                const statsKeys = Object.keys(classesStats[playerRaceKey][key].stats);
-
-                popup(titlePopup, arrayDescr[index], stats, statsKeys);
+            });
     
-            };
+        });
+
+    } else{
+
+        document.querySelector('#char-creating').querySelectorAll('.btn-info').forEach(elem =>{
+
+            elem.addEventListener('click', () =>{
+
+                disableButton();
+
+            })
 
         });
 
-    });
+        document.querySelector('#char-creating').querySelectorAll('.button').forEach((elem, index) =>{
+
+            const titlePopup = elem.innerText;
+    
+            const key = arrayKey[index];
+    
+            elem.closest('.footer__item').querySelector('.btn-info').addEventListener('click', () =>{
+    
+                if(elem.closest('.footer__item').querySelector('.btn-info').classList.contains('btn-info__race') === true){
+    
+                    const traits = Object.values(racesTraits[key]);
+        
+                    const traitsKeys = Object.keys(racesTraits[key]);
+    
+                    popup(titlePopup, arrayDescr[index], traits, traitsKeys);
+
+        
+                };
+    
+                if(elem.closest('.footer__item').querySelector('.btn-info').classList.contains('btn-info__class') === true){
+    
+                    const traits = Object.values(classesTraits[playerRaceKey][key].traits);
+        
+                    const traitsKeys = Object.keys(classesTraits[playerRaceKey][key].traits);
+    
+                    popup(titlePopup, arrayDescr[index], traits, traitsKeys);
+       
+                };
+    
+                if(elem.closest('.footer__item').querySelector('.btn-info').classList.contains('btn-info__weapon') === true){
+    
+                    const traits = Object.values(weaponsTraits[playerRaceKey][choosedWeaponType][key].traits);
+        
+                    const traitsKeys = Object.keys(weaponsTraits[playerRaceKey][choosedWeaponType][key].traits);
+    
+                    popup(titlePopup, arrayDescr[index], traits, traitsKeys);
+        
+                };
+    
+            });
+    
+        });
+
+    };
 
 };
 
@@ -309,8 +446,6 @@ function creatingCharacter(choosedLang){
 
     language = choosedLang.toLowerCase();
 
-    charCreatingScreen.classList.add('show-screen');
-
     createHTMLElements();
 
 };
@@ -320,6 +455,8 @@ function createHTMLElements(){
     mainElements();
 
     function mainElements(){
+
+        const charCreatingScreen = document.createElement('div');
 
         const container = document.createElement('div');
     
@@ -331,6 +468,8 @@ function createHTMLElements(){
 
         const mainFooter = document.createElement('div');
 
+        charCreatingScreen.className = 'screen__char-creating screen char-creating show-screen';
+
         container.className = 'char-creating__container screen__container container';
 
         charCreatingWrapper.className = 'char-creating__wrapper screen__wrapper wrapper';
@@ -340,6 +479,10 @@ function createHTMLElements(){
         mainHeader.className = 'char-creating__header main__header header';
 
         mainFooter.className = 'char-creating__footer main__footer footer';
+
+        charCreatingScreen.id = 'char-creating';
+
+        document.querySelector('body').appendChild(charCreatingScreen);
 
         charCreatingScreen.appendChild(container);
 
@@ -351,17 +494,17 @@ function createHTMLElements(){
 
         charCreatingMain.appendChild(mainFooter);
 
-        mainHeaderElements();
+        headerElements();
 
-        mainFooterElements();
+        footerElements();
 
         eventListener();
         
     };
 
-    function mainHeaderElements(){
+    function headerElements(){
 
-        const mainHeader = charCreatingScreen.querySelector('.char-creating__header');
+        const mainHeader = document.querySelector('#char-creating').querySelector('.char-creating__header');
 
         const mainTitle = document.createElement('h1');
 
@@ -381,9 +524,9 @@ function createHTMLElements(){
 
     };
 
-    function mainFooterElements(){
+    function footerElements(){
 
-        const mainFooter = charCreatingScreen.querySelector('.char-creating__footer');
+        const mainFooter = document.querySelector('#char-creating').querySelector('.char-creating__footer');
 
         const footerItem = document.createElement('div');
 
@@ -403,15 +546,15 @@ function createHTMLElements(){
 
     function eventListener(){
 
-        charCreatingScreen.querySelectorAll('.button').forEach(elem =>{
+        document.querySelector('#char-creating').querySelectorAll('.button').forEach(elem =>{
     
             elem.addEventListener('click', () =>{
 
-                charCreatingScreen.querySelector('.wrapper').classList.toggle('rotation');
+                document.querySelector('#char-creating').querySelector('.wrapper').classList.toggle('rotation');
 
                 setTimeout(() => {
             
-                    charCreatingScreen.querySelectorAll('.footer__item').forEach(elem =>{
+                    document.querySelector('#char-creating').querySelectorAll('.footer__item').forEach(elem =>{
             
                         elem.remove();
                     
@@ -453,13 +596,13 @@ function chooseRace(){
 
         createFooterItem(footerItemCount, needInfoBtn);
 
-        charCreatingScreen.querySelectorAll('.btn-info').forEach(elem =>{
+        document.querySelector('#char-creating').querySelectorAll('.btn-info').forEach(elem =>{
 
             elem.classList.add('btn-info__race');
 
         });
 
-        charCreatingScreen.querySelectorAll('.button').forEach((elem, index) =>{
+        document.querySelector('#char-creating').querySelectorAll('.button').forEach((elem, index) =>{
 
             elem.innerText = Object.values(raceScreenText.language[language].races)[index].textTitle;
 
@@ -475,7 +618,7 @@ function chooseRace(){
 
     function eventListener(){
 
-        charCreatingScreen.querySelectorAll('.button').forEach((elem, index) =>{
+        document.querySelector('#char-creating').querySelectorAll('.button').forEach((elem, index) =>{
 
             elem.addEventListener('click', () =>{
 
@@ -483,7 +626,7 @@ function chooseRace(){
 
                 player.playerImg = images.player[playerRaceKey];
 
-                player.playerStats.healthPoints = racesStats[playerRaceKey].healthPoints;
+                player.playerTraits.healthPoints = racesTraits[playerRaceKey].healthPoints;
 
                 const keyWord = 'race';
 
@@ -493,11 +636,11 @@ function chooseRace(){
 
                 addDataToPlayer(key, text, keyWord);
 
-                charCreatingScreen.querySelector('.wrapper').classList.toggle('rotation');
+                document.querySelector('#char-creating').querySelector('.wrapper').classList.toggle('rotation');
 
                 setTimeout(() => {
             
-                    charCreatingScreen.querySelectorAll('.footer__item').forEach(elem =>{
+                    document.querySelector('#char-creating').querySelectorAll('.footer__item').forEach(elem =>{
             
                         elem.remove();
                     
@@ -539,13 +682,13 @@ function chooseClass(){
 
         createFooterItem(footerItemCount, needInfoBtn);
 
-        charCreatingScreen.querySelectorAll('.btn-info').forEach(elem =>{
+        document.querySelector('#char-creating').querySelectorAll('.btn-info').forEach(elem =>{
 
             elem.classList.add('btn-info__class');
 
         });
 
-        charCreatingScreen.querySelectorAll('.button').forEach((elem, index) =>{
+        document.querySelector('#char-creating').querySelectorAll('.button').forEach((elem, index) =>{
 
             elem.innerText = Object.values(classScreenText.language[language].classes[playerRaceKey])[index].textTitle;
 
@@ -561,23 +704,23 @@ function chooseClass(){
 
     function eventListener(){
 
-        charCreatingScreen.querySelectorAll('.button').forEach((elem, index) =>{
+        document.querySelector('#char-creating').querySelectorAll('.button').forEach((elem, index) =>{
 
             elem.addEventListener('click', () =>{
 
                 playerClassKey = Object.keys(classScreenText.language[language].classes[playerRaceKey])[index];
 
-                for(let classes in classesStats[playerRaceKey]){
+                for(let classes in classesTraits[playerRaceKey]){
 
                     if(classes === playerClassKey){
 
-                        for(let statsPlayer in player.playerStats){
+                        for(let traitsPlayer in player.playerTraits){
 
-                            for(let statsClass in classesStats[playerRaceKey][playerClassKey].stats){
+                            for(let traitsClass in classesTraits[playerRaceKey][playerClassKey].traits){
 
-                                if(statsPlayer === statsClass){
+                                if(traitsPlayer === traitsClass){
 
-                                    player.playerStats[statsPlayer] = player.playerStats[statsPlayer] + classesStats[playerRaceKey][playerClassKey].stats[statsPlayer];
+                                    player.playerTraits[traitsPlayer] = player.playerTraits[traitsPlayer] + classesTraits[playerRaceKey][playerClassKey].traits[traitsPlayer];
 
                                 };
 
@@ -589,7 +732,7 @@ function chooseClass(){
 
                 };
 
-                player.playerStats.canAttackTwice = classesStats[playerRaceKey][playerClassKey].stats.canAttackTwice;
+                player.playerTraits.canAttackTwice = classesTraits[playerRaceKey][playerClassKey].traits.canAttackTwice;
 
                 const keyWord = 'class';
 
@@ -599,11 +742,11 @@ function chooseClass(){
 
                 addDataToPlayer(key, text, keyWord);
 
-                charCreatingScreen.querySelector('.wrapper').classList.toggle('rotation');
+                document.querySelector('#char-creating').querySelector('.wrapper').classList.toggle('rotation');
 
                 setTimeout(() => {
             
-                    charCreatingScreen.querySelectorAll('.footer__item').forEach(elem =>{
+                    document.querySelector('#char-creating').querySelectorAll('.footer__item').forEach(elem =>{
             
                         elem.remove();
                     
@@ -627,7 +770,7 @@ function charOverview(){
 
     const footerItemCount = Object.values(charOverviewText.language[language].mainText.textBtn).length;
 
-    const statsListItemCount = Object.values(player.playerStats).length;
+    const traitsListItemCount = Object.values(player.playerTraits).length;
 
     setTimeout(() => {
         
@@ -647,7 +790,7 @@ function charOverview(){
 
             const classItem = document.createElement('li');
 
-            const statsList = document.createElement('ul');
+            const traitsList = document.createElement('ul');
 
             const spanTextRace = document.createElement('span');
 
@@ -665,7 +808,7 @@ function charOverview(){
 
             classItem.className = 'list__item item class';
 
-            statsList.className = 'list__stats-list stats-list';
+            traitsList.className = 'list__traits-list traits-list';
 
             weaponsList.className = 'list__weapons weapons';
 
@@ -677,7 +820,7 @@ function charOverview(){
 
             spanValueClass.className = 'item__value class__value';
 
-            charCreatingScreen.querySelector('.main__header').appendChild(mainList);
+            document.querySelector('#char-creating').querySelector('.main__header').appendChild(mainList);
 
             mainList.appendChild(raceItem);
 
@@ -685,7 +828,7 @@ function charOverview(){
 
             mainList.appendChild(weaponsList);
 
-            mainList.appendChild(statsList);
+            mainList.appendChild(traitsList);
 
             raceItem.appendChild(spanTextRace);
 
@@ -695,6 +838,8 @@ function charOverview(){
 
             classItem.appendChild(spanValueClass);
 
+            document.querySelector('#char-creating').querySelector('.main__title').innerText = charOverviewText.language[language].mainText.textTitle;
+
             spanTextRace.innerText = charOverviewText.language[language].overviewText.raceText;
 
             spanTextClass.innerText = charOverviewText.language[language].overviewText.classText;
@@ -703,15 +848,15 @@ function charOverview(){
 
             spanValueClass.innerText = player.mainText.class;
 
-            createStatsItems();
+            createtraitsItems();
 
             createWeaponsItems();
 
             addDataToElements();
 
-            function createStatsItems(){
+            function createtraitsItems(){
 
-                for(let i = 0; i < statsListItemCount; i++){
+                for(let i = 0; i < traitsListItemCount; i++){
 
                     const item = document.createElement('li');
 
@@ -719,19 +864,19 @@ function charOverview(){
 
                     const span = document.createElement('span');
 
-                    item.className = 'list__item stats-list__item';
+                    item.className = 'list__item traits-list__item';
 
-                    img.className = 'stats-list__img';
+                    img.className = 'traits-list__img';
 
-                    span.className = 'stats-list__value';
+                    span.className = 'traits-list__value';
 
-                    statsList.appendChild(item);
+                    traitsList.appendChild(item);
 
                     item.appendChild(img);
 
                     item.appendChild(span);
 
-                    img.src = images.stats[Object.keys(player.playerStats)[i]];
+                    img.src = images.traits[Object.keys(player.playerTraits)[i]];
 
                 };
 
@@ -783,29 +928,29 @@ function charOverview(){
 
         function addDataToElements(){
 
-            charCreatingScreen.querySelectorAll('.item__text').forEach((elem, index) =>{
+            document.querySelector('#char-creating').querySelectorAll('.item__text').forEach((elem, index) =>{
 
                 elem.innerText = Object.values(charOverviewText.language[language].overviewText)[index];
 
             });
 
-            charCreatingScreen.querySelectorAll('.item__value').forEach((elem, index) =>{
+            document.querySelector('#char-creating').querySelectorAll('.item__value').forEach((elem, index) =>{
 
                 elem.innerText = Object.values(player.mainText)[index];
 
             });
 
-            charCreatingScreen.querySelectorAll('.stats-list__value').forEach((elem, index) =>{
+            document.querySelector('#char-creating').querySelectorAll('.traits-list__value').forEach((elem, index) =>{
 
-                elem.innerText = Object.values(player.playerStats)[index];
+                elem.innerText = Object.values(player.playerTraits)[index];
 
-                if(Object.values(player.playerStats)[index] === false){
+                if(Object.values(player.playerTraits)[index] === false){
 
                     elem.innerText = classScreenText.language[language].canAttackTwice.true;
 
                 };
 
-                if(Object.values(player.playerStats)[index] === true){
+                if(Object.values(player.playerTraits)[index] === true){
 
                     elem.innerText = classScreenText.language[language].canAttackTwice.false;
 
@@ -817,24 +962,70 @@ function charOverview(){
 
         document.querySelector('.main__title').innerText = charOverviewText.language[language].mainText.textTitle;
 
-        charCreatingScreen.querySelector('.main__descr').remove();
+        document.querySelector('#char-creating').querySelector('.main__descr').remove();
 
-        charCreatingScreen.querySelectorAll('.footer__button').forEach((elem, index) =>{
+        document.querySelector('#char-creating').querySelectorAll('.footer__button').forEach((elem, index) =>{
 
             elem.innerText = Object.values(charOverviewText.language[language].mainText.textBtn)[index];
 
+            elem.classList.add(`button-${index + 1}`);
+
         });
 
-        btnInfoEventListener();
+        document.querySelector('#char-creating').querySelectorAll('.btn-info').forEach(elem =>{
+
+            elem.classList.add('btn-info__char-overview');
+
+        });
+
+        btnInfoEventListener(null, null);
+
+        eventListener();
 
     };
 
-}
+    function eventListener(){
+
+        document.querySelector('#char-creating').querySelectorAll('.footer__button').forEach(elem =>{
+
+            elem.addEventListener('click', () =>{
+
+                if(elem.classList.contains('button-1') === true){
+
+                    document.querySelector('#char-creating').querySelector('.wrapper').classList.toggle('rotation');
+
+                    setTimeout(() => {
+                
+                        document.querySelector('#char-creating').querySelector('.container').remove();
+                
+                    }, '650');
+
+                    chooseRace();
+
+                };
+
+                if(elem.classList.contains('button-2') === true){
+
+                    document.querySelector('#char-creating').remove();
+
+                    location(language);
+
+                };
+
+            });
+
+        });
+
+    };
+
+};
 
 /// MAIN---FUNCTIONS---END ///
 
 /// EXPORTS---START ///
 
 export { creatingCharacter };
+
+export { enableButton };
 
 /// EXPORTS---END ///

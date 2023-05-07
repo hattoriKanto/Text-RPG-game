@@ -1,11 +1,11 @@
 
-const classesStats = {
+const classesTraits = {
 
     human: {
 
         legionnaire: {
 
-            stats: {
+            traits: {
     
                 armourPoints: 4,
 
@@ -19,9 +19,9 @@ const classesStats = {
 
             weapon: {
 
-                oneHandedWeapons: true,
+                meleeWeapons: true,
 
-                defensiveWeapons: true
+                defenceWeapons: true
 
             }
 
@@ -29,7 +29,7 @@ const classesStats = {
 
         scout: {
 
-            stats: {
+            traits: {
     
                 armourPoints: 4,
 
@@ -43,7 +43,7 @@ const classesStats = {
 
             weapon: {
 
-                oneHandedWeapons: true,
+                meleeWeapons: true,
 
                 rangeWeapons: true
 
@@ -53,7 +53,7 @@ const classesStats = {
 
         agent: {
 
-            stats: {
+            traits: {
     
                 armourPoints: 3,
 
@@ -67,7 +67,7 @@ const classesStats = {
 
             weapon: {
 
-                oneHandedWeapons: true,
+                meleeWeapons: true,
 
                 rangeWeapons: true,
 
@@ -83,7 +83,7 @@ const classesStats = {
 
         protector: {
 
-            stats: {  
+            traits: {  
     
                 armourPoints: 6,
 
@@ -97,11 +97,9 @@ const classesStats = {
 
             weapon: {
 
-                oneHandedWeapons: true,
+                meleeWeapons: true,
 
-                twoHandedWeapons: true,
-
-                defensiveWeapons: true,
+                defenceWeapons: true,
 
                 rangeWeapons: true
             },
@@ -110,7 +108,7 @@ const classesStats = {
 
         berserk: {
 
-            stats: {
+            traits: {
 
                 armourPoints: 4,
 
@@ -124,7 +122,7 @@ const classesStats = {
 
             weapon: {
 
-                twoHandedWeapons: true
+                meleeWeapons: true
 
             },
 
@@ -132,7 +130,7 @@ const classesStats = {
 
         guardsman: {
 
-            stats: {
+            traits: {
     
                 armourPoints: 5,
 
@@ -146,9 +144,9 @@ const classesStats = {
 
             weapon: {
 
-                oneHandedWeapons: true,
+                meleeWeapons: true,
 
-                defensiveWeapons: true,
+                defenceWeapons: true,
 
                 rangeWeapons: true
 
@@ -161,7 +159,7 @@ const classesStats = {
 
         warrior: {
 
-            stats: {
+            traits: {
 
                 armourPoints: 4,
 
@@ -175,11 +173,9 @@ const classesStats = {
 
             weapon: {
 
-                oneHandedWeapons: true,
-
                 magicWeapons: true,
 
-                defensiveWeapons: true,
+                defenceWeapons: true,
 
                 rangeWeapons: true
             },
@@ -188,7 +184,7 @@ const classesStats = {
 
         keeper: {
 
-            stats: {
+            traits: {
     
                 armourPoints: 5,
 
@@ -202,8 +198,6 @@ const classesStats = {
 
             weapon: {
 
-                twoHandedWeapons: true,
-
                 magicWeapons: true
             },
 
@@ -211,7 +205,7 @@ const classesStats = {
 
         infiltrator: {
 
-            stats: {
+            traits: {
     
                 armourPoints: 2,
 
@@ -225,8 +219,6 @@ const classesStats = {
 
             weapon: {
 
-                oneHandedWeapons: true,
-
                 magicWeapons: true,
 
                 rangeWeapons: true
@@ -239,4 +231,4 @@ const classesStats = {
 
 };
 
-export default classesStats;
+export default classesTraits;

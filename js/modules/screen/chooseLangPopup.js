@@ -3,8 +3,6 @@ import chooseLanguageText from "../text/chooseLangText.js";
 
 import { creatingCharacter } from "./charCreatingScreen.js";
 
-const chooseLangPopup = document.querySelector('#choose-lang');
-
 function chooseLanguage(){
 
     createHTMLElements();
@@ -12,6 +10,8 @@ function chooseLanguage(){
 };
 
 function createHTMLElements(){
+
+    const chooseLangPopup = document.createElement('div');
 
     const popupWrapper = document.createElement('div');
 
@@ -27,6 +27,8 @@ function createHTMLElements(){
 
     const footerSecondButton = document.createElement('button');
 
+    chooseLangPopup.className = 'choose-lang popup show-popup';
+
     popupWrapper.className = 'popup__wrapper choose-lang__wrapper';
 
     popupContent.className = 'popup__content choose-lang__content content';
@@ -41,9 +43,13 @@ function createHTMLElements(){
 
     footerSecondButton.className = 'footer__second-button button';
 
+    chooseLangPopup.id = 'choose-lang';
+
     footerFirstButton.id = 'english';
 
     footerSecondButton.id = 'russian';
+
+    document.querySelector('body').appendChild(chooseLangPopup);
 
     chooseLangPopup.appendChild(popupWrapper);
 
@@ -79,21 +85,21 @@ function createHTMLElements(){
 
 function eventListener(){
 
-    chooseLangPopup.querySelectorAll('.button').forEach((elem, index) =>{
+    document.querySelector('#choose-lang').querySelectorAll('.button').forEach((elem, index) =>{
 
         elem.addEventListener('click', () =>{
 
             const choosedLang = Object.values(chooseLanguageText.buttonText)[index];
 
-            chooseLangPopup.classList.remove('show-popup');
+            document.querySelector('#choose-lang').classList.remove('show-popup');
 
-            chooseLangPopup.classList.add('hide-popup');
+            document.querySelector('#choose-lang').classList.add('hide-popup');
 
             setTimeout(() => {
 
                 creatingCharacter(choosedLang);
 
-                chooseLangPopup.remove();
+                document.querySelector('#choose-lang').remove();
                 
             }, '1000');
 

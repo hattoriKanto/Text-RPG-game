@@ -1,5 +1,5 @@
 
-const racesStats = {
+const racesTraits = {
 
     human: {
 
@@ -21,4 +21,4 @@ const racesStats = {
 
 };
 
-export default racesStats;
+export default racesTraits;

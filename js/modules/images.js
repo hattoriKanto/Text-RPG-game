@@ -1,25 +1,19 @@
 
 const images = {
 
-    stats: {
+    traits: {
 
-        healthPoints: './img/stats/HP.png',
+        healthPoints: './img/traits/HP.png',
 
-        manaPoints: './img/stats/manaPoints.png',
+        armourPoints: './img/traits/AP.png',
 
-        armourPoints: './img/stats/AP.png',
+        attackPoints: './img/traits/AtP.png',
 
-        attackPoints: './img/stats/AtP.png',
+        defencePoints: './img/traits/DP.png',
 
-        defencePoints: './img/stats/DP.png',
+        damageToHealthPoints: './img/traits/damageToHP.png',
 
-        meleeDamage: './img/stats/MeD.png',
-
-        rangeDamage: './img/stats/RD.png',
-
-        magicDamage: './img/stats/MD.png',
-
-        physicalDefencePoints: './img/stats/physicalDefencePoints.png'
+        damageToArmourPoints: './img/traits/damageToAP.png'
 
     },
 
@@ -64,23 +58,17 @@ const images = {
 
             rangeWeapons: './img/battle/range-weapon.png',
 
-        },
-
-        canUseMagic: {
-    
-            magicSpells: './img/battle/magic-spells.png',
-    
-            healingPotion: './img/battle/healing-potion.png',
-            
-            manaPotion: './img/battle/mana-potion.png'
-
-        },
-
-        cantUseMagic: {
-        
-            healingPotion: './img/battle/healing-potion.png'
-            
         }
+
+    },
+
+    location: {
+
+        castle: './img/location/castle.jpg',
+
+        village: './img/location/village.jpg',
+
+        rift: './img/location/rift.jpg'
 
     },
 

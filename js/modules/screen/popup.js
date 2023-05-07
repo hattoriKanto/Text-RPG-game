@@ -1,30 +1,35 @@
+
+/// IMPORTS---START ///
+
 import images from "../images.js";
 
-const popupScreen = document.querySelector('#popup');
+import { enableButton } from "./charCreatingScreen.js";
 
-let title = '';
+/// IMPORTS---END ///
 
-let descr = '';
+/// GLOBAL---VARIABLES---START ///
 
-function popup(titlePopup, descrPopup, stats, statsKey){
+let title = null;
+
+let descr = null;
+
+/// GLOBAL---VARIABLES---END ///
+
+/// MAIN---FUNCTIONS---START ///
+
+function popup(titlePopup, descrPopup, traits, traitsKey){
 
     title = titlePopup;
 
     descr = descrPopup;
 
-    popupScreen.classList.add('show-popup');
-
-    if(popupScreen.classList.contains('hide-popup') === true){
-
-        popupScreen.classList.remove('hide-popup');
-
-    };
-
-    createHTMLElements(stats, statsKey);
+    createHTMLElements(traits, traitsKey);
 
 };
 
-function createHTMLElements(stats, statsKey){
+function createHTMLElements(traits, traitsKey){
+
+    const popupScreen = document.createElement('div');
 
     const popupWrapper = document.createElement('div');
 
@@ -34,9 +39,9 @@ function createHTMLElements(stats, statsKey){
 
     const popupTitle = document.createElement('h3');
 
-    const popupDescr = document.createElement('div');
+    const popuptraits = document.createElement('ul');
 
-    const popupStats = document.createElement('ul');
+    popupScreen.className = 'popup show-popup';
 
     popupWrapper.className = 'popup__wrapper';
 
@@ -46,11 +51,13 @@ function createHTMLElements(stats, statsKey){
 
     popupTitle.className = 'popup__title';
 
-    popupDescr.className = 'popup__descr';
+    popuptraits.className = 'popup__traits list';
 
-    popupStats.className = 'popup__stats list';
+    popupScreen.id = 'popup';
 
     closeBtnPopup.id = 'close-btn';
+
+    document.querySelector('body').appendChild(popupScreen);
 
     popupScreen.appendChild(popupWrapper);
 
@@ -60,15 +67,23 @@ function createHTMLElements(stats, statsKey){
 
     popupContent.appendChild(popupTitle);
 
-    popupContent.appendChild(popupDescr);
+    if(descr != null){
 
-    popupContent.appendChild(popupStats);
+        const popupDescr = document.createElement('div');
 
-    createStatsItems();
+        popupDescr.className = 'popup__descr';
 
-    function createStatsItems(){
+        popupContent.appendChild(popupDescr);
 
-        for(let i = 0; i < stats.length; i++){
+    };
+
+    popupContent.appendChild(popuptraits);
+
+    createtraitsItems();
+
+    function createtraitsItems(){
+
+        for(let i = 0; i < traits.length; i++){
 
             const item = document.createElement('li');
 
@@ -82,7 +97,7 @@ function createHTMLElements(stats, statsKey){
 
             itemSpan.className = 'item__span';
 
-            popupStats.appendChild(item);
+            popuptraits.appendChild(item);
 
             item.appendChild(itemImg);
 
@@ -92,21 +107,25 @@ function createHTMLElements(stats, statsKey){
 
     };
 
-    addDataToElements(stats, statsKey);
+    addDataToElements(traits, traitsKey);
 
 };
 
-function addDataToElements(stats, statsKey){
+function addDataToElements(traits, traitsKey){
 
-    popupScreen.querySelector('.popup__title').innerText = title;
+    document.querySelector('#popup').querySelector('.popup__title').innerText = title;
 
-    popupScreen.querySelector('.popup__descr').innerText = descr;
+    if(descr != null){
 
-    for(let i = 0; i < stats.length; i++){
+        document.querySelector('#popup').querySelector('.popup__descr').innerText = descr;
 
-        popupScreen.querySelectorAll('.item__img')[i].src = images.stats[statsKey[i]];
+    };
 
-        popupScreen.querySelectorAll('.item__span')[i].innerText = stats[i];
+    for(let i = 0; i < traits.length; i++){
+        
+        document.querySelector('#popup').querySelectorAll('.item__img')[i].src = images.traits[traitsKey[i]];
+
+        document.querySelector('#popup').querySelectorAll('.item__span')[i].innerText = traits[i];
 
     };
     
@@ -116,15 +135,17 @@ function addDataToElements(stats, statsKey){
 
 function closePopup(){
 
-    popupScreen.querySelector('#close-btn').addEventListener('click', () =>{
+    document.querySelector('#popup').querySelector('#close-btn').addEventListener('click', () =>{
 
-        popupScreen.classList.remove('show-popup');
+        document.querySelector('#popup').classList.remove('show-popup');
 
-        popupScreen.classList.add('hide-popup');
+        document.querySelector('#popup').classList.add('hide-popup');
 
         setTimeout(() => {
 
-            popupScreen.querySelector('.popup__wrapper').remove();
+            enableButton();
+
+            document.querySelector('#popup').remove();
             
         }, '650');
 
@@ -132,4 +153,10 @@ function closePopup(){
 
 };
 
+/// MAIN---FUNCTIONS---START ///
+
+/// EXPORTS---START ///
+
 export default popup;
+
+/// EXPORTS---START ///

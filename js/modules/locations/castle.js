@@ -1,16 +1,6 @@
 
 /// IMPORTS---START
 
-import castleEntranceRus from '../text/castle/russian/castleEntranceRus.js';
-
-import castleCourtyardRus from '../text/castle/russian/castleCourtyardRus.js';
-
-import castleStablesRus from '../text/castle/russian/castleStablesRus.js';
-
-import castleBarracksRus from '../text/castle/russian/castleBarracksRus.js';
-
-import castleEncounterRus from '../text/castle/russian/casteEncounterRus.js';
-
 import enemiesRus from '../text/enemies/russian/enemiesRus.js';
 
 /// IMPORTS---END
