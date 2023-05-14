@@ -406,7 +406,6 @@ function btnInfoEventListener(arrayDescr, arrayKey){
                     const traitsKeys = Object.keys(racesTraits[key]);
     
                     popup(titlePopup, arrayDescr[index], traits, traitsKeys);
-
         
                 };
     
@@ -1006,7 +1005,13 @@ function charOverview(){
 
                 if(elem.classList.contains('button-2') === true){
 
-                    document.querySelector('#char-creating').remove();
+                    document.querySelector('#char-creating').classList.add('hide-screen');
+
+                    setTimeout(() => {
+                        
+                        document.querySelector('#char-creating').remove();
+
+                    }, '650');
 
                     location(language);
 

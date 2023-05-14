@@ -17,7 +17,9 @@ const castleCourtyardText = {
             
                     secondBtn: 'Check out the barracks',
             
-                    thirdBtn: 'Check out a suspicious corpse'
+                    thirdBtn: 'Check out a suspicious corpse',
+
+                    fourthBtn: 'Move toward the donjon'
                     
                 },
 

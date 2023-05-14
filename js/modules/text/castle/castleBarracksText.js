@@ -5,13 +5,13 @@ const castleBarracksText = {
 
         english: {
 
-            mainText: {
+            castleBarracks: {
 
                 textTitle: 'The castle barracks',
     
                 textDescr: 'As you get closer and closer to the barracks, you can`t escape the feeling that you are being watched. Here and there you hear rustles and grunts, someone is watching your actions closely. You do not know where, you do not know who, but you understand that you must be on guard. With these thoughts in mind, you approached the barracks building. The door was open and there was nothing suspicious in front of the entrance. It was surprisingly quiet inside',
 
-                texttextButton: {
+                textButton: {
 
                     firstBtn: 'Enter the barracks'
             
@@ -233,7 +233,7 @@ const castleBarracksText = {
 
         russian: {
 
-            mainText: {
+            castleBarracks: {
 
                 textTitle: 'Казармы замка',
     

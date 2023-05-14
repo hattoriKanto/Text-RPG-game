@@ -3,6 +3,8 @@
 
 import locationText from "../text/locationText.js";
 
+import { castle } from "./location/castleScreen.js";
+
 import images from "../images.js";
 
 /// IMPORTS END ///
@@ -24,6 +26,8 @@ function location(choosedLanguage){
 function createHTMLElements(){
 
     mainElements();
+
+    addDataToElements();
 
     function mainElements(){
 
@@ -119,13 +123,51 @@ function createHTMLElements(){
 
             footerImgWrapper.appendChild(footerImg);
 
-            footerImg.src = Object.values(images.location)[i];
-
-            footerTitle.innerText = Object.values(locationText.language[language].mainText.locationTitle)[i];
-
         };
 
     };
+    
+    function addDataToElements(){
+
+        document.querySelector('#location').querySelector('.main__title').innerText = locationText.language[language].mainText.textTitle;
+
+        document.querySelector('#location').querySelectorAll('.item__img').forEach((elem, index) =>{
+
+            elem.src = Object.values(images.location)[index];
+
+        });
+
+        document.querySelector('#location').querySelectorAll('.item__title').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(locationText.language[language].mainText.locationTitle)[index];
+
+        });
+
+    };
+
+    eventListener();
+
+};
+
+function eventListener(){
+
+    document.querySelectorAll('.footer__item-location').forEach(elem =>{
+
+        elem.addEventListener('click', () =>{
+
+            document.querySelector('#location').classList.add('hide-screen');
+
+            setTimeout(() => {
+                
+                document.querySelector('#location').remove()
+
+            }, '650');
+
+            castle(language);
+
+        });
+
+    });
 
 };
 

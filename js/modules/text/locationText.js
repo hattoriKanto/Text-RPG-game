@@ -13,7 +13,7 @@ const locationText = {
 
                     firsTitle: 'The Castrum Castle',
                     
-                    secondTitle: 'The village',
+                    secondTitle: 'The Village',
 
                     thirdTitle: 'The Rift'
 

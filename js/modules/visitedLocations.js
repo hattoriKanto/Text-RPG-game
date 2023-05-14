@@ -3,7 +3,7 @@ const visitedLocations = {
 
     castle: {
 
-        castleCourtyard: {
+        courtyard: {
 
             barracks: {
 
@@ -94,6 +94,58 @@ const visitedLocations = {
             }
 
         },
+
+        stables: {
+
+            stablesDoor: {
+
+                isVisited: false
+
+            },
+
+            stablesWalls: {
+
+                isVisited: false
+
+            },
+
+            stablesFloor: {
+
+                isVisited: false
+
+            },
+
+            stablesWindow: {
+
+                isVisited: false
+
+            },
+
+            stablesInside: {
+
+                isVisited: false
+
+            },
+
+            stablesPile: {
+
+                isVisited: false
+
+            },
+
+            stablesRight: {
+
+                isVisited: false
+
+            },
+
+            stablesLeft: {
+
+                isVisited: false
+
+            }
+
+        }
 
     },
 

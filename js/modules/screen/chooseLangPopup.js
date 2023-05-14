@@ -3,6 +3,8 @@ import chooseLanguageText from "../text/chooseLangText.js";
 
 import { creatingCharacter } from "./charCreatingScreen.js";
 
+import { castle } from "./location/castleScreen.js";
+
 function chooseLanguage(){
 
     createHTMLElements();
@@ -97,7 +99,7 @@ function eventListener(){
 
             setTimeout(() => {
 
-                creatingCharacter(choosedLang);
+                castle(choosedLang.toLowerCase());
 
                 document.querySelector('#choose-lang').remove();
                 
