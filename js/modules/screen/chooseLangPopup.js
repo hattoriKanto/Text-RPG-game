@@ -3,7 +3,7 @@ import chooseLanguageText from "../text/chooseLangText.js";
 
 import { creatingCharacter } from "./charCreatingScreen.js";
 
-import { castle } from "./location/castleScreen.js";
+import battleScreen from "./battleScreen.js";
 
 function chooseLanguage(){
 
@@ -18,6 +18,8 @@ function createHTMLElements(){
     const popupWrapper = document.createElement('div');
 
     const popupContent = document.createElement('div');
+
+    const popupContentWrapper = document.createElement('div');
 
     const popupHeader = document.createElement('div');
 
@@ -35,15 +37,17 @@ function createHTMLElements(){
 
     popupContent.className = 'popup__content choose-lang__content content';
 
+    popupContentWrapper.className = 'popup__content-wrapper choose-lang__content-wrapper';
+
     popupHeader.className = 'popup__header choose-lang__header header';
 
     popupTitle.className = 'popup__title';
 
     popupFooter.className = 'popup__footer choose-lang__footer footer';
 
-    footerFirstButton.className = 'footer__first-button button';
+    footerFirstButton.className = 'footer__first-button button popup__button';
 
-    footerSecondButton.className = 'footer__second-button button';
+    footerSecondButton.className = 'footer__second-button button popup__button';
 
     chooseLangPopup.id = 'choose-lang';
 
@@ -57,9 +61,11 @@ function createHTMLElements(){
 
     popupWrapper.appendChild(popupContent);
 
-    popupContent.appendChild(popupHeader);
+    popupContent.appendChild(popupContentWrapper);
 
-    popupContent.appendChild(popupFooter);
+    popupContentWrapper.appendChild(popupHeader);
+
+    popupContentWrapper.appendChild(popupFooter);
 
     popupHeader.appendChild(popupTitle);
 
@@ -99,7 +105,7 @@ function eventListener(){
 
             setTimeout(() => {
 
-                castle(choosedLang.toLowerCase());
+                creatingCharacter(choosedLang.toLowerCase());
 
                 document.querySelector('#choose-lang').remove();
                 

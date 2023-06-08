@@ -11,9 +11,7 @@ const classesTraits = {
 
                 attackPoints: 2,
 
-                defencePoints: 4,
-
-                canAttackTwice: false
+                defencePoints: 4
 
             },
 
@@ -35,9 +33,7 @@ const classesTraits = {
 
                 attackPoints: 4,
 
-                defencePoints: 2,
-
-                canAttackTwice: false
+                defencePoints: 2
 
             },
 
@@ -59,9 +55,7 @@ const classesTraits = {
 
                 attackPoints: 5,
 
-                defencePoints: 2,
-
-                canAttackTwice: true
+                defencePoints: 2
 
             },
 
@@ -89,9 +83,7 @@ const classesTraits = {
 
                 attackPoints: 2,
 
-                defencePoints: 2,
-
-                canAttackTwice: false
+                defencePoints: 2
 
             },
 
@@ -114,9 +106,7 @@ const classesTraits = {
 
                 attackPoints: 5,
 
-                defencePoints: 1,
-
-                canAttackTwice: false
+                defencePoints: 1
 
             },
 
@@ -136,9 +126,7 @@ const classesTraits = {
 
                 attackPoints: 3,
 
-                defencePoints: 2,
-
-                canAttackTwice: false
+                defencePoints: 2
 
             },
 
@@ -165,9 +153,7 @@ const classesTraits = {
 
                 attackPoints: 3,
 
-                defencePoints: 3,
-
-                canAttackTwice: false
+                defencePoints: 3
 
             },
 
@@ -190,9 +176,7 @@ const classesTraits = {
 
                 attackPoints: 4,
 
-                defencePoints: 2,
-
-                canAttackTwice: false
+                defencePoints: 2
 
             },
 
@@ -211,9 +195,7 @@ const classesTraits = {
 
                 attackPoints: 4,
 
-                defencePoints: 4,
-
-                canAttackTwice: true
+                defencePoints: 4
 
             },
 

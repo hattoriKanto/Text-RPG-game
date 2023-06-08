@@ -48,7 +48,7 @@ const images = {
 
     battle: {
 
-        weaponsType: {
+        playerWeaponsBtns: {
 
             meleeWeapons: './img/battle/melee-weapon.png',
 
@@ -58,7 +58,9 @@ const images = {
 
             rangeWeapons: './img/battle/range-weapon.png',
 
-        }
+        },
+
+        healingPotionBtn: './img/battle/healing-potion.png'
 
     },
 
@@ -76,7 +78,7 @@ const images = {
 
         arrow: './img/other/arrow.png',
 
-        startBattle: './img/other/startBattle.png',
+        startBattle: './img/other/start-battle.png',
 
         btnInfoImg: './img/other/info.png'
 

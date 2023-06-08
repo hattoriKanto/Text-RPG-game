@@ -15,6 +15,14 @@ const player = {
 
             secondWeapon: null
 
+        },
+
+        weaponsTypeKeys: {
+
+            firstWeapon: null,
+
+            secondWeapon: null
+
         }
 
     },
@@ -33,15 +41,13 @@ const player = {
 
     playerTraits: {
 
-        healthPoints: 0,
+        healthPoints: null,
 
-        armourPoints: 0,
+        armourPoints: null,
 
-        attackPoints: 0,
+        attackPoints: null,
 
-        defencePoints: 0,
-
-        canAttackTwice: null
+        defencePoints: null
         
     },
 

@@ -11,6 +11,8 @@ import castleBarracksText from "../../text/castle/castleBarracksText.js";
 
 import visitedLocations from "../../visitedLocations.js";
 
+import battleScreen from "../battleScreen.js";
+
 /// IMPORTS---END ///
 
 /// GLOBAL---VARIABLES---START ///
@@ -200,35 +202,55 @@ function castleCourtyard(){
         function footerItemsCheck(){
 
             document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
-
-                if(visitedLocations.castle.courtyard.barracks.isVisited === false && visitedLocations.castle.courtyard.stables.isVisited === false && visitedLocations.castle.courtyard.stables.isVisited === false){
+               
+                if(visitedLocations.castle.courtyard.stables.isVisited === false && visitedLocations.castle.courtyard.barracks.isVisited === false && visitedLocations.castle.courtyard.deadBody.isVisited === false){
 
                     if(elem.innerText === castleCourtyardText.language[language].mainText.textButton.fourthBtn){
-    
-                        elem.closest('.footer__item').remove();
-    
-                    };
-
-                };
-
-                if(visitedLocations.castle.courtyard.stables.isVisited === true && visitedLocations.castle.courtyard.barracks.isVisited === false && visitedLocations.castle.courtyard.deadBody.isVisited === false){
-
-                    if(elem.innerText === castleCourtyardText.language[language].mainText.textButton.firstBtn || elem.innerText === castleCourtyardText.language[language].mainText.textButton.fourthBtn){
-    
-                        elem.closest('.footer__item').remove();
-    
-                    };
         
-                };
-
-                if(visitedLocations.castle.courtyard.stables.isVisited === false && visitedLocations.castle.courtyard.barracks.isVisited === true && visitedLocations.castle.courtyard.deadBody.isVisited === false){
-
-                    if(elem.innerText === castleCourtyardText.language[language].mainText.textButton.secondBtn || elem.innerText === castleCourtyardText.language[language].mainText.textButton.fourthBtn){
-    
                         elem.closest('.footer__item').remove();
     
                     };
-            
+    
+                };
+
+                if(visitedLocations.castle.courtyard.stables.isVisited === true && visitedLocations.castle.courtyard.barracks.isVisited === true && visitedLocations.castle.courtyard.deadBody.isVisited === true){
+
+                    if(elem.innerText != castleCourtyardText.language[language].mainText.textButton.fourthBtn){
+        
+                        elem.closest('.footer__item').remove();
+    
+                    };
+    
+                };
+
+                if(visitedLocations.castle.courtyard.stables.isVisited === false && visitedLocations.castle.courtyard.barracks.isVisited === true && visitedLocations.castle.courtyard.deadBody.isVisited === true){
+
+                    if(elem.innerText != castleCourtyardText.language[language].mainText.textButton.firstBtn){
+        
+                        elem.closest('.footer__item').remove();
+    
+                    };
+    
+                };
+
+                if(visitedLocations.castle.courtyard.stables.isVisited === true && visitedLocations.castle.courtyard.barracks.isVisited === false && visitedLocations.castle.courtyard.deadBody.isVisited === true){
+
+                    if(elem.innerText != castleCourtyardText.language[language].mainText.textButton.secondBtn){
+        
+                        elem.closest('.footer__item').remove();
+    
+                    };
+    
+                };
+
+                if(visitedLocations.castle.courtyard.stables.isVisited === true && visitedLocations.castle.courtyard.barracks.isVisited === true && visitedLocations.castle.courtyard.deadBody.isVisited === false){
+
+                    if(elem.innerText != castleCourtyardText.language[language].mainText.textButton.thirdBtn){
+        
+                        elem.closest('.footer__item').remove();
+    
+                    };
+    
                 };
 
                 if(visitedLocations.castle.courtyard.stables.isVisited === false && visitedLocations.castle.courtyard.barracks.isVisited === false && visitedLocations.castle.courtyard.deadBody.isVisited === true){
@@ -240,40 +262,20 @@ function castleCourtyard(){
                     };
     
                 };
-        
-                if(visitedLocations.castle.courtyard.stables.isVisited === false && visitedLocations.castle.courtyard.barracks.isVisited === true && visitedLocations.castle.courtyard.deadBody.isVisited === true){
-    
-                    if(elem.innerText != castleCourtyardText.language[language].mainText.textButton.firstBtn){
-        
-                        elem.closest('.footer__item').remove();
-    
-                    };                    
-    
-                };
 
-                if(visitedLocations.castle.courtyard.stables.isVisited === true && visitedLocations.castle.courtyard.barracks.isVisited === false && visitedLocations.castle.courtyard.deadBody.isVisited === true){
-    
-                    if(elem.innerText != castleCourtyardText.language[language].mainText.textButton.secondBtn){
-        
-                        elem.closest('.footer__item').remove();
-    
-                    };                    
-    
-                };
-        
-                if(visitedLocations.castle.courtyard.stables.isVisited === true && visitedLocations.castle.courtyard.barracks.isVisited === true && visitedLocations.castle.courtyard.deadBody.isVisited === false){
-    
-                    if(elem.innerText != castleCourtyardText.language[language].mainText.textButton.thirdBtn){
+                if(visitedLocations.castle.courtyard.stables.isVisited === false && visitedLocations.castle.courtyard.barracks.isVisited === true && visitedLocations.castle.courtyard.deadBody.isVisited === false){
+
+                    if(elem.innerText === castleCourtyardText.language[language].mainText.textButton.secondBtn || elem.innerText === castleCourtyardText.language[language].mainText.textButton.fourthBtn){
         
                         elem.closest('.footer__item').remove();
     
                     };
     
                 };
-        
-                if(visitedLocations.castle.courtyard.stables.isVisited === true && visitedLocations.castle.courtyard.barracks.isVisited === true && visitedLocations.castle.courtyard.deadBody.isVisited === true){
-    
-                    if(elem.innerText != castleCourtyardText.language[language].mainText.textButton.fourthBtn){
+
+                if(visitedLocations.castle.courtyard.stables.isVisited === true && visitedLocations.castle.courtyard.barracks.isVisited === false && visitedLocations.castle.courtyard.deadBody.isVisited === false){
+
+                    if(elem.innerText === castleCourtyardText.language[language].mainText.textButton.firstBtn || elem.innerText === castleCourtyardText.language[language].mainText.textButton.fourthBtn){
         
                         elem.closest('.footer__item').remove();
     
@@ -293,37 +295,41 @@ function castleCourtyard(){
 
         document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-            if(elem.innerText === castleCourtyardText.language[language].mainText.textButton.firstBtn){
+            elem.addEventListener('click', () =>{
 
-                showNextSlide();
+                if(elem.innerText === castleCourtyardText.language[language].mainText.textButton.firstBtn){
 
-                castleBarracks();
+                    showNextSlide();
+    
+                    castleStables();
+    
+                };
+    
+                if(elem.innerText === castleCourtyardText.language[language].mainText.textButton.secondBtn){
+    
+                    showNextSlide();
+    
+                    castleBarracks();
+    
+                };
+    
+                if(elem.innerText === castleCourtyardText.language[language].mainText.textButton.thirdBtn){
+    
+                    showNextSlide();
+    
+                    courtyardDeadBody();
+    
+                };
+    
+                if(elem.innerText === castleCourtyardText.language[language].mainText.textButton.fourthBtn){
+    
+                    showNextSlide();
+    
+                    castleDonjon();
+    
+                };
 
-            };
-
-            if(elem.innerText === castleCourtyardText.language[language].mainText.textButton.secondBtn){
-
-                showNextSlide();
-
-                castleStables();
-
-            };
-
-            if(elem.innerText === castleCourtyardText.language[language].mainText.textButton.thirdBtn){
-
-                showNextSlide();
-
-                courtyardDeadBody();
-
-            };
-
-            if(elem.innerText === castleCourtyardText.language[language].mainText.textButton.fourthBtn){
-
-                showNextSlide();
-
-                castleDojon();
-
-            };
+            });
 
         });
 
@@ -334,6 +340,8 @@ function castleCourtyard(){
 /// STABLES---FUNCTIONS---START ///
 
 function castleStables(){
+
+    visitedLocations.castle.courtyard.stables.isVisited = true;
 
     const footerItemCount = Object.values(castleStablesText.language[language].castleStables.textButton).length;
 
@@ -357,23 +365,27 @@ function castleStables(){
 
     function eventListener(){
 
-        document.querySelector('#castle').querySelector('.button').addEventListener('click', () =>{
+        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-            if(elem.innerText === castleStablesText.language[language].castleStables.textButton.firstBtn){
+            elem.addEventListener('click', () =>{
 
-                showNextSlide();
+                if(elem.innerText === castleStablesText.language[language].castleStables.textButton.firstBtn){
 
-                stablesInside();
+                    showNextSlide();
+    
+                    stablesInside();
+    
+                };
+    
+                if(elem.innerText === castleStablesText.language[language].castleStables.textButton.secondBtn){
+    
+                    showNextSlide();
+    
+                    stablesDoor();
+    
+                };
 
-            };
-
-            if(elem.innerText === castleStablesText.language[language].castleStables.textButton.secondBtn){
-
-                showNextSlide();
-
-                stablesDoor();
-
-            };
+            });
 
         });
 
@@ -382,6 +394,8 @@ function castleStables(){
 };
 
 function stablesInside(){
+
+    visitedLocations.castle.stables.stablesInside.isVisited = true;
 
     const footerItemCount = Object.values(castleStablesText.language[language].stablesInside.textButton).length;
 
@@ -405,31 +419,35 @@ function stablesInside(){
 
     function eventListener(){
 
-        document.querySelector('#castle').querySelector('.button').addEventListener('click', () =>{
+        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-            if(elem.innerText === castleStablesText.language[language].stablesInside.textButton.firstBtn){
+            elem.addEventListener('click', () =>{
 
-                showNextSlide();
+                if(elem.innerText === castleStablesText.language[language].stablesInside.textButton.firstBtn){
 
-                stablesPile();
+                    showNextSlide();
+    
+                    stablesPile();
+    
+                };
+    
+                if(elem.innerText === castleStablesText.language[language].stablesInside.textButton.secondBtn){
+    
+                    showNextSlide();
+    
+                    stablesLeft();
+    
+                };
+    
+                if(elem.innerText === castleStablesText.language[language].stablesInside.textButton.thirdBtn){
+    
+                    showNextSlide();
+    
+                    stablesRight();
+    
+                };
 
-            };
-
-            if(elem.innerText === castleStablesText.language[language].stablesInside.textButton.secondBtn){
-
-                showNextSlide();
-
-                stablesLeft();
-
-            };
-
-            if(elem.innerText === castleStablesText.language[language].stablesInside.textButton.thirdBtn){
-
-                showNextSlide();
-
-                stablesRight();
-
-            };
+            });
 
         });
 
@@ -438,6 +456,8 @@ function stablesInside(){
 };
 
 function stablesPile(){
+
+    visitedLocations.castle.stables.stablesPile.isVisited = true;
 
     const footerItemCount = Object.values(castleStablesText.language[language].stablesPile.textButton).length;
 
@@ -461,9 +481,9 @@ function stablesPile(){
 
             document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-                if(visitedLocations.castle.stables.stablesLeft.isVisited === false && visitedLocations.castle.stables.stablesRight.isVisited === false && visitedLocations.castle.stables.stablesDoor.isVisited === false){
+                if((visitedLocations.castle.stables.stablesLeft.isVisited === false && visitedLocations.castle.stables.stablesRight.isVisited === false && visitedLocations.castle.stables.stablesDoor.isVisited === false) || (visitedLocations.castle.stables.stablesLeft.isVisited === false && visitedLocations.castle.stables.stablesRight.isVisited === false && visitedLocations.castle.stables.stablesDoor.isVisited === true)){
 
-                    if(elem.innerText != castleStablesText.language[language].stablesPile.textButton.firstBtn || elem.innerText != castleStablesText.language[language].stablesPile.textButton.secondBtn){
+                    if(elem.innerText === castleStablesText.language[language].stablesPile.textButton.thirdBtn || elem.innerText === castleStablesText.language[language].stablesPile.textButton.fourthBtn){
     
                         elem.closest('.footer__item').remove();
     
@@ -471,44 +491,44 @@ function stablesPile(){
 
                 };
 
-                if(visitedLocations.castle.stables.stablesLeft.isVisited === true && visitedLocations.castle.stables.stablesRight.isVisited === false && visitedLocations.castle.stables.stablesDoor.isVisited === false){
-
-                    if(elem.innerText != castleStablesText.language[language].stablesPile.textButton.secondBtn){
-    
-                        elem.closest('.footer__item').remove();
-    
-                    };
-        
-                };
-
-                if(visitedLocations.castle.stables.stablesLeft.isVisited === false && visitedLocations.castle.stables.stablesRight.isVisited === true && visitedLocations.castle.stables.stablesDoor.isVisited === false){
+                if((visitedLocations.castle.stables.stablesLeft.isVisited === false && visitedLocations.castle.stables.stablesRight.isVisited === true && visitedLocations.castle.stables.stablesDoor.isVisited === false) || (visitedLocations.castle.stables.stablesLeft.isVisited === false && visitedLocations.castle.stables.stablesRight.isVisited === true && visitedLocations.castle.stables.stablesDoor.isVisited === true)){
 
                     if(elem.innerText != castleStablesText.language[language].stablesPile.textButton.firstBtn){
     
                         elem.closest('.footer__item').remove();
     
                     };
-            
+
+                };
+
+                if((visitedLocations.castle.stables.stablesLeft.isVisited === true && visitedLocations.castle.stables.stablesRight.isVisited === false && visitedLocations.castle.stables.stablesDoor.isVisited === false) || (visitedLocations.castle.stables.stablesLeft.isVisited === true && visitedLocations.castle.stables.stablesRight.isVisited === false && visitedLocations.castle.stables.stablesDoor.isVisited === true)){
+
+                    if(elem.innerText != castleStablesText.language[language].stablesPile.textButton.secondBtn){
+    
+                        elem.closest('.footer__item').remove();
+    
+                    };
+
                 };
 
                 if(visitedLocations.castle.stables.stablesLeft.isVisited === true && visitedLocations.castle.stables.stablesRight.isVisited === true && visitedLocations.castle.stables.stablesDoor.isVisited === false){
 
-                    if(elem.innerText != castleBarracksText.language[language].stablesPile.textButton.thirdBtn){
-        
+                    if(elem.innerText != castleStablesText.language[language].stablesPile.textButton.thirdBtn){
+    
                         elem.closest('.footer__item').remove();
     
                     };
-    
+
                 };
 
                 if(visitedLocations.castle.stables.stablesLeft.isVisited === true && visitedLocations.castle.stables.stablesRight.isVisited === true && visitedLocations.castle.stables.stablesDoor.isVisited === true){
 
-                    if(elem.innerText != castleBarracksText.language[language].stablesPile.textButton.fourthBtn){
-        
+                    if(elem.innerText != castleStablesText.language[language].stablesPile.textButton.fourthBtn){
+    
                         elem.closest('.footer__item').remove();
     
                     };
-    
+
                 };
 
             });
@@ -521,39 +541,43 @@ function stablesPile(){
 
     function eventListener(){
 
-        document.querySelector('#castle').querySelector('.button').addEventListener('click', () =>{
+        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-            if(elem.innerText === castleStablesText.language[language].stablesPile.textButton.firstBtn){
+            elem.addEventListener('click', () =>{
 
-                showNextSlide();
+                if(elem.innerText === castleStablesText.language[language].stablesPile.textButton.firstBtn){
 
-                stablesLeft();
+                    showNextSlide();
+    
+                    stablesLeft();
+    
+                };
+    
+                if(elem.innerText === castleStablesText.language[language].stablesPile.textButton.secondBtn){
+    
+                    showNextSlide();
+    
+                    stablesRight();
+    
+                };
+    
+                if(elem.innerText === castleStablesText.language[language].stablesPile.textButton.thirdBtn){
+    
+                    showNextSlide();
+    
+                    stablesDoor();
+    
+                };
+    
+                if(elem.innerText === castleStablesText.language[language].stablesPile.textButton.fourthBtn){
+    
+                    showNextSlide();
+    
+                    castleCourtyard();
+    
+                };
 
-            };
-
-            if(elem.innerText === castleStablesText.language[language].stablesPile.textButton.secondBtn){
-
-                showNextSlide();
-
-                stablesRight();
-
-            };
-
-            if(elem.innerText === castleStablesText.language[language].stablesPile.textButton.thirdBtn){
-
-                showNextSlide();
-
-                stablesDoor();
-
-            };
-
-            if(elem.innerText === castleStablesText.language[language].stablesPile.textButton.fourthBtn){
-
-                showNextSlide();
-
-                castleCourtyard();
-
-            };
+            });
 
         });
 
@@ -562,6 +586,8 @@ function stablesPile(){
 };
 
 function stablesLeft(){
+
+    visitedLocations.castle.stables.stablesLeft.isVisited = true;
 
     const footerItemCount = Object.values(castleStablesText.language[language].stablesLeft.textButton).length;
 
@@ -585,9 +611,9 @@ function stablesLeft(){
 
             document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-                if(visitedLocations.castle.stables.stablesPile.isVisited === false && visitedLocations.castle.stables.stablesRight.isVisited === false && visitedLocations.castle.stables.stablesDoor.isVisited === false){
+                if((visitedLocations.castle.stables.stablesPile.isVisited === false && visitedLocations.castle.stables.stablesRight.isVisited === false && visitedLocations.castle.stables.stablesDoor.isVisited === false) || (visitedLocations.castle.stables.stablesPile.isVisited === false && visitedLocations.castle.stables.stablesRight.isVisited === false && visitedLocations.castle.stables.stablesDoor.isVisited === true)){
 
-                    if(elem.innerText != castleStablesText.language[language].stablesLeft.textButton.firstBtn || elem.innerText != castleStablesText.language[language].stablesLeft.textButton.secondBtn){
+                    if(elem.innerText === castleStablesText.language[language].stablesLeft.textButton.thirdBtn || elem.innerText === castleStablesText.language[language].stablesLeft.textButton.fourthBtn){
     
                         elem.closest('.footer__item').remove();
     
@@ -595,44 +621,44 @@ function stablesLeft(){
 
                 };
 
-                if(visitedLocations.castle.stables.stablesPile.isVisited === true && visitedLocations.castle.stables.stablesRight.isVisited === false && visitedLocations.castle.stables.stablesDoor.isVisited === false){
-
-                    if(elem.innerText != castleStablesText.language[language].stablesLeft.textButton.secondBtn){
-    
-                        elem.closest('.footer__item').remove();
-    
-                    };
-        
-                };
-
-                if(visitedLocations.castle.stables.stablesPile.isVisited === false && visitedLocations.castle.stables.stablesRight.isVisited === true && visitedLocations.castle.stables.stablesDoor.isVisited === false){
+                if((visitedLocations.castle.stables.stablesPile.isVisited === false && visitedLocations.castle.stables.stablesRight.isVisited === true && visitedLocations.castle.stables.stablesDoor.isVisited === false) || (visitedLocations.castle.stables.stablesPile.isVisited === false && visitedLocations.castle.stables.stablesRight.isVisited === true && visitedLocations.castle.stables.stablesDoor.isVisited === true)){
 
                     if(elem.innerText != castleStablesText.language[language].stablesLeft.textButton.firstBtn){
     
                         elem.closest('.footer__item').remove();
     
                     };
-            
+
+                };
+
+                if((visitedLocations.castle.stables.stablesPile.isVisited === true && visitedLocations.castle.stables.stablesRight.isVisited === false && visitedLocations.castle.stables.stablesDoor.isVisited === false) || (visitedLocations.castle.stables.stablesPile.isVisited === true && visitedLocations.castle.stables.stablesRight.isVisited === false && visitedLocations.castle.stables.stablesDoor.isVisited === true)){
+
+                    if(elem.innerText != castleStablesText.language[language].stablesLeft.textButton.secondBtn){
+    
+                        elem.closest('.footer__item').remove();
+    
+                    };
+
                 };
 
                 if(visitedLocations.castle.stables.stablesPile.isVisited === true && visitedLocations.castle.stables.stablesRight.isVisited === true && visitedLocations.castle.stables.stablesDoor.isVisited === false){
 
-                    if(elem.innerText != castleBarracksText.language[language].stablesLeft.textButton.thirdBtn){
-        
+                    if(elem.innerText != castleStablesText.language[language].stablesLeft.textButton.thirdBtn){
+    
                         elem.closest('.footer__item').remove();
     
                     };
-    
+
                 };
 
                 if(visitedLocations.castle.stables.stablesPile.isVisited === true && visitedLocations.castle.stables.stablesRight.isVisited === true && visitedLocations.castle.stables.stablesDoor.isVisited === true){
 
-                    if(elem.innerText != castleBarracksText.language[language].stablesLeft.textButton.fourthBtn){
-        
+                    if(elem.innerText != castleStablesText.language[language].stablesLeft.textButton.fourthBtn){
+    
                         elem.closest('.footer__item').remove();
     
                     };
-    
+
                 };
 
             });
@@ -645,39 +671,43 @@ function stablesLeft(){
 
     function eventListener(){
 
-        document.querySelector('#castle').querySelector('.button').addEventListener('click', () =>{
+        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-            if(elem.innerText === castleStablesText.language[language].stablesLeft.textButton.firstBtn){
+            elem.addEventListener('click', () =>{
 
-                showNextSlide();
+                if(elem.innerText === castleStablesText.language[language].stablesLeft.textButton.firstBtn){
 
-                stablesPile();
+                    showNextSlide();
+    
+                    stablesPile();
+    
+                };
+    
+                if(elem.innerText === castleStablesText.language[language].stablesLeft.textButton.secondBtn){
+    
+                    showNextSlide();
+    
+                    stablesRight();
+    
+                };
+    
+                if(elem.innerText === castleStablesText.language[language].stablesLeft.textButton.thirdBtn){
+    
+                    showNextSlide();
+    
+                    stablesDoor();
+    
+                };
+    
+                if(elem.innerText === castleStablesText.language[language].stablesLeft.textButton.fourthBtn){
+    
+                    showNextSlide();
+    
+                    castleCourtyard();
+    
+                };
 
-            };
-
-            if(elem.innerText === castleStablesText.language[language].stablesLeft.textButton.secondBtn){
-
-                showNextSlide();
-
-                stablesRight();
-
-            };
-
-            if(elem.innerText === castleStablesText.language[language].stablesLeft.textButton.thirdBtn){
-
-                showNextSlide();
-
-                stablesDoor();
-
-            };
-
-            if(elem.innerText === castleStablesText.language[language].stablesLeft.textButton.fourthBtn){
-
-                showNextSlide();
-
-                castleCourtyard();
-
-            };
+            });
 
         });
 
@@ -686,6 +716,8 @@ function stablesLeft(){
 };
 
 function stablesRight(){
+
+    visitedLocations.castle.stables.stablesRight.isVisited = true;
 
     const footerItemCount = Object.values(castleStablesText.language[language].stablesRight.textButton).length;
 
@@ -709,9 +741,9 @@ function stablesRight(){
 
             document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-                if(visitedLocations.castle.stables.stablesPile.isVisited === false && visitedLocations.castle.stables.stablesLeft.isVisited === false && visitedLocations.castle.stables.stablesDoor.isVisited === false){
+                if((visitedLocations.castle.stables.stablesPile.isVisited === false && visitedLocations.castle.stables.stablesLeft.isVisited === false && visitedLocations.castle.stables.stablesDoor.isVisited === false) || (visitedLocations.castle.stables.stablesPile.isVisited === false && visitedLocations.castle.stables.stablesLeft.isVisited === false && visitedLocations.castle.stables.stablesDoor.isVisited === true)){
 
-                    if(elem.innerText != castleStablesText.language[language].stablesRight.textButton.firstBtn || elem.innerText != castleStablesText.language[language].stablesRight.textButton.secondBtn){
+                    if(elem.innerText === castleStablesText.language[language].stablesRight.textButton.thirdBtn || elem.innerText === castleStablesText.language[language].stablesRight.textButton.fourthBtn){
     
                         elem.closest('.footer__item').remove();
     
@@ -719,44 +751,44 @@ function stablesRight(){
 
                 };
 
-                if(visitedLocations.castle.stables.stablesPile.isVisited === true && visitedLocations.castle.stables.stablesLeft.isVisited === false && visitedLocations.castle.stables.stablesDoor.isVisited === false){
-
-                    if(elem.innerText != castleStablesText.language[language].stablesRight.textButton.secondBtn){
-    
-                        elem.closest('.footer__item').remove();
-    
-                    };
-        
-                };
-
-                if(visitedLocations.castle.stables.stablesPile.isVisited === false && visitedLocations.castle.stables.stablesLeft.isVisited === true && visitedLocations.castle.stables.stablesDoor.isVisited === false){
+                if((visitedLocations.castle.stables.stablesPile.isVisited === false && visitedLocations.castle.stables.stablesLeft.isVisited === true && visitedLocations.castle.stables.stablesDoor.isVisited === false) || (visitedLocations.castle.stables.stablesPile.isVisited === false && visitedLocations.castle.stables.stablesLeft.isVisited === true && visitedLocations.castle.stables.stablesDoor.isVisited === true)){
 
                     if(elem.innerText != castleStablesText.language[language].stablesRight.textButton.firstBtn){
     
                         elem.closest('.footer__item').remove();
     
                     };
-            
+
+                };
+
+                if((visitedLocations.castle.stables.stablesPile.isVisited === true && visitedLocations.castle.stables.stablesLeft.isVisited === false && visitedLocations.castle.stables.stablesDoor.isVisited === false) || (visitedLocations.castle.stables.stablesPile.isVisited === true && visitedLocations.castle.stables.stablesLeft.isVisited === false && visitedLocations.castle.stables.stablesDoor.isVisited === true)){
+
+                    if(elem.innerText != castleStablesText.language[language].stablesRight.textButton.secondBtn){
+    
+                        elem.closest('.footer__item').remove();
+    
+                    };
+
                 };
 
                 if(visitedLocations.castle.stables.stablesPile.isVisited === true && visitedLocations.castle.stables.stablesLeft.isVisited === true && visitedLocations.castle.stables.stablesDoor.isVisited === false){
 
-                    if(elem.innerText != castleBarracksText.language[language].stablesRight.textButton.thirdBtn){
-        
+                    if(elem.innerText != castleStablesText.language[language].stablesRight.textButton.thirdBtn){
+    
                         elem.closest('.footer__item').remove();
     
                     };
-    
+
                 };
 
                 if(visitedLocations.castle.stables.stablesPile.isVisited === true && visitedLocations.castle.stables.stablesLeft.isVisited === true && visitedLocations.castle.stables.stablesDoor.isVisited === true){
 
-                    if(elem.innerText != castleBarracksText.language[language].stablesRight.textButton.fourthBtn){
-        
+                    if(elem.innerText != castleStablesText.language[language].stablesRight.textButton.fourthBtn){
+    
                         elem.closest('.footer__item').remove();
     
                     };
-    
+
                 };
 
             });
@@ -769,39 +801,43 @@ function stablesRight(){
 
     function eventListener(){
 
-        document.querySelector('#castle').querySelector('.button').addEventListener('click', () =>{
+        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-            if(elem.innerText === castleStablesText.language[language].stablesRight.textButton.firstBtn){
+            elem.addEventListener('click', () =>{
 
-                showNextSlide();
+                if(elem.innerText === castleStablesText.language[language].stablesRight.textButton.firstBtn){
 
-                stablesPile();
+                    showNextSlide();
+    
+                    stablesPile();
+    
+                };
+    
+                if(elem.innerText === castleStablesText.language[language].stablesRight.textButton.secondBtn){
+    
+                    showNextSlide();
+    
+                    stablesLeft();
+    
+                };
+    
+                if(elem.innerText === castleStablesText.language[language].stablesRight.textButton.thirdBtn){
+    
+                    showNextSlide();
+    
+                    stablesDoor();
+    
+                };
+    
+                if(elem.innerText === castleStablesText.language[language].stablesRight.textButton.fourthBtn){
+    
+                    showNextSlide();
+    
+                    castleCourtyard();
+    
+                };
 
-            };
-
-            if(elem.innerText === castleStablesText.language[language].stablesRight.textButton.secondBtn){
-
-                showNextSlide();
-
-                stablesLeft();
-
-            };
-
-            if(elem.innerText === castleStablesText.language[language].stablesRight.textButton.thirdBtn){
-
-                showNextSlide();
-
-                stablesDoor();
-
-            };
-
-            if(elem.innerText === castleStablesText.language[language].stablesRight.textButton.fourthBtn){
-
-                showNextSlide();
-
-                castleCourtyard();
-
-            };
+            });
 
         });
 
@@ -809,13 +845,465 @@ function stablesRight(){
 
 };
 
-function stablesDoor(){};
+function stablesDoor(){
+
+    visitedLocations.castle.stables.stablesDoor.isVisited = true;
+    
+    const footerItemCount = Object.values(castleStablesText.language[language].stablesDoor.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = castleStablesText.language[language].stablesDoor.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = castleStablesText.language[language].stablesDoor.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(castleStablesText.language[language].stablesDoor.textButton)[index];
+
+        });
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+            elem.addEventListener('click', () =>{
+
+                if(elem.innerText === castleStablesText.language[language].stablesDoor.textButton.firstBtn){
+
+                    showNextSlide();
+    
+                    stablesWalls();
+    
+                };
+    
+                if(elem.innerText === castleStablesText.language[language].stablesDoor.textButton.secondBtn){
+    
+                    showNextSlide();
+    
+                    stablesFloor();
+    
+                };
+    
+                if(elem.innerText === castleStablesText.language[language].stablesDoor.textButton.thirdBtn){
+    
+                    showNextSlide();
+    
+                    stablesWindow();
+    
+                };
+
+            });
+
+        });
+
+    };
+
+};
+
+function stablesWalls(){
+
+    visitedLocations.castle.stables.stablesWalls.isVisited = true;
+
+    const footerItemCount = Object.values(castleStablesText.language[language].stablesWalls.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = castleStablesText.language[language].stablesWalls.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = castleStablesText.language[language].stablesWalls.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(castleStablesText.language[language].stablesWalls.textButton)[index];
+
+        });
+
+        footerItemsCheck();
+
+        function footerItemsCheck(){
+
+            document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+                if((visitedLocations.castle.stables.stablesFloor.isVisited === false && visitedLocations.castle.stables.stablesWindow.isVisited === false && visitedLocations.castle.stables.stablesInside.isVisited === false) || (visitedLocations.castle.stables.stablesFloor.isVisited === false && visitedLocations.castle.stables.stablesWindow.isVisited === false && visitedLocations.castle.stables.stablesInside.isVisited === true)){
+
+                    if(elem.innerText === castleStablesText.language[language].stablesWalls.textButton.thirdBtn || elem.innerText === castleStablesText.language[language].stablesWalls.textButton.fourthBtn){
+    
+                        elem.closest('.footer__item').remove();
+    
+                    };
+
+                };
+
+                if((visitedLocations.castle.stables.stablesFloor.isVisited === false && visitedLocations.castle.stables.stablesWindow.isVisited === true && visitedLocations.castle.stables.stablesInside.isVisited === false) || (visitedLocations.castle.stables.stablesFloor.isVisited === false && visitedLocations.castle.stables.stablesWindow.isVisited === true && visitedLocations.castle.stables.stablesInside.isVisited === true)){
+
+                    if(elem.innerText != castleStablesText.language[language].stablesWalls.textButton.firstBtn){
+    
+                        elem.closest('.footer__item').remove();
+    
+                    };
+
+                };
+
+                if((visitedLocations.castle.stables.stablesFloor.isVisited === true && visitedLocations.castle.stables.stablesWindow.isVisited === false && visitedLocations.castle.stables.stablesInside.isVisited === false) || (visitedLocations.castle.stables.stablesFloor.isVisited === true && visitedLocations.castle.stables.stablesWindow.isVisited === false && visitedLocations.castle.stables.stablesInside.isVisited === true)){
+
+                    if(elem.innerText != castleStablesText.language[language].stablesWalls.textButton.secondBtn){
+    
+                        elem.closest('.footer__item').remove();
+    
+                    };
+
+                };
+
+                if(visitedLocations.castle.stables.stablesFloor.isVisited === true && visitedLocations.castle.stables.stablesWindow.isVisited === true && visitedLocations.castle.stables.stablesInside.isVisited === false){
+
+                    if(elem.innerText != castleStablesText.language[language].stablesWalls.textButton.thirdBtn){
+    
+                        elem.closest('.footer__item').remove();
+    
+                    };
+
+                };
+
+                if(visitedLocations.castle.stables.stablesFloor.isVisited === true && visitedLocations.castle.stables.stablesWindow.isVisited === true && visitedLocations.castle.stables.stablesInside.isVisited === true){
+
+                    if(elem.innerText != castleStablesText.language[language].stablesWalls.textButton.fourthBtn){
+    
+                        elem.closest('.footer__item').remove();
+    
+                    };
+
+                };
+
+            });
+    
+        };
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+            elem.addEventListener('click', () =>{
+
+                if(elem.innerText === castleStablesText.language[language].stablesWalls.textButton.firstBtn){
+
+                    showNextSlide();
+    
+                    stablesFloor();
+    
+                };
+    
+                if(elem.innerText === castleStablesText.language[language].stablesWalls.textButton.secondBtn){
+    
+                    showNextSlide();
+    
+                    stablesWindow();
+    
+                };
+    
+                if(elem.innerText === castleStablesText.language[language].stablesWalls.textButton.thirdBtn){
+    
+                    showNextSlide();
+    
+                    stablesInside();
+    
+                };
+    
+                if(elem.innerText === castleStablesText.language[language].stablesWalls.textButton.fourthBtn){
+    
+                    showNextSlide();
+    
+                    castleCourtyard();
+    
+                };
+
+            });
+
+        });
+
+    };
+
+};
+
+function stablesFloor(){
+
+    visitedLocations.castle.stables.stablesFloor.isVisited = true;
+
+    const footerItemCount = Object.values(castleStablesText.language[language].stablesFloor.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = castleStablesText.language[language].stablesFloor.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = castleStablesText.language[language].stablesFloor.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(castleStablesText.language[language].stablesFloor.textButton)[index];
+
+        });
+
+        footerItemsCheck();
+
+        function footerItemsCheck(){
+
+            document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+                if((visitedLocations.castle.stables.stablesWalls.isVisited === false && visitedLocations.castle.stables.stablesWindow.isVisited === false && visitedLocations.castle.stables.stablesInside.isVisited === false) || (visitedLocations.castle.stables.stablesWalls.isVisited === false && visitedLocations.castle.stables.stablesWindow.isVisited === false && visitedLocations.castle.stables.stablesInside.isVisited === true)){
+
+                    if(elem.innerText === castleStablesText.language[language].stablesFloor.textButton.thirdBtn || elem.innerText === castleStablesText.language[language].stablesFloor.textButton.fourthBtn){
+    
+                        elem.closest('.footer__item').remove();
+    
+                    };
+
+                };
+
+                if((visitedLocations.castle.stables.stablesWalls.isVisited === false && visitedLocations.castle.stables.stablesWindow.isVisited === true && visitedLocations.castle.stables.stablesInside.isVisited === false) || (visitedLocations.castle.stables.stablesWalls.isVisited === false && visitedLocations.castle.stables.stablesWindow.isVisited === true && visitedLocations.castle.stables.stablesInside.isVisited === true)){
+
+                    if(elem.innerText != castleStablesText.language[language].stablesFloor.textButton.firstBtn){
+    
+                        elem.closest('.footer__item').remove();
+    
+                    };
+
+                };
+
+                if((visitedLocations.castle.stables.stablesWalls.isVisited === true && visitedLocations.castle.stables.stablesWindow.isVisited === false && visitedLocations.castle.stables.stablesInside.isVisited === false) || (visitedLocations.castle.stables.stablesWalls.isVisited === true && visitedLocations.castle.stables.stablesWindow.isVisited === false && visitedLocations.castle.stables.stablesInside.isVisited === true)){
+
+                    if(elem.innerText != castleStablesText.language[language].stablesFloor.textButton.secondBtn){
+    
+                        elem.closest('.footer__item').remove();
+    
+                    };
+
+                };
+
+                if(visitedLocations.castle.stables.stablesWalls.isVisited === true && visitedLocations.castle.stables.stablesWindow.isVisited === true && visitedLocations.castle.stables.stablesInside.isVisited === false){
+
+                    if(elem.innerText != castleStablesText.language[language].stablesFloor.textButton.thirdBtn){
+    
+                        elem.closest('.footer__item').remove();
+    
+                    };
+
+                };
+
+                if(visitedLocations.castle.stables.stablesWalls.isVisited === true && visitedLocations.castle.stables.stablesWindow.isVisited === true && visitedLocations.castle.stables.stablesInside.isVisited === true){
+
+                    if(elem.innerText != castleStablesText.language[language].stablesFloor.textButton.fourthBtn){
+    
+                        elem.closest('.footer__item').remove();
+    
+                    };
+
+                };
+
+            });
+    
+        };
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+            elem.addEventListener('click', () =>{
+
+                if(elem.innerText === castleStablesText.language[language].stablesFloor.textButton.firstBtn){
+
+                    showNextSlide();
+    
+                    stablesWalls();
+    
+                };
+    
+                if(elem.innerText === castleStablesText.language[language].stablesFloor.textButton.secondBtn){
+    
+                    showNextSlide();
+    
+                    stablesWindow();
+    
+                };
+    
+                if(elem.innerText === castleStablesText.language[language].stablesFloor.textButton.thirdBtn){
+    
+                    showNextSlide();
+    
+                    stablesInside();
+    
+                };
+    
+                if(elem.innerText === castleStablesText.language[language].stablesFloor.textButton.fourthBtn){
+    
+                    showNextSlide();
+    
+                    castleCourtyard();
+    
+                };
+
+            });
+
+        });
+
+    };
+
+};
+
+function stablesWindow(){
+
+    visitedLocations.castle.stables.stablesWindow.isVisited = true;
+
+    const footerItemCount = Object.values(castleStablesText.language[language].stablesWindow.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = castleStablesText.language[language].stablesWindow.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = castleStablesText.language[language].stablesWindow.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(castleStablesText.language[language].stablesWindow.textButton)[index];
+
+        });
+
+        footerItemsCheck();
+
+        function footerItemsCheck(){
+
+            document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+                if((visitedLocations.castle.stables.stablesWalls.isVisited === false && visitedLocations.castle.stables.stablesFloor.isVisited === false && visitedLocations.castle.stables.stablesInside.isVisited === false) || (visitedLocations.castle.stables.stablesWalls.isVisited === false && visitedLocations.castle.stables.stablesFloor.isVisited === false && visitedLocations.castle.stables.stablesInside.isVisited === true)){
+
+                    if(elem.innerText === castleStablesText.language[language].stablesWindow.textButton.thirdBtn || elem.innerText === castleStablesText.language[language].stablesWindow.textButton.fourthBtn){
+    
+                        elem.closest('.footer__item').remove();
+    
+                    };
+
+                };
+
+                if((visitedLocations.castle.stables.stablesWalls.isVisited === false && visitedLocations.castle.stables.stablesFloor.isVisited === true && visitedLocations.castle.stables.stablesInside.isVisited === false) || (visitedLocations.castle.stables.stablesWalls.isVisited === false && visitedLocations.castle.stables.stablesFloor.isVisited === true && visitedLocations.castle.stables.stablesInside.isVisited === true)){
+
+                    if(elem.innerText != castleStablesText.language[language].stablesWindow.textButton.firstBtn){
+    
+                        elem.closest('.footer__item').remove();
+    
+                    };
+
+                };
+
+                if((visitedLocations.castle.stables.stablesWalls.isVisited === true && visitedLocations.castle.stables.stablesFloor.isVisited === false && visitedLocations.castle.stables.stablesInside.isVisited === false) || (visitedLocations.castle.stables.stablesWalls.isVisited === true && visitedLocations.castle.stables.stablesFloor.isVisited === false && visitedLocations.castle.stables.stablesInside.isVisited === true)){
+
+                    if(elem.innerText != castleStablesText.language[language].stablesWindow.textButton.secondBtn){
+    
+                        elem.closest('.footer__item').remove();
+    
+                    };
+
+                };
+
+                if(visitedLocations.castle.stables.stablesWalls.isVisited === true && visitedLocations.castle.stables.stablesFloor.isVisited === true && visitedLocations.castle.stables.stablesInside.isVisited === false){
+
+                    if(elem.innerText != castleStablesText.language[language].stablesWindow.textButton.thirdBtn){
+    
+                        elem.closest('.footer__item').remove();
+    
+                    };
+
+                };
+
+                if(visitedLocations.castle.stables.stablesWalls.isVisited === true && visitedLocations.castle.stables.stablesFloor.isVisited === true && visitedLocations.castle.stables.stablesInside.isVisited === true){
+
+                    if(elem.innerText != castleStablesText.language[language].stablesWindow.textButton.fourthBtn){
+    
+                        elem.closest('.footer__item').remove();
+    
+                    };
+
+                };
+
+            });
+    
+        };
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+            elem.addEventListener('click', () =>{
+
+                if(elem.innerText === castleStablesText.language[language].stablesWindow.textButton.firstBtn){
+
+                    showNextSlide();
+    
+                    stablesWalls();
+    
+                };
+    
+                if(elem.innerText === castleStablesText.language[language].stablesWindow.textButton.secondBtn){
+    
+                    showNextSlide();
+    
+                    stablesFloor();
+    
+                };
+    
+                if(elem.innerText === castleStablesText.language[language].stablesWindow.textButton.thirdBtn){
+    
+                    showNextSlide();
+    
+                    stablesInside();
+    
+                };
+    
+                if(elem.innerText === castleStablesText.language[language].stablesWindow.textButton.fourthBtn){
+    
+                    showNextSlide();
+    
+                    castleCourtyard();
+    
+                };
+
+            });
+
+        });
+
+    };
+
+};
 
 /// STABLES---FUNCTIONS---END ///
 
 /// BARRACKS---FUNCTIONS---START ///
 
 function castleBarracks(){
+
+    visitedLocations.castle.courtyard.barracks.isVisited = true;
 
     const footerItemCount = Object.values(castleBarracksText.language[language].castleBarracks.textButton).length;
 
@@ -877,21 +1365,25 @@ function barracksInside(){
 
         document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-            if(elem.innerText === castleCourtyardText.language[language].barracksInside.textButton.firstBtn){
+            elem.addEventListener('click', () =>{
+
+                if(elem.innerText === castleBarracksText.language[language].barracksInside.textButton.firstBtn){
 
                 showNextSlide();
 
                 barracksInsideFirstFloor();
 
-            };
+                };
 
-            if(elem.innerText === castleCourtyardText.language[language].barracksInside.textButton.secondBtn){
+                if(elem.innerText === castleBarracksText.language[language].barracksInside.textButton.secondBtn){
 
                 showNextSlide();
 
                 barracksInsideSecondFloor();
 
-            };
+                };
+
+            });
 
         });
 
@@ -900,6 +1392,8 @@ function barracksInside(){
 };
 
 function barracksInsideFirstFloor(){
+
+    visitedLocations.castle.barracks.barracksInsideFirstFloor.isVisited = true;
 
     const footerItemCount = Object.values(castleBarracksText.language[language].barracksInsideFirstFloor.textButton).length;
 
@@ -925,21 +1419,25 @@ function barracksInsideFirstFloor(){
 
         document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-            if(elem.innerText === castleBarracksText.language[language].barracksInsideFirstFloor.textButton.firstBtn){
+            elem.addEventListener('click', () =>{
 
-                showNextSlide();
+                if(elem.innerText === castleBarracksText.language[language].barracksInsideFirstFloor.textButton.firstBtn){
 
-                armoryRoom();
+                    showNextSlide();
+    
+                    kitchenRoom();
+    
+                };
+    
+                if(elem.innerText === castleBarracksText.language[language].barracksInsideFirstFloor.textButton.secondBtn){
+    
+                    showNextSlide();
+    
+                    armoryRoom();
+    
+                };
 
-            };
-
-            if(elem.innerText === castleBarracksText.language[language].barracksInsideFirstFloor.textButton.secondBtn){
-
-                showNextSlide();
-
-                kitchenRoom();
-
-            };
+            });
 
         });
 
@@ -948,6 +1446,8 @@ function barracksInsideFirstFloor(){
 };
 
 function armoryRoom(){
+
+    visitedLocations.castle.barracks.armoryRoom.isVisited = true;
 
     const footerItemCount = Object.values(castleBarracksText.language[language].armoryRoom.textButton).length;
 
@@ -961,7 +1461,7 @@ function armoryRoom(){
 
         document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
 
-            elem.innerText = Object.values(castleBarracksText.language[language].kitchenRoom.textButton)[index];
+            elem.innerText = Object.values(castleBarracksText.language[language].armoryRoom.textButton)[index];
 
         });
 
@@ -973,21 +1473,25 @@ function armoryRoom(){
 
         document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-            if(elem.innerText === castleBarracksText.language[language].kitchenRoom.textButton.firstBtn){
+            elem.addEventListener('click', () =>{
 
-                showNextSlide();
+                if(elem.innerText === castleBarracksText.language[language].armoryRoom.textButton.firstBtn){
 
-                armoryBlood();
+                    showNextSlide();
+    
+                    armoryBlood();
+    
+                };
+    
+                if(elem.innerText === castleBarracksText.language[language].armoryRoom.textButton.secondBtn){
+    
+                    showNextSlide();
+    
+                    armoryTable();
+    
+                };
 
-            };
-
-            if(elem.innerText === castleBarracksText.language[language].kitchenRoom.textButton.secondBtn){
-
-                showNextSlide();
-
-                armoryTable();
-
-            };
+            });
 
         });
 
@@ -996,6 +1500,8 @@ function armoryRoom(){
 };
 
 function armoryBlood(){
+
+    visitedLocations.castle.barracks.armoryBlood.isVisited = true;
 
     const footerItemCount = Object.values(castleBarracksText.language[language].armoryBlood.textButton).length;
 
@@ -1019,7 +1525,7 @@ function armoryBlood(){
 
             document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-                if(visitedLocations.castle.barracks.armoryTable.isVisited === false && visitedLocations.castle.barracks.kitchenRoom.isVisited === false && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === false){
+                if((visitedLocations.castle.barracks.armoryTable.isVisited === false && visitedLocations.castle.barracks.kitchenRoom.isVisited === false && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === false) || (visitedLocations.castle.barracks.armoryTable.isVisited === false && visitedLocations.castle.barracks.kitchenRoom.isVisited === false && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === true) || (visitedLocations.castle.barracks.armoryTable.isVisited === false && visitedLocations.castle.barracks.kitchenRoom.isVisited === true && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === true) || (visitedLocations.castle.barracks.armoryTable.isVisited === false && visitedLocations.castle.barracks.kitchenRoom.isVisited === true && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === false)){
 
                     if(elem.innerText != castleBarracksText.language[language].armoryBlood.textButton.firstBtn){
     
@@ -1029,34 +1535,34 @@ function armoryBlood(){
 
                 };
 
-                if(visitedLocations.castle.barracks.armoryTable.isVisited === true && visitedLocations.castle.barracks.kitchenRoom.isVisited === false && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === false){
+                if((visitedLocations.castle.barracks.armoryTable.isVisited === true && visitedLocations.castle.barracks.kitchenRoom.isVisited === false && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === false) || (visitedLocations.castle.barracks.armoryTable.isVisited === true && visitedLocations.castle.barracks.kitchenRoom.isVisited === false && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === true)){
 
                     if(elem.innerText != castleBarracksText.language[language].armoryBlood.textButton.secondBtn){
     
                         elem.closest('.footer__item').remove();
     
                     };
-        
+
                 };
 
-                if(visitedLocations.castle.barracks.armoryTable.isVisited === true && visitedLocations.castle.barracks.kitchenRoom.isVisited === true && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === false){
+                if(visitedLocations.castle.barracks.armoryBlood.isVisited === true && visitedLocations.castle.barracks.kitchenRoom.isVisited === true && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === false){
 
                     if(elem.innerText != castleBarracksText.language[language].armoryBlood.textButton.thirdBtn){
     
                         elem.closest('.footer__item').remove();
     
                     };
-            
+
                 };
 
-                if(visitedLocations.castle.barracks.armoryTable.isVisited === true && visitedLocations.castle.barracks.kitchenRoom.isVisited === true && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === true){
+                if(visitedLocations.castle.barracks.armoryBlood.isVisited === true && visitedLocations.castle.barracks.kitchenRoom.isVisited === true && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === true){
 
                     if(elem.innerText != castleBarracksText.language[language].armoryBlood.textButton.fourthBtn){
-        
+    
                         elem.closest('.footer__item').remove();
     
                     };
-    
+
                 };
 
             });
@@ -1071,37 +1577,41 @@ function armoryBlood(){
 
         document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-            if(elem.innerText === castleBarracksText.language[language].armoryBlood.textButton.firstBtn){
+            elem.addEventListener('click', () =>{
+
+                if(elem.innerText === castleBarracksText.language[language].armoryBlood.textButton.firstBtn){
 
                 showNextSlide();
 
                 armoryTable();
 
-            };
-
-            if(elem.innerText === castleBarracksText.language[language].armoryBlood.textButton.secondBtn){
+                };
+            
+                if(elem.innerText === castleBarracksText.language[language].armoryBlood.textButton.secondBtn){
 
                 showNextSlide();
 
                 kitchenRoom();
 
-            };
-
-            if(elem.innerText === castleBarracksText.language[language].armoryBlood.textButton.thirdBtn){
+                };
+            
+                if(elem.innerText === castleBarracksText.language[language].armoryBlood.textButton.thirdBtn){
 
                 showNextSlide();
 
                 barracksInsideSecondFloor();
 
-            };
-
-            if(elem.innerText === castleBarracksText.language[language].armoryBlood.textButton.fourthBtn){
+                };
+            
+                if(elem.innerText === castleBarracksText.language[language].armoryBlood.textButton.fourthBtn){
 
                 showNextSlide();
 
                 castleCourtyard();
 
-            };
+                };
+
+            });
 
         });
 
@@ -1110,6 +1620,8 @@ function armoryBlood(){
 };
 
 function armoryTable(){
+
+    visitedLocations.castle.barracks.armoryTable.isVisited = true;
 
     const footerItemCount = Object.values(castleBarracksText.language[language].armoryTable.textButton).length;
 
@@ -1133,7 +1645,7 @@ function armoryTable(){
 
             document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-                if(visitedLocations.castle.barracks.armoryBlood.isVisited === false && visitedLocations.castle.barracks.kitchenRoom.isVisited === false && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === false){
+                if((visitedLocations.castle.barracks.armoryBlood.isVisited === false && visitedLocations.castle.barracks.kitchenRoom.isVisited === false && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === false) || (visitedLocations.castle.barracks.armoryBlood.isVisited === false && visitedLocations.castle.barracks.kitchenRoom.isVisited === false && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === true) || (visitedLocations.castle.barracks.armoryBlood.isVisited === false && visitedLocations.castle.barracks.kitchenRoom.isVisited === true && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === true) || (visitedLocations.castle.barracks.armoryBlood.isVisited === false && visitedLocations.castle.barracks.kitchenRoom.isVisited === true && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === false)){
 
                     if(elem.innerText != castleBarracksText.language[language].armoryTable.textButton.firstBtn){
     
@@ -1143,14 +1655,14 @@ function armoryTable(){
 
                 };
 
-                if(visitedLocations.castle.barracks.armoryBlood.isVisited === true && visitedLocations.castle.barracks.kitchenRoom.isVisited === false && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === false){
+                if((visitedLocations.castle.barracks.armoryBlood.isVisited === true && visitedLocations.castle.barracks.kitchenRoom.isVisited === false && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === false) || (visitedLocations.castle.barracks.armoryBlood.isVisited === true && visitedLocations.castle.barracks.kitchenRoom.isVisited === false && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === true)){
 
                     if(elem.innerText != castleBarracksText.language[language].armoryTable.textButton.secondBtn){
     
                         elem.closest('.footer__item').remove();
     
                     };
-        
+
                 };
 
                 if(visitedLocations.castle.barracks.armoryBlood.isVisited === true && visitedLocations.castle.barracks.kitchenRoom.isVisited === true && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === false){
@@ -1160,17 +1672,17 @@ function armoryTable(){
                         elem.closest('.footer__item').remove();
     
                     };
-            
+
                 };
 
                 if(visitedLocations.castle.barracks.armoryBlood.isVisited === true && visitedLocations.castle.barracks.kitchenRoom.isVisited === true && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === true){
 
                     if(elem.innerText != castleBarracksText.language[language].armoryTable.textButton.fourthBtn){
-        
+    
                         elem.closest('.footer__item').remove();
     
                     };
-    
+
                 };
 
             });
@@ -1185,37 +1697,41 @@ function armoryTable(){
 
         document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-            if(elem.innerText === castleCourtyardText.language[language].armoryTable.textButton.firstBtn){
+            elem.addEventListener('click', () =>{
 
-                showNextSlide();
+                if(elem.innerText === castleBarracksText.language[language].armoryTable.textButton.firstBtn){
 
-                armoryBlood();
+                    showNextSlide();
+    
+                    armoryBlood();
+    
+                };
+    
+                if(elem.innerText === castleBarracksText.language[language].armoryTable.textButton.secondBtn){
+    
+                    showNextSlide();
+    
+                    kitchenRoom();
+    
+                };
+    
+                if(elem.innerText === castleBarracksText.language[language].armoryTable.textButton.thirdBtn){
+    
+                    showNextSlide();
+    
+                    barracksInsideSecondFloor();
+    
+                };
+    
+                if(elem.innerText === castleBarracksText.language[language].armoryTable.textButton.fourthBtn){
+    
+                    showNextSlide();
+    
+                    castleCourtyard();
+    
+                };
 
-            };
-
-            if(elem.innerText === castleCourtyardText.language[language].armoryTable.textButton.secondBtn){
-
-                showNextSlide();
-
-                kitchenRoom();
-
-            };
-
-            if(elem.innerText === castleCourtyardText.language[language].armoryTable.textButton.thirdBtn){
-
-                showNextSlide();
-
-                barracksInsideSecondFloor();
-
-            };
-
-            if(elem.innerText === castleCourtyardText.language[language].armoryTable.textButton.fourthBtn){
-
-                showNextSlide();
-
-                castleCourtyard();
-
-            };
+            });
 
         });
 
@@ -1224,6 +1740,8 @@ function armoryTable(){
 };
 
 function kitchenRoom(){
+
+    visitedLocations.castle.barracks.kitchenRoom.isVisited = true;
 
     const footerItemCount = Object.values(castleBarracksText.language[language].kitchenRoom.textButton).length;
 
@@ -1247,7 +1765,7 @@ function kitchenRoom(){
 
             document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-                if(visitedLocations.castle.barracks.armoryRoom.isVisited === false && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === false){
+                if((visitedLocations.castle.barracks.armoryRoom.isVisited === false && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === false) || (visitedLocations.castle.barracks.armoryRoom.isVisited === false && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === true)){
 
                     if(elem.innerText != castleBarracksText.language[language].kitchenRoom.textButton.firstBtn){
     
@@ -1264,7 +1782,7 @@ function kitchenRoom(){
                         elem.closest('.footer__item').remove();
     
                     };
-        
+
                 };
 
                 if(visitedLocations.castle.barracks.armoryRoom.isVisited === true && visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited === true){
@@ -1274,7 +1792,7 @@ function kitchenRoom(){
                         elem.closest('.footer__item').remove();
     
                     };
-            
+
                 };
 
             });
@@ -1289,29 +1807,33 @@ function kitchenRoom(){
 
         document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-            if(elem.innerText === castleCourtyardText.language[language].kitchenRoom.textButton.firstBtn){
+            elem.addEventListener('click', () =>{
 
-                showNextSlide();
+                if(elem.innerText === castleBarracksText.language[language].kitchenRoom.textButton.firstBtn){
 
-                armoryRoom();
+                    showNextSlide();
+    
+                    armoryRoom();
+    
+                };
+    
+                if(elem.innerText === castleBarracksText.language[language].kitchenRoom.textButton.secondBtn){
+    
+                    showNextSlide();
+    
+                    barracksInsideSecondFloor();
+    
+                };
+    
+                if(elem.innerText === castleBarracksText.language[language].kitchenRoom.textButton.thirdBtn){
+    
+                    showNextSlide();
+    
+                    castleCourtyard();
+    
+                };
 
-            };
-
-            if(elem.innerText === castleCourtyardText.language[language].kitchenRoom.textButton.secondBtn){
-
-                showNextSlide();
-
-                barracksInsideSecondFloor();
-
-            };
-
-            if(elem.innerText === castleCourtyardText.language[language].kitchenRoom.textButton.secondBtn){
-
-                showNextSlide();
-
-                castleCourtyard();
-
-            };
+            });
 
         });
 
@@ -1320,6 +1842,8 @@ function kitchenRoom(){
 };
 
 function barracksInsideSecondFloor(){
+
+    visitedLocations.castle.barracks.barracksInsideSecondFloor.isVisited = true;
 
     const footerItemCount = Object.values(castleBarracksText.language[language].barracksInsideSecondFloor.textButton).length;
 
@@ -1345,21 +1869,25 @@ function barracksInsideSecondFloor(){
 
         document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-            if(elem.innerText === castleCourtyardText.language[language].barracksInsideSecondFloor.textButton.firstBtn){
+            elem.addEventListener('click', () =>{
 
-                showNextSlide();
+                if(elem.innerText === castleBarracksText.language[language].barracksInsideSecondFloor.textButton.firstBtn){
 
-                legionnaireRooms();
+                    showNextSlide();
+    
+                    legionnaireRooms();
+    
+                };
+    
+                if(elem.innerText === castleBarracksText.language[language].barracksInsideSecondFloor.textButton.secondBtn){
+    
+                    showNextSlide();
+    
+                    officerRoom();
+    
+                };
 
-            };
-
-            if(elem.innerText === castleCourtyardText.language[language].barracksInsideSecondFloor.textButton.secondBtn){
-
-                showNextSlide();
-
-                officerRoom();
-
-            };
+            });
 
         });
 
@@ -1368,6 +1896,8 @@ function barracksInsideSecondFloor(){
 };
 
 function legionnaireRooms(){
+
+    visitedLocations.castle.barracks.legionnaireRooms.isVisited = true;
 
     const footerItemCount = Object.values(castleBarracksText.language[language].legionnaireRooms.textButton).length;
 
@@ -1391,7 +1921,7 @@ function legionnaireRooms(){
 
             document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-                if(visitedLocations.castle.barracks.officerRoom.isVisited === false && visitedLocations.castle.barracks.barracksInsideFirstFloor.isVisited === false){
+                if((visitedLocations.castle.barracks.officerRoom.isVisited === false && visitedLocations.castle.barracks.barracksInsideFirstFloor.isVisited === false) || (visitedLocations.castle.barracks.officerRoom.isVisited === false && visitedLocations.castle.barracks.barracksInsideFirstFloor.isVisited === true)){
 
                     if(elem.innerText != castleBarracksText.language[language].legionnaireRooms.textButton.firstBtn){
     
@@ -1408,7 +1938,7 @@ function legionnaireRooms(){
                         elem.closest('.footer__item').remove();
     
                     };
-        
+
                 };
 
                 if(visitedLocations.castle.barracks.officerRoom.isVisited === true && visitedLocations.castle.barracks.barracksInsideFirstFloor.isVisited === true){
@@ -1418,7 +1948,7 @@ function legionnaireRooms(){
                         elem.closest('.footer__item').remove();
     
                     };
-            
+
                 };
 
             });
@@ -1433,29 +1963,33 @@ function legionnaireRooms(){
 
         document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-            if(elem.innerText === castleCourtyardText.language[language].legionnaireRooms.textButton.firstBtn){
+            elem.addEventListener('click', () =>{
 
-                showNextSlide();
+                if(elem.innerText === castleBarracksText.language[language].legionnaireRooms.textButton.firstBtn){
 
-                officerRoom();
+                    showNextSlide();
+    
+                    officerRoom();
+    
+                };
+    
+                if(elem.innerText === castleBarracksText.language[language].legionnaireRooms.textButton.secondBtn){
+    
+                    showNextSlide();
+    
+                    barracksInsideFirstFloor();
+    
+                };
+    
+                if(elem.innerText === castleBarracksText.language[language].legionnaireRooms.textButton.thirdBtn){
+    
+                    showNextSlide();
+    
+                    castleCourtyard();
+    
+                };
 
-            };
-
-            if(elem.innerText === castleCourtyardText.language[language].legionnaireRooms.textButton.secondBtn){
-
-                showNextSlide();
-
-                barracksInsideSecondFloor();
-
-            };
-
-            if(elem.innerText === castleCourtyardText.language[language].legionnaireRooms.textButton.thirdBtn){
-
-                showNextSlide();
-
-                castleCourtyard();
-
-            };
+            });
 
         });
 
@@ -1464,6 +1998,8 @@ function legionnaireRooms(){
 };
 
 function officerRoom(){
+    
+    visitedLocations.castle.barracks.officerRoom.isVisited = true;
 
     const footerItemCount = Object.values(castleBarracksText.language[language].officerRoom.textButton).length;
 
@@ -1489,21 +2025,25 @@ function officerRoom(){
 
         document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-            if(elem.innerText === castleCourtyardText.language[language].officerRoom.textButton.firstBtn){
+            elem.addEventListener('click', () =>{
 
-                showNextSlide();
+                if(elem.innerText === castleBarracksText.language[language].officerRoom.textButton.firstBtn){
 
-                officerDeadBody();
+                    showNextSlide();
+    
+                    officerDeadBody();
+    
+                };
+    
+                if(elem.innerText === castleBarracksText.language[language].officerRoom.textButton.secondBtn){
+    
+                    showNextSlide();
+    
+                    officerTable();
+    
+                };
 
-            };
-
-            if(elem.innerText === castleCourtyardText.language[language].officerRoom.textButton.secondBtn){
-
-                showNextSlide();
-
-                officerTable();
-
-            };
+            });
 
         });
 
@@ -1512,6 +2052,8 @@ function officerRoom(){
 };
 
 function officerDeadBody(){
+
+    visitedLocations.castle.barracks.officerDeadBody.isVisited = true;
 
     const footerItemCount = Object.values(castleBarracksText.language[language].officerDeadBody.textButton).length;
 
@@ -1535,7 +2077,7 @@ function officerDeadBody(){
 
             document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-                if(visitedLocations.castle.barracks.officerTable.isVisited === false && visitedLocations.castle.barracks.legionnaireRooms.isVisited === false && visitedLocations.castle.barracks.barracksInsideFirstFloor.isVisited === false){
+                if((visitedLocations.castle.barracks.officerTable.isVisited === false && visitedLocations.castle.barracks.legionnaireRooms.isVisited === false && visitedLocations.castle.barracks.barracksInsideFirstFloor.isVisited === false) || (visitedLocations.castle.barracks.officerTable.isVisited === false && visitedLocations.castle.barracks.legionnaireRooms.isVisited === false && visitedLocations.castle.barracks.barracksInsideFirstFloor.isVisited === true) || (visitedLocations.castle.barracks.officerTable.isVisited === false && visitedLocations.castle.barracks.legionnaireRooms.isVisited === true && visitedLocations.castle.barracks.barracksInsideFirstFloor.isVisited === true) || (visitedLocations.castle.barracks.officerTable.isVisited === false && visitedLocations.castle.barracks.legionnaireRooms.isVisited === true && visitedLocations.castle.barracks.barracksInsideFirstFloor.isVisited === false)){
 
                     if(elem.innerText != castleBarracksText.language[language].officerDeadBody.textButton.firstBtn){
     
@@ -1545,14 +2087,14 @@ function officerDeadBody(){
 
                 };
 
-                if(visitedLocations.castle.barracks.officerTable.isVisited === true && visitedLocations.castle.barracks.legionnaireRooms.isVisited === false && visitedLocations.castle.barracks.barracksInsideFirstFloor.isVisited === false){
+                if((visitedLocations.castle.barracks.officerTable.isVisited === true && visitedLocations.castle.barracks.legionnaireRooms.isVisited === false && visitedLocations.castle.barracks.barracksInsideFirstFloor.isVisited === false) || (visitedLocations.castle.barracks.officerTable.isVisited === true && visitedLocations.castle.barracks.legionnaireRooms.isVisited === false && visitedLocations.castle.barracks.barracksInsideFirstFloor.isVisited === true)){
 
                     if(elem.innerText != castleBarracksText.language[language].officerDeadBody.textButton.secondBtn){
     
                         elem.closest('.footer__item').remove();
     
                     };
-        
+
                 };
 
                 if(visitedLocations.castle.barracks.officerTable.isVisited === true && visitedLocations.castle.barracks.legionnaireRooms.isVisited === true && visitedLocations.castle.barracks.barracksInsideFirstFloor.isVisited === false){
@@ -1562,7 +2104,7 @@ function officerDeadBody(){
                         elem.closest('.footer__item').remove();
     
                     };
-            
+
                 };
 
                 if(visitedLocations.castle.barracks.officerTable.isVisited === true && visitedLocations.castle.barracks.legionnaireRooms.isVisited === true && visitedLocations.castle.barracks.barracksInsideFirstFloor.isVisited === true){
@@ -1572,7 +2114,7 @@ function officerDeadBody(){
                         elem.closest('.footer__item').remove();
     
                     };
-            
+
                 };
 
             });
@@ -1587,37 +2129,41 @@ function officerDeadBody(){
 
         document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-            if(elem.innerText === castleCourtyardText.language[language].officerDeadBody.textButton.firstBtn){
+            elem.addEventListener('click', () =>{
 
-                showNextSlide();
+                if(elem.innerText === castleBarracksText.language[language].officerDeadBody.textButton.firstBtn){
 
-                officerTable();
+                    showNextSlide();
+    
+                    officerTable();
+    
+                };
+    
+                if(elem.innerText === castleBarracksText.language[language].officerDeadBody.textButton.secondBtn){
+    
+                    showNextSlide();
+    
+                    legionnaireRooms();
+    
+                };
+    
+                if(elem.innerText === castleBarracksText.language[language].officerDeadBody.textButton.thirdBtn){
+    
+                    showNextSlide();
+    
+                    barracksInsideFirstFloor();
+    
+                };
+    
+                if(elem.innerText === castleBarracksText.language[language].officerDeadBody.textButton.fourthBtn){
+    
+                    showNextSlide();
+    
+                    castleCourtyard();
+    
+                };
 
-            };
-
-            if(elem.innerText === castleCourtyardText.language[language].officerDeadBody.textButton.secondBtn){
-
-                showNextSlide();
-
-                legionnaireRooms();
-
-            };
-
-            if(elem.innerText === castleCourtyardText.language[language].officerDeadBody.textButton.thirdBtn){
-
-                showNextSlide();
-
-                barracksInsideSecondFloor();
-
-            };
-
-            if(elem.innerText === castleCourtyardText.language[language].officerDeadBody.textButton.fourthBtn){
-
-                showNextSlide();
-
-                castleCourtyard();
-
-            };
+            });
 
         });
 
@@ -1626,6 +2172,8 @@ function officerDeadBody(){
 };
 
 function officerTable(){
+
+    visitedLocations.castle.barracks.officerTable.isVisited = true;
 
     const footerItemCount = Object.values(castleBarracksText.language[language].officerTable.textButton).length;
 
@@ -1649,7 +2197,7 @@ function officerTable(){
 
     function eventListener(){
 
-        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+        document.querySelector('#castle').querySelector('.button').addEventListener('click', () =>{
 
             showNextSlide();
 
@@ -1685,7 +2233,7 @@ function pieceOfPaper(){
 
             document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-                if(visitedLocations.castle.barracks.officerDeadBody.isVisited === false && visitedLocations.castle.barracks.legionnaireRooms.isVisited === false && visitedLocations.castle.barracks.barracksInsideFirstFloor.isVisited === false){
+                if((visitedLocations.castle.barracks.officerDeadBody.isVisited === false && visitedLocations.castle.barracks.legionnaireRooms.isVisited === false && visitedLocations.castle.barracks.barracksInsideFirstFloor.isVisited === false) || (visitedLocations.castle.barracks.officerDeadBody.isVisited === false && visitedLocations.castle.barracks.legionnaireRooms.isVisited === false && visitedLocations.castle.barracks.barracksInsideFirstFloor.isVisited === true) || (visitedLocations.castle.barracks.officerDeadBody.isVisited === false && visitedLocations.castle.barracks.legionnaireRooms.isVisited === true && visitedLocations.castle.barracks.barracksInsideFirstFloor.isVisited === true) || (visitedLocations.castle.barracks.officerDeadBody.isVisited === false && visitedLocations.castle.barracks.legionnaireRooms.isVisited === true && visitedLocations.castle.barracks.barracksInsideFirstFloor.isVisited === false)){
 
                     if(elem.innerText != castleBarracksText.language[language].pieceOfPaper.textButton.firstBtn){
     
@@ -1695,14 +2243,14 @@ function pieceOfPaper(){
 
                 };
 
-                if(visitedLocations.castle.barracks.officerDeadBody.isVisited === true && visitedLocations.castle.barracks.legionnaireRooms.isVisited === false && visitedLocations.castle.barracks.barracksInsideFirstFloor.isVisited === false){
+                if((visitedLocations.castle.barracks.officerDeadBody.isVisited === true && visitedLocations.castle.barracks.legionnaireRooms.isVisited === false && visitedLocations.castle.barracks.barracksInsideFirstFloor.isVisited === false) || (visitedLocations.castle.barracks.officerDeadBody.isVisited === true && visitedLocations.castle.barracks.legionnaireRooms.isVisited === false && visitedLocations.castle.barracks.barracksInsideFirstFloor.isVisited === true)){
 
                     if(elem.innerText != castleBarracksText.language[language].pieceOfPaper.textButton.secondBtn){
     
                         elem.closest('.footer__item').remove();
     
                     };
-        
+
                 };
 
                 if(visitedLocations.castle.barracks.officerDeadBody.isVisited === true && visitedLocations.castle.barracks.legionnaireRooms.isVisited === true && visitedLocations.castle.barracks.barracksInsideFirstFloor.isVisited === false){
@@ -1712,7 +2260,7 @@ function pieceOfPaper(){
                         elem.closest('.footer__item').remove();
     
                     };
-            
+
                 };
 
                 if(visitedLocations.castle.barracks.officerDeadBody.isVisited === true && visitedLocations.castle.barracks.legionnaireRooms.isVisited === true && visitedLocations.castle.barracks.barracksInsideFirstFloor.isVisited === true){
@@ -1722,7 +2270,7 @@ function pieceOfPaper(){
                         elem.closest('.footer__item').remove();
     
                     };
-            
+
                 };
 
             });
@@ -1737,37 +2285,41 @@ function pieceOfPaper(){
 
         document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-            if(elem.innerText === castleCourtyardText.language[language].pieceOfPaper.textButton.firstBtn){
+            elem.addEventListener('click', () =>{
 
-                showNextSlide();
+                if(elem.innerText === castleBarracksText.language[language].pieceOfPaper.textButton.firstBtn){
 
-                officerDeadBody();
+                    showNextSlide();
+    
+                    officerDeadBody();
+    
+                };
+    
+                if(elem.innerText === castleBarracksText.language[language].pieceOfPaper.textButton.secondBtn){
+    
+                    showNextSlide();
+    
+                    legionnaireRooms();
+    
+                };
+    
+                if(elem.innerText === castleBarracksText.language[language].pieceOfPaper.textButton.thirdBtn){
+    
+                    showNextSlide();
+    
+                    barracksInsideFirstFloor();
+    
+                };
+    
+                if(elem.innerText === castleBarracksText.language[language].pieceOfPaper.textButton.fourthBtn){
+    
+                    showNextSlide();
+    
+                    castleCourtyard();
+    
+                };
 
-            };
-
-            if(elem.innerText === castleCourtyardText.language[language].pieceOfPaper.textButton.secondBtn){
-
-                showNextSlide();
-
-                legionnaireRooms();
-
-            };
-
-            if(elem.innerText === castleCourtyardText.language[language].pieceOfPaper.textButton.thirdBtn){
-
-                showNextSlide();
-
-                barracksInsideSecondFloor();
-
-            };
-
-            if(elem.innerText === castleCourtyardText.language[language].pieceOfPaper.textButton.fourthBtn){
-
-                showNextSlide();
-
-                castleCourtyard();
-
-            };
+            });
 
         });
 
@@ -1780,6 +2332,8 @@ function pieceOfPaper(){
 /// DEADBODY---FUNCTIONS---START ///
 
 function courtyardDeadBody(){
+
+    visitedLocations.castle.courtyard.deadBody.isVisited = true;
 
     const footerItemCount = Object.values(castleCourtyardText.language[language].courtyardDeadBody.textButton).length;
 
@@ -1803,9 +2357,9 @@ function courtyardDeadBody(){
 
             document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-                if(visitedLocations.castle.courtyard.barracks.isVisited === false && visitedLocations.castle.courtyard.stables.isVisited === false){
+                if(visitedLocations.castle.courtyard.stables.isVisited === false && visitedLocations.castle.courtyard.barracks.isVisited === true){
 
-                    if(elem.innerText === castleCourtyardText.language[language].courtyardDeadBody.textButton.thirdBtn){
+                    if(elem.innerText != castleCourtyardText.language[language].courtyardDeadBody.textButton.firstBtn){
     
                         elem.closest('.footer__item').remove();
     
@@ -1820,27 +2374,27 @@ function courtyardDeadBody(){
                         elem.closest('.footer__item').remove();
     
                     };
-        
+
                 };
 
-                if(visitedLocations.castle.courtyard.stables.isVisited === false && visitedLocations.castle.courtyard.barracks.isVisited === true){
+                if((visitedLocations.castle.courtyard.stables.isVisited === false && visitedLocations.castle.courtyard.barracks.isVisited === false)){
 
-                    if(elem.innerText != castleCourtyardText.language[language].courtyardDeadBody.textButton.firstBtn){
+                    if(elem.innerText === castleCourtyardText.language[language].courtyardDeadBody.textButton.thirdBtn){
     
                         elem.closest('.footer__item').remove();
     
                     };
-            
+
                 };
 
                 if(visitedLocations.castle.courtyard.stables.isVisited === true && visitedLocations.castle.courtyard.barracks.isVisited === true){
 
                     if(elem.innerText != castleCourtyardText.language[language].courtyardDeadBody.textButton.thirdBtn){
-        
+    
                         elem.closest('.footer__item').remove();
     
                     };
-    
+
                 };
 
             });
@@ -1855,29 +2409,33 @@ function courtyardDeadBody(){
 
         document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
-            if(elem.innerText === castleCourtyardText.language[language].courtyardDeadBody.textButton.firstBtn){
+            elem.addEventListener('click', () =>{
 
-                showNextSlide();
+                if(elem.innerText === castleCourtyardText.language[language].courtyardDeadBody.textButton.firstBtn){
 
-                castleBarracks();
+                    showNextSlide();
+    
+                    castleStables();
+    
+                };
+    
+                if(elem.innerText === castleCourtyardText.language[language].courtyardDeadBody.textButton.secondBtn){
+    
+                    showNextSlide();
+    
+                    castleBarracks();
+    
+                };
+    
+                if(elem.innerText === castleCourtyardText.language[language].courtyardDeadBody.textButton.thirdBtn){
+    
+                    showNextSlide();
+    
+                    castleDonjon();
+    
+                };
 
-            };
-
-            if(elem.innerText === castleCourtyardText.language[language].courtyardDeadBody.textButton.secondBtn){
-
-                showNextSlide();
-
-                castleStables();
-
-            };
-
-            if(elem.innerText === castleCourtyardText.language[language].courtyardDeadBody.textButton.thirdBtn){
-
-                showNextSlide();
-
-                castleDojon();
-
-            };
+            });
 
         });
 
@@ -1887,7 +2445,47 @@ function courtyardDeadBody(){
 
 /// DEADBODY---FUNCTIONS---END ///
 
-function castleDojon(){};
+function castleDonjon(){
+
+    const footerItemCount = Object.values(castleCourtyardText.language[language].courtyardDonjon.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = castleCourtyardText.language[language].courtyardDonjon.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = castleCourtyardText.language[language].courtyardDonjon.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(castleCourtyardText.language[language].courtyardDonjon.textButton)[index];
+
+        });
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        document.querySelector('#castle').querySelector('.button').addEventListener('click', () =>{
+
+            document.querySelector('#castle').classList.add('hide-screen');
+
+            setTimeout(() => {
+                
+                document.querySelector('#castle').remove();
+
+            }, '650');
+
+            battleScreen(language);
+
+        });
+
+    };
+
+};
 
 /// MAIN---FUNCTIONS---END ///
 

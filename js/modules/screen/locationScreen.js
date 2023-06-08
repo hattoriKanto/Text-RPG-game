@@ -159,7 +159,7 @@ function eventListener(){
 
             setTimeout(() => {
                 
-                document.querySelector('#location').remove()
+                document.querySelector('#location').remove();
 
             }, '650');
 

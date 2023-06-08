@@ -8,6 +8,10 @@
 
 /// CSS---BLOCKS---START ///
 
+.swiper
+    width: 100%
+    height: 100%
+
 .button
     width: 80%
     height: 60px
@@ -185,11 +189,6 @@
         padding: 30px 10px
     &__content
         position: relative
-        display: flex
-        flex-direction: column
-        align-items: center
-        justify-content: space-around
-        gap: 40px
         padding: 30px
         min-width: 300px
         min-height: 300px
@@ -211,6 +210,15 @@
         &:after
             right: 4px
             bottom: 4px
+    &__content-wrapper
+        width: 100%
+        height: 100%
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: flex-start
+        gap: 40px
+        overflow: auto
     &__header
         display: flex
     &__footer
@@ -233,6 +241,25 @@
         .item
             &__img
                 width: 40%
+    &__title
+        text-align: center
+@media ( max-width: 768px )
+    .popup
+        &__wrapper
+            padding: 0
+            width: 100%
+        &__content
+            min-width: 0
+            min-height: 0
+            width: 100%
+            height: 100%
+            gap: calc($popupGapMin + $popupGapDiff * ((var(--body-max-width) - $minRes) / $difMaxMinRes))
+        &__title
+            font-size: calc($popupTitleFontMin + $popupTitleFontDiff * ((var(--body-max-width) - $minRes) / $difMaxMinRes))
+        &__button
+            height: 100px
+            border-radius: 15px
+            font-size: 18px
 
 .show-popup
     animation: show-popup ease 2s 1 forwards
@@ -240,7 +267,12 @@
 .hide-popup
     animation: hide-popup ease 2s 1 forwards
 
+.img-top
+    object-position: top
+
 /// CSS---BLOCKS---END ///
+
+/// LOCATION---SECTION---START ///
 
 .location
     .main
@@ -277,6 +309,115 @@
                     text-align: center
                     z-index: 2
 
+/// LOCATION---SECTION---END ///
+
+/// BATTLE---SECTION---START ///
+
+.battle
+    .main
+        &__wrapper
+            width: 100%
+            height: 100%
+            display: grid
+            grid-template-columns: repeat(3, 33.33%)
+        .wrapper
+            &__column
+                display: flex
+                flex-direction: column
+                align-items: center
+                justify-content: center
+                height: 100%
+                gap: 10px
+                background: $background-color
+            &__first-column-battle-start 
+                transform: translateX(-150%)
+            &__second-column-battle-start 
+                transform: translateY(150%)                
+            &__third-column-battle-start 
+                transform: translateX(150%)
+            &__column-show-first-column
+                animation: show-fc ease 3s 1 forwards
+            &__column-show-second-column
+                animation: show-sc ease 3s 1 forwards
+            &__column-show-third-column
+                animation: show-tc ease 3s 1 forwards
+            .column
+                &__item
+                    display: flex
+                    align-items: center
+                    justify-content: center
+                    width: 200px
+                    border: 2px solid #fff
+                    border-radius: 100%
+                &__item-battle-start
+                    padding: 15px
+                    flex-direction: column
+                    justify-content: flex-start
+                    gap: 20px
+                    width: 100%
+                    height: 100%
+                    border-radius: 0
+                .item
+                    &__wrapper-img
+                        display: flex
+                        align-items: center
+                        width: 100%
+                        border-radius: 100%
+                    &__img
+                        object-fit: cover
+                        object-position: top
+                        width: 100%
+                        height: 100%
+                        border-radius: 100%
+                    &__wrapper-img-battle-start
+                        border-radius: 0
+                    &__img-battle-start
+                        border-radius: 0
+                    &__list-battle-start
+                        display: flex
+                        align-items: center
+                        gap: 22px
+                    &__buttons-battle-start
+                        display: flex
+                        gap: 10px
+                        .button
+                            &__img-next
+                                transform: rotate(90deg)
+                            &__img-prev
+                                transform: rotate(-90deg)
+                    &__btn
+                        width: 100px
+                        height: 40px
+                    .list
+                        &__item-battle-start
+                            display: flex
+                            align-items: center
+                            gap: 8px
+                        .list-item
+                            &__img-battle-start
+                                width: 48px
+                                height: 48px
+            .first-column
+                .swiper-wrapper
+                    align-items: center
+            &__second-column-battle-start
+                justify-content: flex-start
+                align-items: flex-end
+            .second-column
+                &__wrapper
+                    margin: 0 20px 0 0
+                    display: flex
+                    flex-direction: column
+                    align-items: center
+                    gap: 20px
+                .wrapper
+                    &__btn
+                        width: 70px
+                        height: 70px
+                    .button
+                        &__img
+                            width: 40px
+
 /// KEYFRAMES ///
 
 @keyframes show-popup
@@ -312,3 +453,30 @@
 
     100%
         left: -100%
+
+@keyframes show-fc
+    0%
+        transform: translateX(-150%)
+        
+    100%
+        transform: translateX(0%) 
+
+@keyframes show-tc
+    0%
+        transform: translateX(150%)
+        
+    100%
+        transform: translateX(0%) 
+
+@keyframes show-sc
+    0%
+        transform: translateY(150%)
+        
+    100%
+        transform: translateY(0%) 
+        
+@keyframes hide-elem
+    0%
+        top: 0
+    100%  
+        top: -200%

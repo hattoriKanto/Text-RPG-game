@@ -85,12 +85,6 @@ const visitedLocations = {
 
                 isVisited: false
 
-            },
-
-            pieceOfPaper: {
-
-                isVisited: false
-
             }
 
         },

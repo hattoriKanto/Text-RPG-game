@@ -7,7 +7,7 @@ const castleCourtyardText = {
 
             mainText: {
 
-                textTitle:'Castle courtyard',
+                textTitle: 'Castle courtyard',
 
                 textDescr: 'When you enter the courtyard of Castrum, you see the same picture as when you entered the castle: signs of battle and a lot of corpses. But, worst of all, there`s a dead body smell that`s mixed with the smell of burning. What have you decided to do?',
             
@@ -41,6 +41,20 @@ const castleCourtyardText = {
         
                 }
 
+            },
+
+            courtyardDonjon: {
+
+                textTitle: 'The square in front of the donjon',
+        
+                textDescr: 'After looking around the courtyard, you have nothing to do but move toward the donjon. The tall stone building, which rises above the walls, stands leaning against the south wall. The south wall, in turn, stands above the cliff face itself. As you walk up the steps, you hear more and more suspicious noises coming from above. When you reach the square in front of the donjon, you see living creatures, or not-so-living ones, which do not seem to be in a friendly mood.',
+                
+                textButton: {
+        
+                    firstBtn: 'Enter the battle'
+        
+                }
+                
             }
 
         },
@@ -59,17 +73,19 @@ const castleCourtyardText = {
             
                     secondBtn: 'Осмотреть казармы',
             
-                    thirdBtn: 'Осмотреть подозрительный труп'
+                    thirdBtn: 'Осмотреть подозрительный труп',
+
+                    fourthBtn: 'Двигаться в сторону дожона'
                     
-                },
+                }
 
             },
 
             courtyardDeadBody: {
 
-                titleText: 'Подозрительный труп',
+                textTitle: 'Подозрительный труп',
         
-                titleDescr: 'Подойдя поближе к трупу, вы понимаете, что на нём то же одеяние, что вы увидели на мертвеце при входе в замок. Бледная кожа, глаза залитые кровью, следы от многочисленных порезов. Очередной фанатик или культист, которых по миру развелось, как звёзд на небе? Нет, здесь что-то большее. Вряд ли, обычные фанатики напали бы на имперскую крепость, где расквартирован отряд легионеров. И уж точно они бы не справились с профессиональными солдатами. Всё это не к добру. Нужно осмотреть другие места во внутреннем дворе.',
+                textDescr: 'Подойдя поближе к трупу, вы понимаете, что на нём то же одеяние, что вы увидели на мертвеце при входе в замок. Бледная кожа, глаза залитые кровью, следы от многочисленных порезов. Очередной фанатик или культист, которых по миру развелось, как звёзд на небе? Нет, здесь что-то большее. Вряд ли, обычные фанатики напали бы на имперскую крепость, где расквартирован отряд легионеров. И уж точно они бы не справились с профессиональными солдатами. Всё это не к добру. Нужно осмотреть другие места во внутреннем дворе.',
                 
                 textButton: {
         
@@ -79,10 +95,22 @@ const castleCourtyardText = {
         
                     thirdBtn: 'Двигаться в сторону донжона'
         
-                },
+                }
+                
+            },
+
+            courtyardDonjon: {
+
+                textTitle: 'Площадь перед донжоном',
         
-                isVisited: false
+                textDescr: 'Осмотрев внутренний двор, вам ничего не остаётся, кроме как двигаться в сторону донжона. Высокое каменное здание, которое возвышается над стенами, стоит прислонившись к южной стене. Южная стена, в свою очередь, стоит над самим обрывом скалы. Поднимаясь по ступенькам, вы всё отчётливей слышите подозрительные звуки, которые доносятся сверху. И вот, дойдя до площади перед донжоном, вы видите живых существ или не совсем живых, которые, похоже, не настроены дружелюбно.',
+                
+                textButton: {
         
+                    firstBtn: 'Вступить в бой'
+        
+                }
+                
             }
 
         }

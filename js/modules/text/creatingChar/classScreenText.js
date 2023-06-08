@@ -99,14 +99,6 @@ const classScreenText = {
             
                 }
         
-            },
-
-            canAttackTwice: {
-
-                true: 'Yes',
-
-                false: 'No'
-
             }
 
         },
@@ -207,14 +199,6 @@ const classScreenText = {
             
                 }
         
-            },
-   
-            canAttackTwice: {
-
-                true: 'Да',
-
-                false: 'Нет'
-
             }
 
         }

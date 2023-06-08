@@ -25,6 +25,8 @@ import images from "../images.js";
 
 import player from "../player.js";
 
+import battleScreen from "./battleScreen.js";
+
 /// IMPORTS---END ///
 
 /// GLOBAL---VARIABLES---START ///
@@ -38,6 +40,8 @@ let choosedWeaponType = '';
 let language = '';
 
 let counterWeapon = 0;
+
+let counterWeaponType = 0;
 
 /// GLOBAL---VARIABLES---END ///
 
@@ -129,6 +133,8 @@ function weaponsTypeKeys(){
 
 function chooseWeaponType(arrayOfClassWeapon, arrayWeaponsType){
 
+    counterWeaponType++;
+
     const needInfoBtn = false;
 
     const footerItemCount = arrayWeaponsType.length;
@@ -158,6 +164,18 @@ function chooseWeaponType(arrayOfClassWeapon, arrayWeaponsType){
             elem.addEventListener('click', () =>{
 
                 choosedWeaponType = arrayOfClassWeapon[index];
+
+                if(counterWeaponType === 1){
+
+                    player.playerKey.weaponsTypeKeys.firstWeapon = choosedWeaponType;
+
+                };
+
+                if(counterWeaponType === 2){
+
+                    player.playerKey.weaponsTypeKeys.secondWeapon = choosedWeaponType;
+
+                };
 
                 document.querySelector('#char-creating').querySelector('.wrapper').classList.toggle('rotation');
 
@@ -189,7 +207,7 @@ function chooseWeapon(choosedWeaponType){
 
     const arrayWeaponKey = [];
 
-    let footerItemCount = [];
+    const footerItemCount = [];
 
     const needInfoBtn = true;
 
@@ -509,7 +527,7 @@ function createHTMLElements(){
 
         const mainDescr = document.createElement('div');
 
-        mainTitle.className = 'main__title';
+        mainTitle.className = 'main__title title';
 
         mainDescr.className = 'main__descr';
 
@@ -731,8 +749,6 @@ function chooseClass(){
 
                 };
 
-                player.playerTraits.canAttackTwice = classesTraits[playerRaceKey][playerClassKey].traits.canAttackTwice;
-
                 const keyWord = 'class';
 
                 const key = playerClassKey;
@@ -847,13 +863,13 @@ function charOverview(){
 
             spanValueClass.innerText = player.mainText.class;
 
-            createtraitsItems();
+            createTraitsItems();
 
             createWeaponsItems();
 
             addDataToElements();
 
-            function createtraitsItems(){
+            function createTraitsItems(){
 
                 for(let i = 0; i < traitsListItemCount; i++){
 
@@ -943,18 +959,6 @@ function charOverview(){
 
                 elem.innerText = Object.values(player.playerTraits)[index];
 
-                if(Object.values(player.playerTraits)[index] === false){
-
-                    elem.innerText = classScreenText.language[language].canAttackTwice.true;
-
-                };
-
-                if(Object.values(player.playerTraits)[index] === true){
-
-                    elem.innerText = classScreenText.language[language].canAttackTwice.false;
-
-                }
-
             });
 
         };
@@ -1013,7 +1017,9 @@ function charOverview(){
 
                     }, '650');
 
-                    location(language);
+                    console.log(player)
+
+                    battleScreen(language, 'lowTier', 3);
 
                 };
 
