@@ -16,11 +16,18 @@
     width: 80%
     height: 60px
     border: 2px solid #fff
-    border-radius: 20px
+    border-radius: 5px
+    outline: none
     background: transparent
     transition: 500ms all
-    &:hover
-        transform: scale(1.03)
+    &:hover, &:active, &:focus
+        background: #fff
+        border: none
+        color: $background-color
+
+@media ( max-width: 768px )
+    .button-without-btn-info
+        width: 100%
 
 .btn-info
     display: flex
@@ -29,19 +36,30 @@
     width: 60px
     height: 60px
     background: transparent
+    border: 2px solid $text-color
+    border-radius: 5px
     &__img
         width: 100%
+    &:hover, &:active, &:focus
+        background: $text-color
+        border: none
+        .btn-info
+            &__img
+                filter: contrast(0)
 
 .title
-    font-size: 30px
+    font-size: calc($titleFontMin + $titleFontDiff * ((var(--body-max-width) - $minRes) / $difMaxMinRes))
     line-height: 1.75
+    text-align: center
 
 .screen
     position: fixed
     width: 100%
+    height: 100%
     left: -100%
     padding: 60px 0
     z-index: 1
+    overflow: auto
     &__wrapper
         transition: 2000ms ease all
     &__main
@@ -88,8 +106,9 @@
                 width: 100%
                 gap: 10px
         &__descr
+            margin: 10px 0 0 0
             min-height: 200px
-            padding: 10px
+            width: 100%
             text-align: center
         &__list
             display: flex
@@ -120,6 +139,23 @@
                 .btn-info
                     &__img
                         width: 70%
+@media ( max-width: 768px )
+    .screen
+        padding: 0
+        &__main
+            padding: 15px 0 15px 0
+            gap: 30px
+            min-height: 0
+            justify-content: flex-start
+            border: none
+            border-radius: 0
+            overflow: auto
+        .main
+            &__header
+                overflow: auto
+                width: 100%
+            &__footer
+                width: 100%
 
 .show-screen
     animation: show-screen ease 2s 1 forwards
@@ -194,6 +230,7 @@
         min-height: 300px
         background-color: $background-color
         border: 2px solid #fff
+        border-radius: 5px
         &:before, &:after
             content: "•"
             position: absolute
@@ -254,12 +291,16 @@
             width: 100%
             height: 100%
             gap: calc($popupGapMin + $popupGapDiff * ((var(--body-max-width) - $minRes) / $difMaxMinRes))
-        &__title
-            font-size: calc($popupTitleFontMin + $popupTitleFontDiff * ((var(--body-max-width) - $minRes) / $difMaxMinRes))
+            border: none
+            &:before, &:after
+                display: none
         &__button
-            height: 100px
-            border-radius: 15px
-            font-size: 18px
+            height: 80px
+            font-size: calc($popupButtonFontMin + $popupButtonFontDiff * ((var(--body-max-width) - $minRes) / $difMaxMinRes))
+@media ( max-width: 576px )
+    .popup
+        &__button
+            width: 100%
 
 .show-popup
     animation: show-popup ease 2s 1 forwards

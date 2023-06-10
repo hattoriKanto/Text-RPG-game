@@ -41,7 +41,7 @@ function createHTMLElements(){
 
     popupHeader.className = 'popup__header choose-lang__header header';
 
-    popupTitle.className = 'popup__title';
+    popupTitle.className = 'popup__title title';
 
     popupFooter.className = 'popup__footer choose-lang__footer footer';
 

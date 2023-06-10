@@ -551,7 +551,7 @@ function createHTMLElements(){
 
         footerItem.className = 'footer__item';
 
-        footerBtn.className = 'footer__button button';
+        footerBtn.className = 'footer__button button button-without-btn-info';
 
         mainFooter.appendChild(footerItem);
 
