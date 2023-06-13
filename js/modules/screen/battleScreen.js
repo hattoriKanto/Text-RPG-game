@@ -9,11 +9,13 @@ import battleScreenText from "../text/battleScreenText.js";
 
 import enemiesText from "../text/enemies/enemiesText.js";
 
-import enemiesStats from "../enemies/enemiesStats.js";
+import enemiesTraits from "../enemies/enemiesTraits.js";
 
 import weaponsTraits from "../racesClassesWeapons/weaponsTraits.js";
 
 import weaponsScreenText from "../text/creatingChar/weaponsScreenText.js";
+
+import battle from "../battle.js";
 
 /// IMPORTS---END ///
 
@@ -59,7 +61,7 @@ function battleScreen(choosedLang, tier, number){
 
     function randomEnemies(){
 
-        for(let key in enemiesStats[enemyTier]){
+        for(let key in enemiesTraits[enemyTier]){
 
             arrayEnemiesKey.push(key);
 
@@ -309,7 +311,7 @@ function battleStart(){
     
             for(let i = 0; i < numOfEnemies; i++){
 
-                const arrayEnemyStats = Object.values(enemiesStats[enemyTier][arrayRandomEnemiesKey[i]]);
+                const arrayEnemyStats = Object.values(enemiesTraits[enemyTier][arrayRandomEnemiesKey[i]]);
     
                 const itemEnemies = document.createElement('div');
         
@@ -442,7 +444,7 @@ function battleStart(){
 
             for(let i = 0; i < document.querySelector('#battle').querySelector('#first-column').querySelectorAll('.item').length; i++){
 
-                const arrayEnemyStats = Object.values(enemiesStats[enemyTier][arrayRandomEnemiesKey[i]]);
+                const arrayEnemyStats = Object.values(enemiesTraits[enemyTier][arrayRandomEnemiesKey[i]]);
 
                 document.querySelector('#battle').querySelector('#first-column').querySelectorAll('.item')[i].querySelector('.title').innerText = enemiesText.language[language].enemyTier[enemyTier][arrayRandomEnemiesKey[i]].textTitle;
 
@@ -693,6 +695,8 @@ function battleStart(){
         simulateTouch: false
 
     });
+
+    battle(arrayRandomEnemiesKey, enemyTier);
 
 };
 
