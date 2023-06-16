@@ -11,7 +11,7 @@ import castleBarracksText from "../../text/castle/castleBarracksText.js";
 
 import visitedLocations from "../../visitedLocations.js";
 
-import battleScreen from "../battleScreen.js";
+import {battleScreen} from "../battleScreen.js";
 
 /// IMPORTS---END ///
 

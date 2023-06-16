@@ -25,7 +25,7 @@ import images from "../images.js";
 
 import player from "../player.js";
 
-import battleScreen from "./battleScreen.js";
+import {battleScreen} from "./battleScreen.js";
 
 /// IMPORTS---END ///
 

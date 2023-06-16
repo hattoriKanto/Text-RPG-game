@@ -3,13 +3,13 @@ import player from "./player.js";
 
 import enemiesTraits from "./enemies/enemiesTraits.js";
 
+import { popupTurn } from "./screen/battleScreen.js";
+
 let activeEnemyIndex = 0;
 
 const arrayEnemiesTraits = [];
 
 const arrayActiveEnemyTraits = [];
-
-let turnCounter = 1;
 
 let enemyIndex = 0;
 
@@ -83,24 +83,39 @@ function battle(arrayRandomEnemiesKey, enemyTier){
 
     }
 
-    document.querySelector('#battle').querySelector('#second-column').querySelector('#first-weapon-btn').addEventListener('click', () =>{
+    setTimeout(() => {
+            
+        popupTurn('playerTurnText');
 
+        document.querySelector('#battle').querySelector('#second-column').querySelector('#first-weapon-btn').addEventListener('click', () =>{
 
-        playerTurn();
+            playerTurn();
+    
+        })
 
-    })
+    }, '3500');
 
     function playerTurn(){
-
-        console.log('Player turn')
     
         let enemyHealthPoints = arrayEnemiesTraits[activeEnemyIndex][0];
     
         let enemyArmourPoints = arrayEnemiesTraits[activeEnemyIndex][1];
     
         const enemyDefencePoints = arrayEnemiesTraits[activeEnemyIndex][3];
-    
-        damageToArmour();
+
+        if(enemyArmourPoints > 0){
+
+            damageToArmour();
+
+        }
+
+        if(enemyArmourPoints === 0){
+
+            const afterArmourIsAttacked = false;
+
+            damageToHealth(afterArmourIsAttacked);
+
+        }
     
         function damageToArmour(){
     
@@ -113,9 +128,10 @@ function battle(arrayRandomEnemiesKey, enemyTier){
             };
     
             if(enemyArmourPoints === 0){
+
+                const afterArmourIsAttacked = true;
     
-    
-                damageToHealth();
+                damageToHealth(afterArmourIsAttacked);
     
             };
     
@@ -123,10 +139,20 @@ function battle(arrayRandomEnemiesKey, enemyTier){
             
         };
     
-        function damageToHealth(){
-    
-            enemyHealthPoints = enemyHealthPoints - playerDamageToHealth;
-    
+        function damageToHealth(afterArmourIsAttacked){
+
+            if(afterArmourIsAttacked === true){
+
+                enemyHealthPoints = enemyHealthPoints - playerDamageToHealth;
+
+            };
+
+            if(afterArmourIsAttacked === false){
+
+                enemyHealthPoints = enemyHealthPoints - (playerDamageToHealth - enemyDefencePoints);
+
+            }
+        
             if(enemyHealthPoints < 0){
     
                 enemyHealthPoints = 0;
@@ -135,75 +161,85 @@ function battle(arrayRandomEnemiesKey, enemyTier){
     
             arrayEnemiesTraits[activeEnemyIndex][0] = enemyHealthPoints;
     
-    
         };
-
-        turnCounter++;
 
         checkingAliveEnemies();
 
-        enemyTurn();
+        setTimeout(() => {
+
+            enemyTurn();
+            
+        }, '4500');
 
     }
 
     function enemyTurn(){
+            
+        popupTurn('enemyTurnText');
 
-        console.log("Enemy turn")
+        setTimeout(() => {
+            
+            const enemyAttack = arrayEnemiesTraits[enemyIndex][2];
 
-        const enemyAttack = arrayEnemiesTraits[enemyIndex][2];
-
-        damageToArmour();
-
-        function damageToArmour(){
-
-            let enemyActualDamage = enemyAttack - playerDefencePoints;
-
-            if(enemyActualDamage < 0){
-
-                enemyActualDamage = 0;
-
-            };
-
-            playerArmourPoints = playerArmourPoints - enemyActualDamage;
-
-            if(playerArmourPoints < 0){
+            damageToArmour();
     
-                playerArmourPoints = 0;
+            function damageToArmour(){
     
-            };
-
-            if(playerArmourPoints === 0){
+                let enemyActualDamage = enemyAttack - playerDefencePoints;
+    
+                if(enemyActualDamage < 0){
+    
+                    enemyActualDamage = 0;
+    
+                };
+    
+                playerArmourPoints = playerArmourPoints - enemyActualDamage;
+    
+                if(playerArmourPoints < 0){
         
-                damageToHealth();
-
-            };
-
-        };
-
-        function damageToHealth(){
-
-            playerHealthPoints = playerHealthPoints - enemyAttack;
+                    playerArmourPoints = 0;
+        
+                };
     
-            if(playerHealthPoints < 0){
-
-                playerHealthPoints = 0;
+                if(playerArmourPoints === 0){
+            
+                    damageToHealth();
+    
+                };
     
             };
-
-        };
-
-        enemyIndex++;
     
-        if(enemyIndex === document.querySelector('#battle').querySelectorAll('.first-column__item-battle-start').length){
+            function damageToHealth(){
+    
+                playerHealthPoints = playerHealthPoints - enemyAttack;
+        
+                if(playerHealthPoints < 0){
+    
+                    playerHealthPoints = 0;
+        
+                };
+    
+            };
+    
+            enemyIndex++;
+        
+            if(enemyIndex === document.querySelector('#battle').querySelectorAll('.first-column__item-battle-start').length){
+    
+                enemyIndex = 0;
+    
+            };
+    
+            checkingAliveEnemies();
 
-            enemyIndex = 0;
+        }, '3500');
 
-        };
+        setTimeout(() => {
+            
+            popupTurn('playerTurnText');
 
-        turnCounter--;
+        }, '6000');
 
-        checkingAliveEnemies();
-    }
+    };
 
 };
 

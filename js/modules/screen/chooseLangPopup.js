@@ -3,7 +3,7 @@ import chooseLanguageText from "../text/chooseLangText.js";
 
 import { creatingCharacter } from "./charCreatingScreen.js";
 
-import battleScreen from "./battleScreen.js";
+import {battleScreen} from "./battleScreen.js";
 
 function chooseLanguage(){
 

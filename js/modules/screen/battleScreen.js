@@ -7,6 +7,8 @@ import images from "../images.js";
 
 import battleScreenText from "../text/battleScreenText.js";
 
+import battleTurnText from "../text/battle/battleTurnText.js";
+
 import enemiesText from "../text/enemies/enemiesText.js";
 
 import enemiesTraits from "../enemies/enemiesTraits.js";
@@ -282,6 +284,12 @@ function battleStart(){
     secondColumn();
 
     thirdColumn();
+
+    setTimeout(() => {
+
+        popupTurn('playerTurnText');
+        
+    }, '3500');
 
     function firstColumn(){
 
@@ -700,6 +708,44 @@ function battleStart(){
 
 };
 
+function popupTurn(textTurn){
+
+    const popup = document.createElement('div');
+
+    const popupWrapper = document.createElement('div');
+
+    const popupTitle = document.createElement('h3');
+
+    popup.className = 'popup show-popup';
+
+    popupWrapper.className = 'popup__wrapper';
+
+    popupTitle.className = 'popup__title title';
+
+    document.querySelector('#battle').appendChild(popup);
+
+    popup.appendChild(popupWrapper);
+
+    popupWrapper.appendChild(popupTitle);
+
+    popupTitle.innerText = battleTurnText.language[language].mainText[textTurn];
+
+    setTimeout(() => {
+        
+        popup.classList.add('hide-popup');
+
+        setTimeout(() => {
+
+            popup.remove();
+            
+        }, '1500');
+
+    }, '3000');
+
+};
+
 /// FUNCTIONS---END ///
 
-export default battleScreen;
+export {popupTurn};
+
+export {battleScreen};
