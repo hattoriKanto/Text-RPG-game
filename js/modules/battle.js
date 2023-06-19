@@ -5,6 +5,8 @@ import enemiesTraits from "./enemies/enemiesTraits.js";
 
 import { popupTurn } from "./screen/battleScreen.js";
 
+import images from "./images.js";
+
 let activeEnemyIndex = 0;
 
 const arrayEnemiesTraits = [];
@@ -14,8 +16,6 @@ const arrayActiveEnemyTraits = [];
 let enemyIndex = 0;
 
 function battle(arrayRandomEnemiesKey, enemyTier){
-
-    let aliveEnemy = arrayRandomEnemiesKey.length;
 
     const weaponTraits = Object.values(player.weaponTraits.firstWeapon);
 
@@ -69,21 +69,9 @@ function battle(arrayRandomEnemiesKey, enemyTier){
 
     });
 
-    function checkingAliveEnemies(){
-
-        arrayActiveEnemyTraits.forEach(elem =>{
-
-            if(elem[0] === 0 && elem[1] === 0){
-
-                aliveEnemy--;
-
-            }
-
-        })
-
-    }
-
     setTimeout(() => {
+
+        console.log('PLAYER TURN');
             
         popupTurn('playerTurnText');
 
@@ -91,7 +79,7 @@ function battle(arrayRandomEnemiesKey, enemyTier){
 
             playerTurn();
     
-        })
+        });
 
     }, '3500');
 
@@ -103,31 +91,49 @@ function battle(arrayRandomEnemiesKey, enemyTier){
     
         const enemyDefencePoints = arrayEnemiesTraits[activeEnemyIndex][3];
 
-        if(enemyArmourPoints > 0){
-
-            damageToArmour();
-
-        }
-
         if(enemyArmourPoints === 0){
 
             const afterArmourIsAttacked = false;
 
             damageToHealth(afterArmourIsAttacked);
 
-        }
+        }else if(enemyArmourPoints > 0){
+
+            damageToArmour();
+
+        };
     
         function damageToArmour(){
-    
-            enemyArmourPoints = enemyArmourPoints - (playerDamageToArmour - enemyDefencePoints);
+            
+            if(enemyDefencePoints > playerDamageToArmour || enemyDefencePoints === playerDamageToArmour){
+
+                console.log(`Player hit enemy armour. Enemy armour is ${enemyArmourPoints}; enemy defence is ${enemyDefencePoints}; player attack is ${playerDamageToArmour}. Calculation: ${enemyArmourPoints} - (${playerDamageToArmour - enemyDefencePoints}) = ${enemyArmourPoints - 0}.`);
+
+                console.log('No damage to enemy armour');
+
+                enemyArmourPoints = enemyArmourPoints - 0;
+
+            } else{
+
+                console.log(`Player hit enemy armour. Enemy armour is ${enemyArmourPoints}; enemy defence is ${enemyDefencePoints}; player attack is ${playerDamageToArmour}. Calculation: ${enemyArmourPoints} - (${playerDamageToArmour} - ${enemyDefencePoints}) = ${enemyArmourPoints - (playerDamageToArmour - enemyDefencePoints)}.`);
+
+                enemyArmourPoints = enemyArmourPoints - (playerDamageToArmour - enemyDefencePoints);
+
+            };
+
+            console.log(`Enemy armour is ${enemyArmourPoints}.`);
     
             if(enemyArmourPoints < 0){
+
+                console.log('Enemy armour is 0 now.');
     
                 enemyArmourPoints = 0;
         
             };
     
             if(enemyArmourPoints === 0){
+
+                console.log('Enemy armour is gone. Redirecting to health attack.');
 
                 const afterArmourIsAttacked = true;
     
@@ -136,6 +142,8 @@ function battle(arrayRandomEnemiesKey, enemyTier){
             };
     
             arrayEnemiesTraits[activeEnemyIndex][1] = enemyArmourPoints;
+
+            document.querySelector('.swiper-slide-active').querySelectorAll('.list__item-battle-start')[1].querySelector('.list-item__span-battle-start').innerText = enemyArmourPoints;
             
         };
     
@@ -143,27 +151,67 @@ function battle(arrayRandomEnemiesKey, enemyTier){
 
             if(afterArmourIsAttacked === true){
 
+                console.log('Redirected after armour attack.');
+
+                console.log(`Player hit enemy health. Enemy health is ${enemyHealthPoints}; player attack is ${playerDamageToHealth}. Calculation: ${enemyHealthPoints} - ${playerDamageToHealth} = ${enemyHealthPoints - {playerDamageToHealth}}.`);
+
                 enemyHealthPoints = enemyHealthPoints - playerDamageToHealth;
 
-            };
+            }else if(afterArmourIsAttacked === false){
 
-            if(afterArmourIsAttacked === false){
+                console.log('Direct attack to health points.');
+
+                console.log(`Player hit enemy health. Enemy health is ${enemyHealthPoints}; enemy defence is ${enemyDefencePoints}; player attack is ${playerDamageToHealth}. Calculation: ${enemyHealthPoints} - (${playerDamageToHealth} - ${enemyDefencePoints}) = ${enemyHealthPoints - ({playerDamageToHealth} - {enemyDefencePoints})}.`);
 
                 enemyHealthPoints = enemyHealthPoints - (playerDamageToHealth - enemyDefencePoints);
 
-            }
+            };
+
+            console.log(`Enemy health is ${enemyHealthPoints}.`);
         
             if(enemyHealthPoints < 0){
+
+                console.log('Enemy health is 0 now.');
     
                 enemyHealthPoints = 0;
         
             };
     
             arrayEnemiesTraits[activeEnemyIndex][0] = enemyHealthPoints;
+
+            document.querySelector('.swiper-slide-active').querySelectorAll('.list__item-battle-start')[0].querySelector('.list-item__span-battle-start').innerText = enemyHealthPoints;
+
+            if(enemyHealthPoints === 0){
+
+                console.log('Enemy is dead now');
+
+                setTimeout(() => {
+
+                    const overlayWrapper = document.createElement('div');
+
+                    const overlayImg = document.createElement('img');
+
+                    overlayWrapper.className = 'overlay__wrapper';
+
+                    overlayWrapper.className = 'overlay__img';
+
+                    document.querySelector('.swiper-slide-active').appendChild(overlayWrapper);
+
+                    overlayWrapper.appendChild(overlayImg);
+
+                    overlayImg.src = images.other.dead;
+
+                    document.querySelector('.swiper-slide-active').querySelector('.item__wrapper-img').remove();
+
+                    document.querySelector('.swiper-slide-active').querySelector('.title').remove();
+
+                    document.querySelector('.swiper-slide-active').querySelector('.list').remove();
+
+                }, '1500');
+
+            };
     
         };
-
-        checkingAliveEnemies();
 
         setTimeout(() => {
 
@@ -171,11 +219,13 @@ function battle(arrayRandomEnemiesKey, enemyTier){
             
         }, '4500');
 
-    }
+    };
 
     function enemyTurn(){
             
         popupTurn('enemyTurnText');
+
+        console.log('ENEMY TURN');
 
         setTimeout(() => {
             
@@ -229,8 +279,6 @@ function battle(arrayRandomEnemiesKey, enemyTier){
     
             };
     
-            checkingAliveEnemies();
-
         }, '3500');
 
         setTimeout(() => {

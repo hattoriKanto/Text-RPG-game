@@ -80,7 +80,9 @@ const images = {
 
         startBattle: './img/other/start-battle.png',
 
-        btnInfoImg: './img/other/info.png'
+        btnInfoImg: './img/other/info.png',
+
+        dead: './img/other/dead.png'
 
     }
 
