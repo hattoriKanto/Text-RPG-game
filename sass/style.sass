@@ -163,8 +163,14 @@
 .hide-screen
     animation: hide-screen ease 2s 1 forwards
 
-.rotation
-    transform: rotateX(360deg)     
+.rotation-x
+    animation: rotation-x ease 2s 1 forwards     
+
+.reverse-rotation-x
+    animation: reverse-rotation-x ease 2s 1 forwards   
+
+.rotation-y
+    animation: rotation-y ease 2s 1 forwards
 
 .container
     position: relative
@@ -303,10 +309,10 @@
             width: 100%
 
 .show-popup
-    animation: show-popup ease 2s 1 forwards
+    animation: show-popup ease 1.5s 1 forwards
 
 .hide-popup
-    animation: hide-popup ease 2s 1 forwards
+    animation: hide-popup ease 1.5s 1 forwards
 
 .img-top
     object-position: top
@@ -398,6 +404,8 @@
                     width: 100%
                     height: 100%
                     border-radius: 0
+                &__item-dead-enemy
+                    flex-direction: column-reverse
                 .item
                     &__wrapper-img
                         display: flex
@@ -422,6 +430,10 @@
                         display: flex
                         gap: 10px
                         .button
+                            &:hover, &:active, &:focus
+                                .button
+                                    &__img
+                                        filter: contrast(0)
                             &__img-next
                                 transform: rotate(90deg)
                             &__img-prev
@@ -438,6 +450,13 @@
                             &__img-battle-start
                                 width: 48px
                                 height: 48px
+                    .overlay__wrapper
+                        display: flex
+                        justify-content: center
+                        align-items: center
+                        width: 100%
+                        height: 100%
+                        background-color: $background-color
             .first-column
                 .swiper-wrapper
                     align-items: center
@@ -521,3 +540,21 @@
         top: 0
     100%  
         top: -200%
+
+@keyframes rotation-y
+    0%
+        transform: rotateY(0deg)  
+    100%
+        transform: rotateY(360deg)
+
+@keyframes rotation-x
+    0%
+        transform: rotateX(0deg)  
+    100%
+        transform: rotateX(360deg)
+
+@keyframes reverse-rotation-x
+    0%
+        transform: rotateX(360deg)  
+    100%
+        transform: rotateX(0deg)

@@ -67,6 +67,28 @@ function enableButton(){
 
 };
 
+function rotationAnimation(){
+
+    if(document.querySelector('#char-creating').querySelector('.wrapper').classList.contains('rotation-x') === true){
+
+        document.querySelector('#char-creating').querySelector('.wrapper').classList.remove('rotation-x');
+
+        document.querySelector('#char-creating').querySelector('.wrapper').classList.add('reverse-rotation-x');
+
+    } else if(document.querySelector('#char-creating').querySelector('.wrapper').classList.contains('reverse-rotation-x') === true){
+
+        document.querySelector('#char-creating').querySelector('.wrapper').classList.remove('reverse-rotation-x');
+
+        document.querySelector('#char-creating').querySelector('.wrapper').classList.add('rotation-x');
+
+    } else if(document.querySelector('#char-creating').querySelector('.wrapper').classList.contains('reverse-rotation-x') != true || document.querySelector('#char-creating').querySelector('.wrapper').classList.contains('reverse-rotation-x') != true){
+
+        document.querySelector('#char-creating').querySelector('.wrapper').classList.add('rotation-x');
+
+    }
+
+}
+
 function createFooterItem(footerItemCount, needInfoBtn){
 
     for(let i = 0; i < footerItemCount; i++){
@@ -177,7 +199,7 @@ function chooseWeaponType(arrayOfClassWeapon, arrayWeaponsType){
 
                 };
 
-                document.querySelector('#char-creating').querySelector('.wrapper').classList.toggle('rotation');
+                rotationAnimation();
 
                 setTimeout(() => {
             
@@ -307,7 +329,7 @@ function chooseWeapon(choosedWeaponType){
 
                     player.weaponTraits[keyWord] = weaponsTraits[playerRaceKey][choosedWeaponType][choosedWeapon].traits;
 
-                    document.querySelector('#char-creating').querySelector('.wrapper').classList.toggle('rotation');
+                    rotationAnimation();
 
                     setTimeout(() => {
                 
@@ -337,7 +359,7 @@ function chooseWeapon(choosedWeaponType){
 
                     player.weaponTraits[keyWord] = weaponsTraits[playerRaceKey][choosedWeaponType][choosedWeapon].traits;
 
-                    document.querySelector('#char-creating').querySelector('.wrapper').classList.toggle('rotation');
+                    rotationAnimation();
 
                     setTimeout(() => {
                 
@@ -567,7 +589,7 @@ function createHTMLElements(){
     
             elem.addEventListener('click', () =>{
 
-                document.querySelector('#char-creating').querySelector('.wrapper').classList.toggle('rotation');
+                rotationAnimation();
 
                 setTimeout(() => {
             
@@ -653,7 +675,7 @@ function chooseRace(){
 
                 addDataToPlayer(key, text, keyWord);
 
-                document.querySelector('#char-creating').querySelector('.wrapper').classList.toggle('rotation');
+                rotationAnimation();
 
                 setTimeout(() => {
             
@@ -757,7 +779,7 @@ function chooseClass(){
 
                 addDataToPlayer(key, text, keyWord);
 
-                document.querySelector('#char-creating').querySelector('.wrapper').classList.toggle('rotation');
+                rotationAnimation();
 
                 setTimeout(() => {
             
@@ -995,7 +1017,7 @@ function charOverview(){
 
                 if(elem.classList.contains('button-1') === true){
 
-                    document.querySelector('#char-creating').querySelector('.wrapper').classList.toggle('rotation');
+                    rotationAnimation();
 
                     setTimeout(() => {
                 

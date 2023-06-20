@@ -15,7 +15,31 @@ const arrayActiveEnemyTraits = [];
 
 let enemyIndex = 0;
 
+function disableButtons(){
+
+    document.querySelectorAll('button').forEach(elem =>{
+
+        elem.disabled = true;
+
+    });
+
+};
+
+function enableButtons(){
+
+    document.querySelectorAll('button').forEach(elem =>{
+
+        elem.disabled = false;
+
+    });
+
+};
+
 function battle(arrayRandomEnemiesKey, enemyTier){
+
+    disableButtons();
+
+    console.log('Buttons is disabled.');
 
     const weaponTraits = Object.values(player.weaponTraits.firstWeapon);
 
@@ -75,6 +99,14 @@ function battle(arrayRandomEnemiesKey, enemyTier){
             
         popupTurn('playerTurnText');
 
+        setTimeout(() => {
+
+            enableButtons();
+
+            console.log('Buttons is enabled.');
+            
+        }, '3000');
+
         document.querySelector('#battle').querySelector('#second-column').querySelector('#first-weapon-btn').addEventListener('click', () =>{
 
             playerTurn();
@@ -107,7 +139,7 @@ function battle(arrayRandomEnemiesKey, enemyTier){
             
             if(enemyDefencePoints > playerDamageToArmour || enemyDefencePoints === playerDamageToArmour){
 
-                console.log(`Player hit enemy armour. Enemy armour is ${enemyArmourPoints}; enemy defence is ${enemyDefencePoints}; player attack is ${playerDamageToArmour}. Calculation: ${enemyArmourPoints} - (${playerDamageToArmour - enemyDefencePoints}) = ${enemyArmourPoints - 0}.`);
+                console.log(`Player hit enemy armour. Enemy armour is ${enemyArmourPoints}; enemy defence is ${enemyDefencePoints}; player attack is ${playerDamageToArmour}. Calculation: ${enemyArmourPoints} - ${playerDamageToArmour - enemyDefencePoints} = ${enemyArmourPoints - 0}.`);
 
                 console.log('No damage to enemy armour');
 
@@ -153,7 +185,7 @@ function battle(arrayRandomEnemiesKey, enemyTier){
 
                 console.log('Redirected after armour attack.');
 
-                console.log(`Player hit enemy health. Enemy health is ${enemyHealthPoints}; player attack is ${playerDamageToHealth}. Calculation: ${enemyHealthPoints} - ${playerDamageToHealth} = ${enemyHealthPoints - {playerDamageToHealth}}.`);
+                console.log(`Player hit enemy health. Enemy health is ${enemyHealthPoints}; player attack is ${playerDamageToHealth}. Calculation: ${enemyHealthPoints} - ${playerDamageToHealth} = ${enemyHealthPoints - playerDamageToHealth}.`);
 
                 enemyHealthPoints = enemyHealthPoints - playerDamageToHealth;
 
@@ -161,7 +193,7 @@ function battle(arrayRandomEnemiesKey, enemyTier){
 
                 console.log('Direct attack to health points.');
 
-                console.log(`Player hit enemy health. Enemy health is ${enemyHealthPoints}; enemy defence is ${enemyDefencePoints}; player attack is ${playerDamageToHealth}. Calculation: ${enemyHealthPoints} - (${playerDamageToHealth} - ${enemyDefencePoints}) = ${enemyHealthPoints - ({playerDamageToHealth} - {enemyDefencePoints})}.`);
+                console.log(`Player hit enemy health. Enemy health is ${enemyHealthPoints}; enemy defence is ${enemyDefencePoints}; player attack is ${playerDamageToHealth}. Calculation: ${enemyHealthPoints} - (${playerDamageToHealth} - ${enemyDefencePoints}) = ${enemyHealthPoints - (playerDamageToHealth - enemyDefencePoints)}.`);
 
                 enemyHealthPoints = enemyHealthPoints - (playerDamageToHealth - enemyDefencePoints);
 
@@ -187,27 +219,35 @@ function battle(arrayRandomEnemiesKey, enemyTier){
 
                 setTimeout(() => {
 
-                    const overlayWrapper = document.createElement('div');
+                    document.querySelector('.swiper-slide-active').classList.add('rotation-y');
 
-                    const overlayImg = document.createElement('img');
+                    setTimeout(() => {
+                        
+                        const overlayWrapper = document.createElement('div');
 
-                    overlayWrapper.className = 'overlay__wrapper';
+                        const overlayImg = document.createElement('img');
+    
+                        overlayWrapper.className = 'overlay__wrapper';
+    
+                        overlayImg.className = 'overlay__img';
+    
+                        document.querySelector('.swiper-slide-active').appendChild(overlayWrapper);
+    
+                        overlayWrapper.appendChild(overlayImg);
+    
+                        overlayImg.src = images.other.dead;
+    
+                        document.querySelector('.swiper-slide-active').classList.add('column__item-dead-enemy');
+    
+                        document.querySelector('.swiper-slide-active').querySelector('.item__wrapper-img').remove();
+    
+                        document.querySelector('.swiper-slide-active').querySelector('.title').remove();
+    
+                        document.querySelector('.swiper-slide-active').querySelector('.list').remove();
 
-                    overlayWrapper.className = 'overlay__img';
+                    }, '500');
 
-                    document.querySelector('.swiper-slide-active').appendChild(overlayWrapper);
-
-                    overlayWrapper.appendChild(overlayImg);
-
-                    overlayImg.src = images.other.dead;
-
-                    document.querySelector('.swiper-slide-active').querySelector('.item__wrapper-img').remove();
-
-                    document.querySelector('.swiper-slide-active').querySelector('.title').remove();
-
-                    document.querySelector('.swiper-slide-active').querySelector('.list').remove();
-
-                }, '1500');
+                }, '650');
 
             };
     

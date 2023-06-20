@@ -738,9 +738,9 @@ function popupTurn(textTurn){
 
             popup.remove();
             
-        }, '1500');
+        }, '1000');
 
-    }, '3000');
+    }, '1500');
 
 };
 
