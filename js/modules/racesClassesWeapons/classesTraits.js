@@ -182,7 +182,10 @@ const classesTraits = {
 
             weapon: {
 
-                magicWeapons: true
+                magicWeapons: true,
+
+                defenceWeapons: true
+
             },
 
         },

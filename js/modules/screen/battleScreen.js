@@ -7,7 +7,7 @@ import images from "../images.js";
 
 import battleScreenText from "../text/battleScreenText.js";
 
-import battleTurnText from "../text/battle/battleTurnText.js";
+import battlePopupText from "../text/battle/battlePopupText.js";
 
 import enemiesText from "../text/enemies/enemiesText.js";
 
@@ -677,7 +677,6 @@ function battleStart(){
     
             };
             
-
         }; 
         
         function showPlayerElements(){
@@ -728,7 +727,7 @@ function popupTurn(textTurn){
 
     popupWrapper.appendChild(popupTitle);
 
-    popupTitle.innerText = battleTurnText.language[language].mainText[textTurn];
+    popupTitle.innerText = battlePopupText.language[language].turnChange[textTurn];
 
     setTimeout(() => {
         
@@ -744,8 +743,42 @@ function popupTurn(textTurn){
 
 };
 
+function popupDeadPlayer(){
+
+    const popup = document.createElement('div');
+
+    const popupWrapper = document.createElement('div');
+
+    const popupTitle = document.createElement('h3');
+
+    const popupButton = document.createElement('button');
+
+    popup.className = 'popup show-popup';
+
+    popupWrapper.className = 'popup__wrapper';
+
+    popupTitle.className = 'popup__title title';
+
+    popupButton.className = 'popup__button button';
+
+    document.querySelector('#battle').appendChild(popup);
+
+    popup.appendChild(popupWrapper);
+
+    popupWrapper.appendChild(popupTitle);
+
+    popupWrapper.appendChild(popupButton);
+
+    popupTitle.innerText = battlePopupText.language[language].playerDead.playerDeadTitle;
+
+    popupButton.innerText = battlePopupText.language[language].playerDead.playerDeadButton;
+
+};
+
 /// FUNCTIONS---END ///
 
 export {popupTurn};
 
 export {battleScreen};
+
+export {popupDeadPlayer};
