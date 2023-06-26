@@ -3,7 +3,7 @@ const racesTraits = {
 
     human: {
 
-        healthPoints: 10
+        healthPoints: 1
 
     },
 

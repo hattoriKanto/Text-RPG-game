@@ -267,7 +267,7 @@ function battle(arrayRandomEnemiesKey, enemyTier){
 
             enemyTurn();
             
-        }, '4500');
+        }, '1000');
 
     };
 
@@ -305,7 +305,7 @@ function battle(arrayRandomEnemiesKey, enemyTier){
     
                 if(playerDefencePoints > enemyAttack || playerDefencePoints === enemyAttack){
 
-                    console.log(`Enemy hit player armour. Player armour is ${playerArmourPoints}; player defence is ${playerDefencePoints}; enemy attack is ${enemyAttack}. Calculation: ${playerArmourPoints} - (${enemyAttack} - ${playerDefencePoints}) = ${playerArmourPoints - (enemyAttack - playerDefencePoints)}.`);
+                    console.log(`Enemy hit player armour. Player armour is ${playerArmourPoints}; player defence is ${playerDefencePoints}; enemy attack is ${enemyAttack}. Calculation: ${playerArmourPoints} - (${enemyAttack} - ${playerDefencePoints}) = ${playerArmourPoints - 0}.`);
     
                     console.log('No damage to player armour.');
     
@@ -336,11 +336,23 @@ function battle(arrayRandomEnemiesKey, enemyTier){
             };
     
             function damageToHealth(){
+
+                if(playerDefencePoints > enemyAttack || playerDefencePoints === enemyAttack){
+
+                    console.log(`Enemy hit player health. Player health is ${playerHealthPoints}; player defence is ${playerDefencePoints}; enemy attack is ${enemyAttack}. Calculation: ${playerHealthPoints} - (${enemyAttack - playerDefencePoints}) = ${playerHealthPoints - 0}.`);
     
-                console.log(`Enemy hit player health. Player health is ${playerHealthPoints}; player defence is ${playerDefencePoints}; enemy attack is ${enemyAttack}. Calculation: ${playerHealthPoints} - (${enemyAttack} - ${playerDefencePoints}) = ${playerHealthPoints - (enemyAttack - playerDefencePoints)}.`);
+                    console.log('No damage to player health');
     
-                playerHealthPoints = playerHealthPoints - (enemyAttack - playerDefencePoints);
-                
+                    playerHealthPoints = playerHealthPoints - 0;
+    
+                } else{
+    
+                    console.log(`Enemy hit player health. Player health is ${playerHealthPoints}; player defence is ${playerDefencePoints}; enemy attack is ${enemyAttack}. Calculation: ${playerHealthPoints} - (${enemyAttack} - ${playerDefencePoints}) = ${playerHealthPoints - (enemyAttack - playerDefencePoints)}.`);
+    
+                    playerHealthPoints = playerHealthPoints - (enemyAttack - playerDefencePoints);
+    
+                };
+                    
                 if(playerHealthPoints < 0){
 
                     console.log('PLayer health is 0 now.');
@@ -362,40 +374,40 @@ function battle(arrayRandomEnemiesKey, enemyTier){
                 enemyIndex = 0;
     
             };
+
+            if(playerHealthPoints <= 0){
+
+                console.log('You are dead.');
+    
+                setTimeout(() => {
+    
+                    setTimeout(() => {
+                        
+                        popupDeadPlayer();
+    
+                    }, '500');
+    
+                }, '650');
+    
+            }else{
+    
+                setTimeout(() => {
+    
+                    setTimeout(() => {
+        
+                        enableButtons();
+            
+                        console.log('Buttons is enabled.');
+                        
+                    }, '3000');
+                    
+                    popupTurn('playerTurnText');
+        
+                }, '6000');
+    
+            };
     
         }, '3500');
-
-        if(playerHealthPoints === 0){
-
-            console.log('You are dead.');
-
-            setTimeout(() => {
-
-                setTimeout(() => {
-                    
-                    popupDeadPlayer();
-
-                }, '500');
-
-            }, '650');
-
-        }else{
-
-            setTimeout(() => {
-
-                setTimeout(() => {
-    
-                    enableButtons();
-        
-                    console.log('Buttons is enabled.');
-                    
-                }, '3000');
-                
-                popupTurn('playerTurnText');
-    
-            }, '6000');
-
-        };
 
     };
 

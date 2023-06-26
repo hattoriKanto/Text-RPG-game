@@ -7,11 +7,11 @@ const classesTraits = {
 
             traits: {
     
-                armourPoints: 4,
+                armourPoints: 1,
 
                 attackPoints: 2,
 
-                defencePoints: 4
+                defencePoints: 1
 
             },
 

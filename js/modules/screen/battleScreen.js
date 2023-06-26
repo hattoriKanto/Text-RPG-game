@@ -19,6 +19,8 @@ import weaponsScreenText from "../text/creatingChar/weaponsScreenText.js";
 
 import battle from "../battle.js";
 
+import { creatingCharacter } from "./charCreatingScreen.js";
+
 /// IMPORTS---END ///
 
 /// GLOBAL---VARIABLES---START ///
@@ -751,7 +753,11 @@ function popupDeadPlayer(){
 
     const popupTitle = document.createElement('h3');
 
-    const popupButton = document.createElement('button');
+    const popupButtonWrapper = document.createElement('div');
+
+    const popupButtonNewChar = document.createElement('button');
+
+    const popupButtonRestart = document.createElement('button');
 
     popup.className = 'popup show-popup';
 
@@ -759,7 +765,11 @@ function popupDeadPlayer(){
 
     popupTitle.className = 'popup__title title';
 
-    popupButton.className = 'popup__button button';
+    popupButtonWrapper.className = 'popup__wrapper-button'
+
+    popupButtonNewChar.className = 'popup__button button';
+
+    popupButtonRestart.className = 'popup__button button';
 
     document.querySelector('#battle').appendChild(popup);
 
@@ -767,11 +777,61 @@ function popupDeadPlayer(){
 
     popupWrapper.appendChild(popupTitle);
 
-    popupWrapper.appendChild(popupButton);
+    popupWrapper.appendChild(popupButtonWrapper);
+
+    popupButtonWrapper.appendChild(popupButtonNewChar);
+
+    popupButtonWrapper.appendChild(popupButtonRestart);
 
     popupTitle.innerText = battlePopupText.language[language].playerDead.playerDeadTitle;
 
-    popupButton.innerText = battlePopupText.language[language].playerDead.playerDeadButton;
+    popupButtonNewChar.innerText = battlePopupText.language[language].playerDead.playerNewCharButton;
+
+    popupButtonRestart.innerText = battlePopupText.language[language].playerDead.playerRestartButton;
+
+    popupButtonNewChar.addEventListener('click', () =>{
+
+        popup.classList.remove('show-popup');
+
+        popup.classList.add('hide-popup');
+
+        document.querySelector('#battle').classList.remove('show-screen');
+
+        document.querySelector('#battle').classList.add('hide-screen');
+
+        setTimeout(() => {
+
+            popup.remove();
+
+            document.querySelector('#battle').remove();
+            
+            creatingCharacter(language);
+
+        }, '2000');
+
+    });
+
+    popupButtonRestart.addEventListener('click', () =>{
+
+        popup.classList.remove('show-popup');
+
+        popup.classList.add('hide-popup');
+
+        document.querySelector('#battle').classList.remove('show-screen');
+
+        document.querySelector('#battle').classList.add('hide-screen');
+
+        setTimeout(() => {
+
+            popup.remove();
+
+            document.querySelector('#battle').remove();
+            
+            createHTMLElements();
+
+        }, '2000');
+
+    });
 
 };
 

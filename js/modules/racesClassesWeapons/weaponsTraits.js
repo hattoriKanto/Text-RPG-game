@@ -36,7 +36,7 @@ const weaponsTraits = {
 
                     damageToHealthPoints: 6,
     
-                    defencePoints: 8
+                    defencePoints: 0
 
                 },
 

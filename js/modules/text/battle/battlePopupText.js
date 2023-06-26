@@ -17,7 +17,9 @@ const battlePopupText = {
 
                 playerDeadTitle: 'You are dead',
 
-                playerDeadButton: 'Replay battle'
+                playerRestartButton: 'Replay battle',
+
+                playerNewCharButton: 'Create new character'
 
             }
 
@@ -37,7 +39,9 @@ const battlePopupText = {
 
                 playerDeadTitle: 'Вы мертвы',
 
-                playerDeadButton: 'Переиграть бой'
+                playerRestartButton: 'Переиграть бой',
+
+                playerNewCharButton: 'Создать нового персонажа'
 
             }
 
