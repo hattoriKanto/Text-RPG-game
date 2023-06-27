@@ -21,6 +21,8 @@ import battle from "../battle.js";
 
 import { creatingCharacter } from "./charCreatingScreen.js";
 
+import { deletePlayerData } from "../globalFunctions.js";
+
 /// IMPORTS---END ///
 
 /// GLOBAL---VARIABLES---START ///
@@ -804,6 +806,8 @@ function popupDeadPlayer(){
             popup.remove();
 
             document.querySelector('#battle').remove();
+
+            deletePlayerData();
             
             creatingCharacter(language);
 

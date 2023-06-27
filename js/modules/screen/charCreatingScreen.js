@@ -25,19 +25,21 @@ import images from "../images.js";
 
 import player from "../player.js";
 
-import {battleScreen} from "./battleScreen.js";
+import { battleScreen } from "./battleScreen.js";
+
+import { deletePlayerData } from "../globalFunctions.js";
 
 /// IMPORTS---END ///
 
 /// GLOBAL---VARIABLES---START ///
 
-let playerRaceKey = '';
+let playerRaceKey = null;
 
-let playerClassKey = '';
+let playerClassKey = null;
 
-let choosedWeaponType = '';
+let choosedWeaponType = null;
 
-let language = '';
+let language = null;
 
 let counterWeapon = 0;
 
@@ -155,6 +157,8 @@ function weaponsTypeKeys(){
 
 function chooseWeaponType(arrayOfClassWeapon, arrayWeaponsType){
 
+    console.log('Function: chooseWeaponType.');
+
     counterWeaponType++;
 
     const needInfoBtn = false;
@@ -222,6 +226,8 @@ function chooseWeaponType(arrayOfClassWeapon, arrayWeaponsType){
 };
 
 function chooseWeapon(choosedWeaponType){
+
+    console.log('Function: chooseWeapon.');
 
     counterWeapon++;
 
@@ -327,7 +333,7 @@ function chooseWeapon(choosedWeaponType){
 
                     addDataToPlayer(key, text, keyWord);
 
-                    player.weaponTraits[keyWord] = weaponsTraits[playerRaceKey][choosedWeaponType][choosedWeapon].traits;
+                    Object.assign(player.weaponTraits[keyWord], weaponsTraits[playerRaceKey][choosedWeaponType][choosedWeapon].traits);
 
                     rotationAnimation();
 
@@ -357,7 +363,7 @@ function chooseWeapon(choosedWeaponType){
 
                     addDataToPlayer(key, text, keyWord);
 
-                    player.weaponTraits[keyWord] = weaponsTraits[playerRaceKey][choosedWeaponType][choosedWeapon].traits;
+                    Object.assign(player.weaponTraits[keyWord], weaponsTraits[playerRaceKey][choosedWeaponType][choosedWeapon].traits);
 
                     rotationAnimation();
 
@@ -474,6 +480,20 @@ function btnInfoEventListener(arrayDescr, arrayKey){
         });
 
     };
+
+};
+
+function backToDefaultValues(){
+
+    playerRaceKey = null;
+
+    playerClassKey = null;
+
+    choosedWeaponType = null;
+
+    counterWeapon = 0;
+
+    counterWeaponType = 0;
 
 };
 
@@ -613,6 +633,8 @@ function createHTMLElements(){
 
 function chooseRace(){
 
+    console.log('Function: chooseRace.');
+
     const arrayDescr = [];
 
     const arrayRaceKey = [];
@@ -698,6 +720,8 @@ function chooseRace(){
 };
 
 function chooseClass(){
+
+    console.log('Function: chooseClass.');
 
     const arrayDescr = [];
 
@@ -1017,15 +1041,19 @@ function charOverview(){
 
                 if(elem.classList.contains('button-1') === true){
 
-                    rotationAnimation();
+                    document.querySelector('#char-creating').classList.add('hide-screen');
 
                     setTimeout(() => {
                 
-                        document.querySelector('#char-creating').querySelector('.container').remove();
-                
-                    }, '650');
+                        document.querySelector('#char-creating').remove();
 
-                    chooseRace();
+                        deletePlayerData();
+
+                        backToDefaultValues();
+
+                        createHTMLElements();
+                
+                    }, '2000');
 
                 };
 
@@ -1039,8 +1067,6 @@ function charOverview(){
 
                     }, '650');
 
-                    console.log(player)
-
                     battleScreen(language, 'lowTier', 3);
 
                 };
@@ -1050,6 +1076,8 @@ function charOverview(){
         });
 
     };
+
+    console.log(player);
 
 };
 

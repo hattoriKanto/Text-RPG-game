@@ -1,105 +1,52 @@
 
-import { player } from "./player";
+import player from "./player.js";
 
 function deletePlayerData(){
 
     player.playerImg = null;
 
-    player.playerKey.race = null;
+    for(let playerKey in player.playerKey){
 
-    player.playerKey.class = null;
+        if(typeof player.playerKey[playerKey] != "object"){
 
-    player.playerKey.weaponKeys.firstWeapon = null;
+            player.playerKey[playerKey] = null;
 
-    player.playerKey.weaponKeys.secondWeapon = null;
+        }else{
 
-    player.playerKey.weaponsTypeKeys.secondWeapon = null;
+            for(let key in player.playerKey[playerKey]){
 
-    player.playerKey.weaponsTypeKeys.secondWeapon = null;
+                player.playerKey[playerKey][key] = null;
 
-    player.playerKey.weaponsTypeKeys.secondWeapon = null;
+            };
 
-    player.mainText.race = null;
-
-    player.mainText.class = null;
-
-    player.mainText.firstWeapon = null;
-
-    player.mainText.secondWeapon = null;
-
-    player.playerTraits.armourPoints = null;
-
-    player.playerTraits.armourPoints = null;
-
-    player.playerTraits.healthPoints = null;
-
-    player.playerTraits.attackPoints = null;
-
-    player.playerTraits.defencePoints = null;
-
-};
-
-
-const player = {
-
-    playerImg: null,
-
-    playerKey: {
-
-        race: null,
-
-        class: null,
-
-        weaponKeys: {
-
-            firstWeapon: null,
-
-            secondWeapon: null
-
-        },
-
-        weaponsTypeKeys: {
-
-            firstWeapon: null,
-
-            secondWeapon: null
-
-        }
-
-    },
-
-    mainText: {
-
-        race: null,
-
-        class: null,
-
-        firstWeapon: null,
-
-        secondWeapon: null
-
-    },
-
-    playerTraits: {
-
-        healthPoints: null,
-
-        armourPoints: null,
-
-        attackPoints: null,
-
-        defencePoints: null
+        };
+    
+    };
         
-    },
+    for(let key in player.mainText){
 
-    weaponTraits: {
+        player.mainText[key] = null;
 
-        firstWeapon: {},
+    };
 
-        secondWeapon: {}
+    for(let trait in player.playerTraits){
 
-    },
+        player.playerTraits[trait] = null;
+
+    };
+
+    for(let weaponKey in player.weaponTraits){
+
+        for(let traitKey in player.weaponTraits[weaponKey]){
+
+            delete player.weaponTraits[weaponKey][traitKey];
+
+        };
+
+    };
+
+    console.log(player)
 
 };
 
-export { player };
+export { deletePlayerData };
