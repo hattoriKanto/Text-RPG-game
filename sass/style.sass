@@ -59,7 +59,6 @@
     left: -100%
     padding: 60px 0
     z-index: 1
-    overflow: auto
     &__wrapper
         transition: 2000ms ease all
     &__main
@@ -142,6 +141,7 @@
 @media ( max-width: 768px )
     .screen
         padding: 0
+        overflow: auto
         &__main
             padding: 15px 0 15px 0
             gap: 30px
@@ -231,6 +231,10 @@
         padding: 30px 10px
     &__content
         position: relative
+        display: flex
+        flex-direction: column
+        justify-content: space-evenly
+        align-items: center
         padding: 30px
         min-width: 300px
         min-height: 300px
@@ -361,6 +365,8 @@
 /// BATTLE---SECTION---START ///
 
 .battle
+    &__main
+        border: none
     .main
         &__wrapper
             width: 100%
@@ -390,6 +396,7 @@
                 animation: show-tc ease 3s 1 forwards
             .column
                 &__item
+                    position: relative
                     display: flex
                     align-items: center
                     justify-content: center
@@ -458,6 +465,8 @@
                         height: 100%
                         background-color: $background-color
             .first-column
+                &__item-hide
+                    animation: fc-item-hide ease 2s 1 forwards
                 .swiper-wrapper
                     align-items: center
             &__second-column-battle-start
@@ -474,9 +483,15 @@
                     &__btn
                         width: 70px
                         height: 70px
-                    .button
-                        &__img
-                            width: 40px
+                .button
+                    &__img
+                        width: 40px
+                &__button-hide
+                    animation: sc-item-hide ease 2s 1 forwards
+            .third-column
+                &__item-hide
+                    animation: tc-item-hide ease 2s 1 forwards
+
 .popup
     &__wrapper
         display: flex
@@ -525,23 +540,29 @@
 
 @keyframes show-fc
     0%
+        opacity: 0
         transform: translateX(-150%)
         
     100%
+        opacity: 1
         transform: translateX(0%) 
 
 @keyframes show-tc
     0%
+        opacity: 0
         transform: translateX(150%)
         
     100%
+        opacity: 1
         transform: translateX(0%) 
 
 @keyframes show-sc
     0%
+        opacity: 0
         transform: translateY(150%)
         
     100%
+        opacity: 1
         transform: translateY(0%) 
         
 @keyframes hide-elem
@@ -567,3 +588,30 @@
         transform: rotateX(360deg)  
     100%
         transform: rotateX(0deg)
+
+@keyframes fc-item-hide
+    0%
+        opacity: 1
+        transform: translateX(0%)
+        
+    100%
+        opacity: 0
+        transform: translateX(-100%) 
+
+@keyframes sc-item-hide
+    0%
+        opacity: 1
+        transform: translateY(0%)
+        
+    100%
+        opacity: 0
+        transform: translateY(100%)         
+
+@keyframes tc-item-hide
+    0%
+        opacity: 1
+        transform: translateX(0%)
+        
+    100%
+        opacity: 0
+        transform: translateX(100%) 

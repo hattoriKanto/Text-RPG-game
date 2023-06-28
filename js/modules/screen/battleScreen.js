@@ -243,11 +243,21 @@ function hideAnimation(columnBtn){
 
     document.querySelector('#battle').querySelectorAll('.column__item').forEach(elem =>{
 
-        elem.classList.add('column__elem-hide');
+        if(elem.classList.contains('first-column__item')){
+
+            elem.classList.add('first-column__item-hide');
+
+        };
+
+        if(elem.classList.contains('third-column__item')){
+
+            elem.classList.add('third-column__item-hide');
+
+        };
 
     });
 
-    columnBtn.classList.add('column__elem-hide');
+    columnBtn.classList.add('second-column__button-hide');
 
 };
 
@@ -256,7 +266,7 @@ function removeElements(){
     document.querySelector('#battle').querySelectorAll('.column__item').forEach(elem =>{
 
         elem.remove();
-
+    
     });
 
 };
@@ -275,7 +285,7 @@ function addEventListener(columnBtn){
     
             battleStart();
             
-        }, '450');
+        }, '2000');
 
     });
 
@@ -537,13 +547,7 @@ function battleStart(){
 
                 const btnImg = document.createElement('img');
 
-                const bgDiv = document.createElement('div');
-
-                elem.appendChild(bgDiv);
-
                 elem.appendChild(btnImg);
-
-                bgDiv.className = 'button__bg';
 
                 btnImg.className = 'button__img';
 
