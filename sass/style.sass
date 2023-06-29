@@ -470,19 +470,39 @@
                 .swiper-wrapper
                     align-items: center
             &__second-column-battle-start
+                padding: 0 10%
                 justify-content: flex-start
                 align-items: flex-end
             .second-column
                 &__wrapper
-                    margin: 0 20px 0 0
+                    width: 100%
+                    height: 100%
                     display: flex
                     flex-direction: column
                     align-items: center
                     gap: 20px
                 .wrapper
-                    &__btn
-                        width: 70px
-                        height: 70px
+                    &__wrapper-btns
+                        width: 100%
+                        display: flex
+                        flex-direction: column
+                        align-items: flex-end
+                        gap: 20px
+                    &__wrapper-battle-table
+                        width: 100%
+                        height: 100%
+                        display: grid 
+                        grid-template-columns: repeat(3, 33.33%)
+                    .wrapper-btns
+                        &__btn
+                            width: 70px
+                            height: 70px
+                    .wrapper-battle-table
+                        &__column 
+                            display: flex
+                            flex-direction: column
+                            justify-content: center
+                            align-items: center
                 .button
                     &__img
                         width: 40px
@@ -497,10 +517,12 @@
         display: flex
         flex-direction: column
         align-items: center
+        justify-content: space-evenly
     &__wrapper-button
         display: flex
         align-items: center
         justify-content: space-between
+        gap: 50px
 
 /// KEYFRAMES ///
 

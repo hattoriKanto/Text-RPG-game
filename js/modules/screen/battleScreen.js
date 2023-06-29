@@ -511,7 +511,11 @@ function battleStart(){
 
             const columnStartBattle = document.querySelector('#battle').querySelector('#second-column');
 
+            const columnWrapper = document.createElement('div');
+
             const btnsWrapper = document.createElement('div');
+
+            const battleTableWrapper = document.createElement('div');
 
             const firstWeaponBtn = document.createElement('button');
 
@@ -519,15 +523,31 @@ function battleStart(){
     
             const healingPotionBtn = document.createElement('button');
 
-            btnsWrapper.className = 'second-column__wrapper wrapper';
+            const battleTableEnemyColumn = document.createElement('div');
+
+            const battleTableResultColumn = document.createElement('div');
+
+            const battleTablePlayerColumn = document.createElement('div');
+
+            columnWrapper.className = 'second-column__wrapper wrapper'
+
+            btnsWrapper.className = 'wrapper__wrapper-btns wrapper-btns';
+
+            battleTableWrapper.className = 'wrapper__wrapper-battle-table wrapper-battle-table';
 
             columnStartBattle.classList.add('wrapper__second-column-battle-start');
 
-            firstWeaponBtn.className = 'wrapper__btn button';
+            firstWeaponBtn.className = 'wrapper-btns__btn button';
 
-            secondWeaponBtn.className = 'wrapper__btn button';
+            secondWeaponBtn.className = 'wrapper-btns__btn button';
                 
-            healingPotionBtn.className = 'wrapper__btn button';
+            healingPotionBtn.className = 'wrapper-btns__btn button';
+
+            battleTableEnemyColumn.className = 'wrapper-battle-table__column column wrapper-battle-table___enemy-column enemy-column';
+
+            battleTableResultColumn.className = 'wrapper-battle-table__column column wrapper-battle-table___result-column result-column';
+
+            battleTablePlayerColumn.className = 'wrapper-battle-table__column column wrapper-battle-table___player-column player-column';
 
             firstWeaponBtn.id = 'first-weapon-btn';
 
@@ -535,7 +555,11 @@ function battleStart(){
                 
             healingPotionBtn.id = 'healing-potion-btn';
 
-            columnStartBattle.appendChild(btnsWrapper);
+            columnStartBattle.appendChild(columnWrapper);
+
+            columnWrapper.appendChild(btnsWrapper);
+
+            columnWrapper.appendChild(battleTableWrapper);
 
             btnsWrapper.appendChild(firstWeaponBtn);
 
@@ -543,13 +567,35 @@ function battleStart(){
 
             btnsWrapper.appendChild(healingPotionBtn);
 
-            columnStartBattle.querySelectorAll('.wrapper__btn').forEach(elem =>{
+            battleTableWrapper.appendChild(battleTableEnemyColumn);
+
+            battleTableWrapper.appendChild(battleTableResultColumn);
+            
+            battleTableWrapper.appendChild(battleTablePlayerColumn);
+
+            columnStartBattle.querySelectorAll('.wrapper-btns__btn').forEach(elem =>{
 
                 const btnImg = document.createElement('img');
 
                 elem.appendChild(btnImg);
 
                 btnImg.className = 'button__img';
+
+            });
+
+            columnStartBattle.querySelectorAll('.wrapper-battle-table__column').forEach(elem =>{
+
+                const traitValue = document.createElement('span');
+
+                const traitImg = document.createElement('img');
+
+                traitValue.className = 'column__trait-value trait-value';
+
+                traitImg.className = 'column__trait-img trait-img';
+
+                elem.appendChild(traitValue);
+
+                elem.appendChild(traitImg);
 
             });
 
