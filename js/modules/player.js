@@ -1,5 +1,5 @@
 
-const player = {
+let player = {
 
     playerImg: null,
 

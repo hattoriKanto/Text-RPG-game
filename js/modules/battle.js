@@ -39,6 +39,72 @@ function enableButtons(){
 
 };
 
+function addDataToBattleTable(turn, damageTo, damageInput, damageResult){
+
+    const enemyColumn = document.querySelector('#battle').querySelector('#second-column').querySelector('.enemy-column');
+
+    const playerColumn = document.querySelector('#battle').querySelector('#second-column').querySelector('.player-column');
+
+    const resultColumn = document.querySelector('#battle').querySelector('#second-column').querySelector('.result-column');
+
+    if(turn === 'player'){
+
+        enemyColumn.querySelector('.trait-value').innerText = arrayEnemiesTraits[enemyIndex][3];
+
+        enemyColumn.querySelector('.trait-img').src = images.traits.defencePoints;
+
+        playerColumn.querySelector('.trait-value').innerText = damageInput;
+
+        playerColumn.querySelector('.trait-img').src = images.traits.attackPoints;
+
+        if(damageTo === 'armour'){
+
+            resultColumn.querySelector('.trait-value').innerText = damageResult;
+
+            resultColumn.querySelector('.trait-img').src = images.traits.armourPoints;
+
+        };
+
+        if(damageTo === 'health'){
+
+            resultColumn.querySelector('.trait-value').innerText = damageResult;
+
+            resultColumn.querySelector('.trait-img').src = images.traits.healthPoints;
+
+        };
+
+    };
+
+    if(turn === 'enemy'){
+
+        enemyColumn.querySelector('.trait-value').innerText = damageInput;
+
+        enemyColumn.querySelector('.trait-img').src = images.traits.attackPoints;
+
+        playerColumn.querySelector('.trait-value').innerText = player.playerTraits.defencePoints;
+
+        playerColumn.querySelector('.trait-img').src = images.traits.defencePoints;
+
+        if(damageTo === 'armour'){
+
+            resultColumn.querySelector('.trait-value').innerText = damageResult;
+
+            resultColumn.querySelector('.trait-img').src = images.traits.armourPoints;
+
+        };
+
+        if(damageTo === 'health'){
+
+            resultColumn.querySelector('.trait-value').innerText = damageResult;
+
+            resultColumn.querySelector('.trait-img').src = images.traits.healthPoints;
+
+        };
+
+    };
+
+};
+
 /// REPEATABLE---FUNCTIONS---END ///
 
 function battle(arrayRandomEnemiesKey, enemyTier){
@@ -163,6 +229,8 @@ function battle(arrayRandomEnemiesKey, enemyTier){
 
             };
 
+            addDataToBattleTable('player', 'armour', playerDamageToArmour, enemyArmourPoints);
+
             console.log(`Enemy armour is ${enemyArmourPoints}.`);
     
             if(enemyArmourPoints < 0){
@@ -208,6 +276,8 @@ function battle(arrayRandomEnemiesKey, enemyTier){
                 enemyHealthPoints = enemyHealthPoints - (playerDamageToHealth - enemyDefencePoints);
 
             };
+
+            addDataToBattleTable('player', 'health', playerDamageToHealth, enemyHealthPoints);
 
             console.log(`Enemy health is ${enemyHealthPoints}.`);
         
@@ -319,6 +389,8 @@ function battle(arrayRandomEnemiesKey, enemyTier){
     
                 };
 
+                addDataToBattleTable('enemy', 'armour', enemyAttack, playerArmourPoints);
+
                 console.log(`Player armour is ${playerArmourPoints}.`);
         
                 if(playerArmourPoints < 0){
@@ -360,6 +432,8 @@ function battle(arrayRandomEnemiesKey, enemyTier){
                     playerHealthPoints = 0;
         
                 };
+
+                addDataToBattleTable('enemy', 'health', enemyAttack, playerHealthPoints);
 
                 console.log(`Player health is ${playerHealthPoints}.`);
 

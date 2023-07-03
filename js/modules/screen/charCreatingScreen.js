@@ -29,6 +29,8 @@ import { battleScreen } from "./battleScreen.js";
 
 import { deletePlayerData } from "../globalFunctions.js";
 
+import { clonePlayerTraits } from "../globalFunctions.js";
+
 /// IMPORTS---END ///
 
 /// GLOBAL---VARIABLES---START ///
@@ -1067,6 +1069,8 @@ function charOverview(){
 
                     }, '650');
 
+                    clonePlayerTraits();
+
                     battleScreen(language, 'lowTier', 3);
 
                 };
@@ -1076,8 +1080,6 @@ function charOverview(){
         });
 
     };
-
-    console.log(player);
 
 };
 

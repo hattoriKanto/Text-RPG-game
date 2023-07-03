@@ -23,6 +23,8 @@ import { creatingCharacter } from "./charCreatingScreen.js";
 
 import { deletePlayerData } from "../globalFunctions.js";
 
+import { backToDefaultPlayerTraits } from "../globalFunctions.js";
+
 /// IMPORTS---END ///
 
 /// GLOBAL---VARIABLES---START ///
@@ -593,9 +595,9 @@ function battleStart(){
 
                 traitImg.className = 'column__trait-img trait-img';
 
-                elem.appendChild(traitValue);
-
                 elem.appendChild(traitImg);
+
+                elem.appendChild(traitValue);
 
             });
 
@@ -866,6 +868,8 @@ function popupDeadPlayer(){
     });
 
     popupButtonRestart.addEventListener('click', () =>{
+
+        backToDefaultPlayerTraits();
 
         popup.classList.remove('show-popup');
 

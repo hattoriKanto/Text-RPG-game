@@ -1,6 +1,8 @@
 
 import player from "./player.js";
 
+let cloneTraits = null;
+
 function deletePlayerData(){
 
     player.playerImg = null;
@@ -45,8 +47,24 @@ function deletePlayerData(){
 
     };
 
-    console.log(player)
+};
+
+function clonePlayerTraits(){
+
+    cloneTraits = structuredClone(player.playerTraits);
 
 };
 
+function backToDefaultPlayerTraits(){
+
+    delete player.playerTraits;
+
+    player.playerTraits = cloneTraits;
+
+}
+
 export { deletePlayerData };
+
+export {clonePlayerTraits};
+
+export {backToDefaultPlayerTraits}
