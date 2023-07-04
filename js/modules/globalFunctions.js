@@ -1,7 +1,7 @@
 
 import player from "./player.js";
 
-let cloneTraits = null;
+let cloneTraitsPlayer = null;
 
 function deletePlayerData(){
 
@@ -51,7 +51,7 @@ function deletePlayerData(){
 
 function clonePlayerTraits(){
 
-    cloneTraits = structuredClone(player.playerTraits);
+    cloneTraitsPlayer = structuredClone(player.playerTraits);
 
 };
 
@@ -59,12 +59,12 @@ function backToDefaultPlayerTraits(){
 
     delete player.playerTraits;
 
-    player.playerTraits = cloneTraits;
+    player.playerTraits = cloneTraitsPlayer;
 
-}
+};
 
 export { deletePlayerData };
 
-export {clonePlayerTraits};
+export { clonePlayerTraits };
 
-export {backToDefaultPlayerTraits}
+export { backToDefaultPlayerTraits };

@@ -82,7 +82,9 @@ const images = {
 
         btnInfoImg: './img/other/info.png',
 
-        dead: './img/other/dead.png'
+        dead: './img/other/dead.png',
+
+        inventory: './img/other/inventory.png'
 
     }
 

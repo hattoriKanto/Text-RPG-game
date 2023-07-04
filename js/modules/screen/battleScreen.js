@@ -25,6 +25,8 @@ import { deletePlayerData } from "../globalFunctions.js";
 
 import { backToDefaultPlayerTraits } from "../globalFunctions.js";
 
+import { createInventoryButton } from "../inventory.js";
+
 /// IMPORTS---END ///
 
 /// GLOBAL---VARIABLES---START ///
@@ -92,6 +94,8 @@ function battleScreen(choosedLang, tier, number){
 };
 
 function createHTMLElements(){
+
+    createInventoryButton();
 
     mainElements();
 
@@ -895,8 +899,8 @@ function popupDeadPlayer(){
 
 /// FUNCTIONS---END ///
 
-export {popupTurn};
+export { popupTurn };
 
-export {battleScreen};
+export { battleScreen };
 
-export {popupDeadPlayer};
+export { popupDeadPlayer };

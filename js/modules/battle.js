@@ -49,7 +49,7 @@ function addDataToBattleTable(turn, damageTo, damageInput, damageResult){
 
     if(turn === 'player'){
 
-        enemyColumn.querySelector('.trait-value').innerText = arrayEnemiesTraits[enemyIndex][3];
+        enemyColumn.querySelector('.trait-value').innerText = arrayEnemiesTraits[activeEnemyIndex][3];
 
         enemyColumn.querySelector('.trait-img').src = images.traits.defencePoints;
 
@@ -59,7 +59,15 @@ function addDataToBattleTable(turn, damageTo, damageInput, damageResult){
 
         if(damageTo === 'armour'){
 
-            resultColumn.querySelector('.trait-value').innerText = damageResult;
+            if(damageResult > 0){
+
+                resultColumn.querySelector('.trait-value').innerText = '-' + damageResult;
+
+            }else{
+
+                resultColumn.querySelector('.trait-value').innerText = damageResult;
+
+            }
 
             resultColumn.querySelector('.trait-img').src = images.traits.armourPoints;
 
@@ -67,7 +75,15 @@ function addDataToBattleTable(turn, damageTo, damageInput, damageResult){
 
         if(damageTo === 'health'){
 
-            resultColumn.querySelector('.trait-value').innerText = damageResult;
+            if(damageResult > 0){
+
+                resultColumn.querySelector('.trait-value').innerText = '-' + damageResult;
+
+            }else{
+
+                resultColumn.querySelector('.trait-value').innerText = damageResult;
+
+            }
 
             resultColumn.querySelector('.trait-img').src = images.traits.healthPoints;
 
@@ -87,7 +103,15 @@ function addDataToBattleTable(turn, damageTo, damageInput, damageResult){
 
         if(damageTo === 'armour'){
 
-            resultColumn.querySelector('.trait-value').innerText = damageResult;
+            if(damageResult > 0){
+
+                resultColumn.querySelector('.trait-value').innerText = '-' + damageResult;
+
+            }else{
+
+                resultColumn.querySelector('.trait-value').innerText = damageResult;
+
+            }
 
             resultColumn.querySelector('.trait-img').src = images.traits.armourPoints;
 
@@ -95,7 +119,15 @@ function addDataToBattleTable(turn, damageTo, damageInput, damageResult){
 
         if(damageTo === 'health'){
 
-            resultColumn.querySelector('.trait-value').innerText = damageResult;
+            if(damageResult > 0){
+
+                resultColumn.querySelector('.trait-value').innerText = '-' + damageResult;
+
+            }else{
+
+                resultColumn.querySelector('.trait-value').innerText = damageResult;
+
+            }
 
             resultColumn.querySelector('.trait-img').src = images.traits.healthPoints;
 
@@ -166,8 +198,6 @@ function battle(arrayRandomEnemiesKey, enemyTier){
     });
 
     setTimeout(() => {
-
-        console.log('PLAYER TURN');
             
         popupTurn('playerTurnText');
 
@@ -201,9 +231,7 @@ function battle(arrayRandomEnemiesKey, enemyTier){
 
         if(enemyArmourPoints === 0){
 
-            const afterArmourIsAttacked = false;
-
-            damageToHealth(afterArmourIsAttacked);
+            damageToHealth();
 
         }else if(enemyArmourPoints > 0){
 
@@ -212,24 +240,28 @@ function battle(arrayRandomEnemiesKey, enemyTier){
         };
     
         function damageToArmour(){
+
+            let battleResult = null;
             
             if(enemyDefencePoints > playerDamageToArmour || enemyDefencePoints === playerDamageToArmour){
 
                 console.log(`Player hit enemy armour. Enemy armour is ${enemyArmourPoints}; enemy defence is ${enemyDefencePoints}; player attack is ${playerDamageToArmour}. Calculation: ${enemyArmourPoints} - ${playerDamageToArmour - enemyDefencePoints} = ${enemyArmourPoints - 0}.`);
 
-                console.log('No damage to enemy armour');
+                battleResult = 0;
 
-                enemyArmourPoints = enemyArmourPoints - 0;
+                enemyArmourPoints = enemyArmourPoints - battleResult;
 
             } else{
 
                 console.log(`Player hit enemy armour. Enemy armour is ${enemyArmourPoints}; enemy defence is ${enemyDefencePoints}; player attack is ${playerDamageToArmour}. Calculation: ${enemyArmourPoints} - (${playerDamageToArmour} - ${enemyDefencePoints}) = ${enemyArmourPoints - (playerDamageToArmour - enemyDefencePoints)}.`);
 
-                enemyArmourPoints = enemyArmourPoints - (playerDamageToArmour - enemyDefencePoints);
+                battleResult = playerDamageToArmour - enemyDefencePoints;
+
+                enemyArmourPoints = enemyArmourPoints - battleResult;
 
             };
 
-            addDataToBattleTable('player', 'armour', playerDamageToArmour, enemyArmourPoints);
+            addDataToBattleTable('player', 'armour', playerDamageToArmour, battleResult);
 
             console.log(`Enemy armour is ${enemyArmourPoints}.`);
     
@@ -241,43 +273,35 @@ function battle(arrayRandomEnemiesKey, enemyTier){
         
             };
     
-            if(enemyArmourPoints === 0){
-
-                console.log('Enemy armour is gone. Redirecting to health attack.');
-
-                const afterArmourIsAttacked = true;
-    
-                damageToHealth(afterArmourIsAttacked);
-    
-            };
-    
             arrayEnemiesTraits[activeEnemyIndex][1] = enemyArmourPoints;
 
             document.querySelector('.swiper-slide-active').querySelectorAll('.list__item-battle-start')[1].querySelector('.list-item__span-battle-start').innerText = enemyArmourPoints;
             
         };
     
-        function damageToHealth(afterArmourIsAttacked){
+        function damageToHealth(){
 
-            if(afterArmourIsAttacked === true){
+            let battleResult = null;
 
-                console.log('Redirected after armour attack.');
+            if(enemyDefencePoints > playerDamageToHealth || enemyDefencePoints === playerDamageToHealth){
 
-                console.log(`Player hit enemy health. Enemy health is ${enemyHealthPoints}; player attack is ${playerDamageToHealth}. Calculation: ${enemyHealthPoints} - ${playerDamageToHealth} = ${enemyHealthPoints - playerDamageToHealth}.`);
+                console.log(`Player hit enemy health. Enemy health is ${enemyHealthPoints}; enemy defence is ${enemyDefencePoints}; player attack is ${playerDamageToHealth}. Calculation: ${enemyHealthPoints} - ${playerDamageToHealth - enemyDefencePoints} = ${enemyHealthPoints - 0}.`);
 
-                enemyHealthPoints = enemyHealthPoints - playerDamageToHealth;
+                battleResult = 0;
 
-            }else if(afterArmourIsAttacked === false){
+                enemyHealthPoints = enemyHealthPoints - battleResult;
 
-                console.log('Direct attack to health points.');
+            } else{
 
                 console.log(`Player hit enemy health. Enemy health is ${enemyHealthPoints}; enemy defence is ${enemyDefencePoints}; player attack is ${playerDamageToHealth}. Calculation: ${enemyHealthPoints} - (${playerDamageToHealth} - ${enemyDefencePoints}) = ${enemyHealthPoints - (playerDamageToHealth - enemyDefencePoints)}.`);
 
-                enemyHealthPoints = enemyHealthPoints - (playerDamageToHealth - enemyDefencePoints);
+                battleResult = playerDamageToHealth - enemyDefencePoints;
+    
+                enemyHealthPoints = enemyHealthPoints - battleResult;
 
             };
 
-            addDataToBattleTable('player', 'health', playerDamageToHealth, enemyHealthPoints);
+            addDataToBattleTable('player', 'health', playerDamageToHealth, battleResult);
 
             console.log(`Enemy health is ${enemyHealthPoints}.`);
         
@@ -345,8 +369,6 @@ function battle(arrayRandomEnemiesKey, enemyTier){
             
         popupTurn('enemyTurnText');
 
-        console.log('ENEMY TURN');
-
         if(arrayEnemiesTraits[enemyIndex][0] === 0){
 
             console.log(`Skip enemy on ${enemyIndex} index.`);
@@ -372,24 +394,28 @@ function battle(arrayRandomEnemiesKey, enemyTier){
             };
     
             function damageToArmour(){
+
+                let battleResult = null;
     
                 if(playerDefencePoints > enemyAttack || playerDefencePoints === enemyAttack){
 
                     console.log(`Enemy hit player armour. Player armour is ${playerArmourPoints}; player defence is ${playerDefencePoints}; enemy attack is ${enemyAttack}. Calculation: ${playerArmourPoints} - (${enemyAttack} - ${playerDefencePoints}) = ${playerArmourPoints - 0}.`);
     
-                    console.log('No damage to player armour.');
+                    battleResult = 0;
     
-                    playerArmourPoints = playerArmourPoints - 0;
+                    playerArmourPoints = playerArmourPoints - battleResult;
     
                 } else{
     
                     console.log(`Enemy hit player armour. Player armour is ${playerArmourPoints}; player defence is ${playerDefencePoints}; enemy attack is ${enemyAttack}. Calculation: ${playerArmourPoints} - (${enemyAttack} - ${playerDefencePoints}) = ${playerArmourPoints - (enemyAttack - playerDefencePoints)}.`);
+
+                    battleResult = enemyAttack - playerDefencePoints;
     
-                    playerArmourPoints = playerArmourPoints - (enemyAttack - playerDefencePoints);
+                    playerArmourPoints = playerArmourPoints - battleResult;
     
                 };
 
-                addDataToBattleTable('enemy', 'armour', enemyAttack, playerArmourPoints);
+                addDataToBattleTable('enemy', 'armour', enemyAttack, battleResult);
 
                 console.log(`Player armour is ${playerArmourPoints}.`);
         
@@ -409,19 +435,23 @@ function battle(arrayRandomEnemiesKey, enemyTier){
     
             function damageToHealth(){
 
+                let battleResult = null;
+
                 if(playerDefencePoints > enemyAttack || playerDefencePoints === enemyAttack){
 
                     console.log(`Enemy hit player health. Player health is ${playerHealthPoints}; player defence is ${playerDefencePoints}; enemy attack is ${enemyAttack}. Calculation: ${playerHealthPoints} - (${enemyAttack - playerDefencePoints}) = ${playerHealthPoints - 0}.`);
     
-                    console.log('No damage to player health');
-    
-                    playerHealthPoints = playerHealthPoints - 0;
+                    battleResult = 0;
+                    
+                    playerHealthPoints = playerHealthPoints - battleResult;
     
                 } else{
     
                     console.log(`Enemy hit player health. Player health is ${playerHealthPoints}; player defence is ${playerDefencePoints}; enemy attack is ${enemyAttack}. Calculation: ${playerHealthPoints} - (${enemyAttack} - ${playerDefencePoints}) = ${playerHealthPoints - (enemyAttack - playerDefencePoints)}.`);
+
+                    battleResult = enemyAttack - playerDefencePoints;
     
-                    playerHealthPoints = playerHealthPoints - (enemyAttack - playerDefencePoints);
+                    playerHealthPoints = playerHealthPoints - battleResult;
     
                 };
                     
@@ -433,7 +463,7 @@ function battle(arrayRandomEnemiesKey, enemyTier){
         
                 };
 
-                addDataToBattleTable('enemy', 'health', enemyAttack, playerHealthPoints);
+                addDataToBattleTable('enemy', 'health', enemyAttack, battleResult);
 
                 console.log(`Player health is ${playerHealthPoints}.`);
 
@@ -451,12 +481,14 @@ function battle(arrayRandomEnemiesKey, enemyTier){
 
             if(playerHealthPoints <= 0){
 
-                console.log('You are dead.');
+                enemyIndex = 0;
+
+                activeEnemyIndex = 0;
     
                 setTimeout(() => {
     
                     setTimeout(() => {
-                        
+
                         popupDeadPlayer();
     
                     }, '500');

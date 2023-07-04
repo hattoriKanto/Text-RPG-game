@@ -7,6 +7,8 @@ import { castle } from "./location/castleScreen.js";
 
 import images from "../images.js";
 
+import { createInventoryButton } from "../inventory.js";
+
 /// IMPORTS END ///
 
 /// GLOBAL---VARIABLES---START ///
