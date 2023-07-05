@@ -25,7 +25,7 @@ import { deletePlayerData } from "../globalFunctions.js";
 
 import { backToDefaultPlayerTraits } from "../globalFunctions.js";
 
-import { createInventoryButton } from "../inventory.js";
+import { createInventoryElememts } from "./inventory.js";
 
 /// IMPORTS---END ///
 
@@ -95,7 +95,7 @@ function battleScreen(choosedLang, tier, number){
 
 function createHTMLElements(){
 
-    createInventoryButton();
+    createInventoryElememts();
 
     mainElements();
 

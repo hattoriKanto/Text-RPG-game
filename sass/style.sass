@@ -526,17 +526,49 @@
 
 /// INVENTORY ///
 
-.inventory-button
+.inventory    
     position: fixed
     top: 0
     right: 0
+    height: 100%
     display: flex
+    flex-direction: column
     align-items: center
-    justify-content: center
+    justify-content: flex-start
+    gap: 10px
     margin: 10px 10px 0 0
-    width: 80px
-    height: 80px
     z-index: 2
+    &__button
+        display: flex
+        align-items: center
+        justify-content: center
+        width: 80px
+        min-height: 80px
+    &__content
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: space-evenly
+        width: 100%
+        border: 2px solid $text-color
+        border-radius: 5px
+    .inventory-content
+        &__cell
+            position: relative
+            display: flex
+            align-items: center
+            justify-content: center
+            padding: 5px
+            width: 100%
+            min-height: 80px
+        .inventory-cell
+            &__img
+                width: 64px
+                height: 64px
+            &__counter
+                position: absolute
+                top: 0
+                right: 5px
 
 /// KEYFRAMES ///
 

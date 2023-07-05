@@ -74,6 +74,12 @@ const images = {
 
     },
 
+    inventory: {
+
+        healingPotion: './img/inventory/health__potion.png'
+
+    },
+
     other: {
 
         arrow: './img/other/arrow.png',
