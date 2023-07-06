@@ -1,6 +1,8 @@
 
 import player from "./player.js";
 
+import { inventoryItems } from "./inventoryItems.js";
+
 import enemiesTraits from "./enemies/enemiesTraits.js";
 
 import { popupTurn } from "./screen/battleScreen.js";
@@ -141,10 +143,6 @@ function addDataToBattleTable(turn, damageTo, damageInput, damageResult){
 
 function battle(arrayRandomEnemiesKey, enemyTier){
 
-    disableButtons();
-
-    console.log('Buttons is disabled.');
-
     const weaponTraits = Object.values(player.weaponTraits.firstWeapon);
 
     let playerHealthPoints = player.playerTraits.healthPoints;
@@ -197,9 +195,13 @@ function battle(arrayRandomEnemiesKey, enemyTier){
 
     });
 
-    setTimeout(() => {
-            
-        popupTurn('playerTurnText');
+    playerTurn();
+
+    function playerTurn(){
+
+        disableButtons();
+        
+        console.log('Buttons is disabled.');
 
         setTimeout(() => {
 
@@ -209,159 +211,200 @@ function battle(arrayRandomEnemiesKey, enemyTier){
             
         }, '3000');
 
-        document.querySelector('#battle').querySelector('#second-column').querySelector('#first-weapon-btn').addEventListener('click', () =>{
+        document.querySelector('#battle').querySelector('#second-column').querySelectorAll('.wrapper-btns__btn').forEach(elem =>{
 
-            disableButtons();
+            elem.addEventListener('click', () =>{
+
+                if(elem.classList.contains('first-weapon-button') === true){
+
+                    disableButtons();
         
-            console.log('Buttons is disabled.');
+                    console.log('Buttons is disabled.');
 
-            playerTurn();
+                    playerAttack();
     
-        });
-
-    }, '3500');
-
-    function playerTurn(){
+                };
     
-        let enemyHealthPoints = arrayEnemiesTraits[activeEnemyIndex][0];
+                if(elem.classList.contains('healing-potion-button') === true){
     
-        let enemyArmourPoints = arrayEnemiesTraits[activeEnemyIndex][1];
+                    healingPotion();
     
-        const enemyDefencePoints = arrayEnemiesTraits[activeEnemyIndex][3];
+                };
 
-        if(enemyArmourPoints === 0){
+            });
 
-            damageToHealth();
+        })
 
-        }else if(enemyArmourPoints > 0){
+        function playerAttack(){
 
-            damageToArmour();
-
-        };
-    
-        function damageToArmour(){
-
-            let battleResult = null;
+            let enemyHealthPoints = arrayEnemiesTraits[activeEnemyIndex][0];
             
-            if(enemyDefencePoints > playerDamageToArmour || enemyDefencePoints === playerDamageToArmour){
-
-                console.log(`Player hit enemy armour. Enemy armour is ${enemyArmourPoints}; enemy defence is ${enemyDefencePoints}; player attack is ${playerDamageToArmour}. Calculation: ${enemyArmourPoints} - ${playerDamageToArmour - enemyDefencePoints} = ${enemyArmourPoints - 0}.`);
-
-                battleResult = 0;
-
-                enemyArmourPoints = enemyArmourPoints - battleResult;
-
-            } else{
-
-                console.log(`Player hit enemy armour. Enemy armour is ${enemyArmourPoints}; enemy defence is ${enemyDefencePoints}; player attack is ${playerDamageToArmour}. Calculation: ${enemyArmourPoints} - (${playerDamageToArmour} - ${enemyDefencePoints}) = ${enemyArmourPoints - (playerDamageToArmour - enemyDefencePoints)}.`);
-
-                battleResult = playerDamageToArmour - enemyDefencePoints;
-
-                enemyArmourPoints = enemyArmourPoints - battleResult;
-
-            };
-
-            addDataToBattleTable('player', 'armour', playerDamageToArmour, battleResult);
-
-            console.log(`Enemy armour is ${enemyArmourPoints}.`);
-    
-            if(enemyArmourPoints < 0){
-
-                console.log('Enemy armour is 0 now.');
-    
-                enemyArmourPoints = 0;
+            let enemyArmourPoints = arrayEnemiesTraits[activeEnemyIndex][1];
+        
+            const enemyDefencePoints = arrayEnemiesTraits[activeEnemyIndex][3];
+        
+            if(enemyArmourPoints === 0){
+        
+                damageToHealth();
+        
+            }else if(enemyArmourPoints > 0){
+        
+                damageToArmour();
         
             };
-    
-            arrayEnemiesTraits[activeEnemyIndex][1] = enemyArmourPoints;
-
-            document.querySelector('.swiper-slide-active').querySelectorAll('.list__item-battle-start')[1].querySelector('.list-item__span-battle-start').innerText = enemyArmourPoints;
+        
+            function damageToArmour(){
+        
+                let battleResult = null;
+                
+                if(enemyDefencePoints > playerDamageToArmour || enemyDefencePoints === playerDamageToArmour){
+        
+                    console.log(`Player hit enemy armour. Enemy armour is ${enemyArmourPoints}; enemy defence is ${enemyDefencePoints}; player attack is ${playerDamageToArmour}. Calculation: ${enemyArmourPoints} - ${playerDamageToArmour - enemyDefencePoints} = ${enemyArmourPoints - 0}.`);
+        
+                    battleResult = 0;
+        
+                    enemyArmourPoints = enemyArmourPoints - battleResult;
+        
+                } else{
+        
+                    console.log(`Player hit enemy armour. Enemy armour is ${enemyArmourPoints}; enemy defence is ${enemyDefencePoints}; player attack is ${playerDamageToArmour}. Calculation: ${enemyArmourPoints} - (${playerDamageToArmour} - ${enemyDefencePoints}) = ${enemyArmourPoints - (playerDamageToArmour - enemyDefencePoints)}.`);
+        
+                    battleResult = playerDamageToArmour - enemyDefencePoints;
+        
+                    enemyArmourPoints = enemyArmourPoints - battleResult;
+        
+                };
+        
+                addDataToBattleTable('player', 'armour', playerDamageToArmour, battleResult);
+        
+                console.log(`Enemy armour is ${enemyArmourPoints}.`);
+        
+                if(enemyArmourPoints < 0){
+        
+                    console.log('Enemy armour is 0 now.');
+        
+                    enemyArmourPoints = 0;
             
-        };
-    
-        function damageToHealth(){
-
-            let battleResult = null;
-
-            if(enemyDefencePoints > playerDamageToHealth || enemyDefencePoints === playerDamageToHealth){
-
-                console.log(`Player hit enemy health. Enemy health is ${enemyHealthPoints}; enemy defence is ${enemyDefencePoints}; player attack is ${playerDamageToHealth}. Calculation: ${enemyHealthPoints} - ${playerDamageToHealth - enemyDefencePoints} = ${enemyHealthPoints - 0}.`);
-
-                battleResult = 0;
-
-                enemyHealthPoints = enemyHealthPoints - battleResult;
-
-            } else{
-
-                console.log(`Player hit enemy health. Enemy health is ${enemyHealthPoints}; enemy defence is ${enemyDefencePoints}; player attack is ${playerDamageToHealth}. Calculation: ${enemyHealthPoints} - (${playerDamageToHealth} - ${enemyDefencePoints}) = ${enemyHealthPoints - (playerDamageToHealth - enemyDefencePoints)}.`);
-
-                battleResult = playerDamageToHealth - enemyDefencePoints;
-    
-                enemyHealthPoints = enemyHealthPoints - battleResult;
-
-            };
-
-            addDataToBattleTable('player', 'health', playerDamageToHealth, battleResult);
-
-            console.log(`Enemy health is ${enemyHealthPoints}.`);
+                };
         
-            if(enemyHealthPoints < 0){
-
-                console.log('Enemy health is 0 now.');
-    
-                enemyHealthPoints = 0;
+                arrayEnemiesTraits[activeEnemyIndex][1] = enemyArmourPoints;
         
+                document.querySelector('.swiper-slide-active').querySelectorAll('.list__item-battle-start')[1].querySelector('.list-item__span-battle-start').innerText = enemyArmourPoints;
+                
             };
-    
-            arrayEnemiesTraits[activeEnemyIndex][0] = enemyHealthPoints;
-
-            document.querySelector('.swiper-slide-active').querySelectorAll('.list__item-battle-start')[0].querySelector('.list-item__span-battle-start').innerText = enemyHealthPoints;
-
-            if(enemyHealthPoints === 0){
-
-                console.log('Enemy is dead now');
-
-                setTimeout(() => {
-
-                    document.querySelector('.swiper-slide-active').classList.add('rotation-y');
-
+        
+            function damageToHealth(){
+        
+                let battleResult = null;
+        
+                if(enemyDefencePoints > playerDamageToHealth || enemyDefencePoints === playerDamageToHealth){
+        
+                    console.log(`Player hit enemy health. Enemy health is ${enemyHealthPoints}; enemy defence is ${enemyDefencePoints}; player attack is ${playerDamageToHealth}. Calculation: ${enemyHealthPoints} - ${playerDamageToHealth - enemyDefencePoints} = ${enemyHealthPoints - 0}.`);
+        
+                    battleResult = 0;
+        
+                    enemyHealthPoints = enemyHealthPoints - battleResult;
+        
+                } else{
+        
+                    console.log(`Player hit enemy health. Enemy health is ${enemyHealthPoints}; enemy defence is ${enemyDefencePoints}; player attack is ${playerDamageToHealth}. Calculation: ${enemyHealthPoints} - (${playerDamageToHealth} - ${enemyDefencePoints}) = ${enemyHealthPoints - (playerDamageToHealth - enemyDefencePoints)}.`);
+        
+                    battleResult = playerDamageToHealth - enemyDefencePoints;
+        
+                    enemyHealthPoints = enemyHealthPoints - battleResult;
+        
+                };
+        
+                addDataToBattleTable('player', 'health', playerDamageToHealth, battleResult);
+        
+                console.log(`Enemy health is ${enemyHealthPoints}.`);
+            
+                if(enemyHealthPoints < 0){
+        
+                    console.log('Enemy health is 0 now.');
+        
+                    enemyHealthPoints = 0;
+            
+                };
+        
+                arrayEnemiesTraits[activeEnemyIndex][0] = enemyHealthPoints;
+        
+                document.querySelector('.swiper-slide-active').querySelectorAll('.list__item-battle-start')[0].querySelector('.list-item__span-battle-start').innerText = enemyHealthPoints;
+        
+                if(enemyHealthPoints === 0){
+        
+                    console.log('Enemy is dead now');
+        
                     setTimeout(() => {
-                        
-                        const overlayWrapper = document.createElement('div');
-
-                        const overlayImg = document.createElement('img');
-    
-                        overlayWrapper.className = 'overlay__wrapper';
-    
-                        overlayImg.className = 'overlay__img';
-    
-                        document.querySelector('.swiper-slide-active').appendChild(overlayWrapper);
-    
-                        overlayWrapper.appendChild(overlayImg);
-    
-                        overlayImg.src = images.other.dead;
-    
-                        document.querySelector('.swiper-slide-active').classList.add('column__item-dead-enemy');
-    
-                        document.querySelector('.swiper-slide-active').querySelector('.item__wrapper-img').remove();
-    
-                        document.querySelector('.swiper-slide-active').querySelector('.title').remove();
-    
-                        document.querySelector('.swiper-slide-active').querySelector('.list').remove();
-
-                    }, '500');
-
-                }, '650');
-
+        
+                        document.querySelector('.swiper-slide-active').classList.add('rotation-y');
+        
+                        setTimeout(() => {
+                            
+                            const overlayWrapper = document.createElement('div');
+        
+                            const overlayImg = document.createElement('img');
+        
+                            overlayWrapper.className = 'overlay__wrapper';
+        
+                            overlayImg.className = 'overlay__img';
+        
+                            document.querySelector('.swiper-slide-active').appendChild(overlayWrapper);
+        
+                            overlayWrapper.appendChild(overlayImg);
+        
+                            overlayImg.src = images.other.dead;
+        
+                            document.querySelector('.swiper-slide-active').classList.add('column__item-dead-enemy');
+        
+                            document.querySelector('.swiper-slide-active').querySelector('.item__wrapper-img').remove();
+        
+                            document.querySelector('.swiper-slide-active').querySelector('.title').remove();
+        
+                            document.querySelector('.swiper-slide-active').querySelector('.list').remove();
+        
+                        }, '500');
+        
+                    }, '650');
+        
+                };
+        
             };
-    
+        
+            setTimeout(() => {
+        
+                enemyTurn();
+                
+            }, '1000');
+        
         };
 
-        setTimeout(() => {
+        function healingPotion(){
+        
+            if(inventoryItems.healingPotion === 0){
+        
+                console.log(`Not enough healing potions.`);
+        
+            }else{
+        
+                inventoryItems.healingPotion = inventoryItems.healingPotion - 1;
+        
+                playerHealthPoints = 10;
 
-            enemyTurn();
-            
-        }, '1000');
+                document.querySelector('#third-column').querySelectorAll('.list__item-battle-start')[0].querySelector('.list-item__span-battle-start').innerText = playerHealthPoints;
+        
+                disableButtons();
+                
+                console.log('Buttons is disabled.');
+        
+                setTimeout(() => {
+        
+                    enemyTurn();
+                        
+                }, '1000');
+        
+            };        
+        };
 
     };
 

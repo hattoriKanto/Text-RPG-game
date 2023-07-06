@@ -543,11 +543,11 @@ function battleStart(){
 
             columnStartBattle.classList.add('wrapper__second-column-battle-start');
 
-            firstWeaponBtn.className = 'wrapper-btns__btn button';
+            firstWeaponBtn.className = 'wrapper-btns__btn first-weapon-button button';
 
-            secondWeaponBtn.className = 'wrapper-btns__btn button';
+            secondWeaponBtn.className = 'wrapper-btns__btn second-weapon-button button';
                 
-            healingPotionBtn.className = 'wrapper-btns__btn button';
+            healingPotionBtn.className = 'wrapper-btns__btn healing-potion-button button';
 
             battleTableEnemyColumn.className = 'wrapper-battle-table__column column wrapper-battle-table___enemy-column enemy-column';
 
