@@ -48,6 +48,21 @@ function addDataToBattleTable(turn, damageTo, damageInput, damageResult){
     const playerColumn = document.querySelector('#battle').querySelector('#second-column').querySelector('.player-column');
 
     const resultColumn = document.querySelector('#battle').querySelector('#second-column').querySelector('.result-column');
+            
+    enemyColumn.classList.add('enemy-column-animation-show');
+
+    playerColumn.classList.add('player-column-animation-show');
+
+    resultColumn.classList.add('result-column-animation-show');
+
+    if(enemyColumn.classList.contains('enemy-column-animation-hide') === true && playerColumn.classList.contains('player-column-animation-hide') === true && resultColumn.classList.contains('result-column-animation-hide') === true){
+
+        enemyColumn.classList.remove('enemy-column-animation-hide');
+
+        playerColumn.classList.remove('player-column-animation-hide');
+    
+        resultColumn.classList.remove('result-column-animation-hide');
+    };
 
     if(turn === 'player'){
 

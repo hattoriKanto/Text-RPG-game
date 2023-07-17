@@ -503,6 +503,18 @@
                             flex-direction: column
                             justify-content: center
                             align-items: center
+                        .enemy-column-animation-show
+                            animation: enemy-column-table-show ease 1s 1 forwards
+                        .enemy-column-animation-hide
+                            animation: enemy-column-table-hide ease 1s 1 forwards
+                        .result-column-animation-show
+                            animation: result-column-table-show ease 1s 1 forwards
+                        .result-column-animation-hide
+                            animation: result-column-table-hide ease 1s 1 forwards
+                        .player-column-animation-show
+                            animation: player-column-table-show ease 1s 1 forwards
+                        .player-column-animation-hide
+                            animation: player-column-table-hide ease 1s 1 forwards
                 .button
                     &__img
                         width: 40px
@@ -683,3 +695,53 @@
     100%
         opacity: 0
         transform: translateX(100%) 
+
+@keyframes enemy-column-table-show
+    0%
+        opacity: 0
+        transform: translateY(100%)
+        
+    100%
+        opacity: 1
+        transform: translateY(0%) 
+
+@keyframes enemy-column-table-hide
+    0%
+        opacity: 1
+        transform: translateY(0%)
+        
+    100%
+        opacity: 0
+        transform: translateY(100%) 
+
+@keyframes result-column-table-show
+    0%
+        opacity: 0
+
+    100%
+        opacity: 1
+
+@keyframes result-column-table-hide
+    0%
+        opacity: 1
+        
+    100%
+        opacity: 0
+
+@keyframes player-column-table-show
+    0%
+        opacity: 0
+        transform: translateY(-100%)
+        
+    100%
+        opacity: 1
+        transform: translateY(0%) 
+
+@keyframes player-column-table-hide
+    0%
+        opacity: 1
+        transform: translateY(100%)
+        
+    100%
+        opacity: 0
+        transform: translateY(0%) 

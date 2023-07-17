@@ -789,6 +789,18 @@ function popupTurn(textTurn){
 
     popupTitle.innerText = battlePopupText.language[language].turnChange[textTurn];
 
+    document.querySelector('#battle').querySelector('#second-column').querySelector('.enemy-column').classList.remove('enemy-column-animation-show');
+
+    document.querySelector('#battle').querySelector('#second-column').querySelector('.player-column').classList.remove('player-column-animation-show');
+
+    document.querySelector('#battle').querySelector('#second-column').querySelector('.result-column').classList.remove('result-column-animation-show');
+
+    document.querySelector('#battle').querySelector('#second-column').querySelector('.enemy-column').classList.add('enemy-column-animation-hide');
+
+    document.querySelector('#battle').querySelector('#second-column').querySelector('.player-column').classList.add('player-column-animation-hide');
+
+    document.querySelector('#battle').querySelector('#second-column').querySelector('.result-column').classList.add('result-column-animation-hide');
+
     setTimeout(() => {
         
         popup.classList.add('hide-popup');
