@@ -886,7 +886,7 @@ function popupDeadPlayer(){
     popupButtonRestart.addEventListener('click', () =>{
 
         backToDefaultPlayerTraits();
-
+        
         popup.classList.remove('show-popup');
 
         popup.classList.add('hide-popup');

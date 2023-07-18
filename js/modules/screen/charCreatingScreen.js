@@ -159,8 +159,6 @@ function weaponsTypeKeys(){
 
 function chooseWeaponType(arrayOfClassWeapon, arrayWeaponsType){
 
-    console.log('Function: chooseWeaponType.');
-
     counterWeaponType++;
 
     const needInfoBtn = false;
@@ -228,8 +226,6 @@ function chooseWeaponType(arrayOfClassWeapon, arrayWeaponsType){
 };
 
 function chooseWeapon(choosedWeaponType){
-
-    console.log('Function: chooseWeapon.');
 
     counterWeapon++;
 
@@ -635,8 +631,6 @@ function createHTMLElements(){
 
 function chooseRace(){
 
-    console.log('Function: chooseRace.');
-
     const arrayDescr = [];
 
     const arrayRaceKey = [];
@@ -722,8 +716,6 @@ function chooseRace(){
 };
 
 function chooseClass(){
-
-    console.log('Function: chooseClass.');
 
     const arrayDescr = [];
 

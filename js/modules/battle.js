@@ -390,7 +390,7 @@ function battle(arrayRandomEnemiesKey, enemyTier){
         
                 enemyTurn();
                 
-            }, '1000');
+            }, '3000');
         
         };
 
@@ -416,7 +416,7 @@ function battle(arrayRandomEnemiesKey, enemyTier){
         
                     enemyTurn();
                         
-                }, '1000');
+                }, '3000');
         
             };        
         };
@@ -567,7 +567,7 @@ function battle(arrayRandomEnemiesKey, enemyTier){
                     
                     popupTurn('playerTurnText');
         
-                }, '6000');
+                }, '3000');
     
             };
     

@@ -483,6 +483,8 @@
                     gap: 20px
                 .wrapper
                     &__wrapper-btns
+                        position: relative
+                        z-index: 1
                         width: 100%
                         display: flex
                         flex-direction: column
@@ -740,8 +742,8 @@
 @keyframes player-column-table-hide
     0%
         opacity: 1
-        transform: translateY(100%)
+        transform: translateY(0%)
         
     100%
         opacity: 0
-        transform: translateY(0%) 
+        transform: translateY(-100%) 
