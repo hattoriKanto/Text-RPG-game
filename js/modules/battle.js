@@ -9,6 +9,10 @@ import { popupTurn } from "./screen/battleScreen.js";
 
 import { popupDeadPlayer } from "./screen/battleScreen.js";
 
+import { popupDeadEnemy } from "./screen/battleScreen.js";
+
+import { defaultBattleTable } from "./screen/battleScreen.js";
+
 import images from "./images.js";
 
 let activeEnemyIndex = 0;
@@ -232,11 +236,25 @@ function battle(arrayRandomEnemiesKey, enemyTier){
 
                 if(elem.classList.contains('first-weapon-button') === true){
 
-                    disableButtons();
-        
-                    console.log('Buttons is disabled.');
+                    if(arrayEnemiesTraits[activeEnemyIndex][0] === 0){
 
-                    playerAttack();
+                        popupDeadEnemy();
+
+                    }else{
+
+                        if(document.querySelector('#battle').querySelector('#second-column').querySelector('.wrapper-battle-table').classList.contains('wrapper__wrapper-battle-table-text') === true){
+
+                            defaultBattleTable();
+
+                        };
+
+                        disableButtons();
+        
+                        console.log('Buttons is disabled.');
+    
+                        playerAttack();
+
+                    };
     
                 };
     
@@ -248,7 +266,7 @@ function battle(arrayRandomEnemiesKey, enemyTier){
 
             });
 
-        })
+        });
 
         function playerAttack(){
 

@@ -909,6 +909,60 @@ function popupDeadPlayer(){
 
 };
 
+function popupDeadEnemy(){
+
+    document.querySelector('#battle').querySelector('#second-column').querySelector('.wrapper-battle-table').innerText = 'This enemy is already dead. PLease, choose another enemy to attack.';
+
+    document.querySelector('#battle').querySelector('#second-column').querySelector('.wrapper-battle-table').classList.add('wrapper__wrapper-battle-table-text');
+
+};
+
+function defaultBattleTable(){
+
+    document.querySelector('#battle').querySelector('#second-column').querySelector('.wrapper-battle-table').remove();
+
+    const battleTableWrapper = document.createElement('div');
+
+    const battleTableEnemyColumn = document.createElement('div');
+
+    const battleTableResultColumn = document.createElement('div');
+
+    const battleTablePlayerColumn = document.createElement('div');
+
+    battleTableWrapper.className = 'wrapper__wrapper-battle-table wrapper-battle-table';
+
+    battleTableEnemyColumn.className = 'wrapper-battle-table__column column wrapper-battle-table___enemy-column enemy-column';
+
+    battleTableResultColumn.className = 'wrapper-battle-table__column column wrapper-battle-table___result-column result-column';
+
+    battleTablePlayerColumn.className = 'wrapper-battle-table__column column wrapper-battle-table___player-column player-column';
+
+    document.querySelector('#battle').querySelector('#second-column').querySelector('.second-column__wrapper').appendChild(battleTableWrapper);
+
+    battleTableWrapper.appendChild(battleTableEnemyColumn);
+
+    battleTableWrapper.appendChild(battleTableResultColumn);
+    
+    battleTableWrapper.appendChild(battleTablePlayerColumn);
+
+    document.querySelector('#battle').querySelector('#second-column').querySelectorAll('.wrapper-battle-table__column').forEach(elem =>{
+
+        const traitValue = document.createElement('span');
+
+        const traitImg = document.createElement('img');
+
+        traitValue.className = 'column__trait-value trait-value';
+
+        traitImg.className = 'column__trait-img trait-img';
+
+        elem.appendChild(traitImg);
+
+        elem.appendChild(traitValue);
+
+    });
+
+};
+
 /// FUNCTIONS---END ///
 
 export { popupTurn };
@@ -916,3 +970,7 @@ export { popupTurn };
 export { battleScreen };
 
 export { popupDeadPlayer };
+
+export { popupDeadEnemy };
+
+export { defaultBattleTable };

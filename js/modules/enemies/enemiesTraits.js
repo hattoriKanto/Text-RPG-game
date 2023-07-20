@@ -5,9 +5,9 @@ const enemiesTraits = {
 
         skeleton: {
 
-            healthPoints: 5,
+            healthPoints: 1,
 
-            armourPoints: 5,
+            armourPoints: 0,
 
             attackPoints: 5,
 
@@ -17,7 +17,7 @@ const enemiesTraits = {
 
         zombie: {
 
-            healthPoints: 10,
+            healthPoints: 1,
 
             armourPoints: 0,
 
@@ -29,9 +29,9 @@ const enemiesTraits = {
 
         cultist: {
 
-            healthPoints: 7,
+            healthPoints: 1,
 
-            armourPoints: 3,
+            armourPoints: 0,
 
             attackPoints: 7,
 
