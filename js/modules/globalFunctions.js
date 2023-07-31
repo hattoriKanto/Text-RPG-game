@@ -1,7 +1,40 @@
+/// IMPORTS---START ///
 
-import player from "./player.js";
+import { player } from "./player.js";
+
+/// IMPORTS---END ///
+
+/// GLOBAL---VARIABLES---START ///
 
 let playerDefaultTraits = null;
+
+/// GLOBAL---VARIABLES---END ///
+
+/// FUNCTIONS---START ///
+
+function disableButtons(){
+
+    console.log('BUTTONS ARE DISABLED');
+
+    document.querySelectorAll('button').forEach(elem =>{
+
+        elem.disabled = true;
+
+    });
+
+};
+
+function enableButtons(){
+
+    console.log('BUTTONS ARE ENABLED');
+
+    document.querySelectorAll('button').forEach(elem =>{
+
+        elem.disabled = false;
+
+    });
+
+};
 
 function deletePlayerData(){
 
@@ -63,8 +96,18 @@ function backToDefaultPlayerTraits(){
 
 };
 
+/// FUNCTIONS---END ///
+
+/// EXPORTS---START ///
+
 export { deletePlayerData };
 
 export { clonePlayerTraits };
 
 export { backToDefaultPlayerTraits };
+
+export { disableButtons };
+
+export { enableButtons };
+
+/// EXPORTS---END ///

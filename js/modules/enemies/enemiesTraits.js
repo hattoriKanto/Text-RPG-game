@@ -47,4 +47,4 @@ const enemiesTraits = {
 
 };
 
-export default enemiesTraits;
+export { enemiesTraits };

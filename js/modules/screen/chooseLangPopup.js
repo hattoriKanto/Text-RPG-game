@@ -5,6 +5,8 @@ import { creatingCharacter } from "./charCreatingScreen.js";
 
 import {battleScreen} from "./battleScreen.js";
 
+import { disableButtons } from "../globalFunctions.js";
+
 function chooseLanguage(){
 
     createHTMLElements();
@@ -96,6 +98,8 @@ function eventListener(){
     document.querySelector('#choose-lang').querySelectorAll('.button').forEach((elem, index) =>{
 
         elem.addEventListener('click', () =>{
+
+            disableButtons();
 
             const choosedLang = Object.values(chooseLanguageText.buttonText)[index];
 

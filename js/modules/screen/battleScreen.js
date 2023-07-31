@@ -1,7 +1,7 @@
 
 /// IMPORTS---START ///
 
-import player from "../player.js";
+import { player } from "../player.js";
 
 import images from "../images.js";
 
@@ -11,17 +11,17 @@ import battlePopupText from "../text/battle/battlePopupText.js";
 
 import enemiesText from "../text/enemies/enemiesText.js";
 
-import enemiesTraits from "../enemies/enemiesTraits.js";
+import {enemiesTraits} from "../enemies/enemiesTraits.js";
 
 import weaponsTraits from "../racesClassesWeapons/weaponsTraits.js";
 
 import weaponsScreenText from "../text/creatingChar/weaponsScreenText.js";
 
-import battle from "../battle.js";
+import {battlePreparation} from "../battle.js";
 
 import { creatingCharacter } from "./charCreatingScreen.js";
 
-import { deletePlayerData } from "../globalFunctions.js";
+import { deletePlayerData, disableButtons } from "../globalFunctions.js";
 
 import { backToDefaultPlayerTraits } from "../globalFunctions.js";
 
@@ -305,9 +305,13 @@ function battleStart(){
 
     thirdColumn();
 
+    disableButtons();
+
     setTimeout(() => {
 
         popupTurn('playerTurnText');
+
+        battlePreparation(arrayRandomEnemiesKey, enemyTier);
         
     }, '3500');
 
@@ -637,6 +641,8 @@ function battleStart(){
 
     function thirdColumn(){
 
+        playerDefenceAndArmourCalculation();
+
         const arrayPlayerTraits = Object.values(player.playerTraits);
 
         const arrayPlayerTraitsKeys = Object.keys(player.playerTraits);
@@ -652,6 +658,84 @@ function battleStart(){
             showPlayerElements();
 
         }, '500');
+
+        function playerDefenceAndArmourCalculation(){
+
+            const playerRaceKey = player.playerKey.race;
+        
+            isFirstWeaponShield();
+        
+            function isFirstWeaponShield(){
+        
+                const firstWeaponTypeKey = player.playerKey.weaponsTypeKeys.firstWeapon;
+        
+                const firstWeaponKey = player.playerKey.weaponKeys.firstWeapon;
+        
+                const isShield = weaponsTraits[playerRaceKey][firstWeaponTypeKey][firstWeaponKey].isShield;
+        
+                isSecondtWeaponEmpty(isShield);
+                        
+            };
+        
+            function isSecondtWeaponEmpty(isShield){
+        
+                if(Object.keys(player.weaponTraits.secondWeapon).length === 0){
+    
+                    console.log('Second weapon is empty.')
+        
+                    player.playerTraits.defencePoints = player.playerTraits.defencePoints + player.weaponTraits.firstWeapon.defencePoints;
+        
+                };
+        
+                if(Object.keys(player.weaponTraits.secondWeapon).length > 0 && isShield === true){
+    
+                    console.log('First weapon is a shield.')
+    
+                    player.playerTraits.armourPoints = player.playerTraits.armourPoints + player.weaponTraits.firstWeapon.armourPoints;
+        
+                    player.playerTraits.defencePoints = player.playerTraits.defencePoints + player.weaponTraits.firstWeapon.defencePoints + player.weaponTraits.secondWeapon.defencePoints;
+            
+                };
+    
+                if(Object.keys(player.weaponTraits.secondWeapon).length > 0 && isShield === false){
+    
+                    console.log('First weapon isn`t a shield.')
+        
+                    isSecondWeaponShield();
+            
+                };
+        
+            };
+        
+            function isSecondWeaponShield(){
+        
+                const secondWeaponTypeKey = player.playerKey.weaponsTypeKeys.secondWeapon;
+        
+                const secondWeaponKey = player.playerKey.weaponKeys.secondWeapon;
+        
+                const isShield = weaponsTraits[playerRaceKey][secondWeaponTypeKey][secondWeaponKey].isShield;
+        
+                if(isShield === true){
+    
+                    console.log('Second weapon is a shield.')
+        
+                    player.playerTraits.armourPoints = player.playerTraits.armourPoints + player.weaponTraits.secondWeapon.armourPoints;
+        
+                    player.playerTraits.defencePoints = player.playerTraits.defencePoints + player.weaponTraits.firstWeapon.defencePoints + player.weaponTraits.secondWeapon.defencePoints;
+        
+                };
+        
+                if(isShield === false){
+    
+                    console.log('First and second weapons aren`t a shields.')
+        
+                    player.playerTraits.defencePoints = player.playerTraits.defencePoints + player.weaponTraits.secondWeapon.defencePoints + player.weaponTraits.firstWeapon.defencePoints;
+        
+                };
+        
+            };
+        
+        };
 
         function createThirdColumnElements(){
     
@@ -763,11 +847,17 @@ function battleStart(){
 
     });
 
-    battle(arrayRandomEnemiesKey, enemyTier);
-
 };
 
 function popupTurn(textTurn){
+
+    const secondColumn = document.querySelector('#battle').querySelector('#second-column');
+
+    const enemyColumnInTableWrapper = secondColumn.querySelector('.enemy-column');
+
+    const playerColumnInTableWrapper = secondColumn.querySelector('.player-column');
+
+    const resultColumnInTableWrapper = secondColumn.querySelector('.result-column');
 
     const popup = document.createElement('div');
 
@@ -789,17 +879,29 @@ function popupTurn(textTurn){
 
     popupTitle.innerText = battlePopupText.language[language].turnChange[textTurn];
 
-    document.querySelector('#battle').querySelector('#second-column').querySelector('.enemy-column').classList.remove('enemy-column-animation-show');
+    if(secondColumn.contains(enemyColumnInTableWrapper) === true){
 
-    document.querySelector('#battle').querySelector('#second-column').querySelector('.player-column').classList.remove('player-column-animation-show');
+        secondColumn.querySelector('.enemy-column').classList.remove('enemy-column-animation-show');
 
-    document.querySelector('#battle').querySelector('#second-column').querySelector('.result-column').classList.remove('result-column-animation-show');
+        secondColumn.querySelector('.enemy-column').classList.add('enemy-column-animation-hide');
 
-    document.querySelector('#battle').querySelector('#second-column').querySelector('.enemy-column').classList.add('enemy-column-animation-hide');
+    };
 
-    document.querySelector('#battle').querySelector('#second-column').querySelector('.player-column').classList.add('player-column-animation-hide');
+    if(secondColumn.contains(playerColumnInTableWrapper) === true){
 
-    document.querySelector('#battle').querySelector('#second-column').querySelector('.result-column').classList.add('result-column-animation-hide');
+        secondColumn.querySelector('.player-column').classList.remove('player-column-animation-show');
+
+        secondColumn.querySelector('.player-column').classList.add('player-column-animation-hide');
+
+    };
+
+    if(secondColumn.contains(resultColumnInTableWrapper) === true){
+
+        secondColumn.querySelector('.result-column').classList.remove('result-column-animation-show');
+
+        secondColumn.querySelector('.result-column').classList.add('result-column-animation-hide');
+
+    };
 
     setTimeout(() => {
         
@@ -917,6 +1019,14 @@ function popupDeadEnemy(){
 
 };
 
+function popupNotEnoughHealing(){
+
+    document.querySelector('#battle').querySelector('#second-column').querySelector('.wrapper-battle-table').innerText = 'You have not enough healing potions.';
+
+    document.querySelector('#battle').querySelector('#second-column').querySelector('.wrapper-battle-table').classList.add('wrapper__wrapper-battle-table-text');
+
+};
+
 function defaultBattleTable(){
 
     document.querySelector('#battle').querySelector('#second-column').querySelector('.wrapper-battle-table').remove();
@@ -963,6 +1073,38 @@ function defaultBattleTable(){
 
 };
 
+function deadEnemyChangeItem(){
+
+    document.querySelector('.swiper-slide-active').classList.add('rotation-y');
+        
+    setTimeout(() => {
+        
+        const overlayWrapper = document.createElement('div');
+
+        const overlayImg = document.createElement('img');
+
+        overlayWrapper.className = 'overlay__wrapper';
+
+        overlayImg.className = 'overlay__img';
+
+        document.querySelector('.swiper-slide-active').appendChild(overlayWrapper);
+
+        overlayWrapper.appendChild(overlayImg);
+
+        overlayImg.src = images.other.dead;
+
+        document.querySelector('.swiper-slide-active').classList.add('column__item-dead-enemy');
+
+        document.querySelector('.swiper-slide-active').querySelector('.item__wrapper-img').remove();
+
+        document.querySelector('.swiper-slide-active').querySelector('.title').remove();
+
+        document.querySelector('.swiper-slide-active').querySelector('.list').remove();
+
+    }, '500');
+
+};
+
 /// FUNCTIONS---END ///
 
 export { popupTurn };
@@ -973,4 +1115,8 @@ export { popupDeadPlayer };
 
 export { popupDeadEnemy };
 
+export { popupNotEnoughHealing };
+
 export { defaultBattleTable };
+
+export { deadEnemyChangeItem };

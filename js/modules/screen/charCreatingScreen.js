@@ -1,6 +1,8 @@
 
 /// IMPORTS---START ///
 
+import { disableButtons, deletePlayerData, clonePlayerTraits, enableButtons } from "../globalFunctions.js";
+
 import startScreenText from "../text/creatingChar/startScreenText.js";
 
 import raceScreenText from "../text/creatingChar/raceScreenText.js";
@@ -23,13 +25,9 @@ import weaponsTraits from "../racesClassesWeapons/weaponsTraits.js";
 
 import images from "../images.js";
 
-import player from "../player.js";
+import { player } from "../player.js";
 
 import { battleScreen } from "./battleScreen.js";
-
-import { deletePlayerData } from "../globalFunctions.js";
-
-import { clonePlayerTraits } from "../globalFunctions.js";
 
 /// IMPORTS---END ///
 
@@ -50,26 +48,6 @@ let counterWeaponType = 0;
 /// GLOBAL---VARIABLES---END ///
 
 /// REPEATABLE---FUNCTIONS---START ///
-
-function disableButton(){
-
-    document.querySelector('#char-creating').querySelectorAll('.btn-info').forEach(elem =>{
-
-        elem.disabled = true;
-                    
-    });
-
-};
-
-function enableButton(){
-
-    document.querySelector('#char-creating').querySelectorAll('.btn-info').forEach(elem =>{
-
-        elem.disabled = false;
-                    
-    });
-
-};
 
 function rotationAnimation(){
 
@@ -179,6 +157,8 @@ function chooseWeaponType(arrayOfClassWeapon, arrayWeaponsType){
 
         });
 
+        enableButtons();
+
         eventListener();
 
     }, '650');
@@ -188,6 +168,8 @@ function chooseWeaponType(arrayOfClassWeapon, arrayWeaponsType){
         document.querySelector('#char-creating').querySelectorAll('.button').forEach((elem, index) =>{
 
             elem.addEventListener('click', () =>{
+
+                disableButtons();
 
                 choosedWeaponType = arrayOfClassWeapon[index];
 
@@ -305,6 +287,8 @@ function chooseWeapon(choosedWeaponType){
 
         });
 
+        enableButtons();
+
         eventListener();
 
         btnInfoEventListener(arrayDescr, arrayWeaponKey);
@@ -318,6 +302,8 @@ function chooseWeapon(choosedWeaponType){
             const choosedWeapon = arrayWeaponKey[index];
 
             elem.addEventListener('click', () =>{
+
+                disableButtons();
 
                 let keyWord = null;
 
@@ -412,6 +398,8 @@ function btnInfoEventListener(arrayDescr, arrayKey){
             const titlePopup = elem.querySelector('.weapons__value').innerText;
         
             elem.querySelector('.btn-info__char-overview').addEventListener('click', () =>{
+
+                disableButtons();
     
                 const traits = Object.values(Object.values(player.weaponTraits)[index]);
 
@@ -429,9 +417,9 @@ function btnInfoEventListener(arrayDescr, arrayKey){
 
             elem.addEventListener('click', () =>{
 
-                disableButton();
+                disableButtons();
 
-            })
+            });
 
         });
 
@@ -555,6 +543,8 @@ function createHTMLElements(){
 
         footerElements();
 
+        disableButtons();
+
         eventListener();
         
     };
@@ -603,9 +593,17 @@ function createHTMLElements(){
 
     function eventListener(){
 
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
         document.querySelector('#char-creating').querySelectorAll('.button').forEach(elem =>{
     
             elem.addEventListener('click', () =>{
+
+                disableButtons();
 
                 rotationAnimation();
 
@@ -667,6 +665,8 @@ function chooseRace(){
 
         });
 
+        enableButtons();
+
         eventListener();
 
         btnInfoEventListener(arrayDescr, arrayRaceKey);
@@ -678,6 +678,8 @@ function chooseRace(){
         document.querySelector('#char-creating').querySelectorAll('.button').forEach((elem, index) =>{
 
             elem.addEventListener('click', () =>{
+                
+                disableButtons();
 
                 playerRaceKey = Object.keys(raceScreenText.language[language].races)[index];
 
@@ -753,6 +755,8 @@ function chooseClass(){
 
         });
 
+        enableButtons();
+
         eventListener();
 
         btnInfoEventListener(arrayDescr, arrayClassKey);
@@ -764,6 +768,8 @@ function chooseClass(){
         document.querySelector('#char-creating').querySelectorAll('.button').forEach((elem, index) =>{
 
             elem.addEventListener('click', () =>{
+
+                disableButtons();
 
                 playerClassKey = Object.keys(classScreenText.language[language].classes[playerRaceKey])[index];
 
@@ -1021,6 +1027,8 @@ function charOverview(){
 
         });
 
+        enableButtons();
+
         btnInfoEventListener(null, null);
 
         eventListener();
@@ -1032,6 +1040,8 @@ function charOverview(){
         document.querySelector('#char-creating').querySelectorAll('.footer__button').forEach(elem =>{
 
             elem.addEventListener('click', () =>{
+
+                disableButtons();
 
                 if(elem.classList.contains('button-1') === true){
 
@@ -1080,7 +1090,5 @@ function charOverview(){
 /// EXPORTS---START ///
 
 export { creatingCharacter };
-
-export { enableButton };
 
 /// EXPORTS---END ///

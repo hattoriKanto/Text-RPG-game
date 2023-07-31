@@ -61,4 +61,4 @@ let player = {
 
 };
 
-export default player;
+export { player };

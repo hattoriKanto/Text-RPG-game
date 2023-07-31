@@ -1,9 +1,9 @@
 
 /// IMPORTS---START ///
 
-import images from "../images.js";
+import { enableButtons } from "../globalFunctions.js";
 
-import { enableButton } from "./charCreatingScreen.js";
+import images from "../images.js";
 
 /// IMPORTS---END ///
 
@@ -143,7 +143,7 @@ function closePopup(){
 
         setTimeout(() => {
 
-            enableButton();
+            enableButtons();
 
             document.querySelector('#popup').remove();
             
