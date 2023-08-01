@@ -11,7 +11,9 @@ import weaponsTraits from "./racesClassesWeapons/weaponsTraits.js";
 
 import { inventoryItems } from "./inventoryItems.js";
 
-import { popupDeadEnemy, popupDeadPlayer, popupNotEnoughHealing, deadEnemyChangeItem, popupTurn } from "./screen/battleScreen.js";
+import images from "./images.js";
+
+import { popupDeadEnemy, popupDeadPlayer, popupNotEnoughHealing, deadEnemyChangeItem, popupTurn, defaultBattleTable } from "./screen/battleScreen.js";
 
 /// IMPORTS---END ///
 
@@ -41,6 +43,14 @@ let activeEnemyIndex = 0;
 
 function battlePreparation(arrayRandomEnemiesKey, enemyTier){
 
+    const wrapperTable = document.querySelector('#battle').querySelector('#second-column').querySelector('.wrapper-battle-table');
+
+    const enemyColumnInTableWrapper = wrapperTable.querySelector('.enemy-column');
+
+    const playerColumnInTableWrapper = wrapperTable.querySelector('.player-column');
+
+    const resultColumnInTableWrapper = wrapperTable.querySelector('.result-column');
+
     setTimeout(() => {
 
         enableButtons();
@@ -68,6 +78,12 @@ function battlePreparation(arrayRandomEnemiesKey, enemyTier){
                 };
 
             });
+
+            if(wrapperTable.contains(enemyColumnInTableWrapper) === false || wrapperTable.contains(resultColumnInTableWrapper) === false || wrapperTable.contains(playerColumnInTableWrapper) === false){
+
+                defaultBattleTable();
+
+            };
 
         });
 
@@ -178,6 +194,8 @@ function playerTurn(actionToDo, weapon){
             inventoryItems.healingPotion = inventoryItems.healingPotion - 1;
     
             playerHealthPoints = 10;
+
+            addDataToBattleTable('player', 'healing', null, playerHealthPoints);
     
             document.querySelector('#third-column').querySelectorAll('.list__item-battle-start')[0].querySelector('.list-item__span-battle-start').innerText = playerHealthPoints;
 
@@ -221,15 +239,15 @@ function playerTurn(actionToDo, weapon){
     
             if(enemyArmourPoints === 0){
         
-                damageToHealth();
+                actionToDoHealth();
         
             }else if(enemyArmourPoints > 0){
         
-                damageToArmour();
+                actionToDoArmour();
         
             };
     
-            function damageToArmour(){
+            function actionToDoArmour(){
             
                 let battleResult = null;
                 
@@ -243,13 +261,15 @@ function playerTurn(actionToDo, weapon){
         
                 } else{
         
-                    console.log(`Player hit enemy armour. Enemy armour is ${enemyArmourPoints}; enemy defence is ${enemyDefencePoints}; player attack is ${playerDamageToArmour}. Calculation: ${enemyArmourPoints} - (${playerDamageToArmourPoints} - ${enemyDefencePoints}) = ${enemyArmourPoints - (playerDamageToArmourPoints - enemyDefencePoints)}.`);
+                    console.log(`Player hit enemy armour. Enemy armour is ${enemyArmourPoints}; enemy defence is ${enemyDefencePoints}; player attack is ${playeractionToDoArmour}. Calculation: ${enemyArmourPoints} - (${playerDamageToArmourPoints} - ${enemyDefencePoints}) = ${enemyArmourPoints - (playerDamageToArmourPoints - enemyDefencePoints)}.`);
         
                     battleResult = playerDamageToArmourPoints - enemyDefencePoints;
         
                     enemyArmourPoints = enemyArmourPoints - battleResult;
         
                 };
+
+                addDataToBattleTable('player', 'attack armour', playerDamageToArmourPoints, battleResult);
                 
                 console.log(`Enemy armour is ${enemyArmourPoints}.`);
         
@@ -267,7 +287,7 @@ function playerTurn(actionToDo, weapon){
                 
             };
     
-            function damageToHealth(){
+            function actionToDoHealth(){
     
                 let battleResult = null;
         
@@ -288,6 +308,8 @@ function playerTurn(actionToDo, weapon){
                     enemyHealthPoints = enemyHealthPoints - battleResult;
         
                 };
+
+                addDataToBattleTable('player', 'attack health', playerDamageToHealthPoints, battleResult);
     
                 console.log(`Enemy health is ${enemyHealthPoints}.`);
             
@@ -375,15 +397,15 @@ function enemyTurn(){
         
         if(playerArmourPoints === 0){
 
-            damageToHealth();
+            actionToDoHealth();
 
         }else if( playerArmourPoints > 0 ){
 
-            damageToArmour();
+            actionToDoArmour();
 
         };
 
-        function damageToArmour(){
+        function actionToDoArmour(){
 
             let battleResult = null;
 
@@ -405,6 +427,8 @@ function enemyTurn(){
 
             };
 
+            addDataToBattleTable('enemy', 'attack armour', enemyAttack, battleResult);
+
             console.log(`Player armour is ${playerArmourPoints}.`);
     
             if(playerArmourPoints < 0){
@@ -421,7 +445,7 @@ function enemyTurn(){
 
         };
 
-        function damageToHealth(){
+        function actionToDoHealth(){
 
             let battleResult = null;
 
@@ -450,6 +474,8 @@ function enemyTurn(){
                 playerHealthPoints = 0;
     
             };
+
+            addDataToBattleTable('enemy', 'attack health', enemyAttack, battleResult);
 
             console.log(`Player health is ${playerHealthPoints}.`);
 
@@ -515,6 +541,135 @@ function enemyTurn(){
 
         };
     
+    };
+
+};
+
+function addDataToBattleTable(turn, actionToDo, damageInput, damageResult){
+
+    const enemyColumn = document.querySelector('#battle').querySelector('#second-column').querySelector('.enemy-column');
+
+    const playerColumn = document.querySelector('#battle').querySelector('#second-column').querySelector('.player-column');
+
+    const resultColumn = document.querySelector('#battle').querySelector('#second-column').querySelector('.result-column');
+
+    resultColumn.classList.add('result-column-animation-show');
+
+    if(enemyColumn.classList.contains('enemy-column-animation-hide') === true && playerColumn.classList.contains('player-column-animation-hide') === true && resultColumn.classList.contains('result-column-animation-hide') === true){
+
+        enemyColumn.classList.remove('enemy-column-animation-hide');
+
+        playerColumn.classList.remove('player-column-animation-hide');
+    
+        resultColumn.classList.remove('result-column-animation-hide');
+    };
+
+    if(turn === 'player'){
+
+        enemyColumn.querySelector('.trait-value').innerText = arrayOfEnemiesTraits[activeEnemyIndex][3];
+
+        enemyColumn.querySelector('.trait-img').src = images.traits.defencePoints;
+
+        playerColumn.querySelector('.trait-value').innerText = damageInput;
+
+        playerColumn.querySelector('.trait-img').src = images.traits.attackPoints;
+
+        if(actionToDo === 'attack armour'){
+
+            if(damageResult > 0){
+
+                resultColumn.querySelector('.trait-value').innerText = '-' + damageResult;
+
+            }else{
+
+                resultColumn.querySelector('.trait-value').innerText = damageResult;
+
+            }
+
+            resultColumn.querySelector('.trait-img').src = images.traits.armourPoints;
+
+            enemyColumn.classList.add('enemy-column-animation-show');
+
+            playerColumn.classList.add('player-column-animation-show');
+
+        };
+
+        if(actionToDo === 'attack health'){
+
+            if(damageResult > 0){
+
+                resultColumn.querySelector('.trait-value').innerText = '-' + damageResult;
+
+            }else{
+
+                resultColumn.querySelector('.trait-value').innerText = damageResult;
+
+            }
+
+            resultColumn.querySelector('.trait-img').src = images.traits.healthPoints;
+
+            enemyColumn.classList.add('enemy-column-animation-show');
+
+            playerColumn.classList.add('player-column-animation-show');
+
+        };
+
+        if(actionToDo === 'healing'){
+
+            resultColumn.querySelector('.trait-value').innerText = '+' + damageResult
+
+            resultColumn.querySelector('.trait-img').src = images.traits.healthPoints;
+
+        };
+
+    };
+
+    if(turn === 'enemy'){
+
+        enemyColumn.querySelector('.trait-value').innerText = damageInput;
+
+        enemyColumn.querySelector('.trait-img').src = images.traits.attackPoints;
+
+        playerColumn.querySelector('.trait-value').innerText = player.playerTraits.defencePoints;
+
+        playerColumn.querySelector('.trait-img').src = images.traits.defencePoints;
+
+        if(actionToDo === 'attack armour'){
+
+            if(damageResult > 0){
+
+                resultColumn.querySelector('.trait-value').innerText = '-' + damageResult;
+
+            }else{
+
+                resultColumn.querySelector('.trait-value').innerText = damageResult;
+
+            }
+
+            resultColumn.querySelector('.trait-img').src = images.traits.armourPoints;
+
+        };
+
+        if(actionToDo === 'attack health'){
+
+            if(damageResult > 0){
+
+                resultColumn.querySelector('.trait-value').innerText = '-' + damageResult;
+
+            }else{
+
+                resultColumn.querySelector('.trait-value').innerText = damageResult;
+
+            }
+
+            resultColumn.querySelector('.trait-img').src = images.traits.healthPoints;
+
+        };
+
+        enemyColumn.classList.add('enemy-column-animation-show');
+
+        playerColumn.classList.add('player-column-animation-show');
+
     };
 
 };
