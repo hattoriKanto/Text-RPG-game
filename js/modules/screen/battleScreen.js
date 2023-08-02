@@ -881,6 +881,14 @@ function popupTurn(textTurn){
 
     if(secondColumn.contains(enemyColumnInTableWrapper) === true){
 
+        setTimeout(() => {
+            
+            enemyColumnInTableWrapper.querySelector('.trait-value').innerText = '';
+
+            enemyColumnInTableWrapper.querySelector('.trait-img').src = '';
+
+        }, '2000');
+
         secondColumn.querySelector('.enemy-column').classList.remove('enemy-column-animation-show');
 
         secondColumn.querySelector('.enemy-column').classList.add('enemy-column-animation-hide');
@@ -889,6 +897,14 @@ function popupTurn(textTurn){
 
     if(secondColumn.contains(playerColumnInTableWrapper) === true){
 
+        setTimeout(() => {
+            
+            playerColumnInTableWrapper.querySelector('.trait-value').innerText = '';
+
+            playerColumnInTableWrapper.querySelector('.trait-img').src = '';
+
+        }, '2000');
+
         secondColumn.querySelector('.player-column').classList.remove('player-column-animation-show');
 
         secondColumn.querySelector('.player-column').classList.add('player-column-animation-hide');
@@ -896,6 +912,14 @@ function popupTurn(textTurn){
     };
 
     if(secondColumn.contains(resultColumnInTableWrapper) === true){
+
+        setTimeout(() => {
+            
+            resultColumnInTableWrapper.querySelector('.trait-value').innerText = '';
+
+            resultColumnInTableWrapper.querySelector('.trait-img').src = '';
+
+        }, '2000');
 
         secondColumn.querySelector('.result-column').classList.remove('result-column-animation-show');
 

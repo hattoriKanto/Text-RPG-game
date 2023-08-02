@@ -93,6 +93,12 @@ function battlePreparation(arrayRandomEnemiesKey, enemyTier){
 
         elem.addEventListener('click', () =>{
 
+            if(wrapperTable.contains(enemyColumnInTableWrapper) === false || wrapperTable.contains(resultColumnInTableWrapper) === false || wrapperTable.contains(playerColumnInTableWrapper) === false){
+
+                defaultBattleTable();
+
+            };
+
             if(elem.classList.contains('first-weapon-button') === true){
 
                 isWeaponShield('firstWeapon');
@@ -363,6 +369,8 @@ function playerTurn(actionToDo, weapon){
 
             playerDefencePoints = playerDefencePoints + player.weaponTraits[weapon].defencePoints;
 
+            addDataToBattleTable('player', 'defence', null, player.weaponTraits[weapon].defencePoints);
+
             document.querySelector('#third-column').querySelectorAll('.list__item-battle-start')[3].querySelector('.list-item__span-battle-start').innerText = playerDefencePoints;
 
             setTimeout(() => {
@@ -566,15 +574,15 @@ function addDataToBattleTable(turn, actionToDo, damageInput, damageResult){
 
     if(turn === 'player'){
 
-        enemyColumn.querySelector('.trait-value').innerText = arrayOfEnemiesTraits[activeEnemyIndex][3];
-
-        enemyColumn.querySelector('.trait-img').src = images.traits.defencePoints;
-
-        playerColumn.querySelector('.trait-value').innerText = damageInput;
-
-        playerColumn.querySelector('.trait-img').src = images.traits.attackPoints;
-
         if(actionToDo === 'attack armour'){
+
+            enemyColumn.querySelector('.trait-value').innerText = arrayOfEnemiesTraits[activeEnemyIndex][3];
+
+            enemyColumn.querySelector('.trait-img').src = images.traits.defencePoints;
+    
+            playerColumn.querySelector('.trait-value').innerText = damageInput;
+    
+            playerColumn.querySelector('.trait-img').src = images.traits.attackPoints;
 
             if(damageResult > 0){
 
@@ -595,6 +603,14 @@ function addDataToBattleTable(turn, actionToDo, damageInput, damageResult){
         };
 
         if(actionToDo === 'attack health'){
+
+            enemyColumn.querySelector('.trait-value').innerText = arrayOfEnemiesTraits[activeEnemyIndex][3];
+
+            enemyColumn.querySelector('.trait-img').src = images.traits.defencePoints;
+    
+            playerColumn.querySelector('.trait-value').innerText = damageInput;
+    
+            playerColumn.querySelector('.trait-img').src = images.traits.attackPoints;
 
             if(damageResult > 0){
 
@@ -622,6 +638,14 @@ function addDataToBattleTable(turn, actionToDo, damageInput, damageResult){
 
         };
 
+        if(actionToDo === 'defence'){
+
+            resultColumn.querySelector('.trait-value').innerText = '+' + damageResult;
+
+            resultColumn.querySelector('.trait-img').src = images.traits.defencePoints;
+
+        };
+
     };
 
     if(turn === 'enemy'){
@@ -630,7 +654,7 @@ function addDataToBattleTable(turn, actionToDo, damageInput, damageResult){
 
         enemyColumn.querySelector('.trait-img').src = images.traits.attackPoints;
 
-        playerColumn.querySelector('.trait-value').innerText = player.playerTraits.defencePoints;
+        playerColumn.querySelector('.trait-value').innerText = playerDefencePoints;
 
         playerColumn.querySelector('.trait-img').src = images.traits.defencePoints;
 
