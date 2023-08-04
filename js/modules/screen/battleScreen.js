@@ -15,8 +15,6 @@ import {enemiesTraits} from "../enemies/enemiesTraits.js";
 
 import weaponsTraits from "../racesClassesWeapons/weaponsTraits.js";
 
-import weaponsScreenText from "../text/creatingChar/weaponsScreenText.js";
-
 import {battlePreparation} from "../battle.js";
 
 import { creatingCharacter } from "./charCreatingScreen.js";

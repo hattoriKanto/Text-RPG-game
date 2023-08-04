@@ -2479,7 +2479,7 @@ function castleDonjon(){
 
             }, '650');
 
-            battleScreen(language);
+            battleScreen(language, 'lowTier', 3);
 
         });
 
