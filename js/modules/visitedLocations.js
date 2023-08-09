@@ -139,6 +139,58 @@ const visitedLocations = {
 
             }
 
+        },
+
+        donjon: {
+
+            corridorLeft: {
+
+                isVisited: false,
+
+                alchemistRoom: {
+
+                    isVisited: false,
+    
+                    alchemistDeadBody: {
+    
+                        isVisited: false
+    
+                    },
+    
+                    alchemistTable: {
+    
+                        isVisited: false
+    
+                    },
+    
+                    alchemistWorkplace: {
+    
+                        isVisited: false
+    
+                    }
+    
+                },
+
+                warehouseDoor: {
+
+                    isVisited: false
+
+                },
+
+                dungeonDoor: {
+
+                    isVisited: false
+
+                }
+
+            },
+
+            corridorRight: {
+
+                isVisited: false
+
+            },
+
         }
 
     },
@@ -149,4 +201,4 @@ const visitedLocations = {
 
 };
 
-export default visitedLocations;
+export { visitedLocations };

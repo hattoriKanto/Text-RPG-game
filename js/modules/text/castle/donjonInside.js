@@ -41,19 +41,19 @@ const donjonInsideText = {
 
                 donjonCorridorLeft: {
     
-                    textTitle: 'Левый коридор',
+                    textTitle: 'The left corridor',
     
-                    textDescr: 'Проходя коридором, вы замечаете отсутствие трупов, которыми изобиловал внутрений двор. И вот, вы прошли две двери и стоите перед третьей. На двери прибита записка - "На склад вход запрещён по приказу коменданта." Ваши исследования прерывает крик, похожий на крик человека. Друг или враг? Как быто ни было, нужно выяснить. Звук шёл из двери, которая разположенна правее.',
+                    textDescr: 'As you walk down the corridor, you notice the absence of the corpses that abounded in the courtyard. Now, you`ve passed two doors and are standing in front of a third. On the door is a note - "The warehouse is off-limits by order of the commandant." Your explorations are interrupted by a human-like scream. Friend or foe? Either way, we need to find out. The sound was coming from the door to the right.',
     
                     textButton: {
     
-                        firstButton: 'Осмотреть дверь левее',
+                        firstButton: 'Examine the door to the left',
     
-                        secondButton: 'Осмотреть дверь правее',
+                        secondButton: 'Examine the door to the right',
     
-                        thirdButton: 'Осмотреть дверь перед вами',
+                        thirdButton: 'Examine the door in front of you',
     
-                        secondButton: 'Пройти в правый коридор'
+                        secondButton: 'Go to the right corridor'
     
                     }
     
@@ -105,17 +105,17 @@ const donjonInsideText = {
     
                 donjonAlchemistRoom: {
     
-                    textTitle: 'Лаборатория алхимика',
+                    textTitle: 'The alchemist`s laboratory',
     
-                    textDescr: 'После того, как последний противник повержен, вы можете осмотреть лабораторию. Сразу же вам бросилось в глаза рабочее место алхимика. Хоть не все колбы и бутылки уцелели, а большинство ингридиентов разбросаны по комнате, вы можете предположить, что бедолага обладал внушительной алхимической базой. Оно и не удивительно, ведь сдешние леса славяться своими лечебными травами. Однако, эти травы не помогли алхимику и легионерам отбится от нападения. Стоит осмотреться, возможно здесь есть что-то полезное.',
+                    textDescr: 'After the last enemy is defeated, you can examine the laboratory. The alchemist`s workplace immediately catches your eye. Although not all the flasks and bottles have survived, and most of the ingredients are scattered around the room, you can assume that the poor guy had an impressive alchemical base. It`s not surprising, since the forests here are famous for their medicinal herbs. However, these herbs did not help the alchemist and the legionnaires to fend off the attack. It`s worth a look around to see if there`s anything useful here..',
     
                     textButton: {
     
-                        firstButton: 'Осмотреть труп алхимика',
+                        firstButton: 'Examine the alchemist`s corpse',
     
-                        secondButton: 'Осмотреть стол алхимика',
+                        secondButton: 'Examine the alchemist`s table',
     
-                        thirdButton: 'Осмотреть рабочее место'
+                        thirdButton: 'Inspect the workplace'
                     
                     }
     
@@ -123,17 +123,17 @@ const donjonInsideText = {
     
                 donjonAlchemistRoomDeadBody: {
     
-                    textTitle: 'Труп алхимика',
+                    textTitle: 'The corpse of an alchemist',
     
-                    textDescr: 'Тело алхимика тяжело узнать, его изрядно потрепало. Похоже, когда-то это был мужчина средних лет. Одет в одеяние Имперского общества алхимиков. Эта организация занимается подготовкой алхимиков для службы в войсках Империи. В руках у него что-то есть. Похоже, что он сжимал какой-то ключ с гравировкой льва. Стоит его забрать.',
+                    textDescr: 'The alchemist`s body is hard to recognize, it`s pretty beat up. It looks like it was once a middle-aged man. He is dressed in the robes of the Imperial Society of Alchemists. This organization trains alchemists to serve in the Empire`s military. He has something in his hands. It looks like he was clutching some kind of key engraved with a lion. It`s worth taking it.',
     
                     textButton: {
     
-                        firstButton: 'Осмотреть рабочее место',
+                        firstButton: 'Inspect the workplace',
     
-                        secondButton: 'Осмотреть стол алхимика',
+                        secondButton: 'Examine the alchemist`s table',
     
-                        thirdButton: 'Выйти из лаборатории'
+                        thirdButton: 'Get out of the laboratory'
                     
                     }
     
@@ -259,7 +259,7 @@ const donjonInsideText = {
     
                     textTitle: 'Левый коридор',
     
-                    textDescr: 'Проходя коридором, вы замечаете отсутствие трупов, которыми изобиловал внутрений двор. И вот, вы прошли две двери и стоите перед третьей. На двери прибита записка - "На склад вход запрещён по приказу коменданта." Ваши исследования прерывает крик, похожий на крик человека. Друг или враг? Как быто ни было, нужно выяснить. Звук шёл из двери, которая разположенна правее.',
+                    textDescr: 'Проходя коридором, вы замечаете отсутствие трупов, которыми изобиловал внутренний двор. И вот, вы прошли две двери и стоите перед третьей. На двери прибита записка - "На склад вход запрещён по приказу коменданта." Ваши исследования прерывает крик, похожий на крик человека. Друг или враг? Как бы то ни было, нужно выяснить. Звук шёл из двери, которая разположена правее.',
     
                     textButton: {
     
@@ -323,7 +323,7 @@ const donjonInsideText = {
     
                     textTitle: 'Лаборатория алхимика',
     
-                    textDescr: 'После того, как последний противник повержен, вы можете осмотреть лабораторию. Сразу же вам бросилось в глаза рабочее место алхимика. Хоть не все колбы и бутылки уцелели, а большинство ингридиентов разбросаны по комнате, вы можете предположить, что бедолага обладал внушительной алхимической базой. Оно и не удивительно, ведь сдешние леса славяться своими лечебными травами. Однако, эти травы не помогли алхимику и легионерам отбится от нападения. Стоит осмотреться, возможно здесь есть что-то полезное.',
+                    textDescr: 'После того, как последний противник повержен, вы можете осмотреть лабораторию. Сразу же вам бросилось в глаза рабочее место алхимика. Хоть не все колбы и бутылки уцелели, а большинство ингредиентов разбросаны по комнате, вы можете предположить, что бедолага обладал внушительной алхимической базой. Оно и не удивительно, ведь здешние леса славятся своими лечебными травами. Однако, эти травы не помогли алхимику и легионерам отбиться от нападения. Стоит осмотреться, возможно здесь есть что-то полезное.',
     
                     textButton: {
     
@@ -391,7 +391,7 @@ const donjonInsideText = {
     
                 },
     
-                donjonDoorToWarehouseText: {
+                donjonDoorToWarehouse: {
 
                     textTitle: 'Дверь на склад',
     
@@ -411,7 +411,7 @@ const donjonInsideText = {
     
                 /// LEFT---CORRIDOR---END ///
 
-                donjonCorridorRightText: {
+                donjonCorridorRight: {
     
                     textTitle: 'Правый коридор',
     
