@@ -187,7 +187,25 @@ const visitedLocations = {
 
             corridorRight: {
 
-                isVisited: false
+                isVisited: false,
+
+                deadBodyCorridor: {
+
+                    isVisited: false
+
+                },
+
+                mageRoom: {
+
+                    isVisited: false
+
+                },
+
+                chapelRoom: {
+
+                    isVisited: false
+
+                }
 
             },
 

@@ -59,27 +59,11 @@ const donjonInsideText = {
     
                 },
     
-                donjonDoorToDungeon: {
-                    
-                    textTitle: 'The door to the dungeon',
-    
-                    textDescr: 'It looks like there was a scream behind that door. There`s a grate on the door, through which you can see the steps that lead down. It appears to be a dungeon, but the door is locked.',
-    
-                    textButton: {
-    
-                        firstButton: 'Step away from the door',
-    
-                        secondButton: 'Go to the dungeon'
-                    
-                    }
-    
-                },
-    
                 donjonDoorToAlchemist: {
     
                     textTitle: 'The door to the alchemist',
     
-                    textDescr: 'As you approach the door, you hear rumbling and grumbling behind it. Through the door, you smell a pleasant odor of various herbs and potions. This appears to be an alchemist`s lab. Or rather, it was.',
+                    textDescr: 'As you approach the door, you hear rumbling and grumbling behind it. Through the door, you smell a pleasant odor of various herbs and potions. This appears to be an alchemist`s lab. This is confirmed by the emblem above the door in the form of a medicinal herb.',
     
                     textButton: {
     
@@ -125,7 +109,7 @@ const donjonInsideText = {
     
                     textTitle: 'The corpse of an alchemist',
     
-                    textDescr: 'The alchemist`s body is hard to recognize, it`s pretty beat up. It looks like it was once a middle-aged man. He is dressed in the robes of the Imperial Society of Alchemists. This organization trains alchemists to serve in the Empire`s military. He has something in his hands. It looks like he was clutching some kind of key engraved with a lion. It`s worth taking it.',
+                    textDescr: 'The alchemist`s body is hard to recognize, it`s pretty beat up. It looks like it was once a middle-aged man. He is dressed in the robes of the Imperial Society of Alchemists. This organization trains alchemists to serve in the Empire`s military. He has something in his hands. It looked like he was clutching some kind of key with a crate emblem on it. It`s worth taking it.',
     
                     textButton: {
     
@@ -179,7 +163,7 @@ const donjonInsideText = {
 
                     textTitle: 'Door to the warehouse',
     
-                    textDescr: 'The huge metal doors looks massive and solid, but there is a huge hole in the place where the lock was, and one of the doors is held only by the lower hinges. Apparently someone needed to get in despite the commandant`s orders. When you try to open the doors, you encounter resistance from inside. Looking through the hole at the lock, you see a huge amount of different things blocking your way and preventing you from getting through. Someone has intentionally barricaded this doorway.',
+                    textDescr: 'The huge metal doors looks massive and solid, but there is a huge hole in the place where the lock was, and one of the doors is held only by the lower hinges. Apparently someone needed to get in despite the commandant`s orders. When you try to open the doors, you encounter resistance from inside. Looking through the hole at the lock, you see a huge amount of different things blocking your way and preventing you from getting through. Someone has intentionally barricaded this doorway. Above the door hangs an emblem of a wooden crate.',
     
                     textButton: {
     
@@ -195,25 +179,68 @@ const donjonInsideText = {
     
                 /// LEFT---CORRIDOR---END ///
 
-                donjonCorridorRightText: {
+                /// DUNGEON---DOOR---START ///
+
+                donjonDoorToDungeon: {
+                    
+                    textTitle: 'The door to the dungeon',
     
-                    textTitle: 'Правый коридор',
-    
-                    textDescr: '',
+                    textDescr: 'It looks like there was a scream behind that door. There`s a grate on the door, through which you can see the steps that lead down. Judging by the emblem above the door, which shows the bars of a cage, it`s a dungeon, but the door is locked.',
     
                     textButton: {
     
-                        firstButton: 'Осмотреть дверь левее',
+                        firstButton: 'Step away from the door',
     
-                        secondButton: 'Осмотреть дверь правее',
+                        secondButton: 'Go to the dungeon'
+                    
+                    }
     
-                        thirdButton: 'Осмотреть дверь перед вами',
+                },
+
+                /// DUNGEON---DOOR---END ///
+
+                /// RIGHT---CORRIDOR---START ///
+
+                donjonCorridorRight: {
     
-                        secondButton: 'Пройти в правый коридор'
+                    textTitle: 'The right corridor',
+    
+                    textDescr: 'Surprisingly, the corridor is well lit by the torches on the walls. They must have been lit not too long ago. You have reached the end of the corridor and your path is blocked by a large wooden door with a sun emblem on it. There is a dead soldier lying in front of the door, and there are one more door on the right side of you.',
+    
+                    textButton: {
+        
+                        firstButton: 'Examine the door to the right',
+    
+                        secondButton: 'Examine the door in front of you',
+    
+                        thirdButton: 'Examine the corpse of a legionnaire',
+    
+                        fourthButton: 'Go to the left corridor'    
+                    }
+    
+                },
+
+                donjonCorridorDeadBody: {
+    
+                    textTitle: 'The dead body of a legionnaire',
+    
+                    textDescr: 'This poor guy was not lucky at all. His wounds don`t look fatal, and the amount of dried blood on the floor indicates that the soldier died from blood loss. It looks like the cultists left him here to die. After searching the corpse, you find a key with a sun emblem on it.',
+    
+                    textButton: {
+    
+                        firstButton: 'Examine the door to the left',
+    
+                        secondButton: 'Examine the door to the right',
+    
+                        thirdButton: 'Examine the door in front of you',
+    
+                        fourthButton: 'Go to the left corridor'
     
                     }
     
                 },
+
+                /// RIGHT---CORRIDOR---END ///
 
             },
 
@@ -275,27 +302,11 @@ const donjonInsideText = {
     
                 },
     
-                donjonDoorToDungeon: {
-                    
-                    textTitle: 'Дверь в подземелье',
-    
-                    textDescr: 'Похоже, что за этой дверью доносился тот крик. На двери есть решётка через которую вы смогли разглядеть ступеньки, которые ведут вниз. Судя по всему - это подземелье, но дверь заперта.',
-    
-                    textButton: {
-    
-                        firstButton: 'Отойти от двери',
-    
-                        secondButton: 'Пройти в подземелье'
-                    
-                    }
-    
-                },
-    
                 donjonDoorToAlchemist: {
     
                     textTitle: 'Дверь к алхимику',
     
-                    textDescr: 'При приближении к двери, вы слышите урчание и ворчание за ней. Сквозь дверь вы чувствуете приятный запах разных трав и зелий. Похоже, это лаборатория алхимика. Вернее, была ею.',
+                    textDescr: 'При приближении к двери, вы слышите урчание и ворчание за ней. Сквозь дверь вы чувствуете приятный запах разных трав и зелий. Похоже, это лаборатория алхимика. Это подтверждает эмблема над дверью в виде лечебной травы.',
     
                     textButton: {
     
@@ -341,7 +352,7 @@ const donjonInsideText = {
     
                     textTitle: 'Труп алхимика',
     
-                    textDescr: 'Тело алхимика тяжело узнать, его изрядно потрепало. Похоже, когда-то это был мужчина средних лет. Одет в одеяние Имперского общества алхимиков. Эта организация занимается подготовкой алхимиков для службы в войсках Империи. В руках у него что-то есть. Похоже, что он сжимал какой-то ключ с гравировкой льва. Стоит его забрать.',
+                    textDescr: 'Тело алхимика тяжело узнать, его изрядно потрепало. Похоже, когда-то это был мужчина средних лет. Одет в одеяние Имперского общества алхимиков. Эта организация занимается подготовкой алхимиков для службы в войсках Империи. В руках у него что-то есть. Похоже, что он сжимал какой-то ключ с эмблемой ящика. Стоит его забрать.',
     
                     textButton: {
     
@@ -395,7 +406,7 @@ const donjonInsideText = {
 
                     textTitle: 'Дверь на склад',
     
-                    textDescr: 'Огромная металлическая дверь выглядит массивно и надёжно, однако в месте где был замок присутствует огромная дыра, а одна из дверей и вовсе держится только на нижних петлях. Видимо кому-то нужно было попасть во внутрь не смотря на запрет коменданта. При попытке открыть двери, вы натыкаетесь на сопротивление изнутри. Посмотрев через дыру на месте замка, вы видите огромное количество разных вещей, которые преграждают вам путь и не дают пройти. Кто-то намеренно забаррикадировал  этот проход.',
+                    textDescr: 'Огромная металлическая дверь выглядит массивно и надёжно, однако в месте где был замок присутствует огромная дыра, а одна из дверей и вовсе держится только на нижних петлях. Видимо кому-то нужно было попасть во внутрь не смотря на запрет коменданта. При попытке открыть двери, вы натыкаетесь на сопротивление изнутри. Посмотрев через дыру на месте замка, вы видите огромное количество разных вещей, которые преграждают вам путь и не дают пройти. Кто-то намеренно забаррикадировал этот проход. Над дверью весит эмблема с изображением деревянного ящика.',
     
                     textButton: {
     
@@ -411,11 +422,53 @@ const donjonInsideText = {
     
                 /// LEFT---CORRIDOR---END ///
 
+                /// DUNGEON---DOOR---START ///
+
+                donjonDoorToDungeon: {
+                    
+                    textTitle: 'Дверь в подземелье',
+    
+                    textDescr: 'Похоже, что за этой дверью доносился тот крик. На двери есть решётка через которую вы смогли разглядеть ступеньки, которые ведут вниз. Судя по эмблеме над дверью, на которой изображены прутья клетки - это подземелье, но дверь заперта.',
+    
+                    textButton: {
+    
+                        firstButton: 'Отойти от двери',
+    
+                        secondButton: 'Пройти в подземелье'
+                    
+                    }
+    
+                },
+
+                /// DUNGEON---DOOR---END ///
+
+                /// RIGHT---CORRIDOR---START ///
+
                 donjonCorridorRight: {
     
                     textTitle: 'Правый коридор',
     
-                    textDescr: '',
+                    textDescr: 'На удивление, коридор хорошо освещается факелами на стенах. Судя по всему, их зажгли не так давно. Вы достигли конца коридора и ваш путь преградила большая деревянная дверь с эмблемой солнца. Прямо перед дверью лежит труп солдата, а по правую сторону от вас находится ещё одна дверь.',
+    
+                    textButton: {
+        
+                        firstButton: 'Осмотреть дверь правее',
+    
+                        secondButton: 'Осмотреть дверь перед вами',
+
+                        thirdButton: 'Осмотреть труп легионера',
+    
+                        fourthButton: 'Пройти в левый коридор'
+    
+                    }
+    
+                },
+
+                donjonCorridorDeadBody: {
+    
+                    textTitle: 'Мёртвое тело легионера',
+    
+                    textDescr: 'Этому бедняге совсем не повезло. Его раны не выглядят смертельными, а количество засохшей крови на полу свидетельствуют о том, что солдат погиб от потери крови. Похоже, культисты оставили умирать его здесь. Обыскав труп, вы нашли ключ с эмблемой солнца.',
     
                     textButton: {
     
@@ -425,11 +478,43 @@ const donjonInsideText = {
     
                         thirdButton: 'Осмотреть дверь перед вами',
     
-                        secondButton: 'Пройти в правый коридор'
+                        fourthButton: 'Пройти в правый коридор'
     
                     }
     
                 },
+
+                donjonDoorToMageRoom: {
+    
+                    textTitle: 'Дверь в комнату мага-связиста',
+    
+                    textDescr: '',
+    
+                    textButton: {
+    
+                        firstButton: 'Войти в комнату'
+    
+                    }
+    
+                },
+
+                donjonDoorToChapel: {
+    
+                    textTitle: 'Дверь в часовню',
+    
+                    textDescr: 'За дверью слышен шум и грохот. Похоже, там кто-то есть, но дверь заперта. Если судить по эмблеме, то это часовня Света. Оффициальной религией в Империи является вера в Свет. Свет, как объект почитания, не имеет ни пола, ни физического воплощения, однако он обитает во всех живых существах, которые его и формируют. Чем больше последователей Света, тем сильнее становяться его последоватили. Существуют различные религиозные организации и даже военно-монашеские ордена, однако, они все действуют самостоятельно и не подчиняться никому, даже императору. Однако, вчасовне орудуют культисты. Иронично.',
+    
+                    textButton: {
+    
+                        firstButton: 'Войти в комнату',
+
+                        secondButton: 'Отойти от двери'
+    
+                    }
+    
+                },
+
+                /// RIGHT---CORRIDOR---END ///
 
             },
             
