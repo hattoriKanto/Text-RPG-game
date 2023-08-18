@@ -240,6 +240,170 @@ const donjonInsideText = {
     
                 },
 
+                /// CHAPEL---START ///
+
+                donjonDoorToChapel: {
+    
+                    textTitle: 'The door to the chapel',
+                    
+                    textDescr: 'There`s a noise and rumbling outside the door. It sounds like someone is in there, but the door is locked. Judging by the emblem, it`s the Chapel of Light. The official religion of the Empire is the belief in the Light. The Light, as an object of veneration, has no gender or physical embodiment, but it resides in all living things.  The main opponent of the Light is Tenebrius, the lord of the Dark World. There are various religious organizations and even military-monastic orders, however, they all act independently and do not obey anyone, not even the Emperor. However, there are cultists in the chapel. Ironic.',
+                    
+                    textButton: {
+                    
+                        firstButton: 'Enter the room',
+                
+                        secondButton: 'Step away from the door'
+                    
+                    }
+                    
+                },
+                
+                donjonChapelBattle: {
+                    
+                    textTitle: 'The chapel',
+                    
+                    textDescr: 'When you unlocked the door with the key, you entered the chapel and were surprised: not a single enemy paid attention to you. They are so busy doing their work that they do not notice you. Before you could think about what to do next, a huge knight in black armor came through the door on the other side of the room. He noticed you at once and ordered the cultists to attack you.',
+                    
+                    textButton: {
+                    
+                        firstButton: 'Go into battle'
+                    
+                    }
+                    
+                },
+                
+                donjonChapel: {
+                    
+                    textTitle: 'The chapel',
+                    
+                    textDescr: 'The fight didn`t end in favor of this bigmouth and his minions. During the fight, you damaged his helmet and were able to see his face, which lacks the pale hue of the cultists. You can`t tell he`s been resurrected either. He looks like a normal person, not a walking dead person. In any case, it`s worth looking around.',
+                    
+                    textButton: {
+                    
+                        firstButton: 'Examine the knight`s corpse',
+                                        
+                        secondButton: 'Examine the altar',
+                
+                        thirdButton: 'Examine the pile of corpses',
+                
+                        fourthButton: 'Go to the next corridor'
+                    
+                    }
+                    
+                },
+                
+                donjonChapelDeadKnight: {
+                    
+                    textTitle: 'The corpse of a knight',
+                    
+                    textDescr: 'You can`t see anything unusual about him. It is difficult to determine his identity from the armor, but to afford such armor one must be wealthy or have generous patrons. Perhaps a detailed examination of the body might clarify things.',
+                    
+                    textButton: {
+                    
+                        firstButton: 'Examine the hands'
+                                        
+                    }
+                    
+                },
+                
+                donjonChapelDeadKnightHands: {
+                    
+                    textTitle: 'The hands of a knight',
+                    
+                    textDescr: 'All the cultists you met had cuts on their hands. When you removed the knight`s gauntlets, you found no wounds on either hand. The only clue that might shed some light on this gentleman`s origins is the silver heraldic bracelet on his right hand. Unfortunately, the bracelet is too old and worn to see the coat of arms on it. Why would this knight have noble heraldry? Is he an aristocrat? If not, how did he get it?',
+                    
+                    textButton: {
+                    
+                        firstButton: 'Examine the feet'
+                    
+                    }
+                    
+                },
+                
+                donjonChapelDeadKnightLegs: {
+                    
+                    textTitle: 'The legs of a knight',
+                    
+                    textDescr: 'The armor on a warrior`s legs is different from the armor on the rest of his body. If from head to hips a knight is clad in black plate armor, there is nothing on his legs but chain mail. The condition of this armor is poor. As for the shoes, they are even worse - peasant shoes. You doubt this gentleman was an aristocrat. More like a mercenary or a looter who was lucky enough to get his hands on armor.',
+                    
+                    textButton: {
+                
+                        firstButton: 'Examine the altar',
+                
+                        secondButton: 'Examine the pile of corpses',
+                
+                        thirdButton: 'Go to the next corridor'
+                    
+                    }
+                    
+                },
+                
+                donjonChapelAltar: {
+                    
+                    textTitle: 'The altar in the chapel',
+                    
+                    textDescr: 'The altar is opposite the door from which the warrior in armor emerged. Between the door and this sanctuary are three rows of benches where soldiers could sit during the ceremony. The altar itself is located on a platform that rises a couple hundred meters above the rest of the room. There are wooden steps leading up to it, which are located on the right side. On this platform lies a golden figure of the sun, which has broken into many small pieces. What is interesting is that it is worth a large fortune, but making a profit was not of much interest to the attackers. The altar itself is made of ordinary stone and it too has been badly damaged. It is impossible to see the engraving on the stone because of the damage. Behind the stone structure lies someone`s corpse.',
+                    
+                    textButton: {
+                
+                        firstButton: 'Examine the corpse'
+                    
+                    }
+                    
+                },
+                
+                donjonChapelAltarDeadBody: {
+                    
+                    textTitle: 'The corpse at the altar',
+                    
+                    textDescr: 'The male corpse had his head crushed. Poor guy, but what could crush a skull that big and strong? There`s no other injuries, so cause of death is obvious. Judging by the dry and wrinkled skin, this man was elderly when the enemy caught up with him. He`s wearing a white priest`s robe with black pants underneath. No shoes on his feet. When you searched the body, you found a crumpled note in his pants pocket.',
+                    
+                    textButton: {
+                
+                        firstButton: 'Read the note'
+                    
+                    }
+                    
+                },
+                
+                donjonChapelAltarDeadBodyNote: {
+                    
+                    textTitle: 'A note from the priest',
+                    
+                    textDescr: '"Your Holiness, I understand your concerns and take note of your protest against the transfer of this plant in the castle to our warehouse. However, I am the commandant of the garrison, not you, and I make the decisions, not you. According to our herbalist, the plant is harmless and in hibernation. I`ve ordered the warehouse to be locked and guarded. Our alchemist and I will have the keys. He has permission to experiment and research this plant, and I have orders from the capital to assist him. This discussion is closed. Commandant de Vries."',
+                    
+                    textButton: {
+                
+                        firstButton: 'Examine the knight`s corpse',
+                
+                        secondButton: 'Examine the pile of corpses',
+                
+                        thirdButton: 'Go to the next corridor'
+                    
+                    }
+                    
+                },
+                
+                donjonChapelPileOfCorpses: {
+                    
+                    textTitle: 'A pile of corpses in the chapel',
+                    
+                    textDescr: 'When you entered the room, the cultists were carefully stacking the corpses in a row. In front of you are a dozen corpses of legionaries and officers. Why did the attackers bring the corpses from the entire donjon here? Did they feel sympathy for the defeated enemy? Hardly likely. ',
+                    
+                    textButton: {
+                
+                        firstButton: 'Examine the knight`s corpse',
+                
+                        secondButton: 'Examine the altar',
+                
+                        thirdButton: 'Go to the next corridor'
+                    
+                    }
+                    
+                },
+                
+                /// CHAPEL---END ///
+
                 /// RIGHT---CORRIDOR---END ///
 
             },
@@ -484,11 +648,13 @@ const donjonInsideText = {
     
                 },
 
+                /// MAGE---ROOM---START ///
+
                 donjonDoorToMageRoom: {
     
                     textTitle: 'Дверь в комнату мага-связиста',
     
-                    textDescr: '',
+                    textDescr: 'Дверь в комнату слегка приоткрыта. Над дверью закрепленная табличка с изображением жезла. Магический жезл - один из основных атрибутов имперского мага, который является сосредоточением всей мощи мага. Жезлы по своей форме и структуре уникальны и очень ценяться на чёрном рынке. Однако, никто кроме хазяина не может использовать жезл, а после смерти мага жезл становится бесполезным куском ценного произвидения исскуства. Как появились жезлы и как люди Империи получили магические свойства остаётся информацией с грифом секретно.',
     
                     textButton: {
     
@@ -498,13 +664,87 @@ const donjonInsideText = {
     
                 },
 
+                donjonMageRoom: {
+    
+                    textTitle: 'Комната мага-связиста',
+    
+                    textDescr: 'В помещении царит разруха и бардак, однако отсутствуют хоть какие-то трупы. Скорее всего, нападавшие перерыли всю комнату в поисках чего-то. Что стало с магом и жив ли он ещё - непонятно. Возможно стоит осмотреться и тогда что-то и прояснится.',
+    
+                    textButton: {
+    
+                        firstButton: 'Осмотреть устройство связи',
+
+                        secondButton: 'Осмотреть спальное место',
+
+                        thirdButton: 'Осмотреть стол мага'
+    
+                    }
+    
+                },
+
+                donjonMageRoomCommDevice: {
+    
+                    textTitle: 'Устройство связи',
+    
+                    textDescr: 'Стандартное устройство для связи в имперских военных формированиях. Разработанно анонимными магом и гномом-кузнецом более 30 лет назад для замены голубиной почты. Как и вся военная документация, технические характеристики и чертежи устройства засекреченны. Конструкция устройства, на первый взгляд, очень проста: металическая сфера с сквозным отверстием, которая лежит в центре двух металических ободов. Сама же сфера имеет различные рунные символы. Вся эта конструкция стоит на металической платформе. Это устройство занимает более половины комнаты, и всё же, похоже эта маленькая сфера выполняет основную работу. Правда, как всё это работает не понятно.',
+    
+                    textButton: {
+    
+                        firstButton: 'Осмотреть спальное место',
+
+                        secondButton: 'Осмотреть стол мага',
+
+                        thirdButton: 'Выйти в коридор'
+    
+                    }
+    
+                },
+
+                donjonMageRoomTable: {
+    
+                    textTitle: 'Стол мага',
+    
+                    textDescr: '',
+    
+                    textButton: {
+    
+                        firstButton: 'Осмотреть спальное место',
+
+                        secondButton: 'Осмотреть устройство связи',
+
+                        thirdButton: 'Выйти в коридор'
+    
+                    }
+    
+                },
+
+                donjonMageRoomSleepingPlace: {
+    
+                    textTitle: 'Спальное место',
+    
+                    textDescr: '',
+    
+                    textButton: {
+    
+                        firstButton: 'Осмотреть стол мага',
+
+                        secondButton: 'Осмотреть устройство связи',
+
+                        thirdButton: 'Выйти в коридор'
+    
+                    }
+    
+                },
+
+                /// MAGE---ROOM---END ///
+
                 /// CHAPEL---START ///
 
                 donjonDoorToChapel: {
     
                     textTitle: 'Дверь в часовню',
     
-                    textDescr: 'За дверью слышен шум и грохот. Похоже, там кто-то есть, но дверь заперта. Если судить по эмблеме, то это часовня Света. Оффициальной религией в Империи является вера в Свет. Свет, как объект почитания, не имеет ни пола, ни физического воплощения, однако он обитает во всех живых существах, которые его и формируют. Чем больше последователей Света, тем сильнее становяться его последоватили. Существуют различные религиозные организации и даже военно-монашеские ордена, однако, они все действуют самостоятельно и не подчиняться никому, даже императору. Однако, вчасовне орудуют культисты. Иронично.',
+                    textDescr: 'За дверью слышен шум и грохот. Похоже, там кто-то есть, но дверь заперта. Если судить по эмблеме, то это часовня Света. Официальной религией в Империи является вера в Свет. Свет, как объект почитания, не имеет ни пола, ни физического воплощения, однако он обитает во всех живых существах. Главным противником Света является Тенебриус - повелитель Тёмного мира. Существуют различные религиозные организации и даже военно-монашеские ордена, однако, они все действуют самостоятельно и не подчиняться никому, даже императору. Однако, в часовне орудуют культисты. Иронично.',
     
                     textButton: {
     
@@ -520,7 +760,7 @@ const donjonInsideText = {
     
                     textTitle: 'Часовня',
     
-                    textDescr: 'Отперев дверь ключом, вы вошли в часовню и быль удивлены: ни один враг не обратил на вас внимание. Они так усердно делают свою работу, что не замечают вас. Не успели вы обдумать ваши дальнейшие действия, как в дверь на другой стороне комнаты вошёл огромный закованый в чёрные латы рыцарь. Он сразу вас заметил и скомандовал культистам вас атаковать.',
+                    textDescr: 'Отперев дверь ключом, вы вошли в часовню и быль удивлены: ни один враг не обратил на вас внимание. Они так усердно делают свою работу, что не замечают вас. Не успели вы обдумать ваши дальнейшие действия, как в дверь на другой стороне комнаты вошёл огромный закованный в чёрные латы рыцарь. Он сразу вас заметил и скомандовал культистам вас атаковать.',
     
                     textButton: {
     
@@ -534,7 +774,7 @@ const donjonInsideText = {
     
                     textTitle: 'Часовня',
     
-                    textDescr: 'Бой закончился не в пользу этого громилы и его приспешников. Во время боя вы повредили его шлем и смогли разгледеть его лицо, котрое лишено бледного оттенка, как у культистов. Также и не скажешь, что он был воскрешён. Выглядит он, как обычный человек, а не ходячий мертвец. В любом случае, стоит осмотреться.',
+                    textDescr: 'Бой закончился не в пользу этого громилы и его приспешников. Во время боя вы повредили его шлем и смогли разглядеть его лицо, которое лишено бледного оттенка, как у культистов. Также и не скажешь, что он был воскрешён. Выглядит он, как обычный человек, а не ходячий мертвец. В любом случае, стоит осмотреться.',
     
                     textButton: {
     
@@ -568,7 +808,7 @@ const donjonInsideText = {
     
                     textTitle: 'Руки рыцаря',
     
-                    textDescr: 'Все культисты, которых вы встречали, имели порезы на руках. Сняв латные перчатки с рыцаря, вы не обнаружили ран на обеих руках. Единственная зацепка, которая может пролить свет на происхождение этого господина _ серебрянный геральдический браслет на правой руке. К сожалению, браслет слишком стар и затёрт что бы можно было расмотреть герб на нём. Откуда у рыцаря дворянская геральдика? Неужели он аристократ? Если нет, то каким образом он его получил?',
+                    textDescr: 'Все культисты, которых вы встречали, имели порезы на руках. Сняв латные перчатки с рыцаря, вы не обнаружили ран на обеих руках. Единственная зацепка, которая может пролить свет на происхождение этого господина - серебряный геральдический браслет на правой руке. К сожалению, браслет слишком стар и затёрт что бы можно было рассмотреть герб на нём. Откуда у рыцаря дворянская геральдика? Неужели он аристократ? Если нет, то каким образом он его получил?',
     
                     textButton: {
     
@@ -582,7 +822,7 @@ const donjonInsideText = {
     
                     textTitle: 'Ноги рыцаря',
     
-                    textDescr: 'Доспехи на ногах воина отличаются от доспехов на остальном теле. Если с головы до бёдер рыцарь облачён в латный чёрный доспех, то на ногах, кроме кольчуги, ничего нет. Состояние этой кольчуги оставляет желать лучшего. Что же касается обуви, то здесь ещё хуже - крестьянские башмаки. У вас возникает сомнение, что этот господин был аристократом. Больше похож на наёмника или марадёра, которому повезло раздобыть доспех.',
+                    textDescr: 'Доспехи на ногах воина отличаются от доспехов на остальном теле. Если с головы до бёдер рыцарь облачён в латный чёрный доспех, то на ногах, кроме кольчуги, ничего нет. Состояние этой кольчуги оставляет желать лучшего. Что же касается обуви, то здесь ещё хуже - крестьянские башмаки. У вас возникает сомнение, что этот господин был аристократом. Больше похож на наёмника или мародёра, которому повезло раздобыть доспех.',
     
                     textButton: {
 
@@ -600,7 +840,7 @@ const donjonInsideText = {
     
                     textTitle: 'Алтарь в часовне',
     
-                    textDescr: 'Алтарь находиться напротив двери из которой вышел воин в латах. Между дверью и этим святилищем находиться три ряда лавок, на которых могли располагаться солдаты во время службы. Сам же алтарь расположен на платформе, которая возвышается над остальной комнатой на пару сотен метров. К ней ведут деревянные ступеньки, которые расположенны с правой стороны. На этом возвышеннии лежит золотая фигура солнца, которая разбилась на множество маленьких кусков. Интересно то, что она стоит большое состояние, однако получение прибыли не особо интересовало нападавших. Сам алтарь сделан из обычного камня и его тоже сильно потрепало. Рассмотреть гравировку на камне невозможно из-за полученных повреждений. За каменной конструкцией лежит чей-то труп.',
+                    textDescr: 'Алтарь находиться напротив двери из которой вышел воин в латах. Между дверью и этим святилищем находиться три ряда лавок, на которых могли располагаться солдаты во время службы. Сам же алтарь расположен на платформе, которая возвышается над остальной комнатой на пару сотен метров. К ней ведут деревянные ступеньки, которые расположены с правой стороны. На этом возвышении лежит золотая фигура солнца, которая разбилась на множество маленьких кусков. Интересно то, что она стоит большое состояние, однако получение прибыли не особо интересовало нападавших. Сам алтарь сделан из обычного камня и его тоже сильно потрепало. Рассмотреть гравировку на камне невозможно из-за полученных повреждений. За каменной конструкцией лежит чей-то труп.',
     
                     textButton: {
 
@@ -614,7 +854,7 @@ const donjonInsideText = {
     
                     textTitle: 'Труп у алтаря',
     
-                    textDescr: 'У трупа мужчины раздавленна голова. Бедолога, но что такое сильное и огромное могло раздовить череп? Других повреждений нет, так что причина смерти очевидна. Если судить по сухой и морщинистой коже, то этот человек был в пожелом возрасте, когда враг настиг его. Одет же он в белую рясу жреца с чёрными штанами под ней. Обувь же на ногах отсутствует. Обыскав труп, вы нашли смятую записку в кармане штанов.',
+                    textDescr: 'У трупа мужчины раздавлена голова. Бедолага, но что такое сильное и огромное могло раздавить череп? Других повреждений нет, так что причина смерти очевидна. Если судить по сухой и морщинистой коже, то этот человек был в пожилом возрасте, когда враг настиг его. Одет же он в белую рясу жреца с чёрными штанами под ней. Обувь же на ногах отсутствует. Обыскав труп, вы нашли смятую записку в кармане штанов.',
     
                     textButton: {
 
@@ -628,7 +868,7 @@ const donjonInsideText = {
     
                     textTitle: 'Записка у жреца',
     
-                    textDescr: '"Ваше святейшество, я понимаю Ваши опасения и принимаю к сведению Ваш протест против перевода этого растения в замок в наш склад. Однако, коммендант гарнизона я, а не вы и решения принимаю я, а не вы. По заверениям нашего травника, это растение безвредно и находиться в спячке. Я распорядился закрыть склад на замок и поставить там караул. Ключи будут у меня и у нашего алхимика. У него есть разрешение на опыты и исследования этого растения, а у меня приказ из столицы ему содействовать. Дисскусия закрыта. Коммендант де Врий."',
+                    textDescr: '"Ваше святейшество, я понимаю Ваши опасения и принимаю к сведению Ваш протест против перевода этого растения в замок в наш склад. Однако, комендант гарнизона я, а не вы и решения принимаю я, а не вы. По заверениям нашего травника, это растение безвредно и находиться в спячке. Я распорядился закрыть склад на замок и поставить там караул. Ключи будут у меня и у нашего алхимика. У него есть разрешение на опыты и исследования этого растения, а у меня приказ из столицы ему содействовать. Дискуссия закрыта. Комендант де Врий."',
     
                     textButton: {
 
@@ -646,7 +886,7 @@ const donjonInsideText = {
     
                     textTitle: 'Гора трупов в часовне',
     
-                    textDescr: 'Когда вы вошли в комнату, то культсты бережно складывали трупы в ряд. Перед вами с десяток трупов легионеров и офицеров.',
+                    textDescr: 'Когда вы вошли в комнату, то культсты бережно складывали трупы в ряд. Перед вами с десяток трупов легионеров и офицеров. Зачем нападавшие сносили трупы из всего донжона сюда? Неужели они прониклись сочувствием к поверженному противнику? Это вряд ли. ',
     
                     textButton: {
 
