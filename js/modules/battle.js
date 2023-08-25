@@ -13,7 +13,7 @@ import { inventoryItems } from "./inventoryItems.js";
 
 import images from "./images.js";
 
-import { popupDeadEnemy, popupDeadPlayer, popupNotEnoughHealing, deadEnemyChangeItem, popupTurn, defaultBattleTable } from "./screen/battleScreen.js";
+import { popupDeadEnemy, popupDeadPlayer, popupNotEnoughHealing, deadEnemyChangeItem, popupTurn, defaultBattleTable, popupVictory } from "./screen/battleScreen.js";
 
 /// IMPORTS---END ///
 
@@ -41,7 +41,7 @@ let activeEnemyIndex = 0;
 
 /// FUNCTIONS---START ///
 
-function battlePreparation(arrayRandomEnemiesKey, enemyTier){
+function battlePreparation(arrayRandomEnemiesKey, arrayEnemiesTiersKeyInBattle, nextFunction){
 
     const wrapperTable = document.querySelector('#battle').querySelector('#second-column').querySelector('.wrapper-battle-table');
 
@@ -139,17 +139,21 @@ function battlePreparation(arrayRandomEnemiesKey, enemyTier){
 
         for(let i = 0; i < arrayRandomEnemiesKey.length; i++){
 
-            const arrayOfEnemyTraits = Object.values(enemiesTraits[enemyTier][arrayRandomEnemiesKey[i]]);
+            let enemyTier = arrayEnemiesTiersKeyInBattle[i];
 
+            const arrayOfEnemyTraits = Object.values(enemiesTraits[enemyTier][arrayRandomEnemiesKey[i]]);
+    
             arrayOfEnemiesTraits.push(arrayOfEnemyTraits);
+        
+            arrayOfEnemiesTraits[activeEnemyIndex].forEach(elem =>{
+    
+                arrayOfActiveEnemyTraits.push(elem);
+        
+            });
 
         };
 
-        arrayOfEnemiesTraits[activeEnemyIndex].forEach(elem =>{
-
-            arrayOfActiveEnemyTraits.push(elem);
-    
-        });
+        console.log(arrayOfEnemiesTraits)
 
     };
 
@@ -171,7 +175,7 @@ function battlePreparation(arrayRandomEnemiesKey, enemyTier){
     
         if(isShield === false){
     
-            playerTurn('attack', weapon);
+            playerTurn('attack', weapon, nextFunction);
     
         };
     
@@ -179,7 +183,7 @@ function battlePreparation(arrayRandomEnemiesKey, enemyTier){
 
 };
 
-function playerTurn(actionToDo, weapon){
+function playerTurn(actionToDo, weapon, nextFunction){
 
     if(actionToDo === 'healing'){
 
@@ -221,17 +225,19 @@ function playerTurn(actionToDo, weapon){
 
         if(arrayOfEnemiesTraits[activeEnemyIndex][0] === 0){
 
+            console.log(arrayOfEnemiesTraits[activeEnemyIndex][0])
+
             popupDeadEnemy();
 
         }else{
 
             disableButtons();
 
-            playerAttack(weapon);
+            playerAttack(weapon, nextFunction);
 
         };
 
-        function playerAttack(weapon){
+        function playerAttack(weapon, nextFunction){
 
             playerDamageToHealthPoints = player.playerTraits.attackPoints + player.weaponTraits[weapon].damageToHealthPoints;
     
@@ -332,9 +338,7 @@ function playerTurn(actionToDo, weapon){
                 document.querySelector('.swiper-slide-active').querySelectorAll('.list__item-battle-start')[0].querySelector('.list-item__span-battle-start').innerText = enemyHealthPoints;
     
                 if(enemyHealthPoints === 0){
-    
-                    arrayOfEnemiesTraits[activeEnemyIndex][4] = false;
-        
+            
                     console.log('Enemy is dead now');
         
                     setTimeout(() => {
@@ -347,13 +351,7 @@ function playerTurn(actionToDo, weapon){
     
             };
 
-            setTimeout(() => {
-
-                popupTurn('enemyTurnText');
-        
-                enemyTurn();
-                
-            }, '1000');
+            areAllEnemiesDead(nextFunction);
 
         };
     
@@ -382,6 +380,38 @@ function playerTurn(actionToDo, weapon){
             }, '1000');
 
         };
+
+    };
+
+    function areAllEnemiesDead(nextFunction){
+
+        let enemiesDead = true;
+
+        for(let i = 0; i < arrayOfEnemiesTraits.length; i++){
+
+            if(arrayOfEnemiesTraits[i][0] > 0){
+
+                enemiesDead = false;
+
+            };
+
+        };
+
+        setTimeout(() => {
+            
+            if(enemiesDead === true){
+                
+                popupVictory(nextFunction);
+        
+            }else{
+    
+                popupTurn('enemyTurnText');
+            
+                enemyTurn();
+                    
+            };
+
+        }, '1000');
 
     };
 
@@ -515,6 +545,8 @@ function enemyTurn(){
     
                 popupDeadPlayer();
 
+                deleteEnemiesTraits();
+
                 setTimeout(() => {
         
                     enableButtons();
@@ -549,6 +581,12 @@ function enemyTurn(){
 
         };
     
+    };
+
+    function deleteEnemiesTraits(){
+
+        arrayOfEnemiesTraits.length = 0;
+
     };
 
 };
@@ -703,5 +741,7 @@ function addDataToBattleTable(turn, actionToDo, damageInput, damageResult){
 /// EXPORT---START ///
 
 export { battlePreparation };
+
+export { arrayOfEnemiesTraits };
 
 /// EXPORT---START ///

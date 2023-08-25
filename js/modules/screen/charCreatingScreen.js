@@ -1,6 +1,8 @@
 
 /// IMPORTS---START ///
 
+import { language } from "./chooseLangPopup.js";
+
 import { disableButtons, deletePlayerData, clonePlayerTraits, enableButtons } from "../globalFunctions.js";
 
 import startScreenText from "../text/creatingChar/startScreenText.js";
@@ -38,8 +40,6 @@ let playerRaceKey = null;
 let playerClassKey = null;
 
 let choosedWeaponType = null;
-
-let language = null;
 
 let counterWeapon = 0;
 
@@ -487,9 +487,9 @@ function backToDefaultValues(){
 
 /// MAIN---FUNCTIONS---START ///
 
-function creatingCharacter(choosedLang){
+function creatingCharacter(){
 
-    language = choosedLang.toLowerCase();
+    console.log(language)
 
     createHTMLElements();
 
@@ -1073,7 +1073,7 @@ function charOverview(){
 
                     clonePlayerTraits();
 
-                    battleScreen(language, 'lowTier', 3);
+                    battleScreen([2, 1, 0], 'castleDonjon');
 
                 };
 

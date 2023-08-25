@@ -1,6 +1,8 @@
 
 /// IMPORTS START ///
 
+import { language } from "./chooseLangPopup.js";
+
 import locationText from "../text/locationText.js";
 
 import { castle } from "./location/castleScreen.js";
@@ -11,13 +13,9 @@ import images from "../images.js";
 
 /// GLOBAL---VARIABLES---START ///
 
-let language = null;
-
 /// GLOBAL---VARIABLES---END ///
 
-function location(choosedLanguage){
-
-    language = choosedLanguage;
+function location(){
 
     createHTMLElements();
 

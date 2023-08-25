@@ -13,4 +13,4 @@ const chooseLanguageText = {
 
 };
 
-export default chooseLanguageText;
+export { chooseLanguageText };

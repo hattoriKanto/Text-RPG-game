@@ -1,11 +1,11 @@
 
-import chooseLanguageText from "../text/chooseLangText.js";
+import { chooseLanguageText } from "../text/chooseLangText.js";
 
 import { creatingCharacter } from "./charCreatingScreen.js";
 
-import {battleScreen} from "./battleScreen.js";
-
 import { disableButtons } from "../globalFunctions.js";
+
+let language = null;
 
 function chooseLanguage(){
 
@@ -101,7 +101,7 @@ function eventListener(){
 
             disableButtons();
 
-            const choosedLang = Object.values(chooseLanguageText.buttonText)[index];
+            language = Object.values(chooseLanguageText.buttonText)[index].toLowerCase();
 
             document.querySelector('#choose-lang').classList.remove('show-popup');
 
@@ -109,7 +109,7 @@ function eventListener(){
 
             setTimeout(() => {
 
-                creatingCharacter(choosedLang.toLowerCase());
+                creatingCharacter();
 
                 document.querySelector('#choose-lang').remove();
                 
@@ -122,3 +122,5 @@ function eventListener(){
 };
 
 export { chooseLanguage };
+
+export { language };

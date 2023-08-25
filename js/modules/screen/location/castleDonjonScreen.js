@@ -1,6 +1,8 @@
 
 /// IMPORTS---START ///
 
+import { language } from "../chooseLangPopup.js";
+
 import { donjonInsideText } from "../../text/castle/donjonInside.js";
 
 import { visitedLocations } from "../../visitedLocations.js";
@@ -11,8 +13,6 @@ import { battleScreen } from "../battleScreen.js";
 
 /// GLOBAL---VARIABLES---START ///
 
-let language = null;
-
 /// GLOBAL---VARIABLES---END ///
 
 /// REPEATABLE---FUNCTIONS---START ///
@@ -21,9 +21,7 @@ let language = null;
 
 /// MAIN---FUNCTIONS---START ///
 
-function castleDonjon(choosedLang){
-
-    language = choosedLang;
+function castleDonjon(){
 
     createHTMLElements();
 
@@ -547,6 +545,118 @@ function donjonDoorToAlchemist(){
 
 };
 
+function donjonDoorToDungeon(){};
+
+function donjonDoorToWarehouse(){
+
+    const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton)[index];
+
+        });
+
+        footerItemsCheck();
+
+        function footerItemsCheck(){
+
+            document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+               
+                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === false && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === false){
+
+                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.thirdBtn){
+        
+                        elem.closest('.footer__item').remove();
+    
+                    };
+    
+                };
+
+                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === true && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === true){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.thirdBtn){
+        
+                        elem.closest('.footer__item').remove();
+    
+                    };
+    
+                };
+
+                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === false && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === true){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.firstBtn){
+        
+                        elem.closest('.footer__item').remove();
+    
+                    };
+    
+                };
+
+                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === true && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === false){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.secondBtn){
+        
+                        elem.closest('.footer__item').remove();
+    
+                    };
+    
+                };
+
+            });
+    
+        };
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+            elem.addEventListener('click', () =>{
+
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.firstBtn){
+
+                    showNextSlide();
+    
+                    donjonDoorToAlchemist();
+    
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.secondBtn){
+    
+                    showNextSlide();
+    
+                    donjonDoorToDungeon();
+    
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.thirdBtn){
+    
+                    showNextSlide();
+    
+                    donjonCorridorRight();
+    
+                };
+
+            });
+
+        });
+
+    };
+
+};
+
 /// ALCHEMIST---ROOM---START ///
 
 function donjonAlchemistRoomBattle(){
@@ -579,7 +689,7 @@ function donjonAlchemistRoomBattle(){
 
                 showNextSlide();
     
-                battleScreen(language, 'lowTier', 3);
+                battleScreen(language, [1, 2], 'donjonAlchemistRoom');
 
             });
 
@@ -761,118 +871,8 @@ function donjonAlchemistDeadBody(){
 
 /// ALCHEMIST---ROOM---END ///
 
-function donjonDoorToDungeon(){};
-
-function donjonDoorToWarehouse(){
-
-    const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton).length;
-
-    setTimeout(() => {
-
-        createFooterItem(footerItemCount);
-
-        document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textTitle;
-
-        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textDescr;
-
-        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
-
-            elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton)[index];
-
-        });
-
-        footerItemsCheck();
-
-        function footerItemsCheck(){
-
-            document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
-               
-                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === false && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === false){
-
-                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.thirdBtn){
-        
-                        elem.closest('.footer__item').remove();
-    
-                    };
-    
-                };
-
-                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === true && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === true){
-
-                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.thirdBtn){
-        
-                        elem.closest('.footer__item').remove();
-    
-                    };
-    
-                };
-
-                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === false && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === true){
-
-                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.firstBtn){
-        
-                        elem.closest('.footer__item').remove();
-    
-                    };
-    
-                };
-
-                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === true && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === false){
-
-                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.secondBtn){
-        
-                        elem.closest('.footer__item').remove();
-    
-                    };
-    
-                };
-
-            });
-    
-        };
-
-        eventListener();
-        
-    }, '650');
-
-    function eventListener(){
-
-        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
-
-            elem.addEventListener('click', () =>{
-
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.firstBtn){
-
-                    showNextSlide();
-    
-                    donjonDoorToAlchemist();
-    
-                };
-    
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.secondBtn){
-    
-                    showNextSlide();
-    
-                    donjonDoorToDungeon();
-    
-                };
-    
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.thirdBtn){
-    
-                    showNextSlide();
-    
-                    donjonCorridorRight();
-    
-                };
-
-            });
-
-        });
-
-    };
-
-};
-
 /// CORRIDOR---LEFT---END ///
 
 export { castleDonjon };
+
+export { donjonAlchemistRoom };

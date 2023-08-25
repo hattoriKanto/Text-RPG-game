@@ -41,7 +41,21 @@ const enemiesTraits = {
 
     },
 
-    middleTier: {},
+    midTier: {
+
+        darkKnight: {
+
+            healthPoints: 1,
+
+            armourPoints: 0,
+
+            attackPoints: 7,
+
+            defencePoints: 3
+
+        }
+
+    },
 
     highTier: {}
 

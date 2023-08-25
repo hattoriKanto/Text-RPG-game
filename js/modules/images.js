@@ -29,20 +29,13 @@ const images = {
 
     enemies: {
 
-        lowTier: {
+        skeleton: './img/enemies/skeleton.png',
 
-            skeleton: './img/enemies/skeleton.png',
+        zombie: './img/enemies/zombie.png',
 
-            zombie: './img/enemies/zombie.png',
+        cultist: './img/enemies/cultist.png',
 
-            cultist: './img/enemies/cultist.png'
-
-        },
-
-        midTier: {},
-
-        highTier: {}
-
+        darkKnight: './img/enemies/darkKnight.png'
 
     },
 

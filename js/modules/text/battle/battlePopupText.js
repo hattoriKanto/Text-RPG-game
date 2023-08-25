@@ -15,11 +15,19 @@ const battlePopupText = {
 
             playerDead: {
 
-                playerDeadTitle: 'You are dead',
+                textTitle: 'You are dead',
 
-                playerRestartButton: 'Replay battle',
+                textButtonFirst: 'Replay battle',
 
-                playerNewCharButton: 'Create new character'
+                textButtonSecond: 'Create new character'
+
+            },
+
+            playerVictory: {
+
+                textTitle: 'You have won',
+
+                textButton: 'Victory!',
 
             }
 
@@ -37,11 +45,19 @@ const battlePopupText = {
 
             playerDead: {
 
-                playerDeadTitle: 'Вы мертвы',
+                textTitle: 'Вы мертвы',
 
-                playerRestartButton: 'Переиграть бой',
+                textButtonFirst: 'Переиграть бой',
 
-                playerNewCharButton: 'Создать нового персонажа'
+                textButtonSecond: 'Создать нового персонажа'
+
+            },
+
+            playerVictory: {
+
+                textTitle: 'Вы победили',
+
+                textButton: 'Победа!',
 
             }
 

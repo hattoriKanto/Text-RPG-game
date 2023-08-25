@@ -1,6 +1,8 @@
 
 /// IMPORTS---START ///
 
+import { language } from "./chooseLangPopup.js";
+
 import { player } from "../player.js";
 
 import images from "../images.js";
@@ -19,21 +21,23 @@ import {battlePreparation} from "../battle.js";
 
 import { creatingCharacter } from "./charCreatingScreen.js";
 
-import { deletePlayerData, disableButtons } from "../globalFunctions.js";
-
-import { backToDefaultPlayerTraits } from "../globalFunctions.js";
+import { deletePlayerData, disableButtons, backToDefaultPlayerTraits } from "../globalFunctions.js";
 
 import { createInventoryElememts } from "./inventory.js";
+
+import { castleDonjon, donjonAlchemistRoom } from "./location/castleDonjonScreen.js";
 
 /// IMPORTS---END ///
 
 /// GLOBAL---VARIABLES---START ///
 
-let language = null;
+const arrayTiersEnemiesKey = ['lowTier', 'midTier', 'highTier'];
 
-let enemyTier = null;
+let functionAfterBattleEnd = '';
 
-let numOfEnemies = null;
+let numOfEnemies = 0;
+
+const arrayEnemiesTiersKeyInBattle = [];
 
 const arrayRandomEnemiesKey = [];
 
@@ -45,7 +49,7 @@ const arrayRandomEnemiesValue = [];
 
 function uniqueImg(itemImg, index){
     
-    itemImg.src = images.enemies[enemyTier][arrayRandomEnemiesKey[index]];
+    itemImg.src = images.enemies[arrayRandomEnemiesKey[index]];
     
 };
 
@@ -53,38 +57,50 @@ function uniqueImg(itemImg, index){
 
 /// FUNCTIONS---START ///
 
-function battleScreen(choosedLang, tier, number){
+function battleScreen(arrayNumberOfEnemies, nextFunction){
 
-    language = choosedLang;
+    functionAfterBattleEnd = nextFunction;
 
-    enemyTier = tier;
+    for(let i = 0; i < arrayNumberOfEnemies.length; i++){
 
-    numOfEnemies = number;
+        numOfEnemies = numOfEnemies + arrayNumberOfEnemies[i];
 
-    const arrayEnemiesValue = Object.values(enemiesText.language[language].enemyTier[enemyTier]);
+    };
+    
+    console.log(numOfEnemies)
 
-    const arrayEnemiesKey = [];
+    for(let i = 0; i < numOfEnemies - 1; i ++){
 
-    randomEnemies();
+        if(arrayNumberOfEnemies[i] != 0){
 
-    function randomEnemies(){
+            for(let j = 0; j < arrayNumberOfEnemies[i]; j++){
 
-        for(let key in enemiesTraits[enemyTier]){
+                arrayEnemiesTiersKeyInBattle.push(arrayTiersEnemiesKey[i]);
 
+            };
+
+        };
+
+    };
+
+    for(let i = 0; i < arrayEnemiesTiersKeyInBattle.length; i++){
+
+        const arrayEnemiesKey = [];
+
+        const arrayEnemiesValue = Object.values(enemiesTraits[arrayEnemiesTiersKeyInBattle[i]]);
+        
+        const random = Math.floor(Math.random() * arrayEnemiesValue.length);
+        
+        for(let key in enemiesTraits[arrayEnemiesTiersKeyInBattle[i]]){
+        
             arrayEnemiesKey.push(key);
-
+        
         };
-
-        for(let i = 0; i < numOfEnemies; i++){
-
-            const random = Math.floor(Math.random() * arrayEnemiesValue.length);
-
-            arrayRandomEnemiesValue.push(arrayEnemiesValue[random]);
-
-            arrayRandomEnemiesKey.push(arrayEnemiesKey[random]);
-
-        };
-
+                
+        arrayRandomEnemiesValue.push(arrayEnemiesValue[random]);
+        
+        arrayRandomEnemiesKey.push(arrayEnemiesKey[random]);
+        
     };
 
     createHTMLElements();
@@ -309,7 +325,7 @@ function battleStart(){
 
         popupTurn('playerTurnText');
 
-        battlePreparation(arrayRandomEnemiesKey, enemyTier);
+        battlePreparation(arrayRandomEnemiesKey, arrayEnemiesTiersKeyInBattle, functionAfterBattleEnd);
         
     }, '3500');
 
@@ -341,7 +357,7 @@ function battleStart(){
     
             for(let i = 0; i < numOfEnemies; i++){
 
-                const arrayEnemyStats = Object.values(enemiesTraits[enemyTier][arrayRandomEnemiesKey[i]]);
+                const arrayEnemyStats = Object.values(enemiesTraits[arrayEnemiesTiersKeyInBattle[i]][arrayRandomEnemiesKey[i]]);
     
                 const itemEnemies = document.createElement('div');
         
@@ -474,9 +490,9 @@ function battleStart(){
 
             for(let i = 0; i < document.querySelector('#battle').querySelector('#first-column').querySelectorAll('.item').length; i++){
 
-                const arrayEnemyStats = Object.values(enemiesTraits[enemyTier][arrayRandomEnemiesKey[i]]);
+                const arrayEnemyStats = Object.values(enemiesTraits[arrayEnemiesTiersKeyInBattle[i]][arrayRandomEnemiesKey[i]]);
 
-                document.querySelector('#battle').querySelector('#first-column').querySelectorAll('.item')[i].querySelector('.title').innerText = enemiesText.language[language].enemyTier[enemyTier][arrayRandomEnemiesKey[i]].textTitle;
+                document.querySelector('#battle').querySelector('#first-column').querySelectorAll('.item')[i].querySelector('.title').innerText = enemiesText.language[language][arrayRandomEnemiesKey[i]];
 
                 uniqueImg(document.querySelector('#battle').querySelector('#first-column').querySelectorAll('.item')[i].querySelector('.first-column__img'), i);
 
@@ -977,11 +993,11 @@ function popupDeadPlayer(){
 
     popupButtonWrapper.appendChild(popupButtonRestart);
 
-    popupTitle.innerText = battlePopupText.language[language].playerDead.playerDeadTitle;
+    popupTitle.innerText = battlePopupText.language[language].playerDead.textTitle;
 
-    popupButtonNewChar.innerText = battlePopupText.language[language].playerDead.playerNewCharButton;
+    popupButtonNewChar.innerText = battlePopupText.language[language].playerDead.textButtonSecond;
 
-    popupButtonRestart.innerText = battlePopupText.language[language].playerDead.playerRestartButton;
+    popupButtonRestart.innerText = battlePopupText.language[language].playerDead.textButtonFirst;
 
     popupButtonNewChar.addEventListener('click', () =>{
 
@@ -1026,6 +1042,78 @@ function popupDeadPlayer(){
             document.querySelector('#battle').remove();
             
             createHTMLElements();
+
+        }, '2000');
+
+    });
+
+};
+
+function popupVictory(nextFunction){
+
+    const popup = document.createElement('div');
+
+    const popupWrapper = document.createElement('div');
+
+    const popupTitle = document.createElement('h3');
+
+    const popupButtonWrapper = document.createElement('div');
+
+    const popupButtonOk = document.createElement('button');
+
+    popup.className = 'popup show-popup';
+
+    popupWrapper.className = 'popup__wrapper';
+
+    popupTitle.className = 'popup__title title';
+
+    popupButtonWrapper.className = 'popup__wrapper-button'
+
+    popupButtonOk.className = 'popup__button button';
+
+    document.querySelector('#battle').appendChild(popup);
+
+    popup.appendChild(popupWrapper);
+
+    popupWrapper.appendChild(popupTitle);
+
+    popupWrapper.appendChild(popupButtonWrapper);
+
+    popupButtonWrapper.appendChild(popupButtonOk);
+
+    popupTitle.innerText = battlePopupText.language[language].playerVictory.textTitle;
+
+    popupButtonOk.innerText = battlePopupText.language[language].playerVictory.textButton;
+
+    popupButtonOk.addEventListener('click', () =>{
+
+        backToDefaultPlayerTraits();
+        
+        popup.classList.remove('show-popup');
+
+        popup.classList.add('hide-popup');
+
+        document.querySelector('#battle').classList.remove('show-screen');
+
+        document.querySelector('#battle').classList.add('hide-screen');
+
+        setTimeout(() => {
+
+            popup.remove();
+
+            document.querySelector('#battle').remove();
+            
+            if(nextFunction === 'donjonAlchemistRoom'){
+
+                donjonAlchemistRoom();
+
+            };
+
+            if(nextFunction === 'castleDonjon'){
+
+                castleDonjon();
+
+            };
 
         }, '2000');
 
@@ -1134,6 +1222,8 @@ export { popupTurn };
 export { battleScreen };
 
 export { popupDeadPlayer };
+
+export { popupVictory };
 
 export { popupDeadEnemy };
 

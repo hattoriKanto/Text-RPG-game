@@ -1,6 +1,8 @@
 
 /// IMPORTS---START ///
 
+import { language } from "../chooseLangPopup.js";
+
 import castleEntranceText from "../../text/castle/castleEntranceText.js";
 
 import castleCourtyardText from "../../text/castle/castleCourtyardText.js";
@@ -9,15 +11,13 @@ import castleStablesText from "../../text/castle/castleStablesText.js";
 
 import castleBarracksText from "../../text/castle/castleBarracksText.js";
 
-import visitedLocations from "../../visitedLocations.js";
+import {visitedLocations} from "../../visitedLocations.js";
 
 import {battleScreen} from "../battleScreen.js";
 
 /// IMPORTS---END ///
 
 /// GLOBAL---VARIABLES---START ///
-
-let language = null;
 
 /// GLOBAL---VARIABLES---END ///
 
@@ -63,9 +63,7 @@ function showNextSlide(){
 
 /// MAIN---FUNCTIONS---START ///
 
-function castle(choosedLang){
-
-    language = choosedLang;
+function castle(){
 
     createHTMLElements();
 
@@ -2479,7 +2477,7 @@ function castleDonjon(){
 
             }, '650');
 
-            battleScreen(language, 'lowTier', 3);
+            battleScreen(language, [3, 0, 0]);
 
         });
 
