@@ -1,7 +1,7 @@
 
 /// IMPORTS---START ///
 
-import { language } from "../chooseLangPopup.js";
+import { language } from "../chooseLangScreen.js";
 
 import castleEntranceText from "../../text/castle/castleEntranceText.js";
 

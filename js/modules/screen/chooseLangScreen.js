@@ -33,25 +33,25 @@ function createHTMLElements(){
 
     const footerSecondButton = document.createElement('button');
 
-    chooseLangPopup.className = 'choose-lang popup show-popup';
+    chooseLangPopup.className = 'popup-choose-lang show-popup';
 
-    popupWrapper.className = 'popup__wrapper choose-lang__wrapper';
+    popupWrapper.className = 'popup-choose-lang__wrapper';
 
-    popupContent.className = 'popup__content choose-lang__content content';
+    popupContent.className = 'popup-choose-lang__content content';
 
-    popupContentWrapper.className = 'popup__content-wrapper choose-lang__content-wrapper';
+    popupContentWrapper.className = 'popup-choose-lang__content-wrapper';
 
-    popupHeader.className = 'popup__header choose-lang__header header';
+    popupHeader.className = 'popup-choose-lang__header header';
 
-    popupTitle.className = 'popup__title title';
+    popupTitle.className = 'popup-choose-lang__title title';
 
-    popupFooter.className = 'popup__footer choose-lang__footer footer';
+    popupFooter.className = 'popup-choose-lang__footer footer';
 
-    footerFirstButton.className = 'footer__first-button button popup__button';
+    footerFirstButton.className = 'footer__first-button button';
 
-    footerSecondButton.className = 'footer__second-button button popup__button';
+    footerSecondButton.className = 'footer__second-button button';
 
-    chooseLangPopup.id = 'choose-lang';
+    chooseLangPopup.id = 'popup-choose-lang';
 
     footerFirstButton.id = 'english';
 
@@ -95,7 +95,7 @@ function createHTMLElements(){
 
 function eventListener(){
 
-    document.querySelector('#choose-lang').querySelectorAll('.button').forEach((elem, index) =>{
+    document.querySelector('#popup-choose-lang').querySelectorAll('.button').forEach((elem, index) =>{
 
         elem.addEventListener('click', () =>{
 
@@ -103,15 +103,15 @@ function eventListener(){
 
             language = Object.values(chooseLanguageText.buttonText)[index].toLowerCase();
 
-            document.querySelector('#choose-lang').classList.remove('show-popup');
+            document.querySelector('#popup-choose-lang').classList.remove('show-popup');
 
-            document.querySelector('#choose-lang').classList.add('hide-popup');
+            document.querySelector('#popup-choose-lang').classList.add('hide-popup');
 
             setTimeout(() => {
 
                 creatingCharacter();
 
-                document.querySelector('#choose-lang').remove();
+                document.querySelector('#popup-choose-lang').remove();
                 
             }, '1000');
 

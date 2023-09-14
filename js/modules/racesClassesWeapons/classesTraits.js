@@ -6,6 +6,8 @@ const classesTraits = {
         legionnaire: {
 
             traits: {
+
+                healthPoints: 0,
     
                 armourPoints: 1,
 

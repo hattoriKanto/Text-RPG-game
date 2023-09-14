@@ -14,6 +14,10 @@ const weaponsTraits = {
 
                 traits: {
 
+                    healthPoints: 0,
+
+                    armourPoints: 0,
+
                     damageToArmourPoints: 2,
 
                     damageToHealthPoints: 3,
@@ -32,6 +36,10 @@ const weaponsTraits = {
 
                 traits: {
 
+                    healthPoints: 0,
+
+                    armourPoints: 0,
+
                     damageToArmourPoints: 6,
 
                     damageToHealthPoints: 6,
@@ -49,6 +57,10 @@ const weaponsTraits = {
             legionnaireSaber: {
 
                 traits: {
+
+                    healthPoints: 0,
+
+                    armourPoints: 0,
                     
                     damageToArmourPoints: 2,
 
@@ -75,6 +87,8 @@ const weaponsTraits = {
                     damageToArmourPoints: 6,
 
                     damageToHealthPoints: 4,
+
+                    armourPoints: 0,
     
                     defencePoints: 0
 
@@ -92,6 +106,8 @@ const weaponsTraits = {
                     damageToArmourPoints: 4,
 
                     damageToHealthPoints: 6,
+
+                    armourPoints: 0,
     
                     defencePoints: 0
 
@@ -150,7 +166,13 @@ const weaponsTraits = {
 
                 traits: {
 
+                    healthPoints: 0,
+
                     armourPoints: 5,
+
+                    damageToArmourPoints: 2,
+
+                    damageToHealthPoints: 4,
 
                     defencePoints: 5
 

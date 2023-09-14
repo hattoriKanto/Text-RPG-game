@@ -2,7 +2,14 @@
 /// CSS---IMPORTS---START ///
     
 @import ./_variables
+
 @import ./_reboot
+
+@import ./modules/_screen
+
+@import ./modules/_inventory
+
+@import ./modules/_popup
 
 /// CSS---IMPORTS---END ///
 
@@ -24,10 +31,6 @@
         background: #fff
         border: none
         color: $background-color
-
-@media ( max-width: 768px )
-    .button-without-btn-info
-        width: 100%
 
 .btn-info
     display: flex
@@ -52,117 +55,6 @@
     line-height: 1.75
     text-align: center
 
-.screen
-    position: fixed
-    width: 100%
-    height: 100%
-    left: -100%
-    padding: 60px 0
-    z-index: 1
-    &__wrapper
-        transition: 2000ms ease all
-    &__main
-        position: relative
-        display: flex
-        padding: 15px
-        width: 100%
-        height: 100%
-        min-height: 600px
-        flex-direction: column
-        align-items: center
-        justify-content: space-evenly
-        background: $background-color
-        border: 2px solid #fff
-        border-radius: 5px
-        transition: 2000ms transform
-    .main
-        &__header
-            display: flex
-            flex-direction: column
-            align-items: center
-            justify-content: center
-            width: 90%
-            padding: 15px
-            border: 2px solid #fff
-            border-radius: 5px
-        &__footer
-            width: 90%
-            display: flex
-            flex-direction: column
-            align-items: center
-            justify-content: space-around
-            gap: 15px
-        .footer
-            &__wrapper
-                display: flex
-                align-items: center
-                justify-content: space-between
-                width: 100%
-            &__item
-                display: flex
-                align-items: center
-                justify-content: center
-                width: 100%
-                gap: 10px
-        &__descr
-            margin: 10px 0 0 0
-            min-height: 200px
-            width: 100%
-            text-align: center
-        &__list
-            display: flex
-            flex-direction: column
-            align-items: center
-            justify-content: center
-            gap: 15px
-            width: 100%
-        .list
-            &__item
-                display: flex
-                align-items: center
-                justify-content: center
-                gap: 10px
-                font-size: 16px
-            &__traits-list
-                display: flex
-                align-items: center
-                gap: 50px
-            .traits-list
-                &__img
-                    width: 48px
-                    height: 48px
-            .weapons
-                &__button
-                    width: 40px
-                    height: 40px
-                .btn-info
-                    &__img
-                        width: 70%
-@media ( max-width: 768px )
-    .screen
-        padding: 0
-        overflow: auto
-        &__main
-            padding: 15px 0 15px 0
-            gap: 30px
-            min-height: 0
-            justify-content: flex-start
-            border: none
-            border-radius: 0
-            overflow: auto
-        .main
-            &__header
-                overflow: auto
-                width: 100%
-            &__footer
-                width: 100%
-
-.show-screen
-    animation: show-screen ease 2s 1 forwards
-
-.hide-screen
-    animation: hide-screen ease 2s 1 forwards
-
 .rotation-x
     animation: rotation-x ease 2s 1 forwards     
 
@@ -179,147 +71,90 @@
     box-sizing: content-box
     padding: 0 15px
     z-index: 2
-@media ( max-width: 992px )
-    .container
-        max-width: 900px
-@media ( max-width: 768px )
-    .container
-        max-width: 685px
-@media ( max-width: 576px )
-    .container
-        max-width: 500px
-
-.popup
-    display: flex
-    justify-content: center
-    align-items: center
-    position: fixed
-    top: -100%
-    left: 0
-    width: 100%
-    height: 100%
-    background-color: rgba(0, 0, 0, 0.8)
-    z-index: 2
-    &__close-btn
-        position: absolute
-        padding: 10px
-        top: 10px
-        right: 10px
-        background: transparent
-        transition: 500ms all
-        cursor: pointer
-        &::after, &::before
-            content: ''
-            display: block
-            position: absolute
-            top: 10px
-            left: 0
-            width: 20px
-            height: 2px   
-            background: #e0e1dd
-            transform: rotate(45deg)
-        &::before
-                transform: rotate(-45deg)
-        &:hover, &:active
-            transform: scale(1.1)
-    &__wrapper
-        display: flex
-        align-items: center
-        justify-content: center
-        width: 50%
-        height: 100%
-        padding: 30px 10px
-    &__content
-        position: relative
-        display: flex
-        flex-direction: column
-        justify-content: space-evenly
-        align-items: center
-        padding: 30px
-        min-width: 300px
-        min-height: 300px
-        background-color: $background-color
-        border: 2px solid #fff
-        border-radius: 5px
-        &:before, &:after
-            content: "•"
-            position: absolute
-            width: 14px
-            height: 14px
-            font-size: 14px
-            color: #fff
-            border: 2px solid #fff
-            line-height: 12px
-            text-align: center
-        &:before
-            left: 4px
-            top: 4px
-        &:after
-            right: 4px
-            bottom: 4px
-    &__content-wrapper
-        width: 100%
-        height: 100%
-        display: flex
-        flex-direction: column
-        align-items: center
-        justify-content: flex-start
-        gap: 40px
-        overflow: auto
-    &__header
-        display: flex
-    &__footer
-        display: flex
-        flex-direction: column
-        align-items: center
-        gap: 25px
-        width: 100% 
-    &__traits
-        display: flex
-        align-items: center
-        justify-content: center
-        gap: 10px
-    .list
-        &__item
-            display: flex
-            align-items: center
-            justify-content: center
-            gap: 10px 
-        .item
-            &__img
-                width: 40%
-    &__title
-        text-align: center
-@media ( max-width: 768px )
-    .popup
-        &__wrapper
-            padding: 0
-            width: 100%
-        &__content
-            min-width: 0
-            min-height: 0
-            width: 100%
-            height: 100%
-            gap: calc($popupGapMin + $popupGapDiff * ((var(--body-max-width) - $minRes) / $difMaxMinRes))
-            border: none
-            &:before, &:after
-                display: none
-        &__button
-            height: 80px
-            font-size: calc($popupButtonFontMin + $popupButtonFontDiff * ((var(--body-max-width) - $minRes) / $difMaxMinRes))
-@media ( max-width: 576px )
-    .popup
-        &__button
-            width: 100%
-
-.show-popup
-    animation: show-popup ease 1.5s 1 forwards
-
-.hide-popup
-    animation: hide-popup ease 1.5s 1 forwards
 
 .img-top
     object-position: top
+
+.column
+    &__item
+        position: relative
+        display: flex
+        align-items: center
+        justify-content: center
+        width: 200px
+        border: 2px solid #fff
+        border-radius: 100%
+    &__item-battle-start
+        padding: 15px
+        flex-direction: column
+        justify-content: flex-start
+        gap: 20px
+        width: 100%
+        height: 100%
+        border-radius: 0
+    &__item-dead-enemy
+        flex-direction: column-reverse
+    .item
+        &__wrapper-img
+            display: flex
+            align-items: center
+            width: 100%
+            border-radius: 100%
+        &__img
+            object-fit: cover
+            object-position: top
+            width: 100%
+            height: 100%
+            border-radius: 100%
+        &__wrapper-img-battle-start
+            border-radius: 0
+        &__img-battle-start
+            border-radius: 0
+        &__wrapper-title-button-battle-start
+            width: 100%
+            display: flex
+            align-items: center
+            justify-content: space-evenly
+        &__list-battle-start
+            display: flex
+            align-items: center
+            gap: 22px
+        &__buttons-battle-start
+            display: flex
+            gap: 10px
+            .button
+                &:hover, &:active, &:focus
+                    .button
+                        &__img
+                            filter: contrast(0)
+                &__img-next
+                    transform: rotate(90deg)
+                &__img-prev
+                    transform: rotate(-90deg)
+        &__btn
+            width: 100px
+            height: 40px
+        &__btn-info-player
+            position: absolute
+            top: 0
+            right: 0
+            margin: 8px
+        .list
+            &__item-battle-start
+                display: flex
+                align-items: center
+                gap: 8px
+            .list-item
+                &__img-battle-start
+                    width: 48px
+                    height: 48px
+        .overlay__wrapper
+            display: flex
+            justify-content: center
+            align-items: center
+            width: 100%
+            height: 100%
+            background-color: $background-color
 
 /// CSS---BLOCKS---END ///
 
@@ -394,81 +229,6 @@
                 animation: show-sc ease 3s 1 forwards
             &__column-show-third-column
                 animation: show-tc ease 3s 1 forwards
-            .column
-                &__item
-                    position: relative
-                    display: flex
-                    align-items: center
-                    justify-content: center
-                    width: 200px
-                    border: 2px solid #fff
-                    border-radius: 100%
-                &__item-battle-start
-                    padding: 15px
-                    flex-direction: column
-                    justify-content: flex-start
-                    gap: 20px
-                    width: 100%
-                    height: 100%
-                    border-radius: 0
-                &__item-dead-enemy
-                    flex-direction: column-reverse
-                .item
-                    &__wrapper-img
-                        display: flex
-                        align-items: center
-                        width: 100%
-                        border-radius: 100%
-                    &__img
-                        object-fit: cover
-                        object-position: top
-                        width: 100%
-                        height: 100%
-                        border-radius: 100%
-                    &__wrapper-img-battle-start
-                        border-radius: 0
-                    &__img-battle-start
-                        border-radius: 0
-                    &__wrapper-title-button-battle-start
-                        width: 100%
-                        display: flex
-                        align-items: center
-                        justify-content: space-evenly
-                    &__list-battle-start
-                        display: flex
-                        align-items: center
-                        gap: 22px
-                    &__buttons-battle-start
-                        display: flex
-                        gap: 10px
-                        .button
-                            &:hover, &:active, &:focus
-                                .button
-                                    &__img
-                                        filter: contrast(0)
-                            &__img-next
-                                transform: rotate(90deg)
-                            &__img-prev
-                                transform: rotate(-90deg)
-                    &__btn
-                        width: 100px
-                        height: 40px
-                    .list
-                        &__item-battle-start
-                            display: flex
-                            align-items: center
-                            gap: 8px
-                        .list-item
-                            &__img-battle-start
-                                width: 48px
-                                height: 48px
-                    .overlay__wrapper
-                        display: flex
-                        justify-content: center
-                        align-items: center
-                        width: 100%
-                        height: 100%
-                        background-color: $background-color
             .first-column
                 &__item-hide
                     animation: fc-item-hide ease 2s 1 forwards
@@ -485,7 +245,8 @@
                     display: flex
                     flex-direction: column
                     align-items: center
-                    gap: 20px
+                    justify-content: flex-start
+                    gap: 150px
                 .wrapper
                     &__wrapper-btns
                         position: relative
@@ -495,12 +256,19 @@
                         flex-direction: column
                         align-items: flex-end
                         gap: 20px
+                    .healing-potion-button
+                        position: relative
+                        &__counter
+                            padding: 8px
+                            position: absolute
+                            top: 0
+                            right: 0
                     &__wrapper-battle-table
                         width: 100%
                         height: 100%
                         display: grid 
                         grid-template-columns: repeat(3, 33.33%)
-                    &__wrapper-battle-table-text
+                    &__message-text
                         display: flex 
                         align-items: center
                         text-align: center
@@ -508,24 +276,6 @@
                         &__btn
                             width: 70px
                             height: 70px
-                    .wrapper-battle-table
-                        &__column 
-                            display: flex
-                            flex-direction: column
-                            justify-content: center
-                            align-items: center
-                        .enemy-column-animation-show
-                            animation: enemy-column-table-show ease 1s 1 forwards
-                        .enemy-column-animation-hide
-                            animation: enemy-column-table-hide ease 1s 1 forwards
-                        .result-column-animation-show
-                            animation: result-column-table-show ease 1s 1 forwards
-                        .result-column-animation-hide
-                            animation: result-column-table-hide ease 1s 1 forwards
-                        .player-column-animation-show
-                            animation: player-column-table-show ease 1s 1 forwards
-                        .player-column-animation-hide
-                            animation: player-column-table-hide ease 1s 1 forwards
                 .button
                     &__img
                         width: 40px
@@ -534,65 +284,7 @@
             .third-column
                 &__item-hide
                     animation: tc-item-hide ease 2s 1 forwards
-
-.popup
-    &__wrapper
-        display: flex
-        flex-direction: column
-        align-items: center
-        justify-content: space-evenly
-    &__wrapper-button
-        display: flex
-        align-items: center
-        justify-content: space-between
-        gap: 50px
-
-/// INVENTORY ///
-
-.inventory    
-    position: fixed
-    top: 0
-    right: 0
-    height: 100%
-    display: flex
-    flex-direction: column
-    align-items: center
-    justify-content: flex-start
-    gap: 10px
-    margin: 10px 10px 0 0
-    z-index: 2
-    &__button
-        display: flex
-        align-items: center
-        justify-content: center
-        width: 80px
-        min-height: 80px
-    &__content
-        display: flex
-        flex-direction: column
-        align-items: center
-        justify-content: space-evenly
-        width: 100%
-        border: 2px solid $text-color
-        border-radius: 5px
-    .inventory-content
-        &__cell
-            position: relative
-            display: flex
-            align-items: center
-            justify-content: center
-            padding: 5px
-            width: 100%
-            min-height: 80px
-        .inventory-cell
-            &__img
-                width: 64px
-                height: 64px
-            &__counter
-                position: absolute
-                top: 0
-                right: 5px
-
+    
 /// KEYFRAMES ///
 
 @keyframes show-popup

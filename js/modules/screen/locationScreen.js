@@ -1,7 +1,7 @@
 
 /// IMPORTS START ///
 
-import { language } from "./chooseLangPopup.js";
+import { language } from "./chooseLangScreen.js";
 
 import locationText from "../text/locationText.js";
 

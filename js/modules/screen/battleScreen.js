@@ -1,7 +1,7 @@
 
 /// IMPORTS---START ///
 
-import { language } from "./chooseLangPopup.js";
+import { language } from "./chooseLangScreen.js";
 
 import { player } from "../player.js";
 
@@ -10,6 +10,8 @@ import images from "../images.js";
 import battleScreenText from "../text/battleScreenText.js";
 
 import battlePopupText from "../text/battle/battlePopupText.js";
+
+import { popupPlayerCalcText } from "../text/battle/popupPlayerCalcText.js";
 
 import enemiesText from "../text/enemies/enemiesText.js";
 
@@ -21,11 +23,15 @@ import {battlePreparation} from "../battle.js";
 
 import { creatingCharacter } from "./charCreatingScreen.js";
 
-import { deletePlayerData, disableButtons, backToDefaultPlayerTraits } from "../globalFunctions.js";
+import { deletePlayerData, disableButtons, enableButtons ,backToDefaultPlayerTraits } from "../globalFunctions.js";
 
 import { createInventoryElememts } from "./inventory.js";
 
+import { inventoryItems } from "../inventoryItems.js";
+
 import { castleDonjon, donjonAlchemistRoom } from "./location/castleDonjonScreen.js";
+import racesTraits from "../racesClassesWeapons/racesTraits.js";
+import classesTraits from "../racesClassesWeapons/classesTraits.js";
 
 /// IMPORTS---END ///
 
@@ -539,7 +545,7 @@ function battleStart(){
 
             const btnsWrapper = document.createElement('div');
 
-            const battleTableWrapper = document.createElement('div');
+            const messageDiv = document.createElement('div');
 
             const firstWeaponBtn = document.createElement('button');
 
@@ -547,17 +553,13 @@ function battleStart(){
     
             const healingPotionBtn = document.createElement('button');
 
-            const battleTableEnemyColumn = document.createElement('div');
-
-            const battleTableResultColumn = document.createElement('div');
-
-            const battleTablePlayerColumn = document.createElement('div');
+            const healingPotionCounter = document.createElement('div');
 
             columnWrapper.className = 'second-column__wrapper wrapper'
 
             btnsWrapper.className = 'wrapper__wrapper-btns wrapper-btns';
 
-            battleTableWrapper.className = 'wrapper__wrapper-battle-table wrapper-battle-table';
+            messageDiv.className = 'wrapper__message';
 
             columnStartBattle.classList.add('wrapper__second-column-battle-start');
 
@@ -567,11 +569,7 @@ function battleStart(){
                 
             healingPotionBtn.className = 'wrapper-btns__btn healing-potion-button button';
 
-            battleTableEnemyColumn.className = 'wrapper-battle-table__column column wrapper-battle-table___enemy-column enemy-column';
-
-            battleTableResultColumn.className = 'wrapper-battle-table__column column wrapper-battle-table___result-column result-column';
-
-            battleTablePlayerColumn.className = 'wrapper-battle-table__column column wrapper-battle-table___player-column player-column';
+            healingPotionCounter.className = 'healing-potion-button__counter counter';
 
             firstWeaponBtn.id = 'first-weapon-btn';
 
@@ -583,7 +581,7 @@ function battleStart(){
 
             columnWrapper.appendChild(btnsWrapper);
 
-            columnWrapper.appendChild(battleTableWrapper);
+            columnWrapper.appendChild(messageDiv);
 
             btnsWrapper.appendChild(firstWeaponBtn);
 
@@ -591,12 +589,8 @@ function battleStart(){
 
             btnsWrapper.appendChild(healingPotionBtn);
 
-            battleTableWrapper.appendChild(battleTableEnemyColumn);
-
-            battleTableWrapper.appendChild(battleTableResultColumn);
+            healingPotionBtn.appendChild(healingPotionCounter);
             
-            battleTableWrapper.appendChild(battleTablePlayerColumn);
-
             columnStartBattle.querySelectorAll('.wrapper-btns__btn').forEach(elem =>{
 
                 const btnImg = document.createElement('img');
@@ -604,22 +598,6 @@ function battleStart(){
                 elem.appendChild(btnImg);
 
                 btnImg.className = 'button__img';
-
-            });
-
-            columnStartBattle.querySelectorAll('.wrapper-battle-table__column').forEach(elem =>{
-
-                const traitValue = document.createElement('span');
-
-                const traitImg = document.createElement('img');
-
-                traitValue.className = 'column__trait-value trait-value';
-
-                traitImg.className = 'column__trait-img trait-img';
-
-                elem.appendChild(traitImg);
-
-                elem.appendChild(traitValue);
 
             });
 
@@ -632,6 +610,8 @@ function battleStart(){
             document.querySelector('#battle').querySelector('#second-column').querySelector('#second-weapon-btn').querySelector('.button__img').src = images.battle.playerWeaponsBtns[player.playerKey.weaponsTypeKeys.secondWeapon];
 
             document.querySelector('#battle').querySelector('#second-column').querySelector('#healing-potion-btn').querySelector('.button__img').src = images.battle.healingPotionBtn;
+
+            document.querySelector('#battle').querySelector('#second-column').querySelector('#healing-potion-btn').querySelector('.counter').innerText = inventoryItems.healingPotion;
 
         };
 
@@ -666,6 +646,8 @@ function battleStart(){
         imgCheck();
 
         addDataToElements();
+
+        playerInfoBtnEventListener();
 
         setTimeout(() => {
                 
@@ -741,7 +723,7 @@ function battleStart(){
         
                 if(isShield === false){
     
-                    console.log('First and second weapons aren`t a shields.')
+                    console.log('First and second weapons aren`t shields.')
         
                     player.playerTraits.defencePoints = player.playerTraits.defencePoints + player.weaponTraits.secondWeapon.defencePoints + player.weaponTraits.firstWeapon.defencePoints;
         
@@ -765,6 +747,10 @@ function battleStart(){
     
             const statsPlayerList = document.createElement('ul');
 
+            const buttonPlayerInfo = document.createElement('button');
+
+            const buttonPlayerInfoImg = document.createElement('img');
+
             itemPlayer.className = 'column__item column__item-battle-start third-column__item-battle-start item';
         
             wrapperImgPlayer.className = 'item__wrapper-img item__wrapper-img-battle-start';
@@ -774,6 +760,12 @@ function battleStart(){
             titlePlayer.className = 'item__title-battle-start title';
     
             statsPlayerList.className = 'item__list-battle-start list';
+
+            buttonPlayerInfo.className = 'item__btn-info-player btn-info-player btn-info';
+
+            buttonPlayerInfoImg.className = 'btn-info-player__img btn-info__img';
+
+            buttonPlayerInfoImg.src = images.other.btnInfoImg;
 
             columnPlayer.classList.add('wrapper__third-column-battle-start');
                 
@@ -804,6 +796,10 @@ function battleStart(){
             itemPlayer.appendChild(wrapperImgPlayer);
     
             wrapperImgPlayer.appendChild(imgPlayer);
+
+            itemPlayer.appendChild(buttonPlayerInfo);
+
+            buttonPlayerInfo.appendChild(buttonPlayerInfoImg);
     
             itemPlayer.appendChild(titlePlayer);
     
@@ -843,6 +839,318 @@ function battleStart(){
     
         };
 
+        function playerInfoBtnEventListener(){
+
+            document.querySelector('.item__btn-info-player').addEventListener('click', () => {
+
+                disableButtons();
+
+                popupPlayerCalc();
+
+            });
+
+        };
+
+        function popupPlayerCalc(){
+
+            const popupScreen = document.createElement('div');
+
+            const popupWrapper = document.createElement('div');
+        
+            const popupContent = document.createElement('div');
+        
+            const closeBtnPopup = document.createElement('div');
+                        
+            popupScreen.className = 'popup-player-weapon show-popup';
+        
+            popupWrapper.className = 'popup-player-weapon__wrapper';
+        
+            popupContent.className = 'popup-player-weapon__content content';
+        
+            closeBtnPopup.className = 'popup-player-weapon__close-btn';
+                        
+            popupScreen.id = 'popup-player-weapon';
+        
+            closeBtnPopup.id = 'close-btn';
+        
+            document.querySelector('body').appendChild(popupScreen);
+        
+            popupScreen.appendChild(popupWrapper);
+        
+            popupWrapper.appendChild(popupContent);
+        
+            popupContent.appendChild(closeBtnPopup);
+        
+            createGridElements();
+
+            function createGridElements(){
+
+                let indexRow = 1;
+
+                let indexColumn = 1;
+
+                const countOfElem = Object.values(popupPlayerCalcText.language[language]).length * (Object.keys(popupPlayerCalcText.imagesColumn).length + 1);
+
+                for(let i = 0; i < countOfElem; i++){
+
+                    const contentItem = document.createElement('div');
+
+                    contentItem.className = `content__item item`;
+
+                    popupContent.appendChild(contentItem);
+
+                };
+
+                for(let i = 0; i < document.querySelector('#popup-player-weapon').querySelectorAll('.content__item').length; i++){
+
+                    document.querySelector('#popup-player-weapon').querySelectorAll('.content__item')[i].classList.add(`column-${indexColumn}`);
+
+                    document.querySelector('#popup-player-weapon').querySelectorAll('.content__item')[i].classList.add(`row-${indexRow}`);
+
+                    indexColumn++;
+
+                    if((i + 1) % 7 === 0){
+
+                        indexRow++;
+
+                        indexColumn = 1;
+
+                    };
+
+                };
+
+                addImgToFirstColumnItems();
+
+                addDataToPlayerCalc();
+
+                function addImgToFirstColumnItems(){
+
+                    const arrayImgSrc = Object.values(popupPlayerCalcText.imagesColumn);
+
+                    const arrayFirstColumnItems = document.querySelector('#popup-player-weapon').querySelectorAll('.column-1');
+
+                    for(let i = 1; i < arrayFirstColumnItems.length; i++){
+
+                        const itemWrapperImg = document.createElement('div');
+
+                        const itemImg = document.createElement('img');
+
+                        itemWrapperImg.className = 'item__wrapper-img';
+
+                        itemImg.className = 'item__img img';
+
+                        document.querySelector('#popup-player-weapon').querySelectorAll('.column-1')[i].appendChild(itemWrapperImg);
+
+                        itemWrapperImg.appendChild(itemImg);
+
+                        itemImg.src = arrayImgSrc[i - 1];
+
+                    };
+
+                };
+
+                function addDataToPlayerCalc(){
+
+                    const playerRaceKey = player.playerKey.race;
+
+                    const playerClassKey = player.playerKey.class;
+
+                    firstColumnData();
+
+                    secondColumnData();
+
+                    thirdColumnData();
+
+                    fourthColumnData();
+
+                    fifthColumnData();
+
+                    sixthColumnData();
+
+                    seventhColumnData();
+
+                    function firstColumnData(){
+
+                        const arrayPopupText = Object.values(popupPlayerCalcText.language[language]);
+
+                        for(let i = 0; i < document.querySelector('#popup-player-weapon').querySelectorAll('.row-1').length; i++){
+
+                            document.querySelector('#popup-player-weapon').querySelectorAll('.row-1')[i].innerText = arrayPopupText[i];
+
+                        };
+
+                    };
+
+                    function secondColumnData(){
+
+                        const arrayRaceStats = Object.values(racesTraits[playerRaceKey]);
+
+                        for(let i = 1; i < document.querySelector('#popup-player-weapon').querySelectorAll('.column-2').length; i++){
+
+                            document.querySelector('#popup-player-weapon').querySelectorAll('.column-2')[i].innerText = arrayRaceStats[i - 1];
+
+                        };
+
+                    };
+
+                    function thirdColumnData(){
+
+                        const arrayClassStats = Object.values(classesTraits[playerRaceKey][playerClassKey].traits);
+
+                        const classAttackPoints = arrayClassStats[2];
+
+                        arrayClassStats.splice(3, 0, classAttackPoints);
+
+                        for(let i = 1; i < document.querySelector('#popup-player-weapon').querySelectorAll('.column-3').length; i++){
+
+                            document.querySelector('#popup-player-weapon').querySelectorAll('.column-3')[i].innerText = arrayClassStats[i - 1];
+
+                        };
+
+                    };
+
+                    function fourthColumnData(){
+
+                        const arrayFirstWeaponStats = Object.values(player.weaponTraits.firstWeapon);
+
+                        for(let i = 1; i < document.querySelector('#popup-player-weapon').querySelectorAll('.column-4').length; i++){
+
+                            document.querySelector('#popup-player-weapon').querySelectorAll('.column-4')[i].innerText = arrayFirstWeaponStats[i - 1];
+
+                        };
+
+                    };
+
+                    function fifthColumnData(){
+
+                        const arraySecondWeaponStats = Object.values(player.weaponTraits.secondWeapon);
+
+                        for(let i = 1; i < document.querySelector('#popup-player-weapon').querySelectorAll('.column-5').length; i++){
+
+                            if(arraySecondWeaponStats.length === 0){
+
+                                document.querySelector('#popup-player-weapon').querySelectorAll('.column-5')[i].innerText = '-';
+
+                            }else{
+
+                                document.querySelector('#popup-player-weapon').querySelectorAll('.column-5')[i].innerText = arraySecondWeaponStats[i - 1];
+
+                            };
+
+                        };
+
+                    };
+
+                    function sixthColumnData(){
+
+                        for(let i = 2; i < document.querySelector('#popup-player-weapon').querySelectorAll('.column-6').length + 1; i++){
+
+                            let totalValue = 0;
+                            
+                            const arrayValuesForCalc = [];
+
+                            for(let j = 1; j < document.querySelector('#popup-player-weapon').querySelectorAll(`.row-${i}`).length; j++){
+
+                                if(document.querySelector('#popup-player-weapon').querySelectorAll(`.row-${i}`)[j].innerText === '-' || document.querySelector('#popup-player-weapon').querySelectorAll(`.row-${i}`)[j].classList.contains('column-5') === true || document.querySelector('#popup-player-weapon').querySelectorAll(`.row-${i}`)[j].classList.contains('column-6') === true || document.querySelector('#popup-player-weapon').querySelectorAll(`.row-${i}`)[j].classList.contains('column-7') === true){
+
+                                    continue;
+
+                                }else{
+
+                                    let value = parseInt(document.querySelector('#popup-player-weapon').querySelectorAll(`.row-${i}`)[j].innerText);
+    
+                                    arrayValuesForCalc.push(value);
+
+                                }
+
+                            };
+
+                            for(let k = 0; k < arrayValuesForCalc.length; k++){
+
+                                totalValue = totalValue + arrayValuesForCalc[k];
+
+                            };
+
+                            document.querySelector('#popup-player-weapon').querySelectorAll('.column-6')[i - 1].innerText = totalValue;
+
+                        };
+
+                    };
+
+                    function seventhColumnData(){
+
+                        const arraySecondWeaponStats = Object.values(player.weaponTraits.secondWeapon);
+
+                        for(let i = 2; i < document.querySelector('#popup-player-weapon').querySelectorAll('.column-7').length + 1; i++){
+
+                            if(arraySecondWeaponStats.length === 0){
+
+                                document.querySelector('#popup-player-weapon').querySelectorAll('.column-7')[i - 1].innerText = '-';
+                            
+                            }else{
+
+                                let totalValue = 0;
+                            
+                                const arrayValuesForCalc = [];
+    
+                                for(let j = 1; j < document.querySelector('#popup-player-weapon').querySelectorAll(`.row-${i}`).length; j++){
+    
+                                    if(document.querySelector('#popup-player-weapon').querySelectorAll(`.row-${i}`)[j].innerText === '-' || document.querySelector('#popup-player-weapon').querySelectorAll(`.row-${i}`)[j].classList.contains('column-4') === true || document.querySelector('#popup-player-weapon').querySelectorAll(`.row-${i}`)[j].classList.contains('column-6') === true || document.querySelector('#popup-player-weapon').querySelectorAll(`.row-${i}`)[j].classList.contains('column-7') === true){
+    
+                                        continue;
+    
+                                    }else{
+    
+                                        let value = parseInt(document.querySelector('#popup-player-weapon').querySelectorAll(`.row-${i}`)[j].innerText);
+        
+                                        arrayValuesForCalc.push(value);
+    
+                                    }
+    
+                                };
+    
+                                for(let k = 0; k < arrayValuesForCalc.length; k++){
+    
+                                    totalValue = totalValue + arrayValuesForCalc[k];
+    
+                                };
+    
+                                document.querySelector('#popup-player-weapon').querySelectorAll('.column-7')[i - 1].innerText = totalValue;
+
+                            };
+
+                        };
+
+                    };
+
+                };
+
+            };
+
+            closePopup();
+
+            function closePopup(){
+
+                document.querySelector('#popup-player-weapon').querySelector('#close-btn').addEventListener('click', () =>{
+            
+                    document.querySelector('#popup-player-weapon').classList.remove('show-popup');
+            
+                    document.querySelector('#popup-player-weapon').classList.add('hide-popup');
+            
+                    setTimeout(() => {
+            
+                        enableButtons();
+            
+                        document.querySelector('#popup-player-weapon').remove();
+                        
+                    }, '650');
+            
+                });
+            
+            };
+
+        };
+
     };
 
     new Swiper('#first-column', {
@@ -865,81 +1173,25 @@ function battleStart(){
 
 function popupTurn(textTurn){
 
-    const secondColumn = document.querySelector('#battle').querySelector('#second-column');
-
-    const enemyColumnInTableWrapper = secondColumn.querySelector('.enemy-column');
-
-    const playerColumnInTableWrapper = secondColumn.querySelector('.player-column');
-
-    const resultColumnInTableWrapper = secondColumn.querySelector('.result-column');
-
     const popup = document.createElement('div');
 
     const popupWrapper = document.createElement('div');
 
     const popupTitle = document.createElement('h3');
 
-    popup.className = 'popup show-popup';
+    popup.className = 'popup-change-turn show-popup';
 
-    popupWrapper.className = 'popup__wrapper';
+    popupWrapper.className = 'popup-change-turn__wrapper';
 
-    popupTitle.className = 'popup__title title';
+    popupTitle.className = 'popup-change-turn__title title';
 
-    document.querySelector('#battle').appendChild(popup);
+    document.querySelector('body').appendChild(popup);
 
     popup.appendChild(popupWrapper);
 
     popupWrapper.appendChild(popupTitle);
 
     popupTitle.innerText = battlePopupText.language[language].turnChange[textTurn];
-
-    if(secondColumn.contains(enemyColumnInTableWrapper) === true){
-
-        setTimeout(() => {
-            
-            enemyColumnInTableWrapper.querySelector('.trait-value').innerText = '';
-
-            enemyColumnInTableWrapper.querySelector('.trait-img').src = '';
-
-        }, '2000');
-
-        secondColumn.querySelector('.enemy-column').classList.remove('enemy-column-animation-show');
-
-        secondColumn.querySelector('.enemy-column').classList.add('enemy-column-animation-hide');
-
-    };
-
-    if(secondColumn.contains(playerColumnInTableWrapper) === true){
-
-        setTimeout(() => {
-            
-            playerColumnInTableWrapper.querySelector('.trait-value').innerText = '';
-
-            playerColumnInTableWrapper.querySelector('.trait-img').src = '';
-
-        }, '2000');
-
-        secondColumn.querySelector('.player-column').classList.remove('player-column-animation-show');
-
-        secondColumn.querySelector('.player-column').classList.add('player-column-animation-hide');
-
-    };
-
-    if(secondColumn.contains(resultColumnInTableWrapper) === true){
-
-        setTimeout(() => {
-            
-            resultColumnInTableWrapper.querySelector('.trait-value').innerText = '';
-
-            resultColumnInTableWrapper.querySelector('.trait-img').src = '';
-
-        }, '2000');
-
-        secondColumn.querySelector('.result-column').classList.remove('result-column-animation-show');
-
-        secondColumn.querySelector('.result-column').classList.add('result-column-animation-hide');
-
-    };
 
     setTimeout(() => {
         
@@ -952,6 +1204,162 @@ function popupTurn(textTurn){
         }, '1000');
 
     }, '1500');
+
+};
+
+function popupBattle(textTurn, enemyIndex, playerAction){
+
+    const popup = document.createElement('div');
+
+    const popupWrapper = document.createElement('div');
+
+    const popupTitle = document.createElement('h3');
+
+    const popupBattleWrapper = document.createElement('div');
+
+    popup.className = 'popup-battle show-popup';
+
+    popupWrapper.className = 'popup-battle__wrapper';
+
+    popupTitle.className = 'popup-battle__title title';
+
+    popupBattleWrapper.className = 'popup-battle__wrapper-cards';
+
+    document.querySelector('body').appendChild(popup);
+
+    popup.appendChild(popupWrapper);
+
+    popupWrapper.appendChild(popupTitle);
+
+    popupWrapper.appendChild(popupBattleWrapper);
+
+    popupTitle.innerText = battlePopupText.language[language].turnChange[textTurn];
+
+    if(playerAction === null || playerAction === 'attack'){
+
+        firstColumnElements(playerAction);
+
+        secondColumnElements();
+
+        thirdColumnElements();
+
+    }else if(playerAction === 'healing' || playerAction === 'defence'){
+
+        firstColumnElements(playerAction);
+
+        secondColumnElements();
+
+        thirdColumnElements();
+        
+    };
+
+    function firstColumnElements(playerAction){
+
+        console.log(enemyIndex);
+
+        console.log(document.querySelectorAll('.first-column__item-battle-start')[enemyIndex]);
+
+        const firstColumn = document.createElement('div');
+
+        firstColumn.className = 'wrapper__column column first-column';
+
+        popupBattleWrapper.appendChild(firstColumn);
+
+        if(playerAction === 'attack' || playerAction === null){
+
+            const enemyDOMClone = document.querySelectorAll('.first-column__item-battle-start')[enemyIndex].cloneNode(true);
+    
+            firstColumn.appendChild(enemyDOMClone);
+    
+            popupBattleWrapper.querySelector('.buttons').remove();
+    
+            popupBattleWrapper.querySelector('.column__item').classList.remove('rotation-y');
+    
+            popupBattleWrapper.querySelector('.column__item').classList.remove('swiper-slide-active');
+    
+            popupBattleWrapper.querySelector('.column__item').classList.remove('swiper-slide');
+    
+            popupBattleWrapper.querySelector('.column__item').style.removeProperty('width');
+    
+            popupBattleWrapper.querySelector('.column__item').style.removeProperty('margin-right');
+    
+            if(popupBattleWrapper.querySelector('.column__item').classList.contains('swiper-slide-next') === true || popupBattleWrapper.querySelector('.column__item').classList.contains('swiper-slide-prev') === true);
+            
+        };
+
+    };
+
+    function secondColumnElements(){
+
+        const secondColumn = document.createElement('div');
+
+        const enemyBattleColumn = document.createElement('div');
+
+        const resultBattleColumn = document.createElement('div');
+
+        const playerBattleColumn = document.createElement('div');
+
+        secondColumn.className = 'wrapper__column column second-column';
+
+        enemyBattleColumn.className = 'second-column__column enemy-column';
+
+        resultBattleColumn.className = 'second-column__column result-column';
+
+        playerBattleColumn.className = 'second-column__column player-column';
+
+        popupBattleWrapper.appendChild(secondColumn);
+
+        secondColumn.appendChild(enemyBattleColumn);
+
+        secondColumn.appendChild(resultBattleColumn);
+
+        secondColumn.appendChild(playerBattleColumn);
+
+        secondColumn.querySelectorAll('.second-column__column').forEach(elem =>{
+
+            const traitValue = document.createElement('span');
+
+            const traitImg = document.createElement('img');
+
+            traitValue.className = 'second-column__trait-value trait-value';
+
+            traitImg.className = 'second-column__trait-img trait-img';
+
+            elem.appendChild(traitImg);
+
+            elem.appendChild(traitValue);
+
+        });
+
+    };
+
+    function thirdColumnElements(){
+
+        const thirdColumn = document.createElement('div');
+
+        thirdColumn.className = 'wrapper__column column third-column';
+
+        const playerDOMClone = document.querySelector('.third-column__item-battle-start').cloneNode(true);
+
+        popupBattleWrapper.appendChild(thirdColumn);
+
+        thirdColumn.appendChild(playerDOMClone);
+
+        popupBattleWrapper.querySelector('.btn-info-player').remove();
+
+    };
+
+    setTimeout(() => {
+        
+        popup.classList.add('hide-popup-battle');
+
+        setTimeout(() => {
+
+            popup.remove();
+            
+        }, '1000');
+
+    }, '3000');
 
 };
 
@@ -969,19 +1377,19 @@ function popupDeadPlayer(){
 
     const popupButtonRestart = document.createElement('button');
 
-    popup.className = 'popup show-popup';
+    popup.className = 'popup-dead-player show-popup';
 
-    popupWrapper.className = 'popup__wrapper';
+    popupWrapper.className = 'popup-dead-player__wrapper';
 
-    popupTitle.className = 'popup__title title';
+    popupTitle.className = 'popup-dead-player__title title';
 
-    popupButtonWrapper.className = 'popup__wrapper-button'
+    popupButtonWrapper.className = 'popup-dead-player__wrapper-button'
 
-    popupButtonNewChar.className = 'popup__button button';
+    popupButtonNewChar.className = 'popup-dead-player__button button';
 
-    popupButtonRestart.className = 'popup__button button';
+    popupButtonRestart.className = 'popup-dead-player__button button';
 
-    document.querySelector('#battle').appendChild(popup);
+    document.querySelector('body').appendChild(popup);
 
     popup.appendChild(popupWrapper);
 
@@ -1061,17 +1469,17 @@ function popupVictory(nextFunction){
 
     const popupButtonOk = document.createElement('button');
 
-    popup.className = 'popup show-popup';
+    popup.className = 'popup-victory show-popup';
 
-    popupWrapper.className = 'popup__wrapper';
+    popupWrapper.className = 'popup-victory__wrapper';
 
-    popupTitle.className = 'popup__title title';
+    popupTitle.className = 'popup-victory__title title';
 
-    popupButtonWrapper.className = 'popup__wrapper-button'
+    popupButtonWrapper.className = 'popup-victory__wrapper-button'
 
-    popupButtonOk.className = 'popup__button button';
+    popupButtonOk.className = 'popup-victory__button button';
 
-    document.querySelector('#battle').appendChild(popup);
+    document.querySelector('body').appendChild(popup);
 
     popup.appendChild(popupWrapper);
 
@@ -1123,101 +1531,57 @@ function popupVictory(nextFunction){
 
 function popupDeadEnemy(){
 
-    document.querySelector('#battle').querySelector('#second-column').querySelector('.wrapper-battle-table').innerText = 'This enemy is already dead. PLease, choose another enemy to attack.';
+    document.querySelector('#battle').querySelector('#second-column').querySelector('.wrapper__message').innerText = 'This enemy is already dead. PLease, choose another enemy to attack.';
 
-    document.querySelector('#battle').querySelector('#second-column').querySelector('.wrapper-battle-table').classList.add('wrapper__wrapper-battle-table-text');
+    document.querySelector('#battle').querySelector('#second-column').querySelector('.wrapper__message').classList.add('wrapper__message-text');
 
 };
 
 function popupNotEnoughHealing(){
 
-    document.querySelector('#battle').querySelector('#second-column').querySelector('.wrapper-battle-table').innerText = 'You have not enough healing potions.';
+    document.querySelector('#battle').querySelector('#second-column').querySelector('.wrapper__message').innerText = 'You have not enough healing potions.';
 
-    document.querySelector('#battle').querySelector('#second-column').querySelector('.wrapper-battle-table').classList.add('wrapper__wrapper-battle-table-text');
+    document.querySelector('#battle').querySelector('#second-column').querySelector('.wrapper__message').classList.add('wrapper__message-text');
 
 };
 
 function defaultBattleTable(){
 
-    document.querySelector('#battle').querySelector('#second-column').querySelector('.wrapper-battle-table').remove();
-
-    const battleTableWrapper = document.createElement('div');
-
-    const battleTableEnemyColumn = document.createElement('div');
-
-    const battleTableResultColumn = document.createElement('div');
-
-    const battleTablePlayerColumn = document.createElement('div');
-
-    battleTableWrapper.className = 'wrapper__wrapper-battle-table wrapper-battle-table';
-
-    battleTableEnemyColumn.className = 'wrapper-battle-table__column column wrapper-battle-table___enemy-column enemy-column';
-
-    battleTableResultColumn.className = 'wrapper-battle-table__column column wrapper-battle-table___result-column result-column';
-
-    battleTablePlayerColumn.className = 'wrapper-battle-table__column column wrapper-battle-table___player-column player-column';
-
-    document.querySelector('#battle').querySelector('#second-column').querySelector('.second-column__wrapper').appendChild(battleTableWrapper);
-
-    battleTableWrapper.appendChild(battleTableEnemyColumn);
-
-    battleTableWrapper.appendChild(battleTableResultColumn);
-    
-    battleTableWrapper.appendChild(battleTablePlayerColumn);
-
-    document.querySelector('#battle').querySelector('#second-column').querySelectorAll('.wrapper-battle-table__column').forEach(elem =>{
-
-        const traitValue = document.createElement('span');
-
-        const traitImg = document.createElement('img');
-
-        traitValue.className = 'column__trait-value trait-value';
-
-        traitImg.className = 'column__trait-img trait-img';
-
-        elem.appendChild(traitImg);
-
-        elem.appendChild(traitValue);
-
-    });
+    document.querySelector('#battle').querySelector('#second-column').querySelector('.wrapper__message').innerText = '';
 
 };
 
 function deadEnemyChangeItem(){
 
-    document.querySelector('.swiper-slide-active').classList.add('rotation-y');
-        
-    setTimeout(() => {
-        
-        const overlayWrapper = document.createElement('div');
+    const overlayWrapper = document.createElement('div');
 
-        const overlayImg = document.createElement('img');
+    const overlayImg = document.createElement('img');
 
-        overlayWrapper.className = 'overlay__wrapper';
+    overlayWrapper.className = 'overlay__wrapper';
 
-        overlayImg.className = 'overlay__img';
+    overlayImg.className = 'overlay__img';
 
-        document.querySelector('.swiper-slide-active').appendChild(overlayWrapper);
+    document.querySelector('.swiper-slide-active').appendChild(overlayWrapper);
 
-        overlayWrapper.appendChild(overlayImg);
+    overlayWrapper.appendChild(overlayImg);
 
-        overlayImg.src = images.other.dead;
+    overlayImg.src = images.other.dead;
 
-        document.querySelector('.swiper-slide-active').classList.add('column__item-dead-enemy');
+    document.querySelector('.swiper-slide-active').classList.add('column__item-dead-enemy');
 
-        document.querySelector('.swiper-slide-active').querySelector('.item__wrapper-img').remove();
+    document.querySelector('.swiper-slide-active').querySelector('.item__wrapper-img').remove();
 
-        document.querySelector('.swiper-slide-active').querySelector('.title').remove();
+    document.querySelector('.swiper-slide-active').querySelector('.title').remove();
 
-        document.querySelector('.swiper-slide-active').querySelector('.list').remove();
-
-    }, '500');
+    document.querySelector('.swiper-slide-active').querySelector('.list').remove();
 
 };
 
 /// FUNCTIONS---END ///
 
 export { popupTurn };
+
+export { popupBattle };
 
 export { battleScreen };
 

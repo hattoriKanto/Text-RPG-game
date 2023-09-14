@@ -1,7 +1,7 @@
 
 /// IMPORTS---START ///
 
-import { language } from "./chooseLangPopup.js";
+import { language } from "./chooseLangScreen.js";
 
 import { disableButtons, deletePlayerData, clonePlayerTraits, enableButtons } from "../globalFunctions.js";
 
@@ -14,8 +14,6 @@ import classScreenText from "../text/creatingChar/classScreenText.js";
 import weaponsScreenText from "../text/creatingChar/weaponsScreenText.js";
 
 import charOverviewText from "../text/creatingChar/charOverviewText.js";
-
-import popup from "../screen/popup.js";
 
 import location from "../screen/locationScreen.js";
 
@@ -405,7 +403,7 @@ function btnInfoEventListener(arrayDescr, arrayKey){
 
                 const traitsKeys = Object.keys(Object.values(player.weaponTraits)[index]);
     
-                popup(titlePopup, null, traits, traitsKeys);
+                popupCharCreating(titlePopup, null, traits, traitsKeys);
     
             });
     
@@ -437,7 +435,7 @@ function btnInfoEventListener(arrayDescr, arrayKey){
         
                     const traitsKeys = Object.keys(racesTraits[key]);
     
-                    popup(titlePopup, arrayDescr[index], traits, traitsKeys);
+                    popupCharCreating(titlePopup, arrayDescr[index], traits, traitsKeys);
         
                 };
     
@@ -447,7 +445,7 @@ function btnInfoEventListener(arrayDescr, arrayKey){
         
                     const traitsKeys = Object.keys(classesTraits[playerRaceKey][key].traits);
     
-                    popup(titlePopup, arrayDescr[index], traits, traitsKeys);
+                    popupCharCreating(titlePopup, arrayDescr[index], traits, traitsKeys);
        
                 };
     
@@ -457,7 +455,7 @@ function btnInfoEventListener(arrayDescr, arrayKey){
         
                     const traitsKeys = Object.keys(weaponsTraits[playerRaceKey][choosedWeaponType][key].traits);
     
-                    popup(titlePopup, arrayDescr[index], traits, traitsKeys);
+                    popupCharCreating(titlePopup, arrayDescr[index], traits, traitsKeys);
         
                 };
     
@@ -480,6 +478,138 @@ function backToDefaultValues(){
     counterWeapon = 0;
 
     counterWeaponType = 0;
+
+};
+
+function popupCharCreating(titlePopup, descrPopup, traits, traitsKey){
+
+    createHTMLElements(traits, traitsKey);
+
+    function createHTMLElements(traits, traitsKey){
+
+        const popupScreen = document.createElement('div');
+    
+        const popupWrapper = document.createElement('div');
+    
+        const popupContent = document.createElement('div');
+    
+        const closeBtnPopup = document.createElement('div');
+    
+        const popupTitle = document.createElement('h3');
+    
+        const popuptraits = document.createElement('ul');
+    
+        popupScreen.className = 'popup-creating-char show-popup';
+    
+        popupWrapper.className = 'popup-creating-char__wrapper';
+    
+        popupContent.className = 'popup-creating-char__content content';
+    
+        closeBtnPopup.className = 'popup-creating-char__close-btn';
+    
+        popupTitle.className = 'popup-creating-char__title';
+    
+        popuptraits.className = 'popup-creating-char__traits list';
+    
+        popupScreen.id = 'popup-creating-char';
+    
+        closeBtnPopup.id = 'close-btn';
+    
+        document.querySelector('body').appendChild(popupScreen);
+    
+        popupScreen.appendChild(popupWrapper);
+    
+        popupWrapper.appendChild(popupContent);
+    
+        popupContent.appendChild(closeBtnPopup);
+    
+        popupContent.appendChild(popupTitle);
+    
+        if(descrPopup != null){
+    
+            const popupDescr = document.createElement('div');
+    
+            popupDescr.className = 'popup-creating-char__descr';
+    
+            popupContent.appendChild(popupDescr);
+    
+        };
+    
+        popupContent.appendChild(popuptraits);
+    
+        createtraitsItems();
+    
+        function createtraitsItems(){
+    
+            for(let i = 0; i < traits.length; i++){
+    
+                const item = document.createElement('li');
+    
+                const itemImg = document.createElement('img');
+    
+                const itemSpan = document.createElement('span');
+    
+                item.className = 'list__item item';
+    
+                itemImg.className = 'item__img';
+    
+                itemSpan.className = 'item__span';
+    
+                popuptraits.appendChild(item);
+    
+                item.appendChild(itemImg);
+    
+                item.appendChild(itemSpan);
+    
+            };
+    
+        };
+    
+        addDataToElements(traits, traitsKey);
+    
+    };
+
+    function addDataToElements(traits, traitsKey){
+
+        document.querySelector('#popup-creating-char').querySelector('.popup-creating-char__title').innerText = titlePopup;
+    
+        if(descrPopup != null){
+    
+            document.querySelector('#popup-creating-char').querySelector('.popup-creating-char__descr').innerText = descrPopup;
+    
+        };
+    
+        for(let i = 0; i < traits.length; i++){
+            
+            document.querySelector('#popup-creating-char').querySelectorAll('.item__img')[i].src = images.traits[traitsKey[i]];
+    
+            document.querySelector('#popup-creating-char').querySelectorAll('.item__span')[i].innerText = traits[i];
+    
+        };
+        
+        closePopup();
+    
+    };
+    
+    function closePopup(){
+    
+        document.querySelector('#popup-creating-char').querySelector('#close-btn').addEventListener('click', () =>{
+    
+            document.querySelector('#popup-creating-char').classList.remove('show-popup');
+    
+            document.querySelector('#popup-creating-char').classList.add('hide-popup');
+    
+            setTimeout(() => {
+    
+                enableButtons();
+    
+                document.querySelector('#popup-creating-char').remove();
+                
+            }, '650');
+    
+        });
+    
+    };
 
 };
 

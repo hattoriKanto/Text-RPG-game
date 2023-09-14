@@ -1,4 +1,4 @@
 
-import { chooseLanguage } from "./modules/screen/chooseLangPopup.js";
+import { chooseLanguage } from "./modules/screen/chooseLangScreen.js";
 
 chooseLanguage();

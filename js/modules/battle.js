@@ -13,7 +13,7 @@ import { inventoryItems } from "./inventoryItems.js";
 
 import images from "./images.js";
 
-import { popupDeadEnemy, popupDeadPlayer, popupNotEnoughHealing, deadEnemyChangeItem, popupTurn, defaultBattleTable, popupVictory } from "./screen/battleScreen.js";
+import { popupDeadEnemy, popupDeadPlayer, popupNotEnoughHealing, deadEnemyChangeItem, popupTurn, popupBattle, defaultBattleTable, popupVictory } from "./screen/battleScreen.js";
 
 /// IMPORTS---END ///
 
@@ -43,14 +43,6 @@ let activeEnemyIndex = 0;
 
 function battlePreparation(arrayRandomEnemiesKey, arrayEnemiesTiersKeyInBattle, nextFunction){
 
-    const wrapperTable = document.querySelector('#battle').querySelector('#second-column').querySelector('.wrapper-battle-table');
-
-    const enemyColumnInTableWrapper = wrapperTable.querySelector('.enemy-column');
-
-    const playerColumnInTableWrapper = wrapperTable.querySelector('.player-column');
-
-    const resultColumnInTableWrapper = wrapperTable.querySelector('.result-column');
-
     setTimeout(() => {
 
         enableButtons();
@@ -60,6 +52,8 @@ function battlePreparation(arrayRandomEnemiesKey, arrayEnemiesTiersKeyInBattle, 
     document.querySelector('#battle').querySelector('#first-column').querySelectorAll('.item__btn').forEach(elem =>{
 
         elem.addEventListener('click', () =>{
+
+            defaultBattleTable();
 
             document.querySelector('#battle').querySelectorAll('.first-column__item-battle-start').forEach((elem, index) =>{
 
@@ -79,12 +73,6 @@ function battlePreparation(arrayRandomEnemiesKey, arrayEnemiesTiersKeyInBattle, 
 
             });
 
-            if(wrapperTable.contains(enemyColumnInTableWrapper) === false || wrapperTable.contains(resultColumnInTableWrapper) === false || wrapperTable.contains(playerColumnInTableWrapper) === false){
-
-                defaultBattleTable();
-
-            };
-
         });
 
     });
@@ -93,11 +81,7 @@ function battlePreparation(arrayRandomEnemiesKey, arrayEnemiesTiersKeyInBattle, 
 
         elem.addEventListener('click', () =>{
 
-            if(wrapperTable.contains(enemyColumnInTableWrapper) === false || wrapperTable.contains(resultColumnInTableWrapper) === false || wrapperTable.contains(playerColumnInTableWrapper) === false){
-
-                defaultBattleTable();
-
-            };
+            defaultBattleTable();
 
             if(elem.classList.contains('first-weapon-button') === true){
 
@@ -201,13 +185,37 @@ function playerTurn(actionToDo, weapon, nextFunction){
 
         function playerHealing(){
 
+            const oldPlayerHealthPoints = playerHealthPoints;
+
             inventoryItems.healingPotion = inventoryItems.healingPotion - 1;
     
             playerHealthPoints = 10;
 
-            addDataToBattleTable('player', 'healing', null, playerHealthPoints);
-    
-            document.querySelector('#third-column').querySelectorAll('.list__item-battle-start')[0].querySelector('.list-item__span-battle-start').innerText = playerHealthPoints;
+            setTimeout(() => {
+
+                document.querySelector('#battle').querySelector('#second-column').querySelector('#healing-potion-btn').querySelector('.counter').innerText = inventoryItems.healingPotion;
+
+                popupBattle('playerTurnText', activeEnemyIndex, 'healing');
+
+                document.querySelector('.popup-battle').querySelector('.third-column').querySelectorAll('.list__item-battle-start')[0].querySelector('.list-item__span-battle-start').innerText = oldPlayerHealthPoints;
+
+                addDataToBattleTable('player', 'healing', null, playerHealthPoints);
+                
+            }, '1000');
+
+            setTimeout(() => {
+                    
+                document.querySelector('.popup-battle').querySelector('.third-column').querySelectorAll('.list__item-battle-start')[0].querySelector('.list-item__span-battle-start').innerText = playerHealthPoints;
+
+                document.querySelector('.popup-battle').querySelector('.third-column').querySelectorAll('.list__item-battle-start')[0].querySelector('.list-item__span-battle-start').classList.add('color-green');
+                
+            }, '3000');
+
+            setTimeout(() => {
+                
+                document.querySelector('#third-column').querySelectorAll('.list__item-battle-start')[0].querySelector('.list-item__span-battle-start').innerText = playerHealthPoints;
+                
+            }, '4000');
 
             setTimeout(() => {
 
@@ -215,7 +223,7 @@ function playerTurn(actionToDo, weapon, nextFunction){
         
                 enemyTurn();
                 
-            }, '1000');
+            }, '5000');
 
         };
     
@@ -260,6 +268,8 @@ function playerTurn(actionToDo, weapon, nextFunction){
             };
     
             function actionToDoArmour(){
+
+                const oldEnemyArmourPoints = enemyArmourPoints;
             
                 let battleResult = null;
                 
@@ -280,8 +290,6 @@ function playerTurn(actionToDo, weapon, nextFunction){
                     enemyArmourPoints = enemyArmourPoints - battleResult;
         
                 };
-
-                addDataToBattleTable('player', 'attack armour', playerDamageToArmourPoints, battleResult);
                 
                 console.log(`Enemy armour is ${enemyArmourPoints}.`);
         
@@ -294,12 +302,48 @@ function playerTurn(actionToDo, weapon, nextFunction){
                 };
         
                 arrayOfEnemiesTraits[activeEnemyIndex][1] = enemyArmourPoints;
-        
-                document.querySelector('.swiper-slide-active').querySelectorAll('.list__item-battle-start')[1].querySelector('.list-item__span-battle-start').innerText = enemyArmourPoints;
+
+                setTimeout(() => {
+
+                    popupBattle('playerTurnText', activeEnemyIndex, 'attack');
+                        
+                    document.querySelector('.popup-battle').querySelector('.first-column').querySelectorAll('.list__item-battle-start')[1].querySelector('.list-item__span-battle-start').innerText = oldEnemyArmourPoints;
+
+                    addDataToBattleTable('player', 'attack armour', playerDamageToArmourPoints, battleResult);
+                    
+                }, '1000');
+    
+                setTimeout(() => {
+
+                    document.querySelector('.popup-battle').querySelector('.first-column').querySelectorAll('.list__item-battle-start')[1].querySelector('.list-item__span-battle-start').innerText = enemyArmourPoints;
+
+                    if(oldEnemyArmourPoints != enemyArmourPoints){
+
+                        document.querySelector('.popup-battle').querySelector('.first-column').querySelectorAll('.list__item-battle-start')[1].querySelector('.list-item__span-battle-start').classList.add('color-red');
+
+                    };
+                         
+                }, '3000');
+    
+                setTimeout(() => {
+    
+                    document.querySelector('#first-column').querySelectorAll('.list__item-battle-start')[1].querySelector('.list-item__span-battle-start').innerText = enemyArmourPoints;
+                    
+                }, '4000');
+    
+                setTimeout(() => {
+    
+                    popupTurn('enemyTurnText');
+            
+                    enemyTurn();
+                    
+                }, '5000');
                 
             };
     
             function actionToDoHealth(){
+
+                const oldEnemyHealthPoints = enemyHealthPoints;
     
                 let battleResult = null;
         
@@ -320,8 +364,6 @@ function playerTurn(actionToDo, weapon, nextFunction){
                     enemyHealthPoints = enemyHealthPoints - battleResult;
         
                 };
-
-                addDataToBattleTable('player', 'attack health', playerDamageToHealthPoints, battleResult);
     
                 console.log(`Enemy health is ${enemyHealthPoints}.`);
             
@@ -334,9 +376,29 @@ function playerTurn(actionToDo, weapon, nextFunction){
                 };
     
                 arrayOfEnemiesTraits[activeEnemyIndex][0] = enemyHealthPoints;
-        
-                document.querySelector('.swiper-slide-active').querySelectorAll('.list__item-battle-start')[0].querySelector('.list-item__span-battle-start').innerText = enemyHealthPoints;
+
+                setTimeout(() => {
+
+                    popupBattle('playerTurnText', activeEnemyIndex, 'attack');
+                        
+                    document.querySelector('.popup-battle').querySelector('.first-column').querySelectorAll('.list__item-battle-start')[0].querySelector('.list-item__span-battle-start').innerText = oldEnemyHealthPoints;
+
+                    addDataToBattleTable('player', 'attack health', playerDamageToHealthPoints, battleResult);
+                    
+                }, '1000');
     
+                setTimeout(() => {
+                        
+                    document.querySelector('.popup-battle').querySelector('.first-column').querySelectorAll('.list__item-battle-start')[0].querySelector('.list-item__span-battle-start').innerText = enemyHealthPoints;
+
+                    if(oldEnemyHealthPoints != enemyHealthPoints){
+
+                        document.querySelector('.popup-battle').querySelector('.first-column').querySelectorAll('.list__item-battle-start')[0].querySelector('.list-item__span-battle-start').classList.add('color-red');
+
+                    };
+                    
+                }, '3000');
+
                 if(enemyHealthPoints === 0){
             
                     console.log('Enemy is dead now');
@@ -345,13 +407,25 @@ function playerTurn(actionToDo, weapon, nextFunction){
                         
                         deadEnemyChangeItem();
         
-                    }, '650');
+                    }, '4000');
         
+                }else{
+
+                    setTimeout(() => {
+                        
+                        document.querySelector('#first-column').querySelectorAll('.list__item-battle-start')[0].querySelector('.list-item__span-battle-start').innerText = enemyHealthPoints;
+
+                    }, '4000');
+
                 };
+
+                setTimeout(() => {
+
+                    areAllEnemiesDead(nextFunction);
+                    
+                }, '4000');
     
             };
-
-            areAllEnemiesDead(nextFunction);
 
         };
     
@@ -365,11 +439,33 @@ function playerTurn(actionToDo, weapon, nextFunction){
 
         function playerDefence(weapon){
 
+            const oldDefencePoints = playerDefencePoints;
+
             playerDefencePoints = playerDefencePoints + player.weaponTraits[weapon].defencePoints;
 
-            addDataToBattleTable('player', 'defence', null, player.weaponTraits[weapon].defencePoints);
+            setTimeout(() => {
 
-            document.querySelector('#third-column').querySelectorAll('.list__item-battle-start')[3].querySelector('.list-item__span-battle-start').innerText = playerDefencePoints;
+                popupBattle('playerTurnText', activeEnemyIndex, 'defence');
+                    
+                document.querySelector('.popup-battle').querySelector('.third-column').querySelectorAll('.list__item-battle-start')[3].querySelector('.list-item__span-battle-start').innerText = oldDefencePoints;
+
+                addDataToBattleTable('player', 'defence', null, player.weaponTraits[weapon].defencePoints);
+                
+            }, '1000');
+
+            setTimeout(() => {
+                    
+                document.querySelector('.popup-battle').querySelector('.third-column').querySelectorAll('.list__item-battle-start')[3].querySelector('.list-item__span-battle-start').innerText = playerDefencePoints;
+
+                document.querySelector('.popup-battle').querySelector('.third-column').querySelectorAll('.list__item-battle-start')[3].querySelector('.list-item__span-battle-start').classList.add('color-green');
+                
+            }, '3000');
+
+            setTimeout(() => {
+
+                document.querySelector('#third-column').querySelectorAll('.list__item-battle-start')[3].querySelector('.list-item__span-battle-start').innerText = playerDefencePoints;
+                
+            }, '4000');
 
             setTimeout(() => {
 
@@ -377,7 +473,7 @@ function playerTurn(actionToDo, weapon, nextFunction){
         
                 enemyTurn();
                 
-            }, '1000');
+            }, '5000');
 
         };
 
@@ -396,22 +492,26 @@ function playerTurn(actionToDo, weapon, nextFunction){
             };
 
         };
-
-        setTimeout(() => {
             
-            if(enemiesDead === true){
-                
+        if(enemiesDead === true){
+
+            setTimeout(() => {
+                    
                 popupVictory(nextFunction);
-        
-            }else{
+
+            }, '2000');
+                        
+        }else{
     
+            setTimeout(() => {
+
                 popupTurn('enemyTurnText');
             
                 enemyTurn();
                     
-            };
-
-        }, '1000');
+            }, '2000');
+                    
+        };
 
     };
 
@@ -419,18 +519,14 @@ function playerTurn(actionToDo, weapon, nextFunction){
 
 function enemyTurn(){
 
-    if(arrayOfEnemiesTraits[enemyIndex][0] === 0){
-
-        console.log(`Skip enemy on ${enemyIndex} index.`);
-
-        enemyIndex++;
-
-    };
+    nextAliveEnemy();
 
     setTimeout(() => {
 
         console.log(`Enemy on ${enemyIndex} index is attacking now.`);
             
+        const enemyIndexOld = enemyIndex;
+
         const enemyAttack = arrayOfEnemiesTraits[enemyIndex][2];
         
         if(playerArmourPoints === 0){
@@ -444,6 +540,8 @@ function enemyTurn(){
         };
 
         function actionToDoArmour(){
+
+            const oldPlayerArmourPoints = playerArmourPoints;
 
             let battleResult = null;
 
@@ -465,8 +563,6 @@ function enemyTurn(){
 
             };
 
-            addDataToBattleTable('enemy', 'attack armour', enemyAttack, battleResult);
-
             console.log(`Player armour is ${playerArmourPoints}.`);
     
             if(playerArmourPoints < 0){
@@ -479,11 +575,69 @@ function enemyTurn(){
 
             player.playerTraits.armourPoints = playerArmourPoints;
 
-            document.querySelector('#third-column').querySelectorAll('.list__item-battle-start')[1].querySelector('.list-item__span-battle-start').innerText = playerArmourPoints;
+            setTimeout(() => {
+
+                popupBattle('enemyTurnText', enemyIndexOld, null);
+                        
+                document.querySelector('.popup-battle').querySelector('.third-column').querySelectorAll('.list__item-battle-start')[1].querySelector('.list-item__span-battle-start').innerText = oldPlayerArmourPoints;
+
+                addDataToBattleTable('enemy', 'attack armour', enemyAttack, battleResult);
+                    
+            }, '1000');
+
+            setTimeout(() => {
+                
+                document.querySelector('.popup-battle').querySelector('.third-column').querySelectorAll('.list__item-battle-start')[1].querySelector('.list-item__span-battle-start').innerText = playerArmourPoints;
+
+                if(oldPlayerArmourPoints != playerArmourPoints){
+
+                    document.querySelector('.popup-battle').querySelector('.third-column').querySelectorAll('.list__item-battle-start')[1].querySelector('.list-item__span-battle-start').classList.add('color-red');
+
+                };
+
+                if(playerDefencePoints != player.playerTraits.defencePoints){
+        
+                    playerDefencePoints = player.playerTraits.defencePoints;
+        
+                    querySelector('.popup-battle').querySelector('.third-column').querySelectorAll('.list__item-battle-start')[1].querySelector('.list-item__span-battle-start').innerText = playerArmourPoints;
+        
+                };
+                    
+            }, '3000');
+
+            setTimeout(() => {
+
+                if(document.querySelector('#third-column').querySelectorAll('.list__item-battle-start')[3].querySelector('.list-item__span-battle-start').innerText != player.playerTraits.defencePoints){
+        
+                    playerDefencePoints = player.playerTraits.defencePoints;
+        
+                    document.querySelector('#third-column').querySelectorAll('.list__item-battle-start')[3].querySelector('.list-item__span-battle-start').innerText = playerDefencePoints;
+        
+                };
+
+                document.querySelector('#third-column').querySelectorAll('.list__item-battle-start')[1].querySelector('.list-item__span-battle-start').innerText = playerArmourPoints;
+                    
+            }, '4000');
+
+            setTimeout(() => {
+
+                popupTurn('playerTurnText');
+        
+                playerTurn();
+                
+            }, '5000');
+
+            setTimeout(() => {
+            
+                enableButtons();
+                
+            }, '7500');
 
         };
 
         function actionToDoHealth(){
+
+            const oldPlayerHealthPoints = playerHealthPoints;
 
             let battleResult = null;
 
@@ -513,74 +667,108 @@ function enemyTurn(){
     
             };
 
-            addDataToBattleTable('enemy', 'attack health', enemyAttack, battleResult);
-
             console.log(`Player health is ${playerHealthPoints}.`);
 
-            document.querySelector('#third-column').querySelectorAll('.list__item-battle-start')[0].querySelector('.list-item__span-battle-start').innerText = playerHealthPoints;
-
-        };
-
-        enemyIndex++;
-        
-        if(enemyIndex === document.querySelector('#battle').querySelectorAll('.first-column__item-battle-start').length){
-
-            enemyIndex = 0;
-
-        };
-
-        isPlayerDead();
-
-    }, '3500');
-
-    function isPlayerDead(){
-
-        if(playerHealthPoints === 0){
-    
-            enemyIndex = 0;
-    
-            activeEnemyIndex = 0;
-    
             setTimeout(() => {
-    
-                popupDeadPlayer();
 
-                deleteEnemiesTraits();
+                popupBattle('enemyTurnText', enemyIndexOld, null);
+                        
+                document.querySelector('.popup-battle').querySelector('.third-column').querySelectorAll('.list__item-battle-start')[0].querySelector('.list-item__span-battle-start').innerText = oldPlayerHealthPoints;
 
-                setTimeout(() => {
-        
-                    enableButtons();
+                addDataToBattleTable('enemy', 'attack health', enemyAttack, battleResult);
                     
-                }, '1000');
+            }, '1000');
+
+            setTimeout(() => {
                 
-            }, '2000');
-    
-        };
-    
-        if(playerHealthPoints > 0){
+                document.querySelector('.popup-battle').querySelector('.third-column').querySelectorAll('.list__item-battle-start')[0].querySelector('.list-item__span-battle-start').innerText = playerHealthPoints;
+
+                if(oldPlayerHealthPoints != playerHealthPoints){
+
+                    document.querySelector('.popup-battle').querySelector('.third-column').querySelectorAll('.list__item-battle-start')[0].querySelector('.list-item__span-battle-start').classList.add('color-red');
+
+                };
+                    
+            }, '3000');
 
             setTimeout(() => {
 
-                if(playerDefencePoints != player.playerTraits.defencePoints){
+                if(document.querySelector('#third-column').querySelectorAll('.list__item-battle-start')[3].querySelector('.list-item__span-battle-start').innerText != player.playerTraits.defencePoints){
         
                     playerDefencePoints = player.playerTraits.defencePoints;
         
                     document.querySelector('#third-column').querySelectorAll('.list__item-battle-start')[3].querySelector('.list-item__span-battle-start').innerText = playerDefencePoints;
         
                 };
-        
-                popupTurn('playerTurnText');
-        
-                setTimeout(() => {
-        
-                    enableButtons();
+
+                document.querySelector('#third-column').querySelectorAll('.list__item-battle-start')[0].querySelector('.list-item__span-battle-start').innerText = playerHealthPoints;
                     
-                }, '1000');
+            }, '4000');
+
+            if(playerHealthPoints > 0){
+
+                setTimeout(() => {
+
+                    popupTurn('playerTurnText');
+            
+                    playerTurn();
+                    
+                }, '5000');
+
+            }else if(playerHealthPoints === 0){
+
+                enemyIndex = 0;
+        
+                activeEnemyIndex = 0;
+
+                setTimeout(() => {
+
+                    popupDeadPlayer();
+    
+                    deleteEnemiesTraits();
+                    
+                }, '5000');
+
+            };
+
+            setTimeout(() => {
+            
+                enableButtons();
                 
-            }, '2000');
+            }, '7500');
 
         };
-    
+
+        enemyIndex++;
+
+        if(enemyIndex === document.querySelector('#battle').querySelectorAll('.first-column__item-battle-start').length){
+
+            enemyIndex = 0;
+
+        };
+
+    }, '3500');
+
+    function nextAliveEnemy(){
+
+        for(let i = 0; i < arrayOfEnemiesTraits.length; i++){
+
+            if(arrayOfEnemiesTraits[i][0] > 0){
+
+                enemyIndex = i;
+
+                console.log(`Enemy on ${i} index is next alive enemy in the array.`)
+
+                break;
+
+            }else{
+
+                console.log(`Skip enemy on ${i} index.`);
+
+            }
+
+        };
+
     };
 
     function deleteEnemiesTraits(){
@@ -593,21 +781,21 @@ function enemyTurn(){
 
 function addDataToBattleTable(turn, actionToDo, damageInput, damageResult){
 
-    const enemyColumn = document.querySelector('#battle').querySelector('#second-column').querySelector('.enemy-column');
+    const enemyColumn = document.querySelector('.popup-battle').querySelector('.second-column').querySelector('.enemy-column');
 
-    const playerColumn = document.querySelector('#battle').querySelector('#second-column').querySelector('.player-column');
+    const playerColumn = document.querySelector('.popup-battle').querySelector('.second-column').querySelector('.player-column');
 
-    const resultColumn = document.querySelector('#battle').querySelector('#second-column').querySelector('.result-column');
+    const battleColumn = document.querySelector('.popup-battle').querySelector('.second-column').querySelector('.result-column');
 
-    resultColumn.classList.add('result-column-animation-show');
+    battleColumn.classList.add('result-column-animation-show');
 
-    if(enemyColumn.classList.contains('enemy-column-animation-hide') === true && playerColumn.classList.contains('player-column-animation-hide') === true && resultColumn.classList.contains('result-column-animation-hide') === true){
+    if(enemyColumn.classList.contains('enemy-column-animation-hide') === true && playerColumn.classList.contains('player-column-animation-hide') === true && battleColumn.classList.contains('result-column-animation-hide') === true){
 
         enemyColumn.classList.remove('enemy-column-animation-hide');
 
         playerColumn.classList.remove('player-column-animation-hide');
     
-        resultColumn.classList.remove('result-column-animation-hide');
+        battleColumn.classList.remove('result-column-animation-hide');
     };
 
     if(turn === 'player'){
@@ -624,15 +812,15 @@ function addDataToBattleTable(turn, actionToDo, damageInput, damageResult){
 
             if(damageResult > 0){
 
-                resultColumn.querySelector('.trait-value').innerText = '-' + damageResult;
+                battleColumn.querySelector('.trait-value').innerText = '-' + damageResult;
 
             }else{
 
-                resultColumn.querySelector('.trait-value').innerText = damageResult;
+                battleColumn.querySelector('.trait-value').innerText = damageResult;
 
             }
 
-            resultColumn.querySelector('.trait-img').src = images.traits.armourPoints;
+            battleColumn.querySelector('.trait-img').src = images.traits.armourPoints;
 
             enemyColumn.classList.add('enemy-column-animation-show');
 
@@ -652,15 +840,15 @@ function addDataToBattleTable(turn, actionToDo, damageInput, damageResult){
 
             if(damageResult > 0){
 
-                resultColumn.querySelector('.trait-value').innerText = '-' + damageResult;
+                battleColumn.querySelector('.trait-value').innerText = '-' + damageResult;
 
             }else{
 
-                resultColumn.querySelector('.trait-value').innerText = damageResult;
+                battleColumn.querySelector('.trait-value').innerText = damageResult;
 
             }
 
-            resultColumn.querySelector('.trait-img').src = images.traits.healthPoints;
+            battleColumn.querySelector('.trait-img').src = images.traits.healthPoints;
 
             enemyColumn.classList.add('enemy-column-animation-show');
 
@@ -670,17 +858,25 @@ function addDataToBattleTable(turn, actionToDo, damageInput, damageResult){
 
         if(actionToDo === 'healing'){
 
-            resultColumn.querySelector('.trait-value').innerText = '+' + damageResult
+            enemyColumn.remove();
 
-            resultColumn.querySelector('.trait-img').src = images.traits.healthPoints;
+            playerColumn.remove();
+
+            battleColumn.querySelector('.trait-value').innerText = '+' + damageResult
+
+            battleColumn.querySelector('.trait-img').src = images.traits.healthPoints;
 
         };
 
         if(actionToDo === 'defence'){
 
-            resultColumn.querySelector('.trait-value').innerText = '+' + damageResult;
+            enemyColumn.remove();
 
-            resultColumn.querySelector('.trait-img').src = images.traits.defencePoints;
+            playerColumn.remove();
+
+            battleColumn.querySelector('.trait-value').innerText = '+' + damageResult;
+
+            battleColumn.querySelector('.trait-img').src = images.traits.defencePoints;
 
         };
 
@@ -700,15 +896,15 @@ function addDataToBattleTable(turn, actionToDo, damageInput, damageResult){
 
             if(damageResult > 0){
 
-                resultColumn.querySelector('.trait-value').innerText = '-' + damageResult;
+                battleColumn.querySelector('.trait-value').innerText = '-' + damageResult;
 
             }else{
 
-                resultColumn.querySelector('.trait-value').innerText = damageResult;
+                battleColumn.querySelector('.trait-value').innerText = damageResult;
 
             }
 
-            resultColumn.querySelector('.trait-img').src = images.traits.armourPoints;
+            battleColumn.querySelector('.trait-img').src = images.traits.armourPoints;
 
         };
 
@@ -716,15 +912,15 @@ function addDataToBattleTable(turn, actionToDo, damageInput, damageResult){
 
             if(damageResult > 0){
 
-                resultColumn.querySelector('.trait-value').innerText = '-' + damageResult;
+                battleColumn.querySelector('.trait-value').innerText = '-' + damageResult;
 
             }else{
 
-                resultColumn.querySelector('.trait-value').innerText = damageResult;
+                battleColumn.querySelector('.trait-value').innerText = damageResult;
 
             }
 
-            resultColumn.querySelector('.trait-img').src = images.traits.healthPoints;
+            battleColumn.querySelector('.trait-img').src = images.traits.healthPoints;
 
         };
 
