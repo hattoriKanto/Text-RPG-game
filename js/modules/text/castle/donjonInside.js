@@ -240,6 +240,124 @@ const donjonInsideText = {
     
                 },
 
+                /// MAGE---ROOM---START
+
+                donjonDoorToMageRoom: {
+    
+                    textTitle: 'The door to the communications mage`s room',
+    
+                    textDescr: 'Дверь в комнату слегка приоткрыта. Над дверью закрепленная табличка с изображением жезла. Магический жезл - один из основных атрибутов имперского мага, который является сосредоточением всей мощи мага. Жезлы по своей форме и структуре уникальны и очень ценяться на чёрном рынке. Однако, никто кроме хазяина не может использовать жезл, а после смерти мага жезл становится бесполезным куском ценного произвидения исскуства. Как появились жезлы и как люди Империи получили магические свойства остаётся информацией с грифом секретно.',
+    
+                    textButton: {
+    
+                        firstButton: 'Enter the room'
+    
+                    }
+    
+                },
+
+                donjonMageRoom: {
+    
+                    textTitle: 'Комната мага-связиста',
+    
+                    textDescr: 'В помещении царит разруха и бардак, однако отсутствуют хоть какие-то трупы. Скорее всего, нападавшие перерыли всю комнату в поисках чего-то. Что стало с магом и жив ли он ещё - непонятно. Возможно стоит осмотреться и тогда что-то и прояснится.',
+    
+                    textButton: {
+    
+                        firstButton: 'Осмотреть устройство связи',
+
+                        secondButton: 'Осмотреть спальное место',
+
+                        thirdButton: 'Осмотреть стол мага'
+    
+                    }
+    
+                },
+
+                donjonMageRoomCommDevice: {
+    
+                    textTitle: 'Устройство связи',
+    
+                    textDescr: 'Стандартное устройство для связи в имперских военных формированиях. Разработанно анонимными магом и гномом-кузнецом более 30 лет назад для замены голубиной почты. Как и вся военная документация, технические характеристики и чертежи устройства засекреченны. Конструкция устройства, на первый взгляд, очень проста: металическая сфера с сквозным отверстием, которая лежит в центре двух металических ободов. Сама же сфера имеет различные рунные символы. Вся эта конструкция стоит на металической платформе. Это устройство занимает более половины комнаты, и всё же, похоже эта маленькая сфера выполняет основную работу. Правда, как всё это работает не понятно.',
+    
+                    textButton: {
+    
+                        firstButton: 'Осмотреть спальное место',
+
+                        secondButton: 'Осмотреть стол мага',
+
+                        thirdButton: 'Go out into the corridor'
+    
+                    }
+    
+                },
+
+                donjonMageRoomTable: {
+    
+                    textTitle: 'Стол мага',
+    
+                    textDescr: 'Судя по слою пыли на столе, к нему никто не подходил уже долгое время. На столе лежит журнал, в котором указаны даты выходя на связь с командыванием. Последний выход был пару дней назад. Возможно с устройством связи что-то не так или возможно это саботаж...',
+    
+                    textButton: {
+    
+                        firstButton: 'Осмотреть спальное место',
+
+                        secondButton: 'Осмотреть устройство связи',
+
+                        thirdButton: 'Go out into the corridor'
+    
+                    }
+    
+                },
+
+                donjonMageRoomSleepingPlace: {
+    
+                    textTitle: 'Sleeping place',
+    
+                    textDescr: 'Комната мага разделенна стеной с проходом. Пройдя в проход, вы обнаружили спальное место: обычная кровать и небольшой шкаф. Кровать стоит по центру помещения, а шкаф - в дальнем левом углу от входа. После осмотра спального места, вы заметили подёртый пол вокруг кровати. Похоже, кто-то двигал кровать довольно часто. Отодвинув кровать, вы обнаружили небольшую дверцу. Открыв её, вы обнаружили тайник с различными бумагами, а также парочку зелий.',
+    
+                    textButton: {
+    
+                        firstButton: 'Examine the papers'
+    
+                    }
+    
+                },
+
+                donjonMageRoomPapers: {
+    
+                    textTitle: 'The papers',
+    
+                    textDescr: 'The amount of papers was not large, however, if the mage was hiding them here, they were very valuable. The first thing in the stack of papers was a folded detailed map of the castle. It showed the guard posts as well as their shift times and officer`s rooms. The second paper was an unsent report that was dated today. And the last paper is alchemical notes about an acid that can dissolve any organic material. It seems that you could observe the effects of this acid in the kitchen in the barracks and on the second floor of the stables.',
+    
+                    textButton: {
+    
+                        firstButton: 'Read the report'
+    
+                    }
+    
+                },
+
+                donjonMageRoomReport: {
+    
+                    textTitle: 'Magician`s report',
+    
+                    textDescr: 'The mage`s short and unfinished cryptic report, "My mission here is almost complete, Kagan. The Imperial officers are dead, only the Commandant remains. In the chaos that follows, I will take the plant and come to you in the Rift. For the glory of...". That`s where the report ends, it seems the mage isn`t the man he claims to be. Who is he then? And who awaits him in the Rift?',
+    
+                    textButton: {
+    
+                        firstButton: 'Examine the magician`s table',
+
+                        secondButton: 'Inspect the communication device',
+
+                        thirdButton: 'Go out into the corridor'
+    
+                    }
+    
+                },
+
+                /// MAGE---ROOM--END
+
                 /// CHAPEL---START ///
 
                 donjonDoorToChapel: {
@@ -704,7 +822,7 @@ const donjonInsideText = {
     
                     textTitle: 'Стол мага',
     
-                    textDescr: '',
+                    textDescr: 'Судя по слою пыли на столе, к нему никто не подходил уже долгое время. На столе лежит журнал, в котором указаны даты выходя на связь с командыванием. Последний выход был пару дней назад. Возможно с устройством связи что-то не так или возможно это саботаж...',
     
                     textButton: {
     
@@ -722,7 +840,35 @@ const donjonInsideText = {
     
                     textTitle: 'Спальное место',
     
-                    textDescr: '',
+                    textDescr: 'Комната мага разделенна стеной с проходом. Пройдя в проход, вы обнаружили спальное место: обычная кровать и небольшой шкаф. Кровать стоит по центру помещения, а шкаф - в дальнем левом углу от входа. После осмотра спального места, вы заметили подёртый пол вокруг кровати. Похоже, кто-то двигал кровать довольно часто. Отодвинув кровать, вы обнаружили небольшую дверцу. Открыв её, вы обнаружили тайник с различными бумагами, а также парочку зелий.',
+    
+                    textButton: {
+    
+                        firstButton: 'Осмотреть бумаги'
+    
+                    }
+    
+                },
+
+                donjonMageRoomPapers: {
+    
+                    textTitle: 'Бумаги',
+    
+                    textDescr: 'Количество бумаг не большое, однако, если маг прятал их здесь, то они были очень ценными. Первое, что лежало в стопке документов, была сложенная детальная карта замка. На ней отображены посты охраны, а также время их смены и офицерские комнаты. Второй документ - не отправленный отчёт, который датируется сегодняшним днём. И последняя бумага - алхимические заметки про кислоту, которая может растворить любой органический материал. Похоже, что действие этой кислоты вы могли наблюдать на кухне в казарме и на втором этаже конюшен.',
+    
+                    textButton: {
+    
+                        firstButton: 'Прочитать отчёт'
+    
+                    }
+    
+                },
+
+                donjonMageRoomReport: {
+    
+                    textTitle: 'Отчёт мага',
+    
+                    textDescr: 'Короткий и не дописанный таинственный отчёт мага: "Моя миссия здесь почти завершена, каган. Имперские офицеры мертвы, остался только комендант. В хаосе, который последует, я заберу растение и прибуду к вам в Разлом. Во славу...". На этом отчёт заканчивается, похоже маг не тот, за кого он себя выдаёт. И кто же он тогда? И кто ожидает его в Разломе?',
     
                     textButton: {
     
