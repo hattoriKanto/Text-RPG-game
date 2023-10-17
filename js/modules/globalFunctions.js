@@ -96,6 +96,78 @@ function backToDefaultPlayerTraits(){
 
 };
 
+function createFooterItem(footerItemCount){
+    
+    for(let i = 0; i < footerItemCount; i++){
+
+        const footerItem = document.createElement('div');
+
+        const footerBtn = document.createElement('button');
+
+        footerItem.className = 'footer__item';
+
+        footerBtn.className = 'footer__button button';
+
+        document.querySelector('#castle').querySelector('.footer').appendChild(footerItem);
+
+        footerItem.appendChild(footerBtn);
+
+    };
+
+};
+
+function showNextSlide(){
+
+    if(document.querySelector('.screen ').querySelector('.wrapper').classList.contains('rotation-x') === true){
+
+        document.querySelector('.screen ').querySelector('.wrapper').classList.remove('rotation-x');
+
+        document.querySelector('.screen ').querySelector('.wrapper').classList.add('reverse-rotation-x');
+
+    } else if(document.querySelector('.screen ').querySelector('.wrapper').classList.contains('reverse-rotation-x') === true){
+
+        document.querySelector('.screen ').querySelector('.wrapper').classList.remove('reverse-rotation-x');
+
+        document.querySelector('.screen ').querySelector('.wrapper').classList.add('rotation-x');
+
+    } else if(document.querySelector('.screen ').querySelector('.wrapper').classList.contains('reverse-rotation-x') != true || document.querySelector('.screen ').querySelector('.wrapper').classList.contains('reverse-rotation-x') != true){
+
+        document.querySelector('.screen ').querySelector('.wrapper').classList.add('rotation-x');
+
+    }
+
+};
+
+function removeButtons(){
+
+    setTimeout(() => {
+            
+        document.querySelector('.screen').querySelectorAll('.footer__item').forEach(elem =>{
+
+            elem.remove();
+        
+        });
+
+    }, '650');
+
+};
+
+function returnTextScreenAfterBattle(){
+
+    document.querySelector('.popup-victory').remove();
+
+    document.querySelector('#battle').remove();
+
+    setTimeout(() => {
+        
+        document.querySelector('.screen').classList.remove('hide-screen');
+
+        document.querySelector('.screen').classList.add('show-screen');
+
+    }, '650');
+
+};
+
 /// FUNCTIONS---END ///
 
 /// EXPORTS---START ///
@@ -109,5 +181,13 @@ export { backToDefaultPlayerTraits };
 export { disableButtons };
 
 export { enableButtons };
+
+export {createFooterItem};
+
+export {showNextSlide};
+
+export {removeButtons};
+
+export {returnTextScreenAfterBattle};
 
 /// EXPORTS---END ///

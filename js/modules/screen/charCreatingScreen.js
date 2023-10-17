@@ -3,7 +3,7 @@
 
 import { language } from "./chooseLangScreen.js";
 
-import { disableButtons, deletePlayerData, clonePlayerTraits, enableButtons } from "../globalFunctions.js";
+import { disableButtons, deletePlayerData, clonePlayerTraits, enableButtons, showNextSlide, removeButtons} from "../globalFunctions.js";
 
 import startScreenText from "../text/creatingChar/startScreenText.js";
 
@@ -28,6 +28,7 @@ import images from "../images.js";
 import { player } from "../player.js";
 
 import { battleScreen } from "./battleScreen.js";
+import { castleDonjon } from "./location/castleDonjonScreen.js";
 
 /// IMPORTS---END ///
 
@@ -46,28 +47,6 @@ let counterWeaponType = 0;
 /// GLOBAL---VARIABLES---END ///
 
 /// REPEATABLE---FUNCTIONS---START ///
-
-function rotationAnimation(){
-
-    if(document.querySelector('#char-creating').querySelector('.wrapper').classList.contains('rotation-x') === true){
-
-        document.querySelector('#char-creating').querySelector('.wrapper').classList.remove('rotation-x');
-
-        document.querySelector('#char-creating').querySelector('.wrapper').classList.add('reverse-rotation-x');
-
-    } else if(document.querySelector('#char-creating').querySelector('.wrapper').classList.contains('reverse-rotation-x') === true){
-
-        document.querySelector('#char-creating').querySelector('.wrapper').classList.remove('reverse-rotation-x');
-
-        document.querySelector('#char-creating').querySelector('.wrapper').classList.add('rotation-x');
-
-    } else if(document.querySelector('#char-creating').querySelector('.wrapper').classList.contains('reverse-rotation-x') != true || document.querySelector('#char-creating').querySelector('.wrapper').classList.contains('reverse-rotation-x') != true){
-
-        document.querySelector('#char-creating').querySelector('.wrapper').classList.add('rotation-x');
-
-    }
-
-}
 
 function createFooterItem(footerItemCount, needInfoBtn){
 
@@ -183,17 +162,9 @@ function chooseWeaponType(arrayOfClassWeapon, arrayWeaponsType){
 
                 };
 
-                rotationAnimation();
+                showNextSlide();
 
-                setTimeout(() => {
-            
-                    document.querySelector('#char-creating').querySelectorAll('.footer__item').forEach(elem =>{
-            
-                        elem.remove();
-                    
-                    });
-            
-                }, '650');
+                removeButtons();
 
                 chooseWeapon(choosedWeaponType);
 
@@ -303,6 +274,10 @@ function chooseWeapon(choosedWeaponType){
 
                 disableButtons();
 
+                showNextSlide();
+
+                removeButtons();
+
                 let keyWord = null;
 
                 const key = Object.keys(weaponsScreenText.language[language][playerRaceKey][choosedWeaponType].weapons)[index];
@@ -316,18 +291,6 @@ function chooseWeapon(choosedWeaponType){
                     addDataToPlayer(key, text, keyWord);
 
                     Object.assign(player.weaponTraits[keyWord], weaponsTraits[playerRaceKey][choosedWeaponType][choosedWeapon].traits);
-
-                    rotationAnimation();
-
-                    setTimeout(() => {
-                
-                        document.querySelector('#char-creating').querySelectorAll('.footer__item').forEach(elem =>{
-                
-                            elem.remove();
-                        
-                        });
-                
-                    }, '650');
 
                     if(weaponsTraits[playerRaceKey][choosedWeaponType][choosedWeapon].isTwoHanded === true || playerClassKey === 'berserk'){
 
@@ -346,18 +309,6 @@ function chooseWeapon(choosedWeaponType){
                     addDataToPlayer(key, text, keyWord);
 
                     Object.assign(player.weaponTraits[keyWord], weaponsTraits[playerRaceKey][choosedWeaponType][choosedWeapon].traits);
-
-                    rotationAnimation();
-
-                    setTimeout(() => {
-                
-                        document.querySelector('#char-creating').querySelectorAll('.footer__item').forEach(elem =>{
-                
-                            elem.remove();
-                        
-                        });
-                
-                    }, '650');
 
                     charOverview();
 
@@ -735,17 +686,9 @@ function createHTMLElements(){
 
                 disableButtons();
 
-                rotationAnimation();
+                showNextSlide();
 
-                setTimeout(() => {
-            
-                    document.querySelector('#char-creating').querySelectorAll('.footer__item').forEach(elem =>{
-            
-                        elem.remove();
-                    
-                    });
-            
-                }, '650');
+                removeButtons();
 
                 chooseRace();
     
@@ -825,17 +768,9 @@ function chooseRace(){
 
                 addDataToPlayer(key, text, keyWord);
 
-                rotationAnimation();
+                showNextSlide();
 
-                setTimeout(() => {
-            
-                    document.querySelector('#char-creating').querySelectorAll('.footer__item').forEach(elem =>{
-            
-                        elem.remove();
-                    
-                    });
-            
-                }, '650');
+                removeButtons();
 
                 chooseClass();
 
@@ -933,17 +868,9 @@ function chooseClass(){
 
                 addDataToPlayer(key, text, keyWord);
 
-                rotationAnimation();
+                showNextSlide();
 
-                setTimeout(() => {
-            
-                    document.querySelector('#char-creating').querySelectorAll('.footer__item').forEach(elem =>{
-            
-                        elem.remove();
-                    
-                    });
-            
-                }, '650');
+                removeButtons();
 
                 weaponsTypeKeys();
 
@@ -1203,7 +1130,7 @@ function charOverview(){
 
                     clonePlayerTraits();
 
-                    battleScreen([2, 1, 0], 'castleDonjon');
+                    castleDonjon();
 
                 };
 

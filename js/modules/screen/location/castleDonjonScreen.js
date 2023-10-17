@@ -1,9 +1,11 @@
 
 /// IMPORTS---START ///
 
+import { createFooterItem, showNextSlide, removeButtons, disableButtons, enableButtons } from "../../globalFunctions.js";
+
 import { language } from "../chooseLangScreen.js";
 
-import { donjonInsideText } from "../../text/castle/donjonInside.js";
+import { donjonInsideText } from "../../text/castle/donjonInsideText.js";
 
 import { visitedLocations } from "../../visitedLocations.js";
 
@@ -105,6 +107,8 @@ function createHTMLElements(){
 
         createFooterItem(footerItemCount);
 
+        disableButtons();
+
     };
     
     function addDataToElements(){
@@ -123,9 +127,19 @@ function createHTMLElements(){
 
     function eventListener(){
 
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
         document.querySelector('#castle').querySelector('.button').addEventListener('click', () =>{
 
+            disableButtons();
+
             showNextSlide();
+
+            removeButtons();
 
             donjonCrossroads();
 
@@ -145,7 +159,7 @@ function donjonCrossroads(){
 
         document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonCrossroads.textTitle;
 
-        document.querySelector('#castle').querySelector('.main__descr').innerText = castleCourtyardText.language[language].madonjonInsideText.language[language].donjonFirstFloor.donjonCrossroadsinText.textDescr;
+        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonCrossroads.textDescr;
 
         document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
 
@@ -159,181 +173,33 @@ function donjonCrossroads(){
 
     function eventListener(){
 
-        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+        setTimeout(() => {
 
-            elem.addEventListener('click', () =>{
-
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCrossroads.textButton.firstBtn){
-
-                    showNextSlide();
-    
-                    donjonCorridorRight();
-    
-                };
-    
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCrossroads.textButton.secondBtn){
-    
-                    showNextSlide();
-    
-                    donjonCorridorLeft();
-    
-                };
-
-            });
-
-        });
-
-    };
-
-};
-
-function donjonCorridorRight(){
-
-    const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton).length;
-
-    setTimeout(() => {
-
-        createFooterItem(footerItemCount);
-
-        document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textTitle;
-
-        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textDescr;
-
-        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
-
-            elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton)[index];
-
-        });
-
-        footerItemsCheck();
-
-        function footerItemsCheck(){
-
-            document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
-               
-                if(visitedLocations.castle.donjon.corridorRight.deadBodyCorridor.isVisited === false && visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === false && visitedLocations.castle.donjon.corridorRight.chapelRoom.isVisited === false){
-
-                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.fourthBtn){
-        
-                        elem.closest('.footer__item').remove();
-    
-                    };
-    
-                };
-
-                if(visitedLocations.castle.donjon.corridorRight.deadBodyCorridor.isVisited === true && visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === true && visitedLocations.castle.donjon.corridorRight.chapelRoom.isVisited === true){
-
-                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.fourthBtn){
-        
-                        elem.closest('.footer__item').remove();
-    
-                    };
-    
-                };
-
-                if(visitedLocations.castle.donjon.corridorRight.deadBodyCorridor.isVisited === false && visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === true && visitedLocations.castle.donjon.corridorRight.chapelRoom.isVisited === true){
-
-                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.firstBtn){
-        
-                        elem.closest('.footer__item').remove();
-    
-                    };
-    
-                };
-
-                if(visitedLocations.castle.donjon.corridorRight.deadBodyCorridor.isVisited === true && visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === false && visitedLocations.castle.donjon.corridorRight.chapelRoom.isVisited === true){
-
-                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.secondBtn){
-        
-                        elem.closest('.footer__item').remove();
-    
-                    };
-    
-                };
-
-                if(visitedLocations.castle.donjon.corridorRight.deadBodyCorridor.isVisited === true && visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === true && visitedLocations.castle.donjon.corridorRight.chapelRoom.isVisited === false){
-
-                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.thirdBtn){
-        
-                        elem.closest('.footer__item').remove();
-    
-                    };
-    
-                };
-
-                if(visitedLocations.castle.donjon.corridorRight.deadBodyCorridor.isVisited === false && visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === false && visitedLocations.castle.donjon.corridorRight.chapelRoom.isVisited === true){
-
-                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.thirdBtn || elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.fourthBtn){
-        
-                        elem.closest('.footer__item').remove();
-    
-                    };
-    
-                };
-
-                if(visitedLocations.castle.donjon.corridorRight.deadBodyCorridor.isVisited === false && visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === true && visitedLocations.castle.donjon.corridorRight.chapelRoom.isVisited === false){
-
-                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.secondBtn || elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.fourthBtn){
-        
-                        elem.closest('.footer__item').remove();
-    
-                    };
-    
-                };
-
-                if(visitedLocations.castle.donjon.corridorRight.deadBodyCorridor.isVisited === true && visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === false && visitedLocations.castle.donjon.corridorRight.chapelRoom.isVisited === false){
-
-                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.firstBtn || elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.fourthBtn){
-        
-                        elem.closest('.footer__item').remove();
-    
-                    };
-    
-                };
-
-            });
-    
-        };
-
-        eventListener();
-        
-    }, '650');
-
-    function eventListener(){
+            enableButtons();
+            
+        }, '2000');
 
         document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
             elem.addEventListener('click', () =>{
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.firstBtn){
+                disableButtons();
+
+                removeButtons();
+
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCrossroads.textButton.firstButton){
 
                     showNextSlide();
     
-                    donjonDoorToMage();
+                    corridorRight();
     
                 };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.secondBtn){
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCrossroads.textButton.secondButton){
     
                     showNextSlide();
     
-                    donjonDoorToChapel();
-    
-                };
-    
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.thirdBtn){
-    
-                    showNextSlide();
-    
-                    donjonRightCorridorDeadBody();
-    
-                };
-    
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.fourthBtn){
-    
-                    showNextSlide();
-    
-                    donjonCorridorLeft();
+                    corridorLeft();
     
                 };
 
@@ -347,7 +213,179 @@ function donjonCorridorRight(){
 
 /// CORRIDOR---LEFT---START ///
 
-function donjonCorridorLeft(){
+// function corridorLeft(){
+
+//     visitedLocations.castle.donjon.corridorLeft.isVisited = true;
+
+//     const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton).length;
+
+//     setTimeout(() => {
+
+//         createFooterItem(footerItemCount);
+
+//         document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textTitle;
+
+//         document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textDescr;
+
+//         document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+//             elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton)[index];
+
+//         });
+
+//         footerItemsCheck();
+
+//         function footerItemsCheck(){
+
+//             document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+//                 if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === true && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === true && visitedLocations.castle.donjon.corridorLeft.warehouseDoor.isVisited === true){
+
+//                     if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.fourthButton){
+            
+//                         elem.closest('.footer__item').remove();
+        
+//                     };
+        
+//                 };
+
+//                 if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === false && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === false && visitedLocations.castle.donjon.corridorLeft.warehouseDoor.isVisited === false){
+
+//                     if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.fourthButton || elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.fifthButton){
+            
+//                         elem.closest('.footer__item').remove();
+        
+//                     };
+        
+//                 };
+
+//                 if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === false && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === true && visitedLocations.castle.donjon.corridorLeft.warehouseDoor.isVisited === true){
+
+//                     if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.firstButton){
+            
+//                         elem.closest('.footer__item').remove();
+        
+//                     };
+        
+//                 };
+
+//                 if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === true && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === false && visitedLocations.castle.donjon.corridorLeft.warehouseDoor.isVisited === true){
+
+//                     if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.secondButton){
+            
+//                         elem.closest('.footer__item').remove();
+        
+//                     };
+        
+//                 };
+
+//                 if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === true && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === true && visitedLocations.castle.donjon.corridorLeft.warehouseDoor.isVisited === false){
+
+//                     if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.thirdButton){
+            
+//                         elem.closest('.footer__item').remove();
+        
+//                     };
+        
+//                 };
+
+//                 if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === false && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === false && visitedLocations.castle.donjon.corridorLeft.warehouseDoor.isVisited === true){
+
+//                     if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.firstButton || elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.secondButton){
+            
+//                         elem.closest('.footer__item').remove();
+        
+//                     };
+        
+//                 };
+
+//                 if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === false && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === true && visitedLocations.castle.donjon.corridorLeft.warehouseDoor.isVisited === false){
+
+//                     if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.firstButton || elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.thirdButton){
+            
+//                         elem.closest('.footer__item').remove();
+        
+//                     };
+        
+//                 };
+
+//                 if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === true && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === false && visitedLocations.castle.donjon.corridorLeft.warehouseDoor.isVisited === false){
+
+//                     if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.secondButton || elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.thirdButton){
+            
+//                         elem.closest('.footer__item').remove();
+        
+//                     };
+        
+//                 };
+
+//             });
+    
+//         };
+
+//         eventListener();
+        
+//     }, '650');
+
+//     function eventListener(){
+
+//         setTimeout(() => {
+
+//             enableButtons();
+            
+//         }, '2000');
+
+//         document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+//             elem.addEventListener('click', () =>{
+
+//                 disableButtons();
+
+//                 removeButtons();
+
+//                 if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.firstButton){
+
+//                     showNextSlide();
+
+//                     doorToAlchemist();
+        
+//                 };
+    
+//                 if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.secondButton){
+    
+//                     showNextSlide();
+
+//                     doorToDungeon();
+        
+//                 };
+    
+//                 if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.thirdButton){
+    
+//                     showNextSlide();
+
+//                     doorToWarehouse();
+        
+//                 };
+    
+//                 if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.fourthButton){
+    
+//                     showNextSlide();
+
+//                     corridorRight();
+        
+//                 };
+
+//             });
+
+//         });
+
+//     };
+
+// };
+
+function corridorLeft(){
+
+    visitedLocations.castle.donjon.corridorLeft.isVisited = true;
 
     const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton).length;
 
@@ -370,85 +408,87 @@ function donjonCorridorLeft(){
         function footerItemsCheck(){
 
             document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
-               
-                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === false && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === false && visitedLocations.castle.donjon.corridorLeft.warehouseDoor.isVisited === false){
-
-                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.fourthBtn){
-        
-                        elem.closest('.footer__item').remove();
-    
-                    };
-    
-                };
 
                 if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === true && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === true && visitedLocations.castle.donjon.corridorLeft.warehouseDoor.isVisited === true){
 
-                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.fourthBtn){
-        
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.fourthButton){
+            
                         elem.closest('.footer__item').remove();
-    
+        
                     };
-    
+        
                 };
 
-                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === false && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === true && visitedLocations.castle.donjon.corridorLeft.warehouseDoor.isVisited === true){
+                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === false && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === false && visitedLocations.castle.donjon.corridorLeft.warehouseDoor.isVisited === false){
 
-                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.firstBtn){
-        
+                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.fourthButton){
+            
                         elem.closest('.footer__item').remove();
-    
-                    };
-    
-                };
-
-                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === true && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === false && visitedLocations.castle.donjon.corridorLeft.warehouseDoor.isVisited === true){
-
-                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.secondBtn){
         
-                        elem.closest('.footer__item').remove();
-    
                     };
-    
-                };
-
-                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === true && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === true && visitedLocations.castle.donjon.corridorLeft.warehouseDoor.isVisited === false){
-
-                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.thirdBtn){
         
-                        elem.closest('.footer__item').remove();
-    
-                    };
-    
-                };
-
-                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === false && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === false && visitedLocations.castle.donjon.corridorLeft.warehouseDoor.isVisited === true){
-
-                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.thirdBtn || elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.fourthBtn){
-        
-                        elem.closest('.footer__item').remove();
-    
-                    };
-    
-                };
-
-                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === false && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === true && visitedLocations.castle.donjon.corridorLeft.warehouseDoor.isVisited === false){
-
-                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.secondBtn || elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.fourthBtn){
-        
-                        elem.closest('.footer__item').remove();
-    
-                    };
-    
                 };
 
                 if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === true && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === false && visitedLocations.castle.donjon.corridorLeft.warehouseDoor.isVisited === false){
 
-                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.firstBtn || elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.fourthBtn){
-        
+                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.firstButton || elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.fourthButton){
+            
                         elem.closest('.footer__item').remove();
-    
+        
                     };
-    
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === false && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === true && visitedLocations.castle.donjon.corridorLeft.warehouseDoor.isVisited === false){
+
+                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.secondButton || elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.fourthButton){
+
+                        elem.closest('.footer__item').remove();
+
+                    };
+
+                };
+
+                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === false && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === false && visitedLocations.castle.donjon.corridorLeft.warehouseDoor.isVisited === true){
+
+                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.thirdButton || elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.fourthButton){
+
+                        elem.closest('.footer__item').remove();
+
+                    };
+
+                };
+
+                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === true && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === true && visitedLocations.castle.donjon.corridorLeft.warehouseDoor.isVisited === false){
+
+                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.firstButton || elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.secondButton || elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.fourthButton){
+
+                        elem.closest('.footer__item').remove();
+
+                    };
+
+                };
+
+                
+                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === false && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === true && visitedLocations.castle.donjon.corridorLeft.warehouseDoor.isVisited === true){
+
+                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.secondButton || elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.thirdButton || elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.fourthButton){
+
+                        elem.closest('.footer__item').remove();
+
+                    };
+
+                };
+
+                                
+                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === true && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === false && visitedLocations.castle.donjon.corridorLeft.warehouseDoor.isVisited === true){
+
+                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.firstButton || elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.thirdButton || elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.fourthButton){
+
+                        elem.closest('.footer__item').remove();
+
+                    };
+
                 };
 
             });
@@ -461,40 +501,50 @@ function donjonCorridorLeft(){
 
     function eventListener(){
 
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
         document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
             elem.addEventListener('click', () =>{
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.firstBtn){
+                disableButtons();
+
+                removeButtons();
+
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.firstButton){
 
                     showNextSlide();
-    
-                    donjonDoorToAlchemist();
-    
+
+                    doorToAlchemist();
+        
                 };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.secondBtn){
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.secondButton){
     
                     showNextSlide();
-    
-                    donjonDoorToDungeon();
-    
+
+                    doorToDungeon();
+        
                 };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.thirdBtn){
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.thirdButton){
     
                     showNextSlide();
-    
-                    donjonDoorToWarehouse();
-    
+
+                    doorToWarehouse();
+        
                 };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.fourthBtn){
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.fourthButton){
     
                     showNextSlide();
-    
-                    donjonCorridorRight();
-    
+
+                    corridorRight();
+        
                 };
 
             });
@@ -505,7 +555,7 @@ function donjonCorridorLeft(){
 
 };
 
-function donjonDoorToAlchemist(){
+function doorToAlchemist(){
 
     const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonDoorToAlchemist.textButton).length;
 
@@ -529,25 +579,79 @@ function donjonDoorToAlchemist(){
 
     function eventListener(){
 
-        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+        setTimeout(() => {
 
-            elem.addEventListener('click', () =>{
+            enableButtons();
+            
+        }, '2000');
 
-                showNextSlide();
-    
-                donjonAlchemistRoomBattle();
+        document.querySelector('#castle').querySelector('.button').addEventListener('click', () =>{
 
-            });
+            disableButtons();
 
+            showNextSlide();
+
+            removeButtons();
+
+            alchemistRoomBattle();
+        
         });
 
     };
 
 };
 
-function donjonDoorToDungeon(){};
+function doorToDungeon(){
 
-function donjonDoorToWarehouse(){
+    visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited = true;
+
+    const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonDoorToDungeon.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonDoorToDungeon.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonDoorToDungeon.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonDoorToDungeon.textButton)[index];
+
+        });
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
+        document.querySelector('#castle').querySelector('.button').addEventListener('click', () =>{
+
+            disableButtons();
+
+            showNextSlide();
+
+            removeButtons();
+
+            corridorLeft();
+        
+        });
+
+    };
+
+};
+
+function doorToWarehouse(){
+
+    visitedLocations.castle.donjon.corridorLeft.warehouseDoor.isVisited = true;
 
     const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton).length;
 
@@ -570,45 +674,55 @@ function donjonDoorToWarehouse(){
         function footerItemsCheck(){
 
             document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
-               
-                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === false && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === false){
 
-                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.thirdBtn){
-        
+                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === true && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === true && visitedLocations.castle.donjon.corridorRight.isVisited === false){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.thirdButton){
+            
                         elem.closest('.footer__item').remove();
-    
+        
                     };
-    
+        
                 };
 
-                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === true && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === true){
+                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === true && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === true && visitedLocations.castle.donjon.corridorRight.isVisited === true){
 
-                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.thirdBtn){
-        
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.fourthButton){
+            
                         elem.closest('.footer__item').remove();
-    
+        
                     };
-    
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === false && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === false){
+
+                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.thirdButton || elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.fourthButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
                 };
 
                 if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === false && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === true){
 
-                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.firstBtn){
-        
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.firstButton){
+            
                         elem.closest('.footer__item').remove();
-    
+        
                     };
-    
+        
                 };
 
                 if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === true && visitedLocations.castle.donjon.corridorLeft.dungeonDoor.isVisited === false){
 
-                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.secondBtn){
-        
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.secondButton){
+            
                         elem.closest('.footer__item').remove();
-    
+        
                     };
-    
+        
                 };
 
             });
@@ -621,32 +735,50 @@ function donjonDoorToWarehouse(){
 
     function eventListener(){
 
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
         document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
             elem.addEventListener('click', () =>{
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.firstBtn){
+                disableButtons();
+
+                removeButtons();
+
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.firstButton){
 
                     showNextSlide();
-    
-                    donjonDoorToAlchemist();
-    
+
+                    doorToAlchemist();
+        
                 };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.secondBtn){
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.secondButton){
     
                     showNextSlide();
-    
-                    donjonDoorToDungeon();
-    
+
+                    doorToDungeon();
+        
                 };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.thirdBtn){
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.thirdButton){
     
                     showNextSlide();
+
+                    corridorRight();
+        
+                };
     
-                    donjonCorridorRight();
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.fourthButton){
     
+                    showNextSlide();
+
+                    
+        
                 };
 
             });
@@ -659,12 +791,12 @@ function donjonDoorToWarehouse(){
 
 /// ALCHEMIST---ROOM---START ///
 
-function donjonAlchemistRoomBattle(){
+function alchemistRoomBattle(){
 
     const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomBattle.textButton).length;
 
     setTimeout(() => {
-
+        
         createFooterItem(footerItemCount);
 
         document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomBattle.textTitle;
@@ -683,13 +815,43 @@ function donjonAlchemistRoomBattle(){
 
     function eventListener(){
 
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
         document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
             elem.addEventListener('click', () =>{
 
-                showNextSlide();
+                disableButtons();
+
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomBattle.textButton.firstButton){
+
+                    document.querySelector('#castle').classList.remove('show-screen');
+
+                    document.querySelector('#castle').classList.add('hide-screen');
+
+                    setTimeout(() => {
+                        
+                        removeButtons();
+
+                    }, '650');
+
+                    battleScreen([3, 0, 0], 'alchemistRoom');
+        
+                };
     
-                battleScreen(language, [1, 2], 'donjonAlchemistRoom');
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomBattle.textButton.secondButton){
+
+                    removeButtons();
+    
+                    showNextSlide();
+
+                    alchemistRoom();
+        
+                };
 
             });
 
@@ -699,7 +861,9 @@ function donjonAlchemistRoomBattle(){
 
 };
 
-function donjonAlchemistRoom(){
+function alchemistRoom(){
+
+    visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited = true;
 
     const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoom.textButton).length;
 
@@ -723,32 +887,42 @@ function donjonAlchemistRoom(){
 
     function eventListener(){
 
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
         document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
             elem.addEventListener('click', () =>{
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoom.textButton.firstBtn){
+                disableButtons();
+
+                removeButtons();
+
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoom.textButton.firstButton){
 
                     showNextSlide();
-    
-                    donjonAlchemistDeadBody();
-    
+
+                    legionnaireDeadBody();
+        
                 };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoom.textButton.secondBtn){
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoom.textButton.secondButton){
     
                     showNextSlide();
-    
-                    donjonAlchemistTable();
-    
+
+                    alchemistTable();
+        
                 };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoom.textButton.thirdBtn){
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoom.textButton.thirdButton){
     
                     showNextSlide();
-    
-                    donjonAlchemistWorkplace();
-    
+
+                    alchemistWorkplace();
+        
                 };
 
             });
@@ -759,7 +933,9 @@ function donjonAlchemistRoom(){
 
 };
 
-function donjonAlchemistDeadBody(){
+function legionnaireDeadBody(){
+
+    visitedLocations.castle.donjon.corridorLeft.alchemistRoom.legionnaireDeadBody.isVisited = true;
 
     const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomDeadBody.textButton).length;
 
@@ -782,45 +958,45 @@ function donjonAlchemistDeadBody(){
         function footerItemsCheck(){
 
             document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
-               
-                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.alchemistTable.isVisited === false && visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === false){
 
-                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomDeadBody.textButton.thirdBtn){
-        
+                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.alchemistTable.isVisited === true && visitedLocations.castle.donjon.corridorLeft.alchemistRoom.alchemistWorkplace.isVisited === true){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomDeadBody.textButton.thirdButton){
+            
                         elem.closest('.footer__item').remove();
-    
+        
                     };
-    
+        
                 };
 
-                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.alchemistTable.isVisited === true && visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === true){
+                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.alchemistTable.isVisited === false && visitedLocations.castle.donjon.corridorLeft.alchemistRoom.alchemistWorkplace.isVisited === false){
 
-                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomDeadBody.textButton.thirdBtn){
-        
+                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomDeadBody.textButton.thirdButton){
+            
                         elem.closest('.footer__item').remove();
-    
+        
                     };
-    
+        
                 };
 
-                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.alchemistTable.isVisited === false && visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === true){
+                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.alchemistTable.isVisited === false && visitedLocations.castle.donjon.corridorLeft.alchemistRoom.alchemistWorkplace.isVisited === true){
 
-                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomDeadBody.textButton.firstBtn){
-        
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomDeadBody.textButton.firstButton){
+            
                         elem.closest('.footer__item').remove();
-    
+        
                     };
-    
+        
                 };
 
-                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.alchemistTable.isVisited === true && visitedLocations.castle.donjon.corridorLeft.alchemistRoom.isVisited === false){
+                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.alchemistTable.isVisited === true && visitedLocations.castle.donjon.corridorLeft.alchemistRoom.alchemistWorkplace.isVisited === false){
 
-                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomDeadBody.textButton.secondBtn){
-        
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomDeadBody.textButton.secondButton){
+            
                         elem.closest('.footer__item').remove();
-    
+        
                     };
-    
+        
                 };
 
             });
@@ -833,32 +1009,286 @@ function donjonAlchemistDeadBody(){
 
     function eventListener(){
 
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
         document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
 
             elem.addEventListener('click', () =>{
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomDeadBody.textButton.firstBtn){
+                disableButtons();
+
+                removeButtons();
+
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomDeadBody.textButton.firstButton){
 
                     showNextSlide();
-    
-                    donjonAlchemistWorkplace();
-    
+
+                    alchemistTable();
+        
                 };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomDeadBody.textButton.secondBtn){
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomDeadBody.textButton.secondButton){
     
                     showNextSlide();
-    
-                    donjonAlchemistTable();
-    
+
+                    alchemistWorkplace();
+        
                 };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomDeadBody.textButton.thirdBtn){
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomDeadBody.textButton.thirdButton){
     
                     showNextSlide();
+
+                    corridorLeft();
+        
+                };
+
+            });
+
+        });
+
+    };
+
+};
+
+function alchemistTable(){
+
+    visitedLocations.castle.donjon.corridorLeft.alchemistRoom.alchemistTable.isVisited = true;
+
+    const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomTable.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomTable.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomTable.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomTable.textButton)[index];
+
+        });
+
+        footerItemsCheck();
+
+        function footerItemsCheck(){
+
+            document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.legionnaireDeadBody.isVisited === true && visitedLocations.castle.donjon.corridorLeft.alchemistRoom.alchemistWorkplace.isVisited === true){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomTable.textButton.thirdButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.legionnaireDeadBody.isVisited === false && visitedLocations.castle.donjon.corridorLeft.alchemistRoom.alchemistWorkplace.isVisited === false){
+
+                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomTable.textButton.thirdButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.legionnaireDeadBody.isVisited === false && visitedLocations.castle.donjon.corridorLeft.alchemistRoom.alchemistWorkplace.isVisited === true){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomTable.textButton.firstButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.legionnaireDeadBody.isVisited === true && visitedLocations.castle.donjon.corridorLeft.alchemistRoom.alchemistWorkplace.isVisited === false){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomTable.textButton.secondButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+            });
     
-                    donjonCorridorLeft();
+        };
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+            elem.addEventListener('click', () =>{
+
+                disableButtons();
+
+                removeButtons();
+
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomTable.textButton.firstButton){
+
+                    showNextSlide();
+
+                    legionnaireDeadBody();
+        
+                };
     
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomTable.textButton.secondButton){
+    
+                    showNextSlide();
+
+                    alchemistWorkplace();
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomTable.textButton.thirdButton){
+    
+                    showNextSlide();
+
+                    corridorLeft();
+        
+                };
+
+            });
+
+        });
+
+    };
+
+};
+
+function alchemistWorkplace(){
+
+    visitedLocations.castle.donjon.corridorLeft.alchemistRoom.alchemistWorkplace.isVisited = true;
+
+    const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomWorkplace.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomWorkplace.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomWorkplace.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomWorkplace.textButton)[index];
+
+        });
+
+        footerItemsCheck();
+
+        function footerItemsCheck(){
+
+            document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.legionnaireDeadBody.isVisited === true && visitedLocations.castle.donjon.corridorLeft.alchemistRoom.alchemistTable.isVisited === true){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomWorkplace.textButton.thirdButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.legionnaireDeadBody.isVisited === false && visitedLocations.castle.donjon.corridorLeft.alchemistRoom.alchemistTable.isVisited === false){
+
+                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomWorkplace.textButton.thirdButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.legionnaireDeadBody.isVisited === false && visitedLocations.castle.donjon.corridorLeft.alchemistRoom.alchemistTable.isVisited === true){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomWorkplace.textButton.firstButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorLeft.alchemistRoom.legionnaireDeadBody.isVisited === true && visitedLocations.castle.donjon.corridorLeft.alchemistRoom.alchemistTable.isVisited === false){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomWorkplace.textButton.secondButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+            });
+    
+        };
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+            elem.addEventListener('click', () =>{
+
+                disableButtons();
+
+                removeButtons();
+
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomWorkplace.textButton.firstButton){
+
+                    showNextSlide();
+
+                    legionnaireDeadBody();
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomWorkplace.textButton.secondButton){
+    
+                    showNextSlide();
+
+                    alchemistTable();
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomWorkplace.textButton.thirdButton){
+    
+                    showNextSlide();
+
+                    corridorLeft();
+        
                 };
 
             });
@@ -873,6 +1303,1731 @@ function donjonAlchemistDeadBody(){
 
 /// CORRIDOR---LEFT---END ///
 
+/// CORRIDOR---RIGHT---START ///
+
+function corridorRight(){
+
+    visitedLocations.castle.donjon.corridorRight.isVisited = true;
+
+    const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton)[index];
+
+        });
+
+        footerItemsCheck();
+
+        function footerItemsCheck(){
+
+            document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+                if(visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === true && visitedLocations.castle.donjon.corridorRight.chapelDoor.isVisited === true && visitedLocations.castle.donjon.corridorRight.deadBodyCorridor.isVisited === true && visitedLocations.castle.donjon.corridorLeft.isVisited === false){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.fourthButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === false && visitedLocations.castle.donjon.corridorRight.chapelDoor.isVisited === false && visitedLocations.castle.donjon.corridorRight.deadBodyCorridor.isVisited === false){
+
+                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.fourthButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === false && visitedLocations.castle.donjon.corridorRight.chapelDoor.isVisited === true && visitedLocations.castle.donjon.corridorRight.deadBodyCorridor.isVisited === true){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.firstButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === true && visitedLocations.castle.donjon.corridorRight.chapelDoor.isVisited === false && visitedLocations.castle.donjon.corridorRight.deadBodyCorridor.isVisited === true){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.secondButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === true && visitedLocations.castle.donjon.corridorRight.chapelDoor.isVisited === true && visitedLocations.castle.donjon.corridorRight.deadBodyCorridor.isVisited === false){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.thirdButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === false && visitedLocations.castle.donjon.corridorRight.chapelDoor.isVisited === false && visitedLocations.castle.donjon.corridorRight.deadBodyCorridor.isVisited === true){
+
+                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.thirdButton || elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.fourthButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === false && visitedLocations.castle.donjon.corridorRight.chapelDoor.isVisited === true && visitedLocations.castle.donjon.corridorRight.deadBodyCorridor.isVisited === false){
+
+                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.secondButton || elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.fourthButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === true && visitedLocations.castle.donjon.corridorRight.chapelDoor.isVisited === false && visitedLocations.castle.donjon.corridorRight.deadBodyCorridor.isVisited === false){
+
+                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.firstButton || elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.fourthButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+            });
+    
+        };
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+            elem.addEventListener('click', () =>{
+
+                disableButtons();
+
+                removeButtons();
+
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.firstButton){
+
+                    showNextSlide();
+
+                    doorToMage();
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.secondButton){
+    
+                    showNextSlide();
+
+                    doorToChapel();
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.thirdButton){
+    
+                    showNextSlide();
+
+                    corridorDeadBody();
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.fourthButton){
+    
+                    showNextSlide();
+
+                    corridorLeft();
+        
+                };
+
+            });
+
+        });
+
+    };
+
+};
+
+function doorToMage(){
+
+    const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonDoorToMageRoom.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonDoorToMageRoom.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonDoorToMageRoom.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonDoorToMageRoom.textButton)[index];
+
+        });
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
+        document.querySelector('#castle').querySelector('.button').addEventListener('click', () =>{
+
+            disableButtons();
+
+            showNextSlide();
+
+            removeButtons();
+
+            mageRoom();
+        
+        });
+
+    };
+
+};
+
+function doorToChapel(){
+
+    visitedLocations.castle.donjon.corridorRight.chapelDoor.isVisited = true;
+
+    const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonDoorToChapel.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonDoorToChapel.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonDoorToChapel.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonDoorToChapel.textButton)[index];
+
+        });
+
+        footerItemsCheck();
+
+        function footerItemsCheck(){
+
+            document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+                if(visitedLocations.castle.donjon.corridorLeft.isVisited === false){
+
+                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToChapel.textButton.firstButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                }else{
+
+                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToChapel.textButton.secondButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+
+                };
+
+            });
+    
+        };
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+            elem.addEventListener('click', () =>{
+
+                disableButtons();
+
+                removeButtons();
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToChapel.textButton.firstButton){
+    
+                    showNextSlide();
+    
+                    chapelBattle();
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToChapel.textButton.secondButton){
+    
+                    showNextSlide();
+    
+                    corridorRight();
+        
+                };
+
+            });
+
+        });
+        
+    };
+
+};
+
+function corridorDeadBody(){
+
+    visitedLocations.castle.donjon.corridorRight.deadBodyCorridor.isVisited = true;
+
+    const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonCorridorDeadBody.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonCorridorDeadBody.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonCorridorDeadBody.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonCorridorDeadBody.textButton)[index];
+
+        });
+
+        footerItemsCheck();
+
+        function footerItemsCheck(){
+
+            document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+                if(visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === true && visitedLocations.castle.donjon.corridorRight.chapelDoor.isVisited === true && visitedLocations.castle.donjon.corridorLeft.isVisited === true){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorDeadBody.textButton.fourthButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === true && visitedLocations.castle.donjon.corridorRight.chapelDoor.isVisited === true && visitedLocations.castle.donjon.corridorLeft.isVisited === false){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorDeadBody.textButton.thirdButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === false && visitedLocations.castle.donjon.corridorRight.chapelDoor.isVisited === false){
+
+                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorDeadBody.textButton.thirdButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === false && visitedLocations.castle.donjon.corridorRight.chapelDoor.isVisited === true){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorDeadBody.textButton.firstButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === true && visitedLocations.castle.donjon.corridorRight.chapelDoor.isVisited === false){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonCorridorDeadBody.textButton.secondButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+            });
+    
+        };
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+            elem.addEventListener('click', () =>{
+
+                disableButtons();
+
+                removeButtons();
+
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.firstButton){
+
+                    showNextSlide();
+
+                    doorToMage();
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.secondButton){
+    
+                    showNextSlide();
+
+                    doorToChapel();
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.thirdButton){
+    
+                    showNextSlide();
+
+                    corridorLeft();
+        
+                };
+
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.thirdButton){
+    
+                    showNextSlide();
+
+                    nextCorridor();
+        
+                };
+
+            });
+
+        });
+
+    };
+
+};
+
+/// MAGE---ROOM---START ///
+
+function mageRoom(){
+
+    visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited = true;
+
+    const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonMageRoom.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonMageRoom.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonMageRoom.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonMageRoom.textButton)[index];
+
+        });
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+            elem.addEventListener('click', () =>{
+
+                disableButtons();
+
+                removeButtons();
+
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoom.textButton.firstButton){
+
+                    showNextSlide();
+
+                    commDevice();
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoom.textButton.secondButton){
+    
+                    showNextSlide();
+
+                    sleepingPlace();
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoom.textButton.thirdButton){
+    
+                    showNextSlide();
+
+                    magesTable();
+        
+                };
+
+            });
+
+        });
+
+    };
+
+};
+
+function commDevice(){
+
+    visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomCommDevice.isVisited = true;
+
+    const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomCommDevice.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomCommDevice.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomCommDevice.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomCommDevice.textButton)[index];
+
+        });
+
+        footerItemsCheck();
+
+        function footerItemsCheck(){
+
+            document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+                if(visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomReport.isVisited === true && visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomTable.isVisited === true){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomCommDevice.textButton.thirdButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomReport.isVisited === false && visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomTable.isVisited === false){
+
+                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomCommDevice.textButton.thirdButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomReport.isVisited === false && visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomTable.isVisited === true){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomCommDevice.textButton.firstButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomReport.isVisited === true && visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomTable.isVisited === false){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomCommDevice.textButton.secondButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+            });
+    
+        };
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+            elem.addEventListener('click', () =>{
+
+                disableButtons();
+
+                removeButtons();
+
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomCommDevice.textButton.firstButton){
+
+                    showNextSlide();
+
+                    sleepingPlace();
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomCommDevice.textButton.secondButton){
+    
+                    showNextSlide();
+
+                    magesTable();
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomCommDevice.textButton.thirdButton){
+    
+                    showNextSlide();
+
+                    corridorRight();
+        
+                };
+
+            });
+
+        });
+
+    };
+
+};
+
+function sleepingPlace(){
+
+    const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomSleepingPlace.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomSleepingPlace.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomSleepingPlace.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomSleepingPlace.textButton)[index];
+
+        });
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
+        document.querySelector('#castle').querySelector('.button').addEventListener('click', () =>{
+
+            disableButtons();
+
+            showNextSlide();
+
+            removeButtons();
+
+            magesPapers();
+        
+        });
+
+    };
+
+};
+
+function magesPapers(){
+
+    const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomPapers.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomPapers.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomPapers.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomPapers.textButton)[index];
+
+        });
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
+        document.querySelector('#castle').querySelector('.button').addEventListener('click', () =>{
+
+            disableButtons();
+
+            showNextSlide();
+
+            removeButtons();
+
+            magesReport();
+        
+        });
+
+    };
+
+};
+
+function magesReport(){
+
+    visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomReport.isVisited = true;
+
+    const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomReport.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomReport.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomReport.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomReport.textButton)[index];
+
+        });
+
+        footerItemsCheck();
+
+        function footerItemsCheck(){
+
+            document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+                if(visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomTable.isVisited === true && visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomCommDevice.isVisited === true){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomReport.textButton.thirdButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomTable.isVisited === false && visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomCommDevice.isVisited === false){
+
+                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomReport.textButton.thirdButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomTable.isVisited === false && visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomCommDevice.isVisited === true){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomReport.textButton.firstButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomTable.isVisited === true && visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomCommDevice.isVisited === false){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomReport.textButton.secondButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+            });
+    
+        };
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+            elem.addEventListener('click', () =>{
+
+                disableButtons();
+
+                removeButtons();
+
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomReport.textButton.firstButton){
+
+                    showNextSlide();
+
+                    magesTable();
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomReport.textButton.secondButton){
+    
+                    showNextSlide();
+
+                    commDevice();
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomReport.textButton.thirdButton){
+    
+                    showNextSlide();
+
+                    corridorRight();
+        
+                };
+
+            });
+
+        });
+
+    };
+
+};
+
+function magesTable(){
+
+    visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomTable.isVisited = true;
+
+    const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomTable.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomTable.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomTable.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomTable.textButton)[index];
+
+        });
+
+        footerItemsCheck();
+
+        function footerItemsCheck(){
+
+            document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+                if(visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomReport.isVisited === true && visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomCommDevice.isVisited === true){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomTable.textButton.thirdButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomReport.isVisited === false && visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomCommDevice.isVisited === false){
+
+                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomTable.textButton.thirdButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomReport.isVisited === false && visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomCommDevice.isVisited === true){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomTable.textButton.firstButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomReport.isVisited === true && visitedLocations.castle.donjon.corridorRight.mageRoom.donjonMageRoomCommDevice.isVisited === false){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomTable.textButton.secondButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+            });
+    
+        };
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+            elem.addEventListener('click', () =>{
+
+                disableButtons();
+
+                removeButtons();
+
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomTable.textButton.firstButton){
+
+                    showNextSlide();
+
+                    sleepingPlace();
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomTable.textButton.secondButton){
+    
+                    showNextSlide();
+
+                    commDevice();
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomTable.textButton.thirdButton){
+    
+                    showNextSlide();
+
+                    corridorRight();
+        
+                };
+
+            });
+
+        });
+
+    };
+
+};
+
+/// MAGE---ROOM---END ///
+
+/// CHAPEL---ROOM---START ///
+
+function chapelBattle(){
+
+    const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonChapelBattle.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonChapelBattle.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonChapelBattle.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonChapelBattle.textButton)[index];
+
+        });
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+            elem.addEventListener('click', () =>{
+
+                disableButtons();
+
+                removeButtons();
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelBattle.textButton.firstButton){
+    
+                    battleScreen([2, 1, 0], 'chapel');
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelBattle.textButton.secondButton){
+    
+                    showNextSlide();
+    
+                    chapel();
+        
+                };
+            
+            });
+
+
+        });
+
+    };
+
+};
+
+function chapel(){
+
+    const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonChapel.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonChapel.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonChapel.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonChapel.textButton)[index];
+
+        });
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+            elem.addEventListener('click', () =>{
+
+                disableButtons();
+
+                removeButtons();
+
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapel.textButton.firstButton){
+
+                    showNextSlide();
+
+                    knightDeadBody();
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapel.textButton.secondButton){
+    
+                    showNextSlide();
+
+                    altar();
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapel.textButton.thirdButton){
+    
+                    showNextSlide();
+
+                    pileOfCorpses();
+        
+                };
+
+            });
+
+        });
+
+    };
+
+};
+
+function knightDeadBody(){
+
+    const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnight.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnight.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnight.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnight.textButton)[index];
+
+        });
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
+        document.querySelector('#castle').querySelector('.button').addEventListener('click', () =>{
+
+            disableButtons();
+
+            showNextSlide();
+
+            removeButtons();
+
+            knightHands();
+        
+        });
+
+    };
+
+};
+
+function knightHands(){
+
+    const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightHands.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightHands.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightHands.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightHands.textButton)[index];
+
+        });
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
+        document.querySelector('#castle').querySelector('.button').addEventListener('click', () =>{
+
+            disableButtons();
+
+            showNextSlide();
+
+            removeButtons();
+
+            knightLegs();
+        
+        });
+
+    };
+
+};
+
+function knightLegs(){
+
+    visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelDeadKnightLegs.isVisited = true;
+
+    const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightLegs.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightLegs.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightLegs.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightLegs.textButton)[index];
+
+        });
+
+        footerItemsCheck();
+
+        function footerItemsCheck(){
+
+            document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+                if(visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelAtarNote.isVisited === true && visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelPileOfCorpses.isVisited === true && visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === true && visitedLocations.castle.donjon.corridorRight.deadBodyCorridor.isVisited === true){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightLegs.textButton.fourthButton){
+                
+                        elem.closest('.footer__item').remove();
+            
+                    };
+            
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelAtarNote.isVisited === true && visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelPileOfCorpses.isVisited === true && (visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === false || visitedLocations.castle.donjon.corridorRight.deadBodyCorridor.isVisited === false)){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightLegs.textButton.thirdButton){
+                
+                        elem.closest('.footer__item').remove();
+            
+                    };
+            
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelAtarNote.isVisited === false && visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelPileOfCorpses.isVisited === false){
+
+                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightLegs.textButton.thirdButton || elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightLegs.textButton.fourthButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelAtarNote.isVisited === false && visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelPileOfCorpses.isVisited === true){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightLegs.textButton.firstButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelAtarNote.isVisited === true && visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelPileOfCorpses.isVisited === false){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightLegs.textButton.secondButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+            });
+    
+        };
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+            elem.addEventListener('click', () =>{
+
+                disableButtons();
+
+                removeButtons();
+
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightLegs.textButton.firstButton){
+
+                    showNextSlide();
+
+                    altar();
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightLegs.textButton.secondButton){
+    
+                    showNextSlide();
+
+                    pileOfCorpses();
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightLegs.textButton.thirdButton){
+    
+                    showNextSlide();
+
+                    corridorRight();
+        
+                };
+
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightLegs.textButton.fourthButton){
+    
+                    showNextSlide();
+
+                    nextCorridor();
+        
+                };
+
+            });
+
+        });
+
+    };
+
+};
+
+function altar(){
+
+    const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltar.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltar.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltar.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltar.textButton)[index];
+
+        });
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
+        document.querySelector('#castle').querySelector('.button').addEventListener('click', () =>{
+
+            disableButtons();
+
+            showNextSlide();
+
+            removeButtons();
+
+            altarDeadBody();
+        
+        });
+
+    };
+
+};
+
+function altarDeadBody(){
+
+    const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBody.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBody.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBody.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBody.textButton)[index];
+
+        });
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
+        document.querySelector('#castle').querySelector('.button').addEventListener('click', () =>{
+
+            disableButtons();
+
+            showNextSlide();
+
+            removeButtons();
+
+            altarDeadBodyNote();
+        
+        });
+
+    };
+
+};
+
+function altarDeadBodyNote(){
+
+    visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelAtarNote.isVisited = true;
+
+    const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBodyNote.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBodyNote.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBodyNote.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBodyNote.textButton)[index];
+
+        });
+
+        footerItemsCheck();
+
+        function footerItemsCheck(){
+
+            document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+                if(visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelDeadKnightLegs.isVisited === true && visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelPileOfCorpses.isVisited === true && visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === true && visitedLocations.castle.donjon.corridorRight.deadBodyCorridor.isVisited === true){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBodyNote.textButton.fourthButton){
+                
+                        elem.closest('.footer__item').remove();
+            
+                    };
+            
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelDeadKnightLegs.isVisited === true && visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelPileOfCorpses.isVisited === true && (visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === false || visitedLocations.castle.donjon.corridorRight.deadBodyCorridor.isVisited === false)){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBodyNote.textButton.thirdButton){
+                
+                        elem.closest('.footer__item').remove();
+            
+                    };
+            
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelDeadKnightLegs.isVisited === false && visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelPileOfCorpses.isVisited === false){
+
+                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBodyNote.textButton.thirdButton || elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBodyNote.textButton.fourthButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelDeadKnightLegs.isVisited === false && visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelPileOfCorpses.isVisited === true){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBodyNote.textButton.firstButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelDeadKnightLegs.isVisited === true && visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelPileOfCorpses.isVisited === false){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBodyNote.textButton.secondButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+            });
+    
+        };
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+            elem.addEventListener('click', () =>{
+
+                disableButtons();
+
+                removeButtons();
+
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBodyNote.textButton.firstButton){
+
+                    showNextSlide();
+
+                    knightDeadBody();
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBodyNote.textButton.secondButton){
+    
+                    showNextSlide();
+
+                    pileOfCorpses();
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBodyNote.textButton.thirdButton){
+    
+                    showNextSlide();
+
+                    corridorRight();
+        
+                };
+
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBodyNote.textButton.fourthButton){
+    
+                    showNextSlide();
+
+                    nextCorridor();
+        
+                };
+
+            });
+
+        });
+
+    };
+
+};
+
+function pileOfCorpses(){
+
+    visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelPileOfCorpses.isVisited = true;
+
+    const footerItemCount = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonChapelPileOfCorpses.textButton).length;
+
+    setTimeout(() => {
+
+        createFooterItem(footerItemCount);
+
+        document.querySelector('#castle').querySelector('.main__title').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonChapelPileOfCorpses.textTitle;
+
+        document.querySelector('#castle').querySelector('.main__descr').innerText = donjonInsideText.language[language].donjonFirstFloor.donjonChapelPileOfCorpses.textDescr;
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach((elem, index) =>{
+
+            elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonChapelPileOfCorpses.textButton)[index];
+
+        });
+
+        footerItemsCheck();
+
+        function footerItemsCheck(){
+
+            document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+                if(visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelDeadKnightLegs.isVisited === true && visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelAtarNote.isVisited === true && visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === true && visitedLocations.castle.donjon.corridorRight.deadBodyCorridor.isVisited === true){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonChapelPileOfCorpses.textButton.fourthButton){
+                
+                        elem.closest('.footer__item').remove();
+            
+                    };
+            
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelDeadKnightLegs.isVisited === true && visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelAtarNote.isVisited === true && (visitedLocations.castle.donjon.corridorRight.mageRoom.isVisited === false || visitedLocations.castle.donjon.corridorRight.deadBodyCorridor.isVisited === false)){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonChapelPileOfCorpses.textButton.thirdButton){
+                
+                        elem.closest('.footer__item').remove();
+            
+                    };
+            
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelDeadKnightLegs.isVisited === false && visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelAtarNote.isVisited === false){
+
+                    if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightLegs.textButton.thirdButton || elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelPileOfCorpses.textButton.fourthButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelDeadKnightLegs.isVisited === false && visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelAtarNote.isVisited === true){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonChapelPileOfCorpses.textButton.firstButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+                if(visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelDeadKnightLegs.isVisited === true && visitedLocations.castle.donjon.corridorRight.chapelRoom.chapelAtarNote.isVisited === false){
+
+                    if(elem.innerText != donjonInsideText.language[language].donjonFirstFloor.donjonChapelPileOfCorpses.textButton.secondButton){
+            
+                        elem.closest('.footer__item').remove();
+        
+                    };
+        
+                };
+
+            });
+    
+        };
+
+        eventListener();
+        
+    }, '650');
+
+    function eventListener(){
+        
+        setTimeout(() => {
+
+            enableButtons();
+            
+        }, '2000');
+
+        document.querySelector('#castle').querySelectorAll('.button').forEach(elem =>{
+
+            elem.addEventListener('click', () =>{
+
+                disableButtons();
+
+                removeButtons();
+
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelPileOfCorpses.textButton.firstButton){
+
+                    showNextSlide();
+
+                    knightDeadBody();
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelPileOfCorpses.textButton.secondButton){
+    
+                    showNextSlide();
+
+                    altar();
+        
+                };
+    
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelPileOfCorpses.textButton.thirdButton){
+    
+                    showNextSlide();
+
+                    corridorRight();
+        
+                };
+
+                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelPileOfCorpses.textButton.fourthButton){
+    
+                    showNextSlide();
+
+                    nextCorridor();
+        
+                };
+
+            });
+
+        });
+
+    };
+
+};
+
+/// CHAPEL---ROOM---END ///
+
+/// CORRIDOR---RIGHT---END ///
+
 export { castleDonjon };
 
-export { donjonAlchemistRoom };
+export { alchemistRoom };

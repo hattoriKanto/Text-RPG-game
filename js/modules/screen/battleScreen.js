@@ -23,13 +23,13 @@ import {battlePreparation} from "../battle.js";
 
 import { creatingCharacter } from "./charCreatingScreen.js";
 
-import { deletePlayerData, disableButtons, enableButtons ,backToDefaultPlayerTraits } from "../globalFunctions.js";
+import { deletePlayerData, disableButtons, enableButtons, backToDefaultPlayerTraits, returnTextScreenAfterBattle } from "../globalFunctions.js";
 
 import { createInventoryElememts } from "./inventory.js";
 
 import { inventoryItems } from "../inventoryItems.js";
 
-import { castleDonjon, donjonAlchemistRoom } from "./location/castleDonjonScreen.js";
+import { castleDonjon, alchemistRoom } from "./location/castleDonjonScreen.js";
 import racesTraits from "../racesClassesWeapons/racesTraits.js";
 import classesTraits from "../racesClassesWeapons/classesTraits.js";
 
@@ -1507,13 +1507,11 @@ function popupVictory(nextFunction){
 
         setTimeout(() => {
 
-            popup.remove();
-
-            document.querySelector('#battle').remove();
+            returnTextScreenAfterBattle();
             
-            if(nextFunction === 'donjonAlchemistRoom'){
+            if(nextFunction === 'alchemistRoom'){
 
-                donjonAlchemistRoom();
+                alchemistRoom();
 
             };
 

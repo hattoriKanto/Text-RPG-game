@@ -1,6 +1,8 @@
 
 /// IMPORTS---START ///
 
+import { createFooterItem, showNextSlide } from "../../globalFunctions.js";
+
 import { language } from "../chooseLangScreen.js";
 
 import castleEntranceText from "../../text/castle/castleEntranceText.js";
@@ -22,42 +24,6 @@ import {battleScreen} from "../battleScreen.js";
 /// GLOBAL---VARIABLES---END ///
 
 /// REPEATABLE---FUNCTIONS---START ///
-
-function createFooterItem(footerItemCount){
-    
-    for(let i = 0; i < footerItemCount; i++){
-
-        const footerItem = document.createElement('div');
-
-        const footerBtn = document.createElement('button');
-
-        footerItem.className = 'footer__item';
-
-        footerBtn.className = 'footer__button button';
-
-        document.querySelector('#castle').querySelector('.footer').appendChild(footerItem);
-
-        footerItem.appendChild(footerBtn);
-
-    };
-
-};
-
-function showNextSlide(){
-
-    document.querySelector('#castle').querySelector('.wrapper').classList.toggle('rotation');
-
-    setTimeout(() => {
-
-        document.querySelector('#castle').querySelectorAll('.footer__item').forEach(elem =>{
-
-            elem.remove();
-        
-        });
-
-    }, '650');
-
-};
 
 /// REPEATABLE---FUNCTIONS---END ///
 

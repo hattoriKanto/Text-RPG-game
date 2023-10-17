@@ -151,7 +151,7 @@ const visitedLocations = {
 
                     isVisited: false,
     
-                    alchemistDeadBody: {
+                    legionnaireDeadBody: {
     
                         isVisited: false
     
@@ -197,13 +197,54 @@ const visitedLocations = {
 
                 mageRoom: {
 
+                    isVisited: false,
+
+                    donjonMageRoomCommDevice: {
+
+                        isVisited: false
+
+                    },
+
+                    
+                    donjonMageRoomReport: {
+
+                        isVisited: false
+
+                    },
+
+                    donjonMageRoomTable:{
+
+                        isVisited: false
+
+                    }
+
+                },
+
+                chapelDoor: {
+
                     isVisited: false
 
                 },
 
                 chapelRoom: {
 
-                    isVisited: false
+                    chapelAtarNote: {
+
+                        isVisited: false
+
+                    },
+
+                    chapelDeadKnightLegs: {
+
+                        isVisited: false
+
+                    },
+
+                    chapelPileOfCorpses: {
+
+                        isVisited: false
+
+                    }
 
                 }
 
