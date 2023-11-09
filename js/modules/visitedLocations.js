@@ -250,6 +250,60 @@ const visitedLocations = {
 
             },
 
+            corridorToCentralHall: {
+
+                firstUpstairs: {
+
+                    isVisited: false
+
+                },
+
+                doorToCentralHall: {
+
+                    isVisited: false
+
+                }
+
+            },
+
+            corridorToWarehouse: {
+
+                warehouse: {
+
+                    isVisited: false
+
+                }
+
+            },
+
+            secondFloor: {
+
+                isVisited: false,
+
+                prisoner: {
+
+                    whoAreYou: {
+
+                        isVisited: false
+
+                    },
+
+                    wounds: {
+
+                        isVisited: false
+
+                    },
+
+                    whatHappend: {
+
+                        isVisited: false
+
+                    }
+
+                }
+
+            }
+
         }
 
     },

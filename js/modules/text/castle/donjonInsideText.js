@@ -53,7 +53,9 @@ const donjonInsideText = {
     
                         thirdButton: 'Examine the door in front of you',
     
-                        fourthButton: 'Go to the right corridor'
+                        fourthButton: 'Go to the right corridor',
+
+                        fifthButton: 'Go to the chapel'
     
                     }
     
@@ -213,7 +215,10 @@ const donjonInsideText = {
     
                         thirdButton: 'Examine the man`s corpse',
     
-                        fourthButton: 'Go to the left corridor'    
+                        fourthButton: 'Go to the left corridor',
+
+                        fifthButton: 'Go to the next corridor'
+
                     }
     
                 },
@@ -532,7 +537,7 @@ const donjonInsideText = {
 
                 /// NORTH---PART---START ///
 
-                donjonCorridorAfterChapel: {
+                donjonCorridorToCentralHall: {
 
                     textTitle: 'An empty corridor',
     
@@ -550,7 +555,7 @@ const donjonInsideText = {
 
                 },
 
-                donjonCorridorAfterChapelDoor: {
+                donjonCorridorToCentralHallDoor: {
 
                     textTitle: 'The doors',
     
@@ -576,7 +581,9 @@ const donjonInsideText = {
 
                         firstButton: 'Go upstairs',
 
-                        secondButton: 'Go to the Warehouse'
+                        secondButton: 'Go to the Warehouse',
+
+                        thirdButton: 'Go to the Centrall hall'
     
                     }
 
@@ -694,7 +701,7 @@ const donjonInsideText = {
 
                 },
 
-                donjonCentralRoomAfterWarlordBattle: {
+                donjonCentralRoomAfterSearchWarlordCorpse: {
 
                     textTitle: 'A warlord`s corpse',
     
@@ -773,8 +780,6 @@ const donjonInsideText = {
                         secondButton: 'How serious are your wounds?',
 
                         thirdButton: 'How all this happened?',
-
-                        fourthButton: 'What are our next steps?'
                     
                     }
 
@@ -792,7 +797,7 @@ const donjonInsideText = {
 
                         secondButton: 'How serious are your wounds?',
 
-                        thirdButton: 'What are our next steps?',
+                        thirdButton: 'What are our next move?',
                     
                     }
 
@@ -805,20 +810,18 @@ const donjonInsideText = {
                     textDescr: '"Oh, it`s nothing serious, buddy. I was pretty beat up trying to get information about plant... never mind. Well, the wound on my leg, that`s an old story. I didn`t get it here, and I couldn`t stand on my own two feet long before I was assigned to this damn castle. A couple months ago, there was a riot in the north of the Empire, and that`s when I got an arrow in my leg. The medics bandaged me up and stitched me up, but it never really healed. So, after the interrogation, the stitches came apart... and there you go. Like I said, it`s nothing serious, we got a job to do and I`m not gonna be a burden or sit around while you do all the dirty work."',
                     
                     textButton: {
-
-                        firstButton: 'Here, take the potion. This should help.',
                 
-                        secondButton: 'Who are you?',
+                        firstButton: 'Who are you?',
 
-                        thirdButton: 'How all this happened?',
+                        secondButton: 'How all this happened?',
 
-                        fourthButton: 'What are our next steps?',
+                        thirdButton: 'What are our next move?',
                     
                     }
 
                 },
 
-                donjonPrisonerHappend: {
+                donjonPrisonerWhatHappend: {
 
                     textTitle: 'How all this happened?',
                     
@@ -830,25 +833,7 @@ const donjonInsideText = {
 
                         secondButton: 'How serious are your wounds?',
 
-                        thirdButton: 'What are our next steps?'
-                    
-                    }
-
-                },
-
-                donjonPrisonerPotion: {
-
-                    textTitle: 'Potion for the Prisoner',
-                    
-                    textDescr: '"Thanks, friend. I know you don`t have to share your limited supplies. It`ll keep me alive long enough to see us take this damn castle back. Right, partner?"',
-                    
-                    textButton: {
-                
-                        firstButton: 'Who are you?',
-
-                        secondButton: 'How did all this happen?',
-
-                        thirdButton: 'What are our next steps?'
+                        thirdButton: 'What are our next move?'
                     
                     }
 
@@ -856,7 +841,7 @@ const donjonInsideText = {
 
                 donjonPrisonerNextMove: {
 
-                    textTitle: 'What are our next steps?',
+                    textTitle: 'What are our next move?',
                     
                     textDescr: '"So you`re in? Good. Me... ah screw it, I`ll tell you about our mission. Too many people have died without knowing what for and I`m sick of being silent. We were sent here to help the alchemist scientist Gaspar von Blau conduct research on a certain flower. I don`t know the details myself, my men and I were just helping with logistics and searching, nothing more. However, this plant was so important that the bigwigs in the capital decided to send us to replace the Sentinels. And yes, our mutual friends here are after this flower as well. Their leader spent a long time asking me about plant, as if I would know more than our traitorous mage... Anyway, none of that matters. All that matters is that this castle is in the hands of the cultists and we need to send a request for help first. Thankfully, those bastards didn`t destroy the dovecote and I know all the ciphers by heart, which means I can send word to our castles in the area and, of course, to the capital. And you, my friend, do what you were doing before you met me.. Take care of yourself!"',
                     
@@ -1404,7 +1389,7 @@ const donjonInsideText = {
 
                 /// NORTH---PART---START ///
 
-                donjonCorridorAfterChapel: {
+                donjonCorridorToCentralHall: {
 
                     textTitle: 'Пустой коридор',
     
@@ -1422,7 +1407,7 @@ const donjonInsideText = {
 
                 },
 
-                donjonCorridorAfterChapelDoor: {
+                donjonCorridorToCentralHallDoor: {
 
                     textTitle: 'Двери',
     
@@ -1448,7 +1433,9 @@ const donjonInsideText = {
 
                         firstButton: 'Пройти наверх',
 
-                        secondButton: 'Пройти на склад'
+                        secondButton: 'Пройти на склад',
+
+                        thirdButton: 'Пройти в центральный зал'
     
                     }
 
@@ -1566,7 +1553,7 @@ const donjonInsideText = {
 
                 },
 
-                donjonCentralRoomAfterWarlordBattle: {
+                donjonCentralRoomAfterSearchWarlordCorpse: {
 
                     textTitle: 'Труп военачальника',
     
@@ -1645,8 +1632,6 @@ const donjonInsideText = {
                         secondButton: 'На сколько серьёзны твои раны?',
 
                         thirdButton: 'Как всё это произошло?',
-
-                        fourthButton: 'Какие наши дальнейшие действия?'
                     
                     }
 
@@ -1677,20 +1662,18 @@ const donjonInsideText = {
                     textDescr: '"О, ничего серьёзного, друг. Меня изрядно избили пытаясь вытянуть информацию про расте... впрочем, неважно. А, ну рана на ноге - это старая история. Я её получил не здесь, да и на двух ногах я не мог держаться ещё задолго до назначения в этот чёртов замок. Пару месяцев назад на севере Империи были волнения, вот там-то я получил стрелу в ногу. Медики перевязали меня и заштопали, но так толком рана не затянулась. Ну, а после допроса, швы разошлись и... вот. Как я и сказал, ничего серьёзного, у нас есть дело, которое надо сделать и я не собираюсь быть обузой или отсиживаться, пока ты делаешь всю грязную работу."',
                     
                     textButton: {
-
-                        firstButton: 'Вот, держи зелье. Это должно помочь.',
                 
-                        secondButton: 'Кто ты такой?',
+                        firstButton: 'Кто ты такой?',
 
-                        thirdButton: 'Как всё это произошло?',
+                        secondButton: 'Как всё это произошло?',
 
-                        fourthButton: 'Какие наши дальнейшие действия?',
+                        thirdButton: 'Какие наши дальнейшие действия?',
                     
                     }
 
                 },
 
-                donjonPrisonerHappend: {
+                donjonPrisonerWhatHappend: {
 
                     textTitle: 'Как всё это произошло?',
                     
@@ -1701,24 +1684,6 @@ const donjonInsideText = {
                         firstButton: 'Кто ты такой?',
 
                         secondButton: 'На сколько серьёзны твои раны?',
-
-                        thirdButton: 'Какие наши дальнейшие действия?'
-                    
-                    }
-
-                },
-
-                donjonPrisonerPotion: {
-
-                    textTitle: 'Зелье для пленника',
-                    
-                    textDescr: '"Спасибо, друг. Знаю, что ты не обязан делится ограниченными припасами. Это поможет мне протянуть достаточно долго, что бы увидеть, как мы отобьём этот чёртов замок. Верно, партнёр?"',
-                    
-                    textButton: {
-                
-                        firstButton: 'Кто ты такой?',
-
-                        secondButton: 'Как всё это произошло?',
 
                         thirdButton: 'Какие наши дальнейшие действия?'
                     
