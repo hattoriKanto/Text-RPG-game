@@ -101,25 +101,36 @@ function eventListener(){
 
             disableButtons();
 
+            toggleFullScreen();
+
             language = Object.values(chooseLanguageText.buttonText)[index].toLowerCase();
 
             document.querySelector('#popup-choose-lang').classList.remove('show-popup');
 
             document.querySelector('#popup-choose-lang').classList.add('hide-popup');
 
-            setTimeout(() => {
+            // setTimeout(() => {
 
-                creatingCharacter();
+            //     creatingCharacter();
 
-                document.querySelector('#popup-choose-lang').remove();
+            //     document.querySelector('#popup-choose-lang').remove();
                 
-            }, '1000');
+            // }, '1000');
 
         });
 
     });
 
 };
+
+function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+  }
+  
 
 export { chooseLanguage };
 
