@@ -5,7 +5,7 @@ import { disableButtons } from "./modules/globalFunctions.js";
 
 import { chooseLanguage } from "./modules/screen/chooseLangScreen.js";
 
-function fullscreenAndLockOrientation(){
+function fullscreenMode(){
 
     createHTMLElements();
 
@@ -115,15 +115,18 @@ function eventListener(){
 
 };
 
-function toggleFullScreen() {
-    if (!document.fullscreenElement) {
+function toggleFullScreen(){
+
+    if(!document.fullscreenElement){
+
       document.documentElement.requestFullscreen();
-    } else if (document.exitFullscreen) {
+
+    }else if(document.exitFullscreen){
+
       document.exitFullscreen();
-    }
-}
-  
 
+    };
+    
+};
 
-
-export {fullscreenAndLockOrientation};
+export {fullscreenMode};

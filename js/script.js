@@ -1,8 +1,8 @@
 
-import { fullscreenAndLockOrientation } from "./enterFullscreenMode.js";
+import { fullscreenMode } from "./enterFullscreenMode.js";
 
 setTimeout(() => {
     
-    fullscreenAndLockOrientation();
+    fullscreenMode();
 
 }, '500');
