@@ -1,8 +1,8 @@
 
-import { chooseLanguage } from "./modules/screen/chooseLangScreen.js";
+import { fullscreenAndLockOrientation } from "./enterFullscreenMode.js";
 
 setTimeout(() => {
     
-    chooseLanguage();
+    fullscreenAndLockOrientation();
 
 }, '500');
