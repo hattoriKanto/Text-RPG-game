@@ -18,6 +18,10 @@ body
 @media( min-width: 1440px )
     body
         --body-max-width: #{$bodyWidthLarge}
+@media only screen and (orientation:portrait)
+    body
+        height: 100vw
+        transform: rotate(90deg)
 .noscroll
     overflow: hidden
 ul, ol, li

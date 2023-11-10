@@ -1,4 +1,8 @@
 
 import { chooseLanguage } from "./modules/screen/chooseLangScreen.js";
 
-chooseLanguage();
+setTimeout(() => {
+    
+    chooseLanguage();
+
+}, '500');

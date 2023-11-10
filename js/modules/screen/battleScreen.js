@@ -25,8 +25,6 @@ import { creatingCharacter } from "./charCreatingScreen.js";
 
 import { deletePlayerData, disableButtons, enableButtons, backToDefaultPlayerTraits, returnTextScreenAfterBattle } from "../globalFunctions.js";
 
-import { createInventoryElememts } from "./inventory.js";
-
 import { inventoryItems } from "../inventoryItems.js";
 
 import { castleDonjon, alchemistRoom } from "./location/castleDonjonScreen.js";
@@ -114,8 +112,6 @@ function battleScreen(arrayNumberOfEnemies, nextFunction){
 };
 
 function createHTMLElements(){
-
-    createInventoryElememts();
 
     mainElements();
 

@@ -135,7 +135,7 @@ function createHTMLElements(){
 
             // donjonCrossroads();
 
-            corridorToCentralHall();
+            chapelBattle();
 
         });
 
