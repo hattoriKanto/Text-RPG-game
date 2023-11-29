@@ -3,7 +3,7 @@
 
 import { language } from "./chooseLangScreen.js";
 
-import { disableButtons, deletePlayerData, clonePlayerTraits, enableButtons, showNextSlide, removeButtons} from "../globalFunctions.js";
+import { disableButtons, deletePlayerData, clonePlayerTraits, enableButtons, showNextSlide, removeButtons, showNextSlideMobileCheck, showNextSlideFirstSlideMobile} from "../globalFunctions.js";
 
 import startScreenText from "../text/creatingChar/startScreenText.js";
 
@@ -134,6 +134,8 @@ function chooseWeaponType(arrayOfClassWeapon, arrayWeaponsType){
 
         });
 
+        showNextSlideMobileCheck();
+
         enableButtons();
 
         eventListener();
@@ -162,11 +164,27 @@ function chooseWeaponType(arrayOfClassWeapon, arrayWeaponsType){
 
                 };
 
-                showNextSlide();
+                if(window.screen.width <= 768){
 
-                removeButtons();
+                    setTimeout(() => {
 
-                chooseWeapon(choosedWeaponType);
+                        removeButtons();
+                    
+                        chooseWeapon(choosedWeaponType);
+
+                    }, '1350');
+
+                    showNextSlide();
+
+                }else{
+
+                    removeButtons();
+
+                    showNextSlide();
+
+                    chooseWeapon(choosedWeaponType);
+
+                };
 
             });
 
@@ -256,6 +274,8 @@ function chooseWeapon(choosedWeaponType){
 
         });
 
+        showNextSlideMobileCheck();
+
         enableButtons();
 
         eventListener();
@@ -274,43 +294,87 @@ function chooseWeapon(choosedWeaponType){
 
                 disableButtons();
 
-                showNextSlide();
-
-                removeButtons();
-
                 let keyWord = null;
 
                 const key = Object.keys(weaponsScreenText.language[language][playerRaceKey][choosedWeaponType].weapons)[index];
 
                 const text = elem.innerText;
 
-                if(counterWeapon === 1){
+                if(window.screen.width <= 768){
 
-                    keyWord = 'firstWeapon';
+                    setTimeout(() => {
 
-                    addDataToPlayer(key, text, keyWord);
+                        removeButtons();
+                    
+                        if(counterWeapon === 1){
 
-                    Object.assign(player.weaponTraits[keyWord], weaponsTraits[playerRaceKey][choosedWeaponType][choosedWeapon].traits);
+                            keyWord = 'firstWeapon';
+        
+                            addDataToPlayer(key, text, keyWord);
+        
+                            Object.assign(player.weaponTraits[keyWord], weaponsTraits[playerRaceKey][choosedWeaponType][choosedWeapon].traits);
+        
+                            if(weaponsTraits[playerRaceKey][choosedWeaponType][choosedWeapon].isTwoHanded === true || playerClassKey === 'berserk'){
+        
+                                charOverview();
+        
+                            }else{
+        
+                                weaponsTypeKeys();
+        
+                            };
+        
+                        } else if(counterWeapon === 2){
+        
+                            keyWord = 'secondWeapon';
+        
+                            addDataToPlayer(key, text, keyWord);
+        
+                            Object.assign(player.weaponTraits[keyWord], weaponsTraits[playerRaceKey][choosedWeaponType][choosedWeapon].traits);
+        
+                            charOverview();
+        
+                        };
 
-                    if(weaponsTraits[playerRaceKey][choosedWeaponType][choosedWeapon].isTwoHanded === true || playerClassKey === 'berserk'){
+                    }, '1350');
 
+                    showNextSlide();
+
+                }else{
+
+                    removeButtons();
+
+                    showNextSlide();
+
+                    if(counterWeapon === 1){
+
+                        keyWord = 'firstWeapon';
+    
+                        addDataToPlayer(key, text, keyWord);
+    
+                        Object.assign(player.weaponTraits[keyWord], weaponsTraits[playerRaceKey][choosedWeaponType][choosedWeapon].traits);
+    
+                        if(weaponsTraits[playerRaceKey][choosedWeaponType][choosedWeapon].isTwoHanded === true || playerClassKey === 'berserk'){
+    
+                            charOverview();
+    
+                        }else{
+    
+                            weaponsTypeKeys();
+    
+                        };
+    
+                    } else if(counterWeapon === 2){
+    
+                        keyWord = 'secondWeapon';
+    
+                        addDataToPlayer(key, text, keyWord);
+    
+                        Object.assign(player.weaponTraits[keyWord], weaponsTraits[playerRaceKey][choosedWeaponType][choosedWeapon].traits);
+    
                         charOverview();
-
-                    }else{
-
-                        weaponsTypeKeys();
-
+    
                     };
-
-                } else if(counterWeapon === 2){
-
-                    keyWord = 'secondWeapon';
-
-                    addDataToPlayer(key, text, keyWord);
-
-                    Object.assign(player.weaponTraits[keyWord], weaponsTraits[playerRaceKey][choosedWeaponType][choosedWeapon].traits);
-
-                    charOverview();
 
                 };
 
@@ -620,6 +684,8 @@ function createHTMLElements(){
 
         charCreatingMain.appendChild(mainFooter);
 
+        showNextSlideFirstSlideMobile();
+
         headerElements();
 
         footerElements();
@@ -686,11 +752,27 @@ function createHTMLElements(){
 
                 disableButtons();
 
-                showNextSlide();
+                if(window.screen.width <= 768){
 
-                removeButtons();
+                    setTimeout(() => {
 
-                chooseRace();
+                        removeButtons();
+                    
+                        chooseRace();
+
+                    }, '1350');
+
+                    showNextSlide();
+
+                }else{
+
+                    removeButtons();
+
+                    showNextSlide();
+
+                    chooseRace();
+
+                };
     
             });
     
@@ -738,6 +820,8 @@ function chooseRace(){
 
         });
 
+        showNextSlideMobileCheck();
+
         enableButtons();
 
         eventListener();
@@ -768,11 +852,27 @@ function chooseRace(){
 
                 addDataToPlayer(key, text, keyWord);
 
-                showNextSlide();
+                if(window.screen.width <= 768){
 
-                removeButtons();
+                    setTimeout(() => {
 
-                chooseClass();
+                        removeButtons();
+                    
+                        chooseClass();
+
+                    }, '1350');
+
+                    showNextSlide();
+
+                }else{
+
+                    removeButtons();
+
+                    showNextSlide();
+
+                    chooseClass();
+
+                };
 
             });
 
@@ -819,6 +919,8 @@ function chooseClass(){
             arrayDescr.push(Object.values(classScreenText.language[language].classes[playerRaceKey])[index].textDescr);
 
         });
+
+        showNextSlideMobileCheck();
 
         enableButtons();
 
@@ -868,11 +970,27 @@ function chooseClass(){
 
                 addDataToPlayer(key, text, keyWord);
 
-                showNextSlide();
+                if(window.screen.width <= 768){
 
-                removeButtons();
+                    setTimeout(() => {
 
-                weaponsTypeKeys();
+                        removeButtons();
+                    
+                        weaponsTypeKeys();
+
+                    }, '1350');
+
+                    showNextSlide();
+
+                }else{
+
+                    removeButtons();
+
+                    showNextSlide();
+
+                    weaponsTypeKeys();
+
+                };
 
             });
 
@@ -893,6 +1011,8 @@ function charOverview(){
     setTimeout(() => {
         
         editHTMLElements();
+
+        showNextSlideMobileCheck();
 
     }, '650');
 

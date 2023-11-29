@@ -1,7 +1,7 @@
 
 /// IMPORTS---START ///
 
-import { createFooterItem, showNextSlide, removeButtons, disableButtons, enableButtons } from "../../globalFunctions.js";
+import { createFooterItem, showNextSlide, removeButtons, disableButtons, enableButtons, showNextSlideMobileCheck, showNextSlideFirstSlideMobile } from "../../globalFunctions.js";
 
 import { language } from "../chooseLangScreen.js";
 
@@ -83,7 +83,7 @@ function createHTMLElements(){
 
         const mainDescr = document.createElement('div');
 
-        mainTitle.className = 'main__title';
+        mainTitle.className = 'main__title title';
 
         mainDescr.className = 'main__descr';
 
@@ -129,13 +129,27 @@ function createHTMLElements(){
 
             disableButtons();
 
-            showNextSlide();
+            if(window.screen.width <= 768){
 
-            removeButtons();
+                setTimeout(() => {
 
-            // donjonCrossroads();
+                    removeButtons();
+                
+                    donjonCrossroads();
 
-            chapelBattle();
+                }, '1350');
+
+                showNextSlide();
+
+            }else{
+
+                removeButtons();
+
+                showNextSlide();
+
+                donjonCrossroads();
+
+            };
 
         });
 
@@ -161,6 +175,8 @@ function donjonCrossroads(){
 
         });
 
+        showNextSlideMobileCheck();
+
         eventListener();
         
     }, '650');
@@ -179,27 +195,51 @@ function donjonCrossroads(){
 
                 disableButtons();
 
-                removeButtons();
+                if(window.screen.width <= 768){
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCrossroads.textButton.firstButton){
-
+                    setTimeout(() => {
+    
+                        removeButtons();
+                    
+                        nextFunction();
+    
+                    }, '1350');
+    
                     showNextSlide();
     
-                    corridorRight();
+                }else{
     
-                };
-    
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCrossroads.textButton.secondButton){
+                    removeButtons();
     
                     showNextSlide();
     
-                    corridorLeft();
+                    nextFunction();
     
                 };
 
             });
 
         });
+
+    };
+
+    function nextFunction(){
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCrossroads.textButton.firstButton){
+
+            showNextSlide();
+
+            corridorRight();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCrossroads.textButton.secondButton){
+
+            showNextSlide();
+
+            corridorLeft();
+
+        };
 
     };
 
@@ -329,6 +369,8 @@ function corridorLeft(){
     
         };
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -347,51 +389,75 @@ function corridorLeft(){
 
                 disableButtons();
 
-                removeButtons();
+                if(window.screen.width <= 768){
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.firstButton){
-
-                    showNextSlide();
-
-                    doorToAlchemist();
-        
-                };
+                    setTimeout(() => {
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.secondButton){
+                        removeButtons();
+                    
+                        nextFunction();
+    
+                    }, '1350');
     
                     showNextSlide();
-
-                    doorToDungeon();
-        
-                };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.thirdButton){
+                }else{
+    
+                    removeButtons();
     
                     showNextSlide();
-
-                    doorToWarehouse();
-        
-                };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.fourthButton){
+                    nextFunction();
     
-                    showNextSlide();
-
-                    corridorRight();
-        
-                };
-
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.fifthButton){
-    
-                    showNextSlide();
-
-                    chapelBattle();
-        
                 };
 
             });
 
         });
+
+    };
+
+    function nextFunction(){
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.firstButton){
+
+            showNextSlide();
+
+            doorToAlchemist();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.secondButton){
+
+            showNextSlide();
+
+            doorToDungeon();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.thirdButton){
+
+            showNextSlide();
+
+            doorToWarehouse();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.fourthButton){
+
+            showNextSlide();
+
+            corridorRight();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorLeft.textButton.fifthButton){
+
+            showNextSlide();
+
+            chapelBattle();
+
+        };
 
     };
 
@@ -415,6 +481,8 @@ function doorToAlchemist(){
 
         });
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -431,11 +499,27 @@ function doorToAlchemist(){
 
             disableButtons();
 
-            showNextSlide();
+            if(window.screen.width <= 768){
 
-            removeButtons();
+                setTimeout(() => {
 
-            alchemistRoomBattle();
+                    removeButtons();
+                
+                    alchemistRoomBattle();
+
+                }, '1350');
+
+                showNextSlide();
+
+            }else{
+
+                removeButtons();
+
+                showNextSlide();
+
+                alchemistRoomBattle();
+
+            };
         
         });
 
@@ -463,6 +547,8 @@ function doorToDungeon(){
 
         });
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -479,11 +565,27 @@ function doorToDungeon(){
 
             disableButtons();
 
-            showNextSlide();
+            if(window.screen.width <= 768){
 
-            removeButtons();
+                setTimeout(() => {
 
-            corridorLeft();
+                    removeButtons();
+                
+                    corridorLeft();
+
+                }, '1350');
+
+                showNextSlide();
+
+            }else{
+
+                removeButtons();
+
+                showNextSlide();
+
+                corridorLeft();
+
+            };
         
         });
 
@@ -571,6 +673,8 @@ function doorToWarehouse(){
     
         };
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -589,43 +693,68 @@ function doorToWarehouse(){
 
                 disableButtons();
 
-                removeButtons();
+                if(window.screen.width <= 768){
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.firstButton){
-
-                    showNextSlide();
-
-                    doorToAlchemist();
-        
-                };
+                    setTimeout(() => {
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.secondButton){
+                        removeButtons();
+                    
+                        nextFunction();
+    
+                    }, '1350');
     
                     showNextSlide();
-
-                    doorToDungeon();
-        
-                };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.thirdButton){
+                }else{
+    
+                    removeButtons();
     
                     showNextSlide();
-
-                    corridorRight();
-        
-                };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.fourthButton){
+                    nextFunction();
     
-                    showNextSlide();
-
-                    chapelBattle();
-        
                 };
 
             });
 
         });
+
+    };
+
+    function nextFunction(){
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.firstButton){
+
+            showNextSlide();
+
+            doorToAlchemist();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.secondButton){
+
+            showNextSlide();
+
+            doorToDungeon();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.thirdButton){
+
+            showNextSlide();
+
+            corridorRight();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToWarehouse.textButton.fourthButton){
+
+            showNextSlide();
+
+            chapelBattle();
+
+        };
+
 
     };
 
@@ -651,6 +780,8 @@ function alchemistRoomBattle(){
 
         });
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -669,35 +800,61 @@ function alchemistRoomBattle(){
 
                 disableButtons();
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomBattle.textButton.firstButton){
-
-                    document.querySelector('#castle').classList.remove('show-screen');
-
-                    document.querySelector('#castle').classList.add('hide-screen');
+                if(window.screen.width <= 768){
 
                     setTimeout(() => {
-                        
-                        removeButtons();
-
-                    }, '650');
-
-                    battleScreen([3, 0, 0], 'alchemistRoom');
-        
-                };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomBattle.textButton.secondButton){
-
+                        removeButtons();
+                    
+                        nextFunction();
+    
+                    }, '1350');
+    
+                    showNextSlide();
+    
+                }else{
+    
                     removeButtons();
     
                     showNextSlide();
-
-                    alchemistRoom();
-        
+    
+                    nextFunction();
+    
                 };
 
             });
 
         });
+
+    };
+
+    function nextFunction(){
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomBattle.textButton.firstButton){
+
+            document.querySelector('#castle').classList.remove('show-screen');
+
+            document.querySelector('#castle').classList.add('hide-screen');
+
+            setTimeout(() => {
+                
+                removeButtons();
+
+            }, '650');
+
+            battleScreen([3, 0, 0], 'alchemistRoom');
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomBattle.textButton.secondButton){
+
+            removeButtons();
+
+            showNextSlide();
+
+            alchemistRoom();
+
+        };
 
     };
 
@@ -723,6 +880,8 @@ function alchemistRoom(){
 
         });
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -741,35 +900,58 @@ function alchemistRoom(){
 
                 disableButtons();
 
-                removeButtons();
+                if(window.screen.width <= 768){
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoom.textButton.firstButton){
-
-                    showNextSlide();
-
-                    legionnaireDeadBody();
-        
-                };
+                    setTimeout(() => {
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoom.textButton.secondButton){
+                        removeButtons();
+                    
+                        nextFunction();
+    
+                    }, '1350');
     
                     showNextSlide();
-
-                    alchemistTable();
-        
-                };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoom.textButton.thirdButton){
+                }else{
+    
+                    removeButtons();
     
                     showNextSlide();
-
-                    alchemistWorkplace();
-        
+    
+                    nextFunction();
+    
                 };
-
             });
 
         });
+
+    };
+
+    function nextFunction(){
+        
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoom.textButton.firstButton){
+
+            showNextSlide();
+
+            legionnaireDeadBody();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoom.textButton.secondButton){
+
+            showNextSlide();
+
+            alchemistTable();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoom.textButton.thirdButton){
+
+            showNextSlide();
+
+            alchemistWorkplace();
+
+        };
 
     };
 
@@ -845,6 +1027,8 @@ function legionnaireDeadBody(){
     
         };
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -863,35 +1047,59 @@ function legionnaireDeadBody(){
 
                 disableButtons();
 
-                removeButtons();
+                if(window.screen.width <= 768){
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomDeadBody.textButton.firstButton){
-
-                    showNextSlide();
-
-                    alchemistTable();
-        
-                };
+                    setTimeout(() => {
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomDeadBody.textButton.secondButton){
+                        removeButtons();
+                    
+                        nextFunction();
+    
+                    }, '1350');
     
                     showNextSlide();
-
-                    alchemistWorkplace();
-        
-                };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomDeadBody.textButton.thirdButton){
+                }else{
+    
+                    removeButtons();
     
                     showNextSlide();
-
-                    corridorLeft();
-        
+    
+                    nextFunction();
+    
                 };
 
             });
 
         });
+
+    };
+
+    function nextFunction(){
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomDeadBody.textButton.firstButton){
+
+            showNextSlide();
+
+            alchemistTable();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomDeadBody.textButton.secondButton){
+
+            showNextSlide();
+
+            alchemistWorkplace();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomDeadBody.textButton.thirdButton){
+
+            showNextSlide();
+
+            corridorLeft();
+
+        };
 
     };
 
@@ -967,6 +1175,8 @@ function alchemistTable(){
     
         };
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -985,35 +1195,59 @@ function alchemistTable(){
 
                 disableButtons();
 
-                removeButtons();
+                if(window.screen.width <= 768){
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomTable.textButton.firstButton){
-
-                    showNextSlide();
-
-                    legionnaireDeadBody();
-        
-                };
+                    setTimeout(() => {
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomTable.textButton.secondButton){
+                        removeButtons();
+                    
+                        nextFunction();
+    
+                    }, '1350');
     
                     showNextSlide();
-
-                    alchemistWorkplace();
-        
-                };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomTable.textButton.thirdButton){
+                }else{
+    
+                    removeButtons();
     
                     showNextSlide();
-
-                    corridorLeft();
-        
+    
+                    nextFunction();
+    
                 };
 
             });
 
         });
+
+    };
+
+    function nextFunction(){
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomTable.textButton.firstButton){
+
+            showNextSlide();
+
+            legionnaireDeadBody();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomTable.textButton.secondButton){
+
+            showNextSlide();
+
+            alchemistWorkplace();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomTable.textButton.thirdButton){
+
+            showNextSlide();
+
+            corridorLeft();
+
+        };
 
     };
 
@@ -1089,6 +1323,8 @@ function alchemistWorkplace(){
     
         };
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -1107,35 +1343,53 @@ function alchemistWorkplace(){
 
                 disableButtons();
 
-                removeButtons();
+                if(window.screen.width <= 768){
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomWorkplace.textButton.firstButton){
-
-                    showNextSlide();
-
-                    legionnaireDeadBody();
-        
-                };
+                    setTimeout(() => {
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomWorkplace.textButton.secondButton){
+                        removeButtons();
+                    
+                        nextFunction();
+    
+                    }, '1350');
     
                     showNextSlide();
-
-                    alchemistTable();
-        
-                };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomWorkplace.textButton.thirdButton){
+                }else{
+    
+                    removeButtons();
     
                     showNextSlide();
-
-                    corridorLeft();
-        
+    
+                    nextFunction();
+    
                 };
 
             });
 
         });
+
+    };
+
+    function nextFunction(){
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomWorkplace.textButton.firstButton){
+
+            legionnaireDeadBody();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomWorkplace.textButton.secondButton){
+
+            alchemistTable();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonAlchemistRoomWorkplace.textButton.thirdButton){
+
+            corridorLeft();
+
+        };
 
     };
 
@@ -1267,6 +1521,8 @@ function corridorRight(){
     
         };
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -1285,51 +1541,65 @@ function corridorRight(){
 
                 disableButtons();
 
-                removeButtons();
+                if(window.screen.width <= 768){
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.firstButton){
-
-                    showNextSlide();
-
-                    doorToMage();
-        
-                };
+                    setTimeout(() => {
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.secondButton){
+                        removeButtons();
+                    
+                        nextFunction();
+    
+                    }, '1350');
     
                     showNextSlide();
-
-                    doorToChapel();
-        
-                };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.thirdButton){
+                }else{
+    
+                    removeButtons();
     
                     showNextSlide();
-
-                    corridorDeadBody();
-        
-                };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.fourthButton){
+                    nextFunction();
     
-                    showNextSlide();
-
-                    corridorLeft();
-        
-                };
-
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.fifthButton){
-    
-                    showNextSlide();
-
-                    corridorToCentralHall();
-        
                 };
 
             });
 
         });
+
+    };
+
+    function nextFunction(){
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.firstButton){
+
+            doorToMage();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.secondButton){
+
+            doorToChapel();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.thirdButton){
+
+            corridorDeadBody();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.fourthButton){
+
+            corridorLeft();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorRight.textButton.fifthButton){
+
+            corridorToCentralHall();
+
+        };
 
     };
 
@@ -1353,6 +1623,8 @@ function doorToMage(){
 
         });
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -1369,11 +1641,27 @@ function doorToMage(){
 
             disableButtons();
 
-            showNextSlide();
+            if(window.screen.width <= 768){
 
-            removeButtons();
+                setTimeout(() => {
 
-            mageRoom();
+                    removeButtons();
+                
+                    mageRoom();
+
+                }, '1350');
+
+                showNextSlide();
+
+            }else{
+
+                removeButtons();
+
+                showNextSlide();
+
+                mageRoom();
+
+            };
         
         });
 
@@ -1429,6 +1717,8 @@ function doorToChapel(){
     
         };
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -1447,28 +1737,48 @@ function doorToChapel(){
 
                 disableButtons();
 
-                removeButtons();
-    
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToChapel.textButton.firstButton){
-    
-                    showNextSlide();
-    
-                    chapelBattle();
-        
-                };
-    
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToChapel.textButton.secondButton){
-    
-                    showNextSlide();
-    
-                    corridorRight();
-        
-                };
+                if(window.screen.width <= 768){
 
+                    setTimeout(() => {
+    
+                        removeButtons();
+                    
+                        nextFunction();
+    
+                    }, '1350');
+    
+                    showNextSlide();
+    
+                }else{
+    
+                    removeButtons();
+    
+                    showNextSlide();
+    
+                    nextFunction();
+    
+                };
+                
             });
 
         });
         
+    };
+
+    function nextFunction(){
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToChapel.textButton.firstButton){
+    
+            chapelBattle();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonDoorToChapel.textButton.secondButton){
+
+            corridorRight();
+
+        };
+
     };
 
 };
@@ -1555,6 +1865,8 @@ function corridorDeadBody(){
     
         };
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -1573,43 +1885,59 @@ function corridorDeadBody(){
 
                 disableButtons();
 
-                removeButtons();
+                if(window.screen.width <= 768){
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorDeadBody.textButton.firstButton){
-
-                    showNextSlide();
-
-                    doorToMage();
-        
-                };
+                    setTimeout(() => {
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorDeadBody.textButton.secondButton){
+                        removeButtons();
+                    
+                        nextFunction();
+    
+                    }, '1350');
     
                     showNextSlide();
-
-                    doorToChapel();
-        
-                };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorDeadBody.textButton.thirdButton){
+                }else{
+    
+                    removeButtons();
     
                     showNextSlide();
-
-                    corridorLeft();
-        
-                };
-
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorDeadBody.textButton.fourthButton){
     
-                    showNextSlide();
-
-                    corridorToCentralHall();
-        
+                    nextFunction();
+    
                 };
 
             });
 
         });
+
+    };
+
+    function nextFunction(){
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorDeadBody.textButton.firstButton){
+
+            doorToMage();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorDeadBody.textButton.secondButton){
+
+            doorToChapel();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorDeadBody.textButton.thirdButton){
+
+            corridorLeft();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorDeadBody.textButton.fourthButton){
+
+            corridorToCentralHall();
+
+        };
 
     };
 
@@ -1637,6 +1965,8 @@ function mageRoom(){
 
         });
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -1655,35 +1985,53 @@ function mageRoom(){
 
                 disableButtons();
 
-                removeButtons();
+                if(window.screen.width <= 768){
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoom.textButton.firstButton){
-
-                    showNextSlide();
-
-                    commDevice();
-        
-                };
+                    setTimeout(() => {
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoom.textButton.secondButton){
+                        removeButtons();
+                    
+                        nextFunction();
+    
+                    }, '1350');
     
                     showNextSlide();
-
-                    sleepingPlace();
-        
-                };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoom.textButton.thirdButton){
+                }else{
+    
+                    removeButtons();
     
                     showNextSlide();
-
-                    magesTable();
-        
+    
+                    nextFunction();
+    
                 };
 
             });
 
         });
+
+    };
+
+    function nextFunction(){
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoom.textButton.firstButton){
+
+            commDevice();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoom.textButton.secondButton){
+
+            sleepingPlace();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoom.textButton.thirdButton){
+
+            magesTable();
+
+        };
 
     };
 
@@ -1759,6 +2107,8 @@ function commDevice(){
     
         };
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -1777,35 +2127,53 @@ function commDevice(){
 
                 disableButtons();
 
-                removeButtons();
+                if(window.screen.width <= 768){
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomCommDevice.textButton.firstButton){
-
-                    showNextSlide();
-
-                    sleepingPlace();
-        
-                };
+                    setTimeout(() => {
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomCommDevice.textButton.secondButton){
+                        removeButtons();
+                    
+                        nextFunction();
+    
+                    }, '1350');
     
                     showNextSlide();
-
-                    magesTable();
-        
-                };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomCommDevice.textButton.thirdButton){
+                }else{
+    
+                    removeButtons();
     
                     showNextSlide();
-
-                    corridorRight();
-        
+    
+                    nextFunction();
+    
                 };
 
             });
 
         });
+
+    };
+
+    function nextFunction(){
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomCommDevice.textButton.firstButton){
+
+            sleepingPlace();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomCommDevice.textButton.secondButton){
+
+            magesTable();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomCommDevice.textButton.thirdButton){
+
+            corridorRight();
+
+        };
 
     };
 
@@ -1829,6 +2197,8 @@ function sleepingPlace(){
 
         });
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -1845,11 +2215,27 @@ function sleepingPlace(){
 
             disableButtons();
 
-            showNextSlide();
+            if(window.screen.width <= 768){
 
-            removeButtons();
+                setTimeout(() => {
 
-            magesPapers();
+                    removeButtons();
+                
+                    magesPapers();
+
+                }, '1350');
+
+                showNextSlide();
+
+            }else{
+
+                removeButtons();
+
+                showNextSlide();
+
+                magesPapers();
+
+            };
         
         });
 
@@ -1875,6 +2261,8 @@ function magesPapers(){
 
         });
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -1891,11 +2279,27 @@ function magesPapers(){
 
             disableButtons();
 
-            showNextSlide();
+            if(window.screen.width <= 768){
 
-            removeButtons();
+                setTimeout(() => {
 
-            magesReport();
+                    removeButtons();
+                
+                    magesReport();
+
+                }, '1350');
+
+                showNextSlide();
+
+            }else{
+
+                removeButtons();
+
+                showNextSlide();
+
+                magesReport();
+
+            };
         
         });
 
@@ -1973,6 +2377,8 @@ function magesReport(){
     
         };
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -1991,35 +2397,53 @@ function magesReport(){
 
                 disableButtons();
 
-                removeButtons();
+                if(window.screen.width <= 768){
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomReport.textButton.firstButton){
-
-                    showNextSlide();
-
-                    magesTable();
-        
-                };
+                    setTimeout(() => {
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomReport.textButton.secondButton){
+                        removeButtons();
+                    
+                        nextFunction();
+    
+                    }, '1350');
     
                     showNextSlide();
-
-                    commDevice();
-        
-                };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomReport.textButton.thirdButton){
+                }else{
+    
+                    removeButtons();
     
                     showNextSlide();
-
-                    corridorRight();
-        
+    
+                    nextFunction();
+    
                 };
 
             });
 
         });
+
+    };
+
+    function nextFunction(){
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomReport.textButton.firstButton){
+
+            magesTable();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomReport.textButton.secondButton){
+
+            commDevice();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomReport.textButton.thirdButton){
+
+            corridorRight();
+
+        };
 
     };
 
@@ -2095,6 +2519,8 @@ function magesTable(){
     
         };
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -2113,35 +2539,53 @@ function magesTable(){
 
                 disableButtons();
 
-                removeButtons();
+                if(window.screen.width <= 768){
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomTable.textButton.firstButton){
-
-                    showNextSlide();
-
-                    sleepingPlace();
-        
-                };
+                    setTimeout(() => {
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomTable.textButton.secondButton){
+                        removeButtons();
+                    
+                        nextFunction();
+    
+                    }, '1350');
     
                     showNextSlide();
-
-                    commDevice();
-        
-                };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomTable.textButton.thirdButton){
+                }else{
+    
+                    removeButtons();
     
                     showNextSlide();
-
-                    corridorRight();
-        
+    
+                    nextFunction();
+    
                 };
 
             });
 
         });
+
+    };
+
+    function nextFunction(){
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomTable.textButton.firstButton){
+
+            sleepingPlace();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomTable.textButton.secondButton){
+
+            commDevice();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonMageRoomTable.textButton.thirdButton){
+
+            corridorRight();
+
+        };
 
     };
 
@@ -2169,6 +2613,8 @@ function chapelBattle(){
 
         });
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -2186,36 +2632,64 @@ function chapelBattle(){
             elem.addEventListener('click', () =>{
 
                 disableButtons();
-
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelBattle.textButton.firstButton){
-
-                    document.querySelector('#castle').classList.remove('show-screen');
-
-                    document.querySelector('#castle').classList.add('hide-screen');
+                
+                if(window.screen.width <= 768){
 
                     setTimeout(() => {
-                        
-                        removeButtons();
-
-                    }, '650');
-
-                    battleScreen([2, 1, 0], 'chapel');
-        
-                };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelBattle.textButton.secondButton){
+                        removeButtons();
+                    
+                        nextFunction();
+    
+                    }, '1350');
     
                     showNextSlide();
+    
+                }else{
+                    
+                    removeButtons();
+    
+                    setTimeout(() => {
+                        
+                        showNextSlide();
+    
+                        nextFunction();
 
-                    removeButtons();                
-
-                    chapel();
-        
+                    }, '750');
+    
                 };
             
             });
 
         });
+
+    };
+
+    function nextFunction(){
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelBattle.textButton.firstButton){
+
+            document.querySelector('#castle').classList.remove('show-screen');
+
+            document.querySelector('#castle').classList.add('hide-screen');
+
+            setTimeout(() => {
+                
+                removeButtons();
+
+            }, '650');
+
+            battleScreen([2, 1, 0], 'chapel');
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelBattle.textButton.secondButton){
+
+            removeButtons();                
+
+            chapel();
+
+        };
 
     };
 
@@ -2239,6 +2713,8 @@ function chapel(){
 
         });
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -2257,35 +2733,53 @@ function chapel(){
 
                 disableButtons();
 
-                removeButtons();
+                if(window.screen.width <= 768){
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapel.textButton.firstButton){
-
-                    showNextSlide();
-
-                    knightDeadBody();
-        
-                };
+                    setTimeout(() => {
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapel.textButton.secondButton){
+                        removeButtons();
+                    
+                        nextFunction();
+    
+                    }, '1350');
     
                     showNextSlide();
-
-                    altar();
-        
-                };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapel.textButton.thirdButton){
+                }else{
+    
+                    removeButtons();
     
                     showNextSlide();
-
-                    pileOfCorpses();
-        
+    
+                    nextFunction();
+    
                 };
 
             });
 
         });
+
+    };
+
+    function nextFunction(){
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapel.textButton.firstButton){
+
+            knightDeadBody();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapel.textButton.secondButton){
+
+            altar();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapel.textButton.thirdButton){
+
+            pileOfCorpses();
+
+        };
 
     };
 
@@ -2309,6 +2803,8 @@ function knightDeadBody(){
 
         });
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -2325,11 +2821,27 @@ function knightDeadBody(){
 
             disableButtons();
 
-            showNextSlide();
+            if(window.screen.width <= 768){
 
-            removeButtons();
+                setTimeout(() => {
 
-            knightHands();
+                    removeButtons();
+                
+                    knightHands();
+
+                }, '1350');
+
+                showNextSlide();
+
+            }else{
+
+                removeButtons();
+
+                showNextSlide();
+
+                knightHands();
+
+            };
         
         });
 
@@ -2355,6 +2867,8 @@ function knightHands(){
 
         });
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -2371,11 +2885,27 @@ function knightHands(){
 
             disableButtons();
 
-            showNextSlide();
+            if(window.screen.width <= 768){
 
-            removeButtons();
+                setTimeout(() => {
 
-            knightLegs();
+                    removeButtons();
+                
+                    knightLegs();
+
+                }, '1350');
+
+                showNextSlide();
+
+            }else{
+
+                removeButtons();
+
+                showNextSlide();
+
+                knightLegs();
+
+            };
         
         });
 
@@ -2463,6 +2993,8 @@ function knightLegs(){
     
         };
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -2481,43 +3013,59 @@ function knightLegs(){
 
                 disableButtons();
 
-                removeButtons();
+                if(window.screen.width <= 768){
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightLegs.textButton.firstButton){
-
-                    showNextSlide();
-
-                    altar();
-        
-                };
+                    setTimeout(() => {
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightLegs.textButton.secondButton){
+                        removeButtons();
+                    
+                        nextFunction();
+    
+                    }, '1350');
     
                     showNextSlide();
-
-                    pileOfCorpses();
-        
-                };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightLegs.textButton.thirdButton){
+                }else{
+    
+                    removeButtons();
     
                     showNextSlide();
-
-                    corridorRight();
-        
-                };
-
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightLegs.textButton.fourthButton){
     
-                    showNextSlide();
-
-                    corridorToCentralHall();
-        
+                    nextFunction();
+    
                 };
 
             });
 
         });
+
+    };
+
+    function nextFunction(){
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightLegs.textButton.firstButton){
+
+            altar();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightLegs.textButton.secondButton){
+
+            pileOfCorpses();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightLegs.textButton.thirdButton){
+
+            corridorRight();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelDeadKnightLegs.textButton.fourthButton){
+
+            corridorToCentralHall();
+
+        };
 
     };
 
@@ -2541,6 +3089,8 @@ function altar(){
 
         });
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -2557,11 +3107,27 @@ function altar(){
 
             disableButtons();
 
-            showNextSlide();
+            if(window.screen.width <= 768){
 
-            removeButtons();
+                setTimeout(() => {
 
-            altarDeadBody();
+                    removeButtons();
+                
+                    altarDeadBody();
+
+                }, '1350');
+
+                showNextSlide();
+
+            }else{
+
+                removeButtons();
+
+                showNextSlide();
+
+                altarDeadBody();
+
+            };
         
         });
 
@@ -2587,6 +3153,8 @@ function altarDeadBody(){
 
         });
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -2603,11 +3171,27 @@ function altarDeadBody(){
 
             disableButtons();
 
-            showNextSlide();
+            if(window.screen.width <= 768){
 
-            removeButtons();
+                setTimeout(() => {
 
-            altarDeadBodyNote();
+                    removeButtons();
+                
+                    altarDeadBodyNote();
+
+                }, '1350');
+
+                showNextSlide();
+
+            }else{
+
+                removeButtons();
+
+                showNextSlide();
+
+                altarDeadBodyNote();
+
+            };
         
         });
 
@@ -2695,6 +3279,8 @@ function altarDeadBodyNote(){
     
         };
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -2713,43 +3299,59 @@ function altarDeadBodyNote(){
 
                 disableButtons();
 
-                removeButtons();
+                if(window.screen.width <= 768){
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBodyNote.textButton.firstButton){
-
-                    showNextSlide();
-
-                    knightDeadBody();
-        
-                };
+                    setTimeout(() => {
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBodyNote.textButton.secondButton){
+                        removeButtons();
+                    
+                        nextFunction();
+    
+                    }, '1350');
     
                     showNextSlide();
-
-                    pileOfCorpses();
-        
-                };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBodyNote.textButton.thirdButton){
+                }else{
+    
+                    removeButtons();
     
                     showNextSlide();
-
-                    corridorRight();
-        
-                };
-
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBodyNote.textButton.fourthButton){
     
-                    showNextSlide();
-
-                    corridorToCentralHall();
-        
+                    nextFunction();
+    
                 };
 
             });
 
         });
+
+    };
+
+    function nextFunction(){
+        
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBodyNote.textButton.firstButton){
+
+            knightDeadBody();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBodyNote.textButton.secondButton){
+
+            pileOfCorpses();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBodyNote.textButton.thirdButton){
+
+            corridorRight();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelAltarDeadBodyNote.textButton.fourthButton){
+
+            corridorToCentralHall();
+
+        };
 
     };
 
@@ -2835,6 +3437,8 @@ function pileOfCorpses(){
     
         };
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -2853,43 +3457,59 @@ function pileOfCorpses(){
 
                 disableButtons();
 
-                removeButtons();
+                if(window.screen.width <= 768){
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelPileOfCorpses.textButton.firstButton){
-
-                    showNextSlide();
-
-                    knightDeadBody();
-        
-                };
+                    setTimeout(() => {
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelPileOfCorpses.textButton.secondButton){
+                        removeButtons();
+                    
+                        nextFunction();
+    
+                    }, '1350');
     
                     showNextSlide();
-
-                    altar();
-        
-                };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelPileOfCorpses.textButton.thirdButton){
+                }else{
+    
+                    removeButtons();
     
                     showNextSlide();
-
-                    corridorRight();
-        
-                };
-
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelPileOfCorpses.textButton.fourthButton){
     
-                    showNextSlide();
-
-                    corridorToCentralHall();
-        
+                    nextFunction();
+    
                 };
 
             });
 
         });
+
+    };
+
+    function nextFunction(){
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelPileOfCorpses.textButton.firstButton){
+
+            knightDeadBody();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelPileOfCorpses.textButton.secondButton){
+
+            altar();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelPileOfCorpses.textButton.thirdButton){
+
+            corridorRight();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonChapelPileOfCorpses.textButton.fourthButton){
+
+            corridorToCentralHall();
+
+        };
 
     };
 
@@ -2969,6 +3589,8 @@ function corridorToCentralHall(){
     
         };
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -2987,35 +3609,53 @@ function corridorToCentralHall(){
 
                 disableButtons();
 
-                removeButtons();
+                if(window.screen.width <= 768){
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorToCentralHall.textButton.firstButton){
-
-                    showNextSlide();
-
-                    firstUpstairs();
-        
-                };
+                    setTimeout(() => {
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorToCentralHall.textButton.secondButton){
+                        removeButtons();
+                    
+                        nextFunction();
+    
+                    }, '1350');
     
                     showNextSlide();
-
-                    doorToCentralHall();
-        
-                };
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorToCentralHall.textButton.thirdButton){
+                }else{
+    
+                    removeButtons();
     
                     showNextSlide();
-
-                    corridorToWarehouse();
-        
+    
+                    nextFunction();
+    
                 };
 
             });
 
         });
+
+    };
+
+    function nextFunction(){
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorToCentralHall.textButton.firstButton){
+
+            firstUpstairs();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorToCentralHall.textButton.secondButton){
+
+            doorToCentralHall();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorToCentralHall.textButton.thirdButton){
+
+            corridorToWarehouse();
+
+        };
 
     };
 
@@ -3041,6 +3681,8 @@ function firstUpstairs(){
 
         });
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -3057,11 +3699,27 @@ function firstUpstairs(){
 
             disableButtons();
 
-            removeButtons();
+            if(window.screen.width <= 768){
 
-            showNextSlide();
+                setTimeout(() => {
 
-            corridorToCentralHall();
+                    removeButtons();
+                
+                    corridorToCentralHall();
+
+                }, '1350');
+
+                showNextSlide();
+
+            }else{
+
+                removeButtons();
+
+                showNextSlide();
+
+                corridorToCentralHall();
+
+            };
 
         });
 
@@ -3119,6 +3777,8 @@ function doorToCentralHall(){
     
         };
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -3137,27 +3797,47 @@ function doorToCentralHall(){
 
                 disableButtons();
 
-                removeButtons();
+                if(window.screen.width <= 768){
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorToCentralHallDoor.textButton.firstButton){
-
-                    showNextSlide();
-
-                    firstUpstairs();
-        
-                };
+                    setTimeout(() => {
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorToCentralHallDoor.textButton.secondButton){
+                        removeButtons();
+                    
+                        nextFunction();
+    
+                    }, '1350');
     
                     showNextSlide();
-
-                    corridorToWarehouse();
-        
+    
+                }else{
+    
+                    removeButtons();
+    
+                    showNextSlide();
+    
+                    nextFunction();
+    
                 };
 
             });
 
         });
+
+    };
+
+    function nextFunction(){
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorToCentralHallDoor.textButton.firstButton){
+
+            firstUpstairs();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorToCentralHallDoor.textButton.secondButton){
+
+            corridorToWarehouse();
+
+        };
 
     };
 
@@ -3184,8 +3864,6 @@ function corridorToWarehouse(){
             elem.innerText = Object.values(donjonInsideText.language[language].donjonFirstFloor.donjonCorridorToWarehouse.textButton)[index];
 
         });
-
-        eventListener();
 
         footerItemsCheck();
 
@@ -3226,6 +3904,10 @@ function corridorToWarehouse(){
             });
     
         };
+
+        showNextSlideFirstSlideMobile();
+
+        eventListener();
         
     }, '650');
 
@@ -3242,36 +3924,54 @@ function corridorToWarehouse(){
             elem.addEventListener('click', () =>{
 
                 disableButtons();
+                
+                if(window.screen.width <= 768){
 
-                removeButtons();
-
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorToWarehouse.textButton.firstButton){
-
-                    showNextSlide();
-
-                    secondUpstairs();
-        
-                };
+                    setTimeout(() => {
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorToWarehouse.textButton.secondButton){
+                        removeButtons();
+                    
+                        nextFunction();
+    
+                    }, '1350');
     
                     showNextSlide();
-
-                    secondDoorToWarehouse();
-        
-                };
-
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorToWarehouse.textButton.thirdButton){
+    
+                }else{
+    
+                    removeButtons();
     
                     showNextSlide();
-
-                    centralHall();
-        
+    
+                    nextFunction();
+    
                 };
 
             });
 
         });
+
+    };
+
+    function nextFunction(){
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorToWarehouse.textButton.firstButton){
+
+            secondUpstairs();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorToWarehouse.textButton.secondButton){
+
+            secondDoorToWarehouse();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonCorridorToWarehouse.textButton.thirdButton){
+
+            centralHall();
+
+        };
 
     };
 
@@ -3297,6 +3997,8 @@ function secondDoorToWarehouse(){
 
         });
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -3313,11 +4015,27 @@ function secondDoorToWarehouse(){
 
             disableButtons();
 
-            showNextSlide();
+            if(window.screen.width <= 768){
 
-            removeButtons();
+                setTimeout(() => {
 
-            warehouseBattle();
+                    removeButtons();
+                
+                    warehouseBattle();
+
+                }, '1350');
+
+                showNextSlide();
+
+            }else{
+
+                removeButtons();
+
+                showNextSlide();
+
+                warehouseBattle();
+
+            };
         
         });
 
@@ -3343,6 +4061,8 @@ function warehouseBattle(){
 
         });
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -3361,26 +4081,48 @@ function warehouseBattle(){
 
                 disableButtons();
 
-                removeButtons();
+                if(window.screen.width <= 768){
+
+                    setTimeout(() => {
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonWarehouseBattle.textButton.firstButton){
+                        removeButtons();
+                    
+                        nextFunction();
     
-                    battleScreen([0, 0, 1], 'warehouse');
-        
-                };
-    
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonWarehouseBattle.textButton.secondButton){
+                    }, '1350');
     
                     showNextSlide();
     
-                    warehouse();
-        
+                }else{
+    
+                    removeButtons();
+    
+                    showNextSlide();
+    
+                    nextFunction();
+    
                 };
             
             });
 
 
         });
+
+    };
+
+    function nextFunction(){
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonWarehouseBattle.textButton.firstButton){
+    
+            battleScreen([0, 0, 1], 'warehouse');
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonWarehouseBattle.textButton.secondButton){
+
+            warehouse();
+
+        };
 
     };
 
@@ -3406,6 +4148,8 @@ function warehouse(){
 
         });
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -3422,11 +4166,27 @@ function warehouse(){
 
             disableButtons();
 
-            showNextSlide();
+            if(window.screen.width <= 768){
 
-            removeButtons();
+                setTimeout(() => {
 
-            warehouseEncounter();
+                    removeButtons();
+                
+                    warehouseEncounter();
+
+                }, '1350');
+
+                showNextSlide();
+
+            }else{
+
+                removeButtons();
+
+                showNextSlide();
+
+                warehouseEncounter();
+
+            };
         
         });
 
@@ -3482,6 +4242,8 @@ function warehouseEncounter(){
     
         };
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -3500,27 +4262,47 @@ function warehouseEncounter(){
 
                 disableButtons();
 
-                removeButtons();
+                if(window.screen.width <= 768){
 
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonWarehouseEncounter.textButton.firstButton){
-
-                    showNextSlide();
-
-                    secondUpstairs();
-        
-                };
+                    setTimeout(() => {
     
-                if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonWarehouseEncounter.textButton.secondButton){
+                        removeButtons();
+                    
+                        nextFunction();
+    
+                    }, '1350');
     
                     showNextSlide();
-
-                    centralHall();
-        
+    
+                }else{
+    
+                    removeButtons();
+    
+                    showNextSlide();
+    
+                    nextFunction();
+    
                 };
 
             });
 
         });
+
+    };
+
+    function nextFunction(){
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonWarehouseEncounter.textButton.firstButton){
+
+            secondUpstairs();
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonFirstFloor.donjonWarehouseEncounter.textButton.secondButton){
+
+            centralHall();
+
+        };
 
     };
 
@@ -3550,6 +4332,8 @@ function secondUpstairs(){
 
         });
 
+        showNextSlideFirstSlideMobile();
+
         eventListener();
         
     }, '650');
@@ -3568,35 +4352,59 @@ function secondUpstairs(){
 
                 disableButtons();
 
-                if(elem.innerText === donjonInsideText.language[language].donjonSecondFloor.donjonSecondFloorLeftTower.textButton.firstButton){
-
-                    document.querySelector('#castle').classList.remove('show-screen');
-    
-                    document.querySelector('#castle').classList.add('hide-screen');
+                if(window.screen.width <= 768){
 
                     setTimeout(() => {
-                        
+    
                         removeButtons();
+                    
+                        nextFunction();
     
-                    }, '650');
-    
-                    battleScreen([0, 3, 0], 'secondFloor');
-        
-                };
-    
-                if(elem.innerText === donjonInsideText.language[language].donjonSecondFloor.donjonSecondFloorLeftTower.textButton.secondButton){
+                    }, '1350');
     
                     showNextSlide();
     
+                }else{
+    
                     removeButtons();
-
-                    secondFloor();
-        
+    
+                    showNextSlide();
+    
+                    nextFunction();
+    
                 };
             
             });
 
         });
+
+    };
+
+    function nextFunction(){
+
+        if(elem.innerText === donjonInsideText.language[language].donjonSecondFloor.donjonSecondFloorLeftTower.textButton.firstButton){
+
+            document.querySelector('#castle').classList.remove('show-screen');
+
+            document.querySelector('#castle').classList.add('hide-screen');
+
+            setTimeout(() => {
+                
+                removeButtons();
+
+            }, '650');
+
+            battleScreen([0, 3, 0], 'secondFloor');
+
+        };
+
+        if(elem.innerText === donjonInsideText.language[language].donjonSecondFloor.donjonSecondFloorLeftTower.textButton.secondButton){
+
+            removeButtons();
+
+            secondFloor();
+
+        };
 
     };
 

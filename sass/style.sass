@@ -34,7 +34,7 @@
 
 @media screen and ( max-width: 768px )
     .button
-        width: 50%
+        width: 78%
         
 .btn-info
     display: flex
@@ -59,14 +59,11 @@
     line-height: 1.75
     text-align: center
 
-.rotation-x
-    animation: rotation-x ease 2s 1 forwards     
-
-.reverse-rotation-x
-    animation: reverse-rotation-x ease 2s 1 forwards   
-
-.rotation-y
-    animation: rotation-y ease 2s 1 forwards
+.wrapper-screen-animation
+    animation: wrapper-screen-animation ease 2s 1 forwards
+    
+.wrapper-screen-animation-reverse
+    animation: wrapper-screen-animation-reverse ease 2s 1 forwards   
 
 .container
     position: relative
@@ -324,6 +321,16 @@
         left: 50%
         transform: translateX(-50%)
 
+@media screen and ( max-width: 768px )
+    @keyframes show-screen
+        0%
+            top: -100%
+            opacity: 0
+
+        100%
+            top: 0
+            opacity: 1
+
 @keyframes hide-screen
     0%
         left: 50%
@@ -331,6 +338,16 @@
 
     100%
         left: -100%
+
+@media screen and ( max-width: 768px )
+    @keyframes hide-screen
+        0%
+            top: 0
+            opacity: 1
+
+        100%
+            top: 100%
+            opacity: 0
 
 @keyframes show-fc
     0%
@@ -365,23 +382,37 @@
     100%  
         top: -200%
 
-@keyframes rotation-y
-    0%
-        transform: rotateY(0deg)  
-    100%
-        transform: rotateY(360deg)
-
-@keyframes rotation-x
+@keyframes wrapper-screen-animation
     0%
         transform: rotateX(0deg)  
     100%
         transform: rotateX(360deg)
 
-@keyframes reverse-rotation-x
+@media screen and ( max-width: 768px )
+    @keyframes wrapper-screen-animation
+        0%
+            top: -100%
+            opacity: 0
+
+        100%
+            top: 0
+            opacity: 1
+
+@keyframes wrapper-screen-animation-reverse
     0%
         transform: rotateX(360deg)  
     100%
         transform: rotateX(0deg)
+
+@media screen and ( max-width: 768px )
+    @keyframes wrapper-screen-animation-reverse
+        0%
+            top: 0
+            opacity: 1
+
+        100%
+            top: 100%
+            opacity: 0
 
 @keyframes fc-item-hide
     0%

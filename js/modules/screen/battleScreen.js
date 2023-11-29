@@ -1268,9 +1268,7 @@ function popupBattle(textTurn, enemyIndex, playerAction){
             firstColumn.appendChild(enemyDOMClone);
     
             popupBattleWrapper.querySelector('.buttons').remove();
-    
-            popupBattleWrapper.querySelector('.column__item').classList.remove('rotation-y');
-    
+        
             popupBattleWrapper.querySelector('.column__item').classList.remove('swiper-slide-active');
     
             popupBattleWrapper.querySelector('.column__item').classList.remove('swiper-slide');

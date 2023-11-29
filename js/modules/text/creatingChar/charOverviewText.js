@@ -25,9 +25,9 @@ const charOverviewText = {
 
                 classText: 'Class: ',
 
-                firstWeaponText: 'Main weapon: ',
+                firstWeaponText: '1-st weapon: ',
     
-                secondWeaponText: 'Second weapon: '
+                secondWeaponText: '2-nd weapon: '
 
             }
 
@@ -55,9 +55,9 @@ const charOverviewText = {
 
                 classText: 'Класс: ',
 
-                firstWeaponText: 'Основное оружие: ',
+                firstWeaponText: '1-е оружие: ',
     
-                secondWeaponText: 'Дополнительное оружие: '
+                secondWeaponText: '2-е оружие: '
 
             }
 

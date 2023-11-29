@@ -118,23 +118,43 @@ function createFooterItem(footerItemCount){
 
 function showNextSlide(){
 
-    if(document.querySelector('.screen ').querySelector('.wrapper').classList.contains('rotation-x') === true){
+    if(document.querySelector('.screen ').querySelector('.wrapper').classList.contains('wrapper-screen-animation') === true){
 
-        document.querySelector('.screen ').querySelector('.wrapper').classList.remove('rotation-x');
+        document.querySelector('.screen ').querySelector('.wrapper').classList.remove('wrapper-screen-animation');
 
-        document.querySelector('.screen ').querySelector('.wrapper').classList.add('reverse-rotation-x');
+        document.querySelector('.screen ').querySelector('.wrapper').classList.add('wrapper-screen-animation-reverse');
 
-    } else if(document.querySelector('.screen ').querySelector('.wrapper').classList.contains('reverse-rotation-x') === true){
+    } else if(document.querySelector('.screen ').querySelector('.wrapper').classList.contains('wrapper-screen-animation-reverse') === true){
 
-        document.querySelector('.screen ').querySelector('.wrapper').classList.remove('reverse-rotation-x');
+        document.querySelector('.screen ').querySelector('.wrapper').classList.remove('wrapper-screen-animation-reverse');
 
-        document.querySelector('.screen ').querySelector('.wrapper').classList.add('rotation-x');
+        document.querySelector('.screen ').querySelector('.wrapper').classList.add('wrapper-screen-animation');
 
-    } else if(document.querySelector('.screen ').querySelector('.wrapper').classList.contains('reverse-rotation-x') != true || document.querySelector('.screen ').querySelector('.wrapper').classList.contains('reverse-rotation-x') != true){
+    } else if(document.querySelector('.screen ').querySelector('.wrapper').classList.contains('wrapper-screen-animation-reverse') != true || document.querySelector('.screen ').querySelector('.wrapper').classList.contains('wrapper-screen-animation-reverse') != true){
 
-        document.querySelector('.screen ').querySelector('.wrapper').classList.add('rotation-x');
+        document.querySelector('.screen ').querySelector('.wrapper').classList.add('wrapper-screen-animation');
 
-    }
+    };
+
+};
+
+function showNextSlideFirstSlideMobile(){
+
+    if(window.screen.width <= 768){
+
+        document.querySelector('.screen__wrapper').classList.add('wrapper-screen-animation');
+
+    };
+
+};
+
+function showNextSlideMobileCheck(){
+
+    if(window.screen.width <= 768){
+
+        showNextSlide();
+
+    };
 
 };
 
@@ -185,6 +205,10 @@ export { enableButtons };
 export {createFooterItem};
 
 export {showNextSlide};
+
+export {showNextSlideFirstSlideMobile};
+
+export {showNextSlideMobileCheck};
 
 export {removeButtons};
 
